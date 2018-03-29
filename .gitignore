@@ -8,6 +8,13 @@ Gruntfile.js
 site/public/css
 site/public/js
 site/public/views
-
-/vendor/
-
+.gitignore
+.idea/inspectionProfiles/
+config/ABSOLUTE_PATHIVE_PATHusers/
+config/ABSOLUTE_PATHIVEusers/
+mod/croppic/assets/.DS_Store
+mod/croppic/assets/css/.DS_Store
+mod/croppic/assets/img/.DS_Store
+mod/croppic/assets/js/.DS_Store
+users/user-10/
+package-lock.json
