@@ -1,0 +1,61 @@
+/*
+  Comment out section for template v1
+  development environment.
+
+  @import "bootstrap";
+  @import "font-awesome";
+  @import "../template-v1/sass/main";
+*/
+
+/**
+--------------------------
+End of environment switch.
+--------------------------
+*/
+
+/**
+  Comment out code below when working
+  on the development version of the
+  template v1.
+*/
+
+@import "constants";
+@import "bootstrap";
+@import "font-awesome";
+@import "bootstrap-override";
+@import "general";
+@import "header";
+@import "forms";
+@import "z-tooltip";
+@import "loader";
+@import "slick";
+@import "faq-v-1";
+@import "forms/form-one";
+@import "forms/center-form";
+@import "crop-img";
+@import "course";
+@import "forms/ranges";
+@import "journal";
+@import "community-log";
+@import "forum";
+@import "chat";
+@import "sidebar";
+@import "settings-page";
+@import "inspiration";
+@import "forum-single";
+@import "get-help-form";
+@import "sidebar-live-now";
+@import "home";
+@import "new-home";
+@import "new-footer";
+@import "new-family-of-drug-abuser";
+@import "intro";
+@import "forms/insurance-form";
+@import "new-forum-single";
+@import "journal-v1";
+@import "the-community-v1";
+@import "modals/ask-question-form";
+@import "inspiration-v1";
+@import "journal/postsV1";
+
+

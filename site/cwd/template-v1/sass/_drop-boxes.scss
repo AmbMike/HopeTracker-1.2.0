@@ -1,0 +1,61 @@
+.drop-boxes-container {
+  &{
+    width: 350px;
+    display: inline-block;
+    margin: 15px;
+    vertical-align: top;
+  }
+  .banner-top {
+    width: 100%;
+    padding: 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background-color: $blue;
+    &.active {
+      background-color: $green;
+    }
+  }
+  .content-container {
+    padding: 0 15px;
+    border: 1px solid $gray;
+    border-top: none;
+    .title {
+      font-size: 1.8em;
+      padding: 5px 0;
+      display: block;
+      text-transform: uppercase;
+      border-bottom: 1px solid #cbc9c8;
+      text-align: center;
+    }
+    .description {
+      margin: 10px 15px;
+    }
+    .panel {
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+    }
+    .up-arrow {
+       -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+       border-radius: 50%;
+       text-align: center;
+       float: right;
+       width: 15px;
+       height: 15px;
+       background-color: $green;
+       color: #ffffff;
+      margin-bottom: 15px;
+       i {
+         position: relative;
+         bottom: .12em;
+         right: .03em;
+       }
+     }
+    .read-more {
+      text-align: center;
+      color: $blue;
+      margin-bottom: 15px;
+    }
+  }
+}

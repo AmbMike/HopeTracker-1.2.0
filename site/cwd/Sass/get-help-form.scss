@@ -1,0 +1,85 @@
+/*!
+ * Copyright (c) 2017.
+ */
+
+.logged-in{
+
+  #form-help-nav{
+    max-width:400px;
+    text-align: left;
+
+    label{
+      text-align: left;
+      font-size: 12px;
+    }
+    p{
+      text-shadow: none;
+      text-align: left;
+      color: #5e5e5e;
+      margin: 10px 0;
+
+      &.white-heading-one-md{
+        text-align: center;
+        color:#ffffff;
+        display: inline-block;
+        width: 100%;
+      }
+      &.label{
+        display: inline-block;
+        margin-bottom: 0;
+        margin-top: 16px;
+        padding-bottom: 0;
+        padding-left: 3px;
+      }
+    }
+  }
+  textarea {
+    width: 100%;
+    padding: 9px;
+    margin:0;
+    background: lighten($body-gray,2%);
+    border: 1px solid darken($body-gray,7%);
+    border-radius: 3px;
+    color: $main_font_color;
+    box-sizing: border-box;
+  }
+  textarea{
+    height: 58px;
+    resize: vertical;
+  }
+  .btn-default{
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 0;
+  }
+  .help-block {
+    text-shadow: none;
+    margin-left: 13px;
+  }
+  .insurance-form-ul{
+    padding: 0 !important;
+    border-top: 2px solid $theme-green;
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+
+    @media (max-width: 769px) {
+      position: absolute !important;
+      top: 0 !important;
+    }
+
+    p{
+      text-align: center !important;
+    }
+
+    .insurance-form-li{
+      display: block;
+      padding: 0;
+      background: white;
+
+      input{
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,164 @@
+#journal-activity-log {
+  &.inside-box {
+    padding: 0;
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+  }
+  .activity-title-box {
+    @media (max-width: 768px) {
+      margin: 15px 0;
+    }
+    .active-log-header {
+      display: block;
+        img {
+          height: 70px;
+          width: 70px;
+          border-radius: 50%;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      .activity-title {
+        font-size: 25px;
+        font-weight: 600;
+        display: inline-block;
+      }
+    }
+  }
+  #activity-content {
+    hr {
+      background: darken($theme-gray,10%);
+      margin: 14px 0;
+      height: 1px;
+    }
+    .date {
+      display: table-caption;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .second-table, .third-table {
+      margin-top: 15px;
+      @media (max-width: 550px) {
+        text-align: center;
+        display: block;
+      }
+      .first {
+        width: 50px;
+        text-align: center;
+        vertical-align: top;
+        i {
+          color: $theme-blue;
+          font-size: 25px;
+          position: relative;
+          bottom: 4px;
+        }
+        .user-img-box {
+          width: 50px;
+          margin-right: 15px;
+          @media (max-width: 550px) {
+            margin-right: 0;
+          }
+        }
+      }
+      .second {
+        vertical-align: top;
+        &.followed-by {
+          vertical-align: middle;
+        }
+        .user-name, .inspired-like-by {
+          text-transform: capitalize;
+          color: $theme-blue;
+          font-size: 17px;
+          cursor: pointer;
+          .following-text {
+            color: #000;
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: none;
+          }
+          .followed-user {
+            text-transform: capitalize;
+            color: $theme-blue;
+            cursor: pointer;
+          }
+        }
+        .liked-text-box, .comment-text-box, .inspired-text-box {
+          font-size: 16px;
+        }
+        .liked-activity-title, .comment-activity-title {
+          color: $theme-blue;
+          font-weight: 600;
+          cursor: pointer;
+        }
+        .inspired-daily{
+        color: $theme-blue;
+          cursor: pointer;
+        }
+      }
+      .third {
+        vertical-align: top;
+        @media (max-width: 550px) {
+          display: block;
+          margin-top: 15px;
+        }
+        .user-list-box {
+          color: $theme-blue;
+          cursor: pointer;
+          text-align: right;
+          @media (max-width: 550px) {
+            text-align: center;
+          }
+          .liked-user {
+            display: block;
+
+          }
+        }
+        .inspired-img-box {
+          width: 170px;
+          float: right;
+          cursor: pointer;
+          @media (max-width: 550px) {
+            float: none;
+            margin: 15px auto 0;
+          }
+        }
+      }
+    }
+  }
+  .dropdown {
+    display: block;
+    position: relative;
+    top: 15px;
+    @media (max-width: 750px) {
+      text-align: center;
+      float: none !important;
+    }
+    .btn-white {
+      font-size: 16px;
+    }
+    #activity-filter {
+      & {
+        @media (max-width: 750px) {
+          right: 20%;
+          left: 20%;
+          margin-left: auto;
+          margin-right: auto;
+          min-width: 237px;
+        }
+        @media (max-width: 580px) {
+          right: 0;
+          left: 0;
+          min-width: 237px;
+        }
+      }
+      a {
+        @media (max-width: 580px) {
+          white-space: normal;
+        }
+      }
+    }
+  }
+
+
+}

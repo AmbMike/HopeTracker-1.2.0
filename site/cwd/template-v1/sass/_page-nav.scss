@@ -1,0 +1,59 @@
+/*!
+ * Copyright (c) 2018.
+ */
+
+.page-nav {
+  ul {
+    text-align: center;
+    list-style: none;
+    background: $light-gray;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-bottom: 2px solid $dark-gray;
+  }
+  li {
+    display: inline-block;
+    &:nth-child(even) {
+      a {
+        border-left: 1px solid $gray;
+      }
+     }
+    &:nth-child(odd) {
+      a {
+        border-left: 1px solid $gray;
+      }
+    }
+    &:first-child {
+      a {
+        border-left: none;
+      }
+    }
+    &:last-child {
+      a {
+        border-right: none;
+      }
+    }
+    &:nth-child(2){
+      a {
+        border-left: none;
+      }
+    }
+    a {
+      display: block;
+      margin: 15px 0;
+      padding: 0 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      color: $dark-gray;
+      &.on {
+        background: $blue;
+        color: #FFFFFF;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+      }
+    }
+  }
+}

@@ -1,0 +1,220 @@
+.insurance-form-container{
+  width:100%;
+  max-width: 500px;
+
+
+  #check-insurance-form{
+
+    .insurance-check {
+      background-color: $green;
+      padding: 15px;
+      width: 100%;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-size: 1.5em;
+      text-align: center;
+      @media (max-width: 767px){
+        font-size: 1.2em;
+      }
+      i {
+        float: left;
+        display: inline-block;
+        cursor: pointer;
+      }
+    }
+    .close{
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 16px 9px 10px 10px;
+      color: #ffffff;
+      opacity: 0.6;
+    }
+    .success-msg-box{
+      display: none;
+      padding-bottom: 29px !important;
+
+      ul{
+        text-align: left;
+        display: inline-block;
+        margin-bottom: 5px;
+
+        li{
+          list-style:none;
+          color: initial;
+
+          &:before {
+            content: '\f00c';
+            font-family: FontAwesome;
+            color: $green;
+            font-size: 21px;
+            display: inline-block;
+            margin-right: 7px;
+            position: relative;
+            top: 3px;
+          }
+        }
+      }
+    }
+    .content, .success-msg-box, .success-msg-box p{
+      padding:0  15px ;
+      text-align: center !important;
+      text-shadow: none;
+
+      .phone{
+        color: $blue;
+        border: 2px solid $blue;
+        border-radius: 26px;
+        padding: 7px 21px;
+        margin: 0 15px;
+        font-size: 1.5em;
+        display: inline-block !important;
+
+        &:before {
+          content: '\f095';
+          color: $gray;
+          font-family: FontAwesome;
+          display: inline-block;
+          margin-right: 10px;
+          position: relative;
+          top: 3px;
+
+        }
+      }
+
+      .live-agent, .success-msg-box{
+        color: $gray;
+        font-size: 16px;
+        display: block;
+        position: relative;
+        margin: 6px 15px;
+      }
+    }
+    .content {
+      padding: 15px 0 0;
+    }
+    #steps{
+      overflow: auto;
+
+      .step {
+        padding: 5px 16px;
+        display: inline-block;
+        list-style: none;
+        font-size: 14px;
+        width: 50%;
+        margin: 8px 0 0 0;
+        float: left;
+        @include transition(all .3s ease);
+        text-shadow: none;
+
+        &.one {
+          background: $gray;
+          color: #ffffff;
+          text-align: right;
+
+          &:after {
+            content: "";
+            position: absolute;
+            height: 0;
+            margin: -5px 0px 0 16px;
+            border: 14px solid transparent;
+            border-left-color: $gray;
+            z-index: 34;
+          }
+        }
+        &.two {
+          background: lighten($gray, 30%);
+          color: $gray;
+
+          .text {
+            display: inline-block;
+            margin-left: 10px;
+          }
+
+          &:before {
+            content: "";
+            position: absolute;
+            height: 0;
+            margin: -8px 0 0 -16px;
+            border: 17px solid transparent;
+            border-left-color: white;
+            z-index: 30;
+          }
+
+        }
+      }
+    }
+
+    .form {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      padding:15px 30px;
+      display: block;
+
+      //@include transition(all .5s ease);
+
+      .form-group{
+        label{
+          margin-bottom: 3px;
+          &.centerSpace {
+            margin-right: 15px;
+          }
+          &.title {
+            font-weight: 600;
+          }
+        }
+        input{
+          font-size: 18px;
+        }
+
+        &.has-feedback{
+          i{
+            text-shadow: none;
+            margin-top: 8px;
+          }
+
+        }
+        &.has-error, &.has-success{
+          input{
+            border: 1px solid $gray;
+            box-shadow: none;
+          }
+        }
+      }
+      .form-btn{
+        text-transform: uppercase;
+        background:$green !important;
+        color: #ffffff !important;
+        margin:0 auto 15px;
+        padding: 5px 0;
+        font-size: 1.2em;
+        border: 1px solid $green;
+        width: 100%;
+        &:hover {
+          background: $green !important;
+        }
+      }
+      textarea {
+        max-width: 100%;
+        min-width: 100%;
+        min-height: 60px;
+      }
+      /** button status */
+    }
+    &.two{
+      #steps{
+        .one{
+          cursor: pointer;
+        }
+        .two{
+          background: $gray;
+          color: #ffffff;
+          .text{
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+[02-Jan-2016 11:13:07 America/New_York] PHP Fatal error:  Call to undefined method CS_REST_General::get_apikey() in /home/amb5/public_html/ambrosiatc.com/campaign-monitor-api/samples/get_apikey.php on line 7

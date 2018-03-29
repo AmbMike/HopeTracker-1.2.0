@@ -1,0 +1,487 @@
+#the-community {
+  hr {
+    margin-top: 0;
+    height: 1px;
+    background: darken($theme-gray,5%);
+  }
+  .simple-heading{
+    text-transform: capitalize;
+  }
+  #member-order{
+
+    &.member-order-box {
+      background: #f6f7f9;
+      margin: 15px;
+      padding: 15px;
+      border: 1px solid #d7dce5;
+    }
+
+    h4{
+      margin: 8px 0 8px 0;
+    }
+    .container {
+      display: block;
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      text-transform: capitalize;
+    }
+
+    /* Hide the browser's default checkbox */
+    .container input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+
+    }
+
+    /* Create a custom checkbox */
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: darken($theme-gray,5%);
+    }
+
+    /* On mouse-over, add a grey background color */
+    .container:hover input ~ .checkmark {
+      background-color: darken($theme-gray,10%);
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .container input:checked ~ .checkmark {
+      background-color: $theme-blue;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .container input:checked ~ .checkmark:after {
+      display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .container .checkmark:after {
+      left: 8px;
+      top: 4px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  }
+  #member-filter {
+    &.filter-container {
+      margin: 0 15px 15px;
+    }
+    form{
+      background: $theme-gray;
+      margin-top: 15px;
+      padding: 15px 15px 0;
+      border: 1px solid darken($theme-gray,10%);
+      box-shadow: none;
+
+      &#search-filter {
+        .select {
+          .select-styled {
+            &:after {
+              position: initial;
+              margin-left: 5px;
+              float: right;
+              margin-right: 15px;
+              @media (max-width: 350px) {
+                margin-right: 5px;
+              }
+            }
+            @media (max-width: 350px) {
+              display: inline-flex;
+              font-size: 14px;
+            }
+          }
+          .select-options {
+            @media (max-width: 400px) {
+              min-width: 140px;
+            }
+          }
+        }
+      }
+
+      h3 {
+        margin:  0 0 12px 0;
+      }
+      &.by-name{
+        .suggested-names{
+          ul{
+            background: #ffffff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 0 0 4px 4px;
+            padding: 6px;
+            position: absolute;
+            z-index: 10;
+            margin-top: -2px;
+
+            li{
+              margin: 0;
+              list-style: none;
+              padding: 3px 0;
+              text-transform: capitalize;
+            }
+          }
+        }
+        .btn{
+          margin-top: 0px;
+          min-width: 38%;
+        }
+      }
+
+      input{
+        font-size: 16px;
+        height: auto;
+        padding: 7px;
+
+        &.username{
+          text-transform: capitalize;
+        }
+      }
+      .name-col, .zip-col {
+        padding-right: 0;
+        @media (max-width: 991px) {
+          padding: 0 15px 15px;
+        }
+      }
+      .zip-col {
+        @media (max-width: 991px) {
+          padding-right: 0;
+        }
+      }
+      #check-filters {
+        .role-col, .stage-col {
+          padding-right: 0;
+          @media (max-width: 767px) {
+            padding: 0 15px;
+          }
+        }
+        .filters{
+          margin-bottom:  15px;
+          background: darken($theme-gray,10%);
+          border-radius: 3px;
+          box-sizing: border-box;
+
+          .title{
+            display: block;
+            padding: 8px 15px;
+            margin:0;
+          }
+          .checkboxes{
+            background: #ffffff;
+            box-sizing: border-box;
+            border:1px solid darken($theme-gray, 15%);
+            border-top:none;
+            -webkit-border-radius: 0 0 3px 3px;
+            -moz-border-radius: 0 0 3px 3px;
+            border-radius: 0 0 3px 3px;
+
+            .list-container{
+              padding: 15px;
+            }
+            label{
+              display:block;
+            }
+            input[type="checkbox"]{
+              display: inline-block;
+              margin-right: 5px;
+            }
+          }
+        }
+        .filter-search-btn {
+          width: 50%;
+          margin-top: 20px;
+
+          @media (min-width: 600px) {
+            max-width: 50%;
+          }
+          @media (max-width: 599px) {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  #community-nav {
+    & {
+      display: flex;
+      list-style-type: none;
+      padding: 7px 0;
+      background: $theme-gray;
+      border-bottom: 1px solid darken($theme-gray,10%);
+      border-radius: 3px 3px 0 0;
+
+      @media (max-width: 550px) {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+      }
+    }
+    li {
+      display: inline-block;
+      cursor: pointer;
+      @media (max-width: 550px) {
+      }
+      a {
+        color: $theme-blue;
+        padding: 7px 15px;
+        margin: 0;
+        @media (max-width: 550px) {
+          margin: 15px 0;
+          &:nth-child(1) {
+            float: left;
+          }
+          i {
+            background: #026692;
+            padding: 15px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,.4);
+            @media (max-width: 550px) {
+              padding: 10px;
+              width: 50px;
+              height: 50px;
+            }
+            &.fa-caret-down{
+              display: none;
+            }
+          }
+          span {
+            display: none;
+          }
+          margin: 0 15px;
+        }
+        &.make-post {
+          border-right: none;
+          @media (max-width: 550px){
+            display:none;
+          }
+          /*border-right: 1px solid $theme-blue;*/
+          @media (max-width: 550px) {
+            border: none;
+          }
+        }
+        &.search-members {
+          border-radius:3px;
+          @media (max-width: 550px) {
+            border: none;
+            float: left;
+          }
+        }
+      }
+      &:active {
+        background: lighten($theme-gray,5%);
+        color: black;
+       }
+    }
+  }
+  #community-user-title, #community-post {
+    list-style-type: none;
+    margin: 15px;
+    padding: 0;
+
+    @media (max-width: 550px){
+      li:nth-child(1), li:nth-child(2), li:nth-child(3) {
+        display: block;
+        text-align: center;
+        margin: 0 0 10px 0;
+        &.user-content {
+          margin: 0;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+    .textarea-box {
+      position: relative;
+      width: 100%;
+
+    }
+
+    textarea, .textarea-resize {
+      min-height: 25px;
+      font-family: sans-serif;
+      font-size: 14px;
+      box-sizing: border-box;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 22px;
+      outline: none;
+      overflow: hidden;
+      width: 100%;
+      line-height: 20px;
+      resize: none;
+    }
+    li {
+      display: inline-block;
+      vertical-align: middle;
+      .profile-img {
+        vertical-align: middle;
+        margin-right: 15px;
+        @media (max-width: 550px) {
+          margin-right: 0;
+        }
+      }
+      .user-name{
+        text-transform: capitalize;
+        @media (max-width: 550px) {
+          position: relative;
+          right: 7px;
+        }
+      }
+      .user-content {
+        color: darken($theme-gray,15%);
+      }
+    }
+  }
+  #community-post {
+    margin: 0;
+    @media (max-width: 550px){
+      li:nth-child(2), li:nth-child(3) {
+        display: block;
+        text-align: center;
+        margin: 0 0 10px 0;
+        &.user-content {
+          margin: 0;
+        }
+      }
+    }
+    .user-ellipsis {
+      float: right;
+      color: darken($theme-gray,40%);
+    }
+    .author-info-box{
+      font-size: 14px;
+      font-weight: 500;
+      color: $header-gray;
+      display: block;
+      .fa-circle {
+        font-size: 4px;
+        vertical-align: middle;
+      }
+    }
+    .like-box, .comment-box {
+      margin: 0 15px;
+      color: $header-gray;
+    }
+  }
+  .community-reply-box {
+    background: $theme-gray;
+    border-top: 1px solid darken($theme-gray,20%);
+    margin: 15px -15px -15px;
+    padding: 15px 0 1px;
+    .reply-liked-box {
+      .fa-gratipay {
+        position: absolute;
+        left: 38px;
+        z-index: 19;
+        color: red;
+        font-size: 30px;
+        &:before {
+          border: 2px solid $theme-gray;;
+          border-radius: 50%;
+        }
+      }
+      .reply-blue-circle {
+        position: absolute;
+        left: 65px;
+        color: $theme-blue;
+        font-size: 30px;
+        &:after {
+          content: '\f087';
+          font-family: FontAwesome;
+          color: #fff;
+          font-size: 19px;
+          position: relative;
+          right: 21px;
+          bottom: 4px;
+        }
+      }
+      .reply-thumbs-up {
+        position: absolute;
+        margin-top: 3px;
+        left: 60px;
+        color: $theme-blue;
+        font-size: 25px;
+      }
+      .liked-count {
+        margin-left: 80px;
+        position: relative;
+        top: 5px;
+      }
+    }
+
+
+    #community-post-reply {
+      list-style-type: none;
+      margin: 20px 25px;
+      @media (max-width: 550px){
+        li:nth-child(2), li:nth-child(3), .reply-user-img, .reply-user-text-box {
+          display: block;
+          text-align: center;
+          margin: 0 0 10px 0;
+          &.user-content {
+            margin: 0;
+          }
+        }
+      }
+      hr {
+        margin-top: 15px;
+      }
+      li {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .profile-img {
+        width: 50px;
+        vertical-align: middle;
+        margin-right: 15px;
+        @media (max-width: 550px) {
+          margin-right: 0;
+        }
+      }
+      .reply-user-info-box{
+        font-size: 14px;
+        font-weight: 500;
+        color: darken($theme-gray,15%);
+        display: block;
+        .fa-circle {
+          font-size: 4px;
+          vertical-align: middle;
+        }
+      }
+      .reply-user-name{
+        text-transform: capitalize;
+      }
+      .user-content {
+        color: darken($theme-gray,15%);
+
+      }
+    }
+  }
+}

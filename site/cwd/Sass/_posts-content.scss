@@ -1,0 +1,119 @@
+#journal-posts {
+  .posts-title-box {
+    img {
+      max-width: 50px;
+      vertical-align: middle;
+    }
+    .posts-title {
+      display: inline-block;
+      font-size: 25px;
+      font-weight: 600;
+    }
+  }
+  #post-text-box {
+    #post-author-text {
+      .text_exposed_hide {
+        position: relative;
+        top: 2px;
+        right: 5px;
+      }
+      .text_exposed_show {
+        display: none;
+      }
+      .text_exposed_link {
+        display: inline;
+        .see_more_link {
+          cursor: pointer;
+          margin: 0;
+          text-decoration: underline;
+          font-size: 14px;
+          position: relative;
+          right: 5px;
+        }
+      }
+      .quote-box {
+        color: $theme-blue;
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+    .author-text-box {
+      /*
+      display: inline-block;
+      width : 100%;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+       */
+      & {
+        overflow: hidden;
+        position: relative;
+        line-height: 1.2em;
+        max-height: 3.6em;
+        text-align: justify;
+        text-justify: distribute;
+        margin-right: 0;
+        padding-right: 1em;
+        @media (max-width: 767px) {
+          word-break: break-all;
+        }
+      }
+      &:before {
+        content: '...';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        right: 0;
+        width: 1em;
+        height: 1em;
+        margin-top: 0.2em;
+        background: white;
+      }
+      .quote-box {
+        color: $theme-blue;
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+    .read-more {
+      display: block;
+      color: $theme-blue;
+      font-size: 14px;
+    }
+    .tracker-box {
+      margin-top: 15px;
+      color: darken($theme-gray,15%);
+      text-align: left;
+      line-height: 150%;
+      font-size: 16px;
+      span {
+        display: inline-block;
+      }
+      .dot {
+        margin-left: 2px;
+        margin-right: 2px;
+        font-size: 5px;
+        vertical-align: middle;
+        color: darken($theme-gray,15%);
+      }
+      i {
+        color: $theme-blue;
+      }
+      .like-box, .comment-box {
+        display: inline-block;
+        color: $theme-blue;
+      }
+      .comment-count-box, .liked-count-box {
+        white-space: nowrap;
+      }
+    }
+  }
+  hr {
+    margin-top: 15px;
+    height: 1px;
+  }
+}

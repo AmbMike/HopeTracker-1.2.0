@@ -1,0 +1,48 @@
+#settings-form{
+  .username{
+    .fa{
+      float: left;
+      position: absolute;
+    }
+  }
+  .alert-box{
+    margin-left: 15px;
+    margin-bottom: 20px;
+    display: none;
+  }
+  .field-row {
+    .input-box {
+      padding: 0 0 15px 15px;
+      .table {
+        .text-right {
+          label {
+            margin-right: 10px;
+          }
+        }
+      }
+      .select {
+        .select-styled {
+          padding: 9px 45px 9px 9px;
+        }
+      }
+    }
+  }
+  .text-center {
+    .img-box {
+      @media (max-width: 1400px) {
+        position: relative;
+        left: 30px;
+      }
+      @media (max-width: 1100px) {
+        position: relative;
+        left: 45px;
+      }
+      @media (max-width: 991px) {
+        position: initial;
+      }
+    }
+  }
+  .save-btn {
+    margin: 0;
+  }
+}

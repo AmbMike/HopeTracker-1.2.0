@@ -1,0 +1,7 @@
+This directory should  only have session folders in it. Any other folders or files will break the activity session system.
+
+The system counts each folder as one session. i.e. "session-1" is equal to 1 session.
+
+All files inside the session folder should only be the an activity. No other files can be added, except for the index file which acts as the controller.
+
+See /classes/ "class.ActivitySession.php" for reference of the system's scripts.

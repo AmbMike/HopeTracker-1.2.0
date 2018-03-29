@@ -1,0 +1,28 @@
+{
+  "name": "hope-tracker",
+  "description": "Web application for HopeTracker.com",
+  "main": "index.php",
+  "authors": [
+    "Michael Giammattei"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "HopeTracker"
+  ],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "fontawesome#^4.7.0",
+    "jquery-ui": "^1.12.1",
+    "chart.js": "^2.7.1",
+    "intro.js": "^2.7.0"
+  }
+}

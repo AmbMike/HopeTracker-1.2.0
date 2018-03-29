@@ -1,0 +1,59 @@
+@import "../constants";
+input[type=range], input.ranges {
+  margin: auto;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  height: 20px;
+  background-color: $theme-gray;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $theme-gray), color-stop(100%, $theme-green));
+  background-image: -webkit-linear-gradient($theme-green, $theme-green);
+  background-image: -moz-linear-gradient($theme-green, $theme-green);
+  background-image: -o-linear-gradient($theme-green, $theme-green);
+  background-image: linear-gradient($theme-green, $theme-green);
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-appearance: none;
+
+  @media (max-width:768px) {
+    margin-bottom: 12px;
+  }
+}
+
+input[type=range]::-webkit-slider-runnable-track,input.ranges::-webkit-slider-runnable-track {
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  -webkit-appearance: none;
+}
+
+input[type=range]::-moz-range-track, input.ranges::-moz-range-track {
+  box-shadow: none;
+  border: none;
+  background: transparent;
+}
+
+input[type=range]::-moz-focus-outer, input.ranges::-moz-focus-outer {
+  border: 0;
+}
+
+input[type=range]::-webkit-slider-thumb, input.ranges::-webkit-slider-thumb {
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: #444444;
+  border-radius: 100%;
+  box-shadow: 0 0 1px 0px rgba(0,0,0,0.1);
+  -webkit-appearance: none;
+}
+
+input[type=range]::-moz-range-thumb, input.ranges::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  background: #444444;
+  border-radius: 100%;
+  box-shadow: 0 0 1px 0px rgba(0,0,0,0.1);
+}

@@ -1,0 +1,208 @@
+@import "constants";
+#inspiration-v1 {
+  .slider-title-text {
+    font-size: 22px;
+    display: inline-block;
+    margin-bottom: 15px;
+    color: darken($theme-gray,50%);
+  }
+  .inspiration-content-box{
+    padding-bottom: 0;
+    @media (max-width: 550px) {
+      text-align: center;
+    }
+    hr {
+      background: darken($theme-gray,15%);
+      height: 1px;
+    }
+    .dropdown {
+      margin-bottom: 8px;
+      @media (max-width: 550px) {
+        float: none !important;
+        position: relative;
+        right: 4px;
+      }
+      #filter-label{
+        text-transform: capitalize;
+      }
+      .dropdown-toggle {
+        padding: 0 15px;
+        font-size: 20px;
+        border: none;
+      }
+      li {
+        text-transform: capitalize;
+        font-size: 20px;
+        &:nth-child(-n+3) {
+          font-size: 22px;
+        }
+        .first, .second, .third {
+          font-weight: 600;
+        }
+        i {
+          margin-right: 10px;
+        }
+      }
+    }
+    #inspiration-container {
+      .inspiration-box {
+        .action-btns-box {
+          width: 100%;
+          overflow: auto;
+          padding-bottom: 6px;
+
+          .like-box{
+            width: 76px;
+
+            &.liked{
+              color: $theme-blue;
+              font-weight: bold;
+
+            }
+          }
+          .like-box, .comment-box, .share-box {
+            display: inline-block;
+            margin-right: 15px;
+            padding-top: 10px;
+            font-size: 22px;
+            color: darken($theme-gray,50%);
+            @media (max-width: 550px) {
+              font-size: 20px;
+              padding-top: 15px;
+            }
+            i {
+              margin-right: 5px;
+              &.action-btn {
+                font-size: 18px;
+              }
+            }
+          }
+          .nav-first{
+            display: inline-block;
+            float: right;
+            font-size: 50px;
+            color: $theme-blue;
+            margin-top: 3px;
+            @media (max-width: 550px){
+              display: block;
+              width: 100%;
+              font-size: 45px;
+              float: none;
+              position: relative;
+              right: 4px;
+            }
+          }
+        }
+      }
+      .like-count {
+        margin-bottom: 15px;
+        width: 100%;
+        i {
+          color: $theme-blue;
+          font-size: 30px;
+          width: 30px;
+          &:after {
+            content: '\f164';
+            font-family: FontAwesome;
+            color: #ffffff;
+            font-size: 20px;
+            position: relative;
+            right: 22px;
+            bottom: 4px;
+          }
+        }
+        .num {
+          display: inline-block;
+          position: relative;
+          bottom: 3px;
+        }
+      }
+      .inspiration-post {
+        & {
+          display: flex;
+          margin-bottom: 15px;
+          @media (max-width: 550px) {
+            display: block;
+          }
+        }
+        .user-img {
+          margin-right: 10px;
+          min-width: 65px;
+          max-width: 65px;
+          @media (max-width: 550px) {
+            display: inline-block;
+            margin: 0 0 15px;
+          }
+          .profile-img {
+          }
+        }
+        .post-content-box {
+          .user-name {
+            display: inline-block;
+            font-weight: 600;
+            color: $theme-blue;
+          }
+          .asked-about-user {
+            display: inline-block;
+            color: $theme-blue;
+          }
+          .post-text-box {
+            display: inline;
+          }
+          .post-like-count-box {
+            color: darken($theme-gray,50%);
+            .like-btn {
+              margin: 0 5px 0 0;
+            }
+            .first-circle {
+              font-size: 5px;
+              vertical-align: middle;
+            }
+            .num {}
+            .second-circle {
+              font-size: 5px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+      .comment-box{
+        &.add-chat{
+          margin-left: 60px;
+          @media (max-width: 350px) {
+            margin-left: 0;
+          }
+          .image-cell{
+            width:65px;
+
+          }
+          .input-box{
+            margin: 15px 15px 15px 0;
+          }
+          .textarea-box {
+            position: relative;
+            width: 100%;
+            margin-top: 10px;
+
+
+            textarea, .textarea-resize {
+              min-height: 25px;
+              font-family: sans-serif;
+              font-size: 14px;
+              box-sizing: border-box;
+              padding: 8px 15px;
+              border: 1px solid #dddfe2;
+              border-radius: 22px;
+              outline: none;
+              overflow: hidden;
+              width: 100%;
+              line-height: 20px;
+              resize: none;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

@@ -1,0 +1,297 @@
+@import "constants";
+#forum-single {
+  .header-box {
+    padding: 15px;
+    @media (max-width: 526px) {
+      padding: 15px 0 5px 0;
+    }
+    h1{
+      text-align: left;
+      margin-bottom: 5px;
+
+      @media (max-width: 526px) {
+        text-align: center;
+      }
+    }
+    p {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+  .main-box {
+    .no-p {
+      padding: 0;
+      #user-title {
+        &.user-title-box {
+          margin: 0;
+          @media (max-width: 767px) {
+            text-align: center;
+          }
+        }
+        .img-box {
+          display: inline-block;
+          width: 90px;
+          height: 90px;
+          margin-right: 15px;
+          float: left;
+
+          @media (max-width: 767px) {
+            float: none;
+            display: block;
+            margin: auto;
+          }
+        }
+        .user-text-box {
+          display: inline-block;
+          margin: 24px 5px;
+          font-size: 22px;
+
+          @media (max-width: 767px) {
+            margin: 10px 0 0;
+            position: relative;
+            bottom: 0px;
+          }
+          .user-name {
+            text-align: left;
+            color: $theme-blue;
+
+            @media (max-width: 500px) {
+              text-align: center;
+            }
+          }
+          .user-count-container{
+            font-size: 14px;
+            color: $theme-blue;
+          }
+        }
+      }
+      .invite-box {
+        margin: 30px 0 0 0;
+        @media (max-width: 767px) {
+          float: none;
+          margin-top: 20px;
+        }
+
+      }
+    }
+  }
+  #post-single {
+    &.question-container {
+      @media (max-width: 767px) {
+        text-align: center;
+        padding: 0;
+      }
+    }
+    .author-post-container {
+      padding: 40px;
+      margin-top: 0;
+
+      .author-img-box {
+        width: 50px;
+        vertical-align: top;
+        @media (max-width: 767px) {
+          display: block;
+          margin: 15px auto;
+        }
+        @media (max-width: 500px) {
+          display: none;
+        }
+      }
+      .post-text-box {
+        padding: 0 15px;
+        text-align: justify;
+        @media (max-width: 767px) {
+          text-align: center;
+          padding: 0;
+          display: block;
+        }
+        .quote-box {
+          color: $theme-blue;
+          font-weight: 500;
+          font-size: 24px;
+          margin-left: -9px;
+          span {
+            margin-left: 9px;
+          }
+        }
+        .insurance-treatment-box, .tracker-box {
+          color: darken($theme-gray,20%);
+          font-size: 16px;
+          .dot {
+            font-size: 5px;
+            vertical-align: middle;
+            margin: 1px;
+          }
+        }
+        .insurance-treatment-box{
+          font-weight: 600;
+          margin-bottom: 15px;
+        }
+        .author-text-box {
+          .author-text {}
+        }
+        .tracker-box {
+          margin-top: 20px;
+          color: darken($theme-gray,15%);
+          text-align: left;
+          font-size: 14px;
+          @media (max-width: 767px) {
+            text-align: center;
+          }
+          span {
+            display: inline-block;
+          }
+          .forum-details{
+            display:block;
+            margin-top:5px;
+          }
+          .dot {
+            margin-left: 2px;
+            margin-right: 2px;
+          }
+          .flag-box {
+            color: $header-gray;
+          }
+          .like-box{
+            display: inline-block;
+            font-weight: 600;
+            color: $header-gray;
+
+            &.liked{
+              color: $theme-blue;
+            }
+          }
+          .asked-about-box {
+            white-space: nowrap;
+            display: inline-block;
+          }
+          .liked-by-box {
+            color: $theme-blue;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+    .sub-posts {
+      margin-bottom: 0;
+
+      /** New Answer Section */
+
+      .question-answer-box{
+
+        .cell{
+          color: darken($theme-gray,20%);
+          font-size: 16px;
+
+          .profile-img{
+            width: 30px;
+            height: 30px;
+          }
+          &:nth-child(1){
+            width: 40px;
+          }
+
+          .user-info{
+            margin: 7px 0;
+
+            .username{
+              color: $theme-blue;
+              font-weight: bold;
+              display: inline-block;
+
+              &:after{
+                content: '\f111';
+                color: darken($theme-gray,20%);
+                font-size: 6px;
+                font-family: fontAwesome;
+                position: relative;
+                top: -3px;
+                margin-left: 5px;
+              }
+            }
+            time{
+              display: block;
+            }
+          }
+        }
+      }
+      .answer-pagination{
+        color: darken($theme-gray,20%);
+        font-size: 16px;
+        margin-top: 5px;
+
+        .btns{
+          cursor: pointer;
+          color: $button-text;
+          text-decoration: underline;
+          background: $theme-gray;
+          padding: 3px 7px;
+
+          &.active{
+            color: darken($theme-gray,20%);
+            text-decoration: none;
+            cursor: text;
+          }
+        }
+      }
+      .btn-primary{
+        margin-top: 15px;
+        margin-bottom: 0;
+      }
+      /** End of new answer section */
+      .panel-default {
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius: 0;
+        .more-answers-box {
+          padding: 0;
+          background: $theme-gray;
+          -webkit-border-radius: 0;
+          -moz-border-radius: 0;
+          border-radius: 0;
+          .panel-title {
+            width: 100%;
+            a {
+              width: 100%;
+              margin: 0;
+            }
+          }
+          .more-answers {
+            display: inline-block;
+            color: darken($theme-gray,40%);
+            margin-left: 10px;
+          }
+        }
+        .panel-body {
+          .user-count-container{
+            font-size: 14px;
+            color: $theme-blue;
+          }
+          padding: 0 15px;
+
+
+          hr {
+            height: 1px;
+            margin: 20px 15px;
+          }
+          .body-nav-box {
+            color: darken($theme-gray, 20%);
+            font-size: 16px;
+
+            .recent-answers-box,.top-answers-box {
+              display: inline-block;
+              padding: 2px 10px;
+
+              &.active{
+                background: darken($theme-gray, 20%);
+                color: #ffffff;
+                border: 1px solid transparent;
+                border-radius: 4px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

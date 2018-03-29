@@ -1,0 +1,68 @@
+.forum-question-answer-modal{
+
+  .modal-dialog{
+    width: 100%;
+    max-width: 500px;
+
+    .modal-body {
+      background-color: $theme-gray;
+
+      .modal-header{
+        margin-bottom: 0;
+
+        h3 {
+          color:$theme-blue;
+        }
+        p {
+          color: black;
+        }
+
+      }
+
+      hr{
+        height: 1px;
+      }
+      .success-box{
+        display: none;
+      }
+      #forum-ask-question-form{
+        textarea{
+          resize: vertical;
+          min-height: 35px;
+        }
+        .category-form,.subcategory{
+          text-align: left;
+          float: left;
+          width: 49%;
+          margin-bottom: 20px;
+          .select {
+            @media (max-width: 380px) {
+              font-size: 14px;
+            }
+            .select-styled {
+              overflow: hidden;
+              &:after {
+                height: auto;
+                position: inherit;
+                float: right;
+                margin: 0 15px;
+              }
+            }
+          }
+        }
+        .category-form{
+          margin-right: 1%;
+        }
+        .subcategory{
+          margin-left: 1%;
+        }
+        .question,.description{
+          text-align: left;
+        }
+      }
+      .btn {
+        background-color: #eff0f2 !important;
+      }
+    }
+  }
+}

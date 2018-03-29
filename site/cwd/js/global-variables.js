@@ -1,0 +1,1 @@
+window.RELATIVE_PATH = '/hopetracker';

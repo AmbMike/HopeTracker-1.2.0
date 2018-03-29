@@ -1,0 +1,24 @@
+[18-May-2017 13:13:36 America/New_York] PHP Warning:  include_once(WIDGETS/forum/add-category.php): failed to open stream: No such file or directory in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 11
+[18-May-2017 13:13:36 America/New_York] PHP Warning:  include_once(): Failed opening 'WIDGETS/forum/add-category.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 11
+[18-May-2017 13:16:22 America/New_York] PHP Fatal error:  Class 'Database' not found in /home/hopetracker/public_html/classes/Admin.php on line 9
+[18-May-2017 13:16:53 America/New_York] PHP Fatal error:  Class 'Database' not found in /home/hopetracker/public_html/classes/Admin.php on line 9
+[18-May-2017 13:17:44 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/hopetracker/public_html/classes/Database.php:12
+Stack trace:
+#0 /home/hopetracker/public_html/classes/Database.php(12): PDO->__construct('DB_TYPE:host=DB...', 'DB_USER', 'DB_PASS')
+#1 /home/hopetracker/public_html/classes/Admin.php(17): Database->__construct()
+#2 /home/hopetracker/public_html/HopeAdmin/site/cwd/views/dashboard.php(10): Admin->__construct()
+#3 {main}
+  thrown in /home/hopetracker/public_html/classes/Database.php on line 12
+[18-May-2017 13:18:34 America/New_York] PHP Warning:  include_once(WIDGETS/forum/add-category.php): failed to open stream: No such file or directory in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 11
+[18-May-2017 13:18:34 America/New_York] PHP Warning:  include_once(): Failed opening 'WIDGETS/forum/add-category.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 11
+[18-May-2017 13:19:46 America/New_York] PHP Warning:  include_once(VIEWS/widgets//forum/add-category.php): failed to open stream: No such file or directory in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 12
+[18-May-2017 13:19:46 America/New_York] PHP Warning:  include_once(): Failed opening 'VIEWS/widgets//forum/add-category.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 12
+[18-May-2017 13:20:00 America/New_York] PHP Warning:  include_once(VIEWS/widgets//forum/add-category.php): failed to open stream: No such file or directory in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 12
+[18-May-2017 13:20:00 America/New_York] PHP Warning:  include_once(): Failed opening 'VIEWS/widgets//forum/add-category.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/hopetracker/public_html/HopeAdmin/site/cwd/views/forum.php on line 12
+[18-May-2017 13:35:52 America/New_York] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/hopetracker/public_html/classes/Database.php:12
+Stack trace:
+#0 /home/hopetracker/public_html/classes/Database.php(12): PDO->__construct('DB_TYPE:host=DB...', 'DB_USER', 'DB_PASS')
+#1 /home/hopetracker/public_html/classes/Admin.php(17): Database->__construct()
+#2 /home/hopetracker/public_html/HopeAdmin/site/cwd/views/dashboard.php(10): Admin->__construct()
+#3 {main}
+  thrown in /home/hopetracker/public_html/classes/Database.php on line 12

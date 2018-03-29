@@ -1,0 +1,266 @@
+
+form{
+  textarea{
+    resize: vertical;
+  }
+  &.general{
+    .field-row{
+      width: 100%;
+      margin-bottom: 15px;
+
+      &:after{
+        content: '';
+        display: block;
+        width: 100%;
+        clear: both;
+      }
+    }
+    &#settings-form{
+      .img-box{
+        width: 100%;
+        max-width: 200px;
+        float: right;
+        padding:15px;
+      }
+    }
+
+    .form-container{
+      margin-bottom: 20px;
+    }
+
+    .input-box{
+      padding: 0 0 0 15px;
+
+      &.one{
+        float: left;
+        width:40%;
+      }
+      &.two{
+        float: left;
+        width:40%;
+      }
+      &.three{
+        float: left;
+        width:20%;
+      }
+    }
+    input.default,textarea {
+      width: 100%;
+      padding: 9px;
+      margin:0;
+      background: lighten($body-gray,2%);
+      border-radius: 3px;
+      color: $main_font_color;
+      box-sizing: border-box;
+      border: 1px solid #d5d9de !important;
+    }
+    textarea{
+      height: 58px;
+
+    }
+    label{
+      margin-bottom: 3px;
+      display:inline-block;
+      font-size: 16px;
+    }
+    .save-btn{
+      margin: 15px;
+    }
+  }
+}
+/* Select Styles */
+.select {
+  border-radius:3px ;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 16px;
+  text-align: left;
+  width: 100%;
+}
+.select-styled {
+  border-radius:3px ;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: $main_font_color;
+  text-shadow: none;
+  background: lighten($body-gray,2%);
+  border: 1px solid darken($body-gray,7%);
+  padding: 9px;
+  @include transition(all 0.2s ease-in);
+
+  &:after {
+    content: "\f078";
+    font-family: FontAwesome;
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    right: 10px;
+    color: darken($theme-gray, 20%);
+    margin-right: 18px;
+  }
+  &:hover {
+    background-color: darken($select-color, 2%);
+  }
+  &:active, &.active {
+    background-color: darken($select-color, 5%);
+    border-radius: 3px 3px 0 0;
+
+
+    &:after {
+      top: 9px;
+      border-color: transparent transparent $select-color transparent;
+
+    }
+  }
+}
+.select-hidden {
+  display: none;
+  visibility: hidden;
+  padding-right: 10px;
+}
+.select-box{
+  width: 32.13%;
+  float: left;
+  margin: .5% .6%;
+  text-align: left;
+
+  &.username{
+    width: 50%;
+    float: right;
+  }
+
+}
+.select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: $main_font_color;
+  background-color:$select-color;
+  z-index: 200;
+  height:auto;
+  max-height: 281px;
+  overflow-y: auto;
+  border-radius: 0 0 3px 3px;
+  box-shadow: -4px 3px 10px rgba(0, 0, 0, 0.55);
+  z-index: 100500;
+
+  li {
+    cursor: default;
+    color: $main_font_color;
+    margin: 0;
+    display: block;
+    padding: 12px 0;
+    border-top: 1px solid $select-color;
+    text-shadow: none;
+    text-transform: capitalize;
+    padding:9px;
+    @include transition(all 0.15s ease-in);
+    &:hover {
+      color: $main_font_color;
+      background: darken($select-color,10%);
+    }
+    &[rel="hide"] {
+      display: none;
+    }
+  }
+}
+.radio {
+  padding-left: 20px; }
+.radio label {
+  display: inline-block;
+  position: relative;
+  padding-left: 5px; }
+.radio label::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  left: 0;
+  margin-left: -20px;
+  border: 1px solid #cccccc;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-transition: border 0.15s ease-in-out;
+  -o-transition: border 0.15s ease-in-out;
+  transition: border 0.15s ease-in-out; }
+.radio label::after {
+  display: inline-block;
+  position: absolute;
+  content: " ";
+  width: 11px;
+  height: 11px;
+  left: 3px;
+  top: 3px;
+  margin-left: -20px;
+  border-radius: 50%;
+  background-color: #555555;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  -o-transform: scale(0, 0);
+  transform: scale(0, 0);
+  -webkit-transition: -webkit-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  -moz-transition: -moz-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  -o-transition: -o-transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33);
+  transition: transform 0.1s cubic-bezier(0.8, -0.33, 0.2, 1.33); }
+.radio input[type="radio"] {
+  opacity: 0; }
+.radio input[type="radio"]:focus + label::before {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px; }
+.radio input[type="radio"]:checked + label::after {
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  -o-transform: scale(1, 1);
+  transform: scale(1, 1); }
+.radio input[type="radio"]:disabled + label {
+  opacity: 0.65; }
+.radio input[type="radio"]:disabled + label::before {
+  cursor: not-allowed; }
+.radio.radio-inline {
+  margin-top: 0; }
+
+.radio-primary input[type="radio"] + label::after {
+  background-color: #428bca; }
+.radio-primary input[type="radio"]:checked + label::before {
+  border-color: #428bca; }
+.radio-primary input[type="radio"]:checked + label::after {
+  background-color: #428bca; }
+
+.radio-danger input[type="radio"] + label::after {
+  background-color: #d9534f; }
+.radio-danger input[type="radio"]:checked + label::before {
+  border-color: #d9534f; }
+.radio-danger input[type="radio"]:checked + label::after {
+  background-color: #d9534f; }
+
+.radio-info input[type="radio"] + label::after {
+  background-color: #5bc0de; }
+.radio-info input[type="radio"]:checked + label::before {
+  border-color: #5bc0de; }
+.radio-info input[type="radio"]:checked + label::after {
+  background-color: #5bc0de; }
+
+.radio-warning input[type="radio"] + label::after {
+  background-color: #f0ad4e; }
+.radio-warning input[type="radio"]:checked + label::before {
+  border-color: #f0ad4e; }
+.radio-warning input[type="radio"]:checked + label::after {
+  background-color: #f0ad4e; }
+
+.radio-success input[type="radio"] + label::after {
+  background-color: #5cb85c; }
+.radio-success input[type="radio"]:checked + label::before {
+  border-color: #5cb85c; }
+.radio-success input[type="radio"]:checked + label::after {
+  background-color: #5cb85c; }

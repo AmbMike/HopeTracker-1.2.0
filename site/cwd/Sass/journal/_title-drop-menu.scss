@@ -1,0 +1,36 @@
+#main-header-title {
+  &.main-header-box {
+    background: transparent;
+    border: none;
+  }
+  .main-title{
+    margin: 0;
+
+    @media(max-width: 1400px) {
+      font-size: 40px;
+    }
+    @media(max-width: 991px) {
+      text-align: center;
+    }
+  }
+  .customized-select-box{
+    width: 100%;
+    min-width: 210px;
+    max-width: 350px;
+    float: right;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+
+    @media(max-width: 1400px) {
+      margin-top: 0px;
+    }
+    @media(max-width: 992px){
+      float: none;
+      margin: 30px auto;
+      .customized-select {
+        background: #ffffff;
+      }
+    }
+  }
+}

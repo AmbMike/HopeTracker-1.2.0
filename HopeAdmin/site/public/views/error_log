@@ -1,0 +1,3 @@
+[18-May-2017 13:09:08 America/New_York] PHP Fatal error:  Call to a member function total_users() on a non-object in /home/hopetracker/public_html/HopeAdmin/site/public/views/dashboard.php on line 8
+[18-May-2017 13:09:56 America/New_York] PHP Warning:  include_once(WIDGETS/forum/add-category.php): failed to open stream: No such file or directory in /home/hopetracker/public_html/HopeAdmin/site/public/views/forum.php on line 8
+[18-May-2017 13:09:56 America/New_York] PHP Warning:  include_once(): Failed opening 'WIDGETS/forum/add-category.php' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/hopetracker/public_html/HopeAdmin/site/public/views/forum.php on line 8

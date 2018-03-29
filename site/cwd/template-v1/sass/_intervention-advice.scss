@@ -1,0 +1,94 @@
+.intervention-advice {
+  text-transform: capitalize;
+  margin: 15px;
+  @media (max-width: 600px) {
+    padding: 0 15px;
+    border: 2px solid $light-gray;
+    box-shadow: 0 2px 4px rgba(0,0,0,.4);
+  }
+  hr {
+    border-color: $blue;
+  }
+  .title-box {
+    font-size: 30px;
+    margin: 15px 15px 30px;
+    text-align: center;
+    font-weight: 600;
+  }
+  .quote-box {
+    display: block;
+    p {
+      display: inline-block;
+      font-weight: 600;
+      margin: 0 0 15px 15px;
+      width: 70%;
+      color: $dark-gray;
+    }
+    .quote-btn {
+      display: inline-block;
+      float: right;
+      color: #ffffff;
+      background: $green;
+      border-radius: 50%;
+      font-size: 22px;
+      width: 30%;
+      max-width: 28px;
+      max-height: 28px;
+      margin: 0 15px 5px 0;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      transition: 0.4s;
+      &:after {
+        content: '\f107';
+        font-family:FontAwesome;
+        position: relative;
+        top: -.1em;
+      }
+      &.active:after {
+        content: '\f106';
+        font-family:FontAwesome;
+        position: relative;
+        top: -.15em;
+      }
+    }
+    .panel {
+      max-height: 0;
+      font-weight: 500;
+      clear: both;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      border: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+      box-shadow: none;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      transition: max-height 0.2s ease-out;
+      .quote {
+        width: 100%;
+        margin: 0 0 15px;
+        padding: 15px;
+        color: $dark-gray;
+        font-weight: 500;
+        background: $light-gray;
+      }
+    }
+  }
+  .next-btn {
+    font-size: 30px;
+    color: $gray;
+    margin: 0 0 15px 15px;
+    i {
+      margin-right: 15px;
+      -webkit-transform: scale(1.7, 0.75);
+      -moz-transform: scale(1.7, 0.75);
+      -ms-transform: scale(1.7, 0.75);
+      -o-transform: scale(1.7, 0.75);
+      transform: scale(1.7, 0.75);
+    }
+  }
+}

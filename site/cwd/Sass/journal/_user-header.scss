@@ -1,0 +1,76 @@
+#user-header-title {
+
+  .user-title-box {
+    margin: 0;
+    @media (max-width: 767px) {
+      text-align: center;
+    }
+  }
+  .img-box {
+    display: inline-block;
+    width: 90px;
+    height: 90px;
+    margin-right: 15px;
+    vertical-align: middle;
+
+    @media (max-width: 767px) {
+      float: none;
+      display: block;
+      margin: auto;
+    }
+  }
+  .user-text-box {
+    display: inline-block;
+    margin: 0;
+    vertical-align: middle;
+
+    @media (max-width: 767px) {
+      margin: 10px 0 0;
+      position: relative;
+      bottom: 0;
+      max-width: 100%;
+    }
+    .user-name {
+      font-size: 40px;
+      display: block;
+      margin-bottom: -6px;
+
+      @media (max-width: 500px) {
+        text-align: center;
+        margin-bottom: 10px;
+        line-height: 30px;
+      }
+    }
+    .user-count-container{
+      font-size: 16px;
+      white-space: nowrap;
+      @media (max-width: 767px) {
+        white-space: normal;
+      }
+      i {
+        font-size: 18px;
+        color: $theme-blue;
+        padding: 5px;
+      }
+    }
+  }
+  .invite-box {
+    display: inline-block;
+    float: right;
+    margin: 30px 0 0 0;
+    font-size: 14px;
+    border-color: #ccc;
+
+    @media (max-width: 767px) {
+      float: none;
+      margin-top: 20px;
+    }
+    a {
+      padding: 5px 10px;
+      line-height:22px;
+      font-weight: 700;
+      text-transform: none;
+      margin: 0;
+    }
+  }
+}

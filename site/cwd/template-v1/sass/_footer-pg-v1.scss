@@ -1,0 +1,38 @@
+.footer-pg-v1 {
+  .footer-box {
+    background: $green;
+    padding: 50px 60px 30px;
+    width: 100%;
+    /* nth child is for engineering purpose only remove after script is complete */
+    &:nth-child(1) {
+      display: none;
+    }
+    &:nth-child(2) {
+      display: none;
+    }
+    &:nth-child(3) {
+      display: block;
+    }
+    .left-text {
+      color: #ffffff;
+      float: left;
+      clear: both;
+      &.second {
+        font-weight: 600;
+        font-size: 28px;
+      }
+    }
+    .right-text {
+      color: $blue;
+      background: #ffffff;
+      padding: 5px 30px;
+      float: right;
+      width: auto;
+      border-radius: 4px;
+      position: relative;
+      bottom: 15px;
+      font-size: 28px;
+      text-align: center;
+    }
+  }
+}

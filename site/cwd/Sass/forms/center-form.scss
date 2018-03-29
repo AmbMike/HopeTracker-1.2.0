@@ -1,0 +1,53 @@
+@import "../constants";
+.center-form{
+  width: 100%;
+  max-width: 700px;
+  text-transform: none;
+  z-index: 100;
+  padding: 30px 15px;
+  margin: auto;
+
+  .input-box{
+    &.valid,&.error{
+
+      &:after{
+        font-family: FontAwesome;
+        font-size: 21px;
+        display: block;
+        position: relative;
+        right: 0px;
+        float: right;
+        margin-top: -35px;
+        margin-right: 14px;
+        text-shadow: none;
+      }
+    }
+    &.valid{
+      &:after{
+        color: $theme-green;
+        content: '\f058';
+      }
+    }
+    &.error{
+      &:after{
+        color: darkred;
+        content: '\f069';
+      }
+    }
+    input{
+      width: 98%;
+      padding: 9px;
+      margin: 1%;
+      background: $select-color;
+      border: none;
+      border-radius: 3px;
+      color: darken($theme-gray,20%);
+
+      &.btn{
+        float: none;
+        clear: both;
+        margin:20px auto;
+      }
+    }
+  }
+}

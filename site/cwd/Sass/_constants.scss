@@ -1,0 +1,160 @@
+/* Paths */
+$relativePath : '/hopetracker';
+$main_image :  '#{$relativePath}/site/public/images/main';
+$crop_img :   '#{$relativePath}/mod/croppic/assets/img/';
+
+/* Mixin */
+@mixin smart-underline($background: #fff, $text: #000, $selection: #ffc, $position: 89%, $width:0.03em){
+
+  color: inherit;
+  text-decoration: none;
+  background:
+          linear-gradient($background, $background),
+          linear-gradient($background, $background),
+          linear-gradient($text, $text);
+  background-size: .05em $width, .05em $width, $width $width;
+  background-repeat: no-repeat, no-repeat, repeat-x;
+  text-shadow: 0.03em 0 $background, -0.03em 0 $background, 0 0.03em $background, 0 -0.03em $background, 0.06em 0 $background, -0.06em 0 $background, 0.09em 0 $background, -0.09em 0 $background, 0.12em 0 $background, -0.12em 0 $background, 0.15em 0 $background, -0.15em 0 $background;
+  background-position: 0 $position, 100% $position;
+
+  &::selection {
+    text-shadow: 0.03em 0 $selection, -0.03em 0 $selection, 0 0.03em $selection, 0 -0.03em $selection, 0.06em 0 $selection, -0.06em 0 $selection, 0.09em 0 $selection, -0.09em 0 $selection, 0.12em 0 $selection, -0.12em 0 $selection, 0.15em 0 $selection, -0.15em 0 $selection;
+    background: $selection;
+  }
+
+  &:before, &:after, *, *:before, *:after {
+    text-shadow: none;
+  }
+  &:visited{
+    color: inherit;
+  }
+
+}
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+  @include transform(scale($scale));
+}
+// translate
+@mixin translate ($x, $y) {
+  @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+  @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+  moz-transform-origin: $origin;
+  -o-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+  transform-origin: $origin;
+}
+@mixin transition($transition...) {
+  -moz-transition:    $transition;
+  -o-transition:      $transition;
+  -webkit-transition: $transition;
+  transition:         $transition;
+}
+@mixin box-shadow(){
+  border: 1px solid #dddfe2;
+  border-radius: 3px;
+}
+
+/* Global Colors */
+$theme-blue : #026493;
+$theme-green : #48C000;
+$body-gray  : #E9EBEE;
+$theme-gray : #f6f7f9;
+$button-text : #4b4f56;
+$error_red : rgb(255, 158, 157);
+$select-color: #ffffff;
+$main_font_color : #4b4f56;
+$theme-white : #ffffff;
+$theme-gold : #FFD700;
+$text-accent-gray: darken($theme-gray, 25%);
+$for-borders: #dddfe2;
+$button-hover: #dcdee0;
+$header-gray: #90949c;
+
+/* Fonts */
+@font-face {
+  font-family: Lato-Regular;
+  src: url(#{$relativePath}/site/public/fonts/Lato-Regular.ttf);
+}
+@font-face {
+  font-family: Lato-Bold;
+  src: url(#{$relativePath}/site/public/fonts/Lato-Bold.ttf);
+}
+@font-face {
+  font-family: Lato-Black;
+  src: url(#{$relativePath}/site/public/fonts/Lato-Black.ttf);
+}
+@font-face {
+  font-family: balsamiq-sans-regular;
+  src: url(#{$relativePath}/site/public/fonts/balsamiq-sans/balsamiq-sans-regular.ttf);
+}
+@font-face {
+  font-family: balsamiq-sans-bold;
+  src: url(#{$relativePath}/site/public/fonts/balsamiq-sans/balsamiq-sans-bold.ttf);
+}
+@font-face {
+  font-family: balsamiq-sans-italic;
+  src: url(#{$relativePath}/site/public/fonts/balsamiq-sans/balsamiq-sans-italic.ttf);
+}
+@font-face {
+  font-family: balsamiq-sans-bold-italic;
+  src: url(#{$relativePath}/site/public/fonts/balsamiq-sans/balsamiq-sans-bold-italic.ttf);
+}
+
+@font-face {
+  font-family: primairy-heading;
+  src: url(#{$relativePath}/site/public/fonts/berkshireswash-regular.ttf);
+}
+@font-face {
+  font-family: sacramento;
+  src: url(#{$relativePath}/site/public/fonts/Sacramento/Sacramento-Regular.ttf);
+}
+/* Extends */
+.lato-regular{
+  font-family: Lato-Regular;
+}
+.lato-bold{
+  font-family: Lato-Bold;
+}
+.lato-black{
+  font-family: Lato-Black;
+}
+.text-2-reg{
+  font-family: balsamiq-sans-regular;
+}
+.text-2-bold{
+  font-family: balsamiq-sans-bold;
+}
+.text-2-italic{
+  font-family: balsamiq-sans-italic;
+}
+.text-2-bold-italic{
+  font-family: balsamiq-sans-bold-italic;
+}
+.theme-font{
+  font-family: sans-serif;
+}
+.theme-font-bold-italic{
+  font-family: balsamiq-sans-bold-italic;
+}
+.sacramento{
+  font-family: sacramento;
+}

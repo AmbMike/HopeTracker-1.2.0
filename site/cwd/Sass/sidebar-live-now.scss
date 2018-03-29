@@ -1,0 +1,111 @@
+@import "constants";
+#sidebar-live-now {
+
+  .live-now-title {
+    display: inline-block;
+    color: $header-gray;
+    float: left;
+    margin: 7px 5px 15px 0;
+  }
+
+  #live-update-box {
+
+    &.load-items{
+      display: none;
+
+    }
+
+    & {
+      line-height: 90%;
+
+      .live-update-container {
+        margin: 5px 0 10px 15px;
+
+
+
+        .user-img {
+          width: 35px;
+          margin-right: 10px;
+        }
+        .user-name {
+          display: inline-block;
+          color: $theme-blue;
+          margin: 0 10px 0 0;
+          font-weight: 600;
+          position: relative;
+          text-transform: capitalize
+
+        }
+        .accent{
+          position: relative;
+          top: -3px;
+          display: block;
+          font-size: 16px;
+          line-height: 25px;
+        }
+        .quote-text {
+          display: inline-block;
+          color: #333;
+          line-height: 100%;
+          position: relative;
+          font-weight: 500;
+          margin-left: 2px;
+          top: 3px;
+        }
+        .chat-now-btn {
+          display: inline-block;
+          color: $theme-green;
+          width:auto;
+          cursor: pointer;
+          font-weight: 500;
+
+          .request-chat-i {
+            position: relative;
+            top: -4px;
+            margin-left: -13px;
+          }
+        }
+      }
+    }
+  }
+  .see-more {
+    color: $theme-blue;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 10px 0 0 13px;
+    .text1 {
+      display: none;
+    }
+    .text2 {
+      display: inline-block;
+    }
+    &:before {
+      content: '\f0d8';
+      color: $theme-blue;
+      float: left;
+      display: inline-block;
+      font-family:"FontAwesome";
+      margin-right: 5px;
+      @include transition(all .4s ease);
+
+    }
+    &.collapsed {
+      .text1 {
+        display: inline-block;
+      }
+      .text2 {
+        display: none;
+      }
+    }
+    &.collapsed:before {
+      content: '\f0d7';
+      @include transform(rotate(0deg));
+      .text1 {
+        display: none;
+      }
+      .text2 {
+        display: inline-block;
+      }
+    }
+  }
+}
