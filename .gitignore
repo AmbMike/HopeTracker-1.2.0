@@ -8,8 +8,6 @@ Gruntfile.js
 site/public/css
 site/public/js
 site/public/views
-
-/vendor/
 .gitignore
 .idea/inspectionProfiles/
 config/ABSOLUTE_PATHIVE_PATHusers/
