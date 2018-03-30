@@ -8,7 +8,7 @@
 
 
 /* Set application mode */
-$Application_Mode = 'live';
+$Application_Mode = 'dev';
 
 //$Application_Mode = 'live footer';
 
@@ -49,10 +49,10 @@ define('FILE_EXTENSION', 'ambrosia');
 define('HOME_URL', '/home');
 
 /* Domain */
-define('DOMAIN', 'dev.ambrosiatc.com/hopetracker');
+define('DOMAIN', 'hopetracker.com/hopetracker');
 
 /* URLs */
-define('BASE_URL', 'http://dev.ambrosiatc.com/hopetracker');
+define('BASE_URL', 'http://hopetracker.com/hopetracker');
 
 /* Information */
 define('MAIN_PHONE','8884924199');
