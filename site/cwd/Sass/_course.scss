@@ -136,7 +136,7 @@
             &:first-child {
               @media (max-width: 329px) {
                 text-align: center;
-                margin-bottom: 7px;
+                margin: 15px 0 7px;
               }
             }
           }
@@ -148,8 +148,8 @@
             cursor: pointer;
 
             &:before {
-              content: '\f054' ;
               font-family: FontAwesome;
+              content: '\f054' ;
               color: lighten($theme-green, 18%);
               background: $theme-green;
               position: relative;
