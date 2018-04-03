@@ -18,3 +18,5 @@ mod/croppic/assets/img/.DS_Store
 mod/croppic/assets/js/.DS_Store
 users/user-10/
 package-lock.json
+.idea/dictionaries/
+.idea/php.xml
