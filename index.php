@@ -34,6 +34,10 @@ if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
     $p_url = '404';
 }
 
+/** Unset "back to ambrosia" session  */
+if(isset($_COOKIE['fromHopeTracker'])){
+	unset( $_COOKIE['fromHopeTracker'] );
+}
 /**  General Redirects */
 $Redirects = new Redirects($p_url);
 

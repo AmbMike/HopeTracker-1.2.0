@@ -50,7 +50,7 @@ $totalCompleteActivities = $ActivitySessionItems->totalCompleteActivities;
 /* Reset intro status to review intro section by selecting the option in the debug panel.  */
 
 ?>
-<div class="con main" id="courses" data-show-intro="<?php echo ($Session->get('viewed_course') != true) ? 'yes' : 'no'; ?>">
+<div  class="con main" id="courses" data-show-intro="<?php echo ($Session->get('viewed_course') != true) ? 'yes' : 'no'; ?>">
 	<div class="row">
 		<div class="col-md-8">
 			<main>

@@ -112,8 +112,7 @@ $ActivityFilter = new ActivityFilter($filterType,$showUserId);
 
 	        /** @var $buildNotification $item : gets into each type of notification array */
 	        foreach ( $buildNotification['data'] as $notification) : ?>
-	            <div class="row">
-	                <div class="row-content">
+                <div class="row-content">
 	                    <!--<div class="col-md-12">
 	                        <div class="dotted-border-gray"></div>
 	                    </div>-->
@@ -148,9 +147,7 @@ $ActivityFilter = new ActivityFilter($filterType,$showUserId);
 	                        </div>
 	                    </div>
 	                </div>
-	            </div>
 	        <?php endforeach; ?>
-
 	    <?php endforeach; ?>
 	<?php else: ?>
         No Results.

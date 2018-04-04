@@ -97,7 +97,7 @@ class SignUpBtn
 	    if($this->Sessions->get('logged_in') == 1){
 
 		    /** Set the actions for the button. */
-		    $this->btnActionHTML = ' onclick="location.href=\'/'.RELATIVE_PATH_NO_END_SLASH.$loggedInAction.'\'"';
+		    $this->btnActionHTML = ' onclick="location.href=\''.$loggedInAction.'\'"';
 		    $this->btnOutText  = $loggedInHTML;
 	    }else{
 		    $this->btnActionHTML = 'data-btn="home-sign-in"';
