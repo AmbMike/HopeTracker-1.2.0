@@ -73,7 +73,6 @@
             <?php echo FORMS::get_states(); ?>
         </select>
     </div>
-
     <input type="hidden" name="profile_img_path" class="imgPath" id="imgPath">
     <div class="full-box" id="upload-btn-box">
         <label for="imgCrop">(Optional) A photo will help the community connect with you.</label>
