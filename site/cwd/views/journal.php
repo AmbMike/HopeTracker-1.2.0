@@ -134,7 +134,7 @@ endswitch;
                     </section>
                     <?php if($Journal->is_user() === true) : ?>
                         <div class="alert alert-success text-center col-centered" style="display: none;" id="entry-success-box">
-                            <h3>Your has been created <strong>Successfully!</strong></h3>
+                            <h3>Your post has been created <strong>Successfully!</strong></h3>
                             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                         </div>
                         <section class="box-one">

@@ -86,7 +86,7 @@ $forum_answers_arr = $ForumAnswers->getAnswers(false,$_GET['data']['questionId']
 					<?php endif; ?>
 					<i class="fa fa-circle dot"aria-hidden="true"></i>
 					<?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
-						<span class="flag-box" data-question="flag-btn" role="button" >Flag</span>
+						<span class="flag-box" data-question="flag-btn" role="button" >Report</span>
 					<?php else: ?>
 						<span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">Flagged</span>
 					<?php endif; // End if if user has not flagged the post. ?>

@@ -93,6 +93,7 @@ $hide_side_inspiration = true;
                                 <a target="_blank" class="share-link" href=""><div class="share-box"><i class="fa fa-share action-btn" aria-hidden="true"></i>Share</div></a>
                                 <div class="nav-btn-box nav-first">
                                     <i class="fa fa-angle-double-left next" role="button" aria-hidden="true"></i>
+                                    <div class="count-container"><span class="count">1</span><span>/</span><span class="total-count">4</span></div>
                                     <i class="fa fa-angle-double-right prev" role="button" aria-hidden="true"></i>
                                 </div>
                             </div>
