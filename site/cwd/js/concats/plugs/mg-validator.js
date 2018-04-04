@@ -6,11 +6,14 @@
  */
 /* Mike's Global Functions */
 $.fn.mg_validate = function(options) {
+
     var settings = $.extend({
         /* These are the defaults */
         form_id : '',
         submit_btn : false,
         letters_only : false,
+        letters_dash_only : false,
+        letters_dash_space_only : false,
         require : false,
         max_length : false,
         min_length : false,
@@ -21,7 +24,8 @@ $.fn.mg_validate = function(options) {
         no_match : false,
         auto_complete :true,
         duplicate_check : false,
-
+        password : false,
+        zip : false
     }, options);
 
     /* returned variable */
@@ -63,17 +67,44 @@ $.fn.mg_validate = function(options) {
 
     /* things to do to for plugin */
     return this.each( function() {
-
+        var errorsMsg = '';
         /* Plugins to do tasks */
         $(this).on('keyup',function (){
             var errors = 0;
             /* check if value has only letters */
-            if (settings.letters_only === true) {
+            if (settings.letters_only !== false) {
                 if(/^[a-zA-Z]+$/.test($(this).val())){
                     controller.letters_only = true;
+                    errorsMsg = (settings.letters_only);
                 }else{
 
                     controller.letters_only = false;
+                }
+            }
+            if (settings.letters_dash_only === true) {
+                if(/^[a-zA-Z\-]+$/.test($(this).val())){
+
+                    controller.letters_dash_only = true;
+                }else{
+
+                    controller.letters_dash_only = false;
+                }
+            }
+            if (settings.letters_dash_space_only !== false) {
+                if(/^[a-zA-Z\-\s]+$/.test($(this).val())){
+                    controller.letters_dash_space_only = true;
+                    errorsMsg = (options.letters_dash_space_only);
+                }else{
+
+                    controller.letters_dash_space_only = false;
+                }
+            }
+            if (settings.zip !== false) {
+                if($(this).val().length !== 5 || $.isNumeric($this.val()) !== true || $this.val() === 0){
+                    controller.zip = false;
+                    errorsMsg = (options.zip);
+                }else{
+                    controller.zip = true;
                 }
             }
 
@@ -81,15 +112,26 @@ $.fn.mg_validate = function(options) {
             if (settings.require === true) {
                 if($(this).val().length === 0){
                     controller.require = false;
+                    errorsMsg = ('Required Filed');
                 }else{
                     controller.require = true;
                 }
             }
-
+            /* Set password requirements */
+            if(settings.password !== false ) {
+                /** Has a digit */
+                 if( /\d/.test($this.val()) === false){
+                    errorsMsg = ('Must contain a number.');
+                    controller.password = false;
+                }else{
+                    controller.password = true;
+                }
+            }
             /* Check max char length */
             if(settings.max_length !== false) {
                 if($(this).val().length > settings.max_length){
                     controller.max_length = false;
+                    errorsMsg = ('Must not be longer than '+settings.max_length+' characters.');
                 }else{
                     controller.max_length = true;
                 }
@@ -98,6 +140,7 @@ $.fn.mg_validate = function(options) {
             /* Check min char length */
             if(settings.min_length !== false) {
                 if($(this).val().length < settings.min_length){
+                    errorsMsg = ('Must be at least '+settings.min_length+' characters.');
                     controller.min_length = false;
                 }else{
                     controller.min_length = true;
@@ -134,6 +177,7 @@ $.fn.mg_validate = function(options) {
                 var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
                 if(emailReg.test($(this).val()) !== true){
                     controller.email = false;
+                    errorsMsg = (settings.email);
                 }else{
                     if(window.duplicate === $this.val() && $('.error-text').length === 0){
                         controller.email = false;
@@ -166,8 +210,10 @@ $.fn.mg_validate = function(options) {
             });
 
             if(errors === 0 ){
+                removeErrorMsg($this.parent());
                 $this.parent().addClass('valid').removeClass('error');
             }else {
+                showErrorMsg($this.parent(),errorsMsg);
                 $this.parent().removeClass('valid').addClass('error');
             }
         });
@@ -187,5 +233,17 @@ $.fn.mg_validate = function(options) {
             }
         });
     });
-
-}
+    function showErrorMsg($thisEl,errorMsg) {
+        if(!$thisEl.hasClass('error')){
+            $thisEl.append('<div style="display: none;" class="error-msg">'+errorMsg+'</div>');
+            $thisEl.find('.error-msg').slideDown(300);
+        }
+    }
+    function removeErrorMsg($thisEl) {
+        if($thisEl.hasClass('error')){
+            $thisEl.find(".error-msg").slideUp(300,function () {
+                $thisEl.find(".error-msg").remove();
+            });
+        }
+    }
+};

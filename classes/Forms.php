@@ -124,8 +124,8 @@ EOD;
             $sql = $db->prepare("INSERT INTO user_list (fname, lname, email,password,created_on,state,zip,profile_img,i_am_a,concerned_about,in_type,username,ip) 
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $sql->execute(array(
-	            $first,
-	            $last_name,
+	            trim($first),
+	            trim($last_name),
                 strtolower($data['email']),
                 md5($data['password']),
                 time(),
