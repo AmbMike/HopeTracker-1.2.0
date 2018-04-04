@@ -1,7 +1,7 @@
 Options +FollowSymLinks
 RewriteEngine on
 
-DirectoryIndex index.html
+DirectoryIndex index.php
 RewriteBase /hopetracker/
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
@@ -65,4 +65,3 @@ Redirect 301 /inspiration-v1/ /addiction-quotes/
   </FilesMatch>
 </IfModule>
 
-Redirect 301 / /hopetracker/index.php
