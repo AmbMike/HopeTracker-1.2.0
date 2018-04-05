@@ -83,9 +83,9 @@ if(isset($_GET['fromHopeTracker'])){
     setcookie('fromHopeTracker', true,  time()+86400);
 }
 /** Back Button */
-if(isset($_COOKIE['fromHopeTracker']) || isset($_GET['fromHopeTracker'])){ ?>
-    <a href="<?php echo BASE_URL; ?>protected/course/" class="btn btn-default nohover" style="max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:fixed;z-index:100;bottom:15px;left:15px;background:rgba(146,146,146,.81);font-size:14px;font-weight:600"><i class="fa fa-chevron-circle-left" style="font-size: 27px; float:left; margin:-3px 13px 3px 0px; position: relative; top: 3px; display:inline-block;" aria-hidden="true"></i>  <span style="position: relative; top: 4px;">Go back to HopeTracker</span></a>
-<?php } ?>
+/*if(isset($_COOKIE['fromHopeTracker']) || isset($_GET['fromHopeTracker'])){ */?><!--
+    <a href="<?php /*echo BASE_URL; */?>protected/course/" class="btn btn-default nohover" style="max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;position:fixed;z-index:100;bottom:15px;left:15px;background:rgba(146,146,146,.81);font-size:14px;font-weight:600"><i class="fa fa-chevron-circle-left" style="font-size: 27px; float:left; margin:-3px 13px 3px 0px; position: relative; top: 3px; display:inline-block;" aria-hidden="true"></i>  <span style="position: relative; top: 4px;">Go back to HopeTracker</span></a>
+--><?php /*} */?>
 
 <?php if($_SESSION['logged_in'] == 1): ?>
     <div id="refresh-notify">
