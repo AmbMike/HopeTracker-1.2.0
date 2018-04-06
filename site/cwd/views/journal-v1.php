@@ -34,7 +34,7 @@ $Notifications = new CommunityNotification($Session->get('user-id'));
 
 /* Entry Title Text */
 $entry_title = ($_GET['entry_type']) ? : '';
-$placeholder_content = 'Begin tying here...';
+$placeholder_content = 'Begin typing here...';
 switch ($entry_title):
 
     case 'journalOutlet' :

@@ -287,6 +287,11 @@
         }
         &.search-members {
           border-radius:3px;
+          background: $theme-blue;
+          color: $theme-white;
+          &:hover {
+            background: lighten($theme-blue,5%);
+          }
           @media (max-width: 550px) {
             border: none;
             float: left;
@@ -325,8 +330,9 @@
 
     textarea, .textarea-resize {
       min-height: 25px;
-      font-family: sans-serif;
-      font-size: 14px;
+      font-family: lato;
+      font-weight: lighter;
+      font-size: 20px;
       box-sizing: border-box;
       padding: 8px 15px;
       border: none;

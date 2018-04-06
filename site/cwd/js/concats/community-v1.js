@@ -201,7 +201,7 @@ function communitySearchPosts() {
             '                        <div class="cell">\n' +
             '                            <div class="input-box">\n' +
             '                                <div class="textarea-box">\n' +
-            '                                    <textarea data-comment-journal-id="'+postId+'" rows="1" data-postv1="comment-input" class="text-features active" name="entry_content" placeholder="Begin tying here..."></textarea>\n' +
+            '                                    <textarea data-comment-journal-id="'+postId+'" rows="1" data-postv1="comment-input" class="text-features active" name="entry_content" placeholder="Begin typing here..."></textarea>\n' +
             '                                </div>\n' +
             '                            </div>\n' +
             '                        </div>\n' +

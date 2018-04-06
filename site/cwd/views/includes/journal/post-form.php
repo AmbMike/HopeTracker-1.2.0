@@ -72,10 +72,7 @@
 
                 </div>
                 <div class="col-sm-3 drop-status-col">
-
-                    <div class="clearfix"></div>
                     <div class="save-btn-box">
-                        <i class="fa fa-check" aria-hidden="true"></i>
                         <input type="submit" name="submit" value="Publish" class="save-btn blue">
                     </div>
 
