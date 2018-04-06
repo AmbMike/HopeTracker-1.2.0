@@ -21,7 +21,7 @@
 
 <section id="post-form" class="box-one">
     <div class="alert alert-success text-center col-centered" style="display: none;" id="entry-success-box">
-        <h3>Your has been created <strong>Successfully!</strong></h3>
+        <h3>Your post has been created <strong>Successfully!</strong></h3>
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     </div>
     <form <?php echo ($draftedId != '') ? 'data-post-draft-id="'.$draftedId.'"' : ''; ?> id="journal-entry" method="post">
@@ -72,10 +72,7 @@
 
                 </div>
                 <div class="col-sm-3 drop-status-col">
-
-                    <div class="clearfix"></div>
                     <div class="save-btn-box">
-                        <i class="fa fa-check" aria-hidden="true"></i>
                         <input type="submit" name="submit" value="Publish" class="save-btn blue">
                     </div>
 

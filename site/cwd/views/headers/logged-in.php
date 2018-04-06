@@ -40,7 +40,7 @@ error_reporting( 3 );
     <li><a href="/<?php echo RELATIVE_PATH; ?>families-of-drug-addicts/">Community</a><?php echo (Nav::show_active($active_link,'Community') ? : ''); ?></li>
 	<?php /* <li><a href="/inspiration/">Inspiration</a> <?php echo (Nav::show_active($active_link,'Inspiration') ? : ''); ?></li> */ ?>
     <li><a href="/<?php echo RELATIVE_PATH; ?>family-of-drug-abuser/">Forums</a><?php echo (Nav::show_active($active_link,'Forums') ? : ''); ?></li>
-    <li class="form-btn">Check Insurance
+    <li class="form-btn">Insurance Checker
         <ul id="form-help-nav" class="insurance-form-ul ">
             <li class="insurance-form-li">
 				<?php //include_once(FORMS . 'get-help-now.php'); ?>

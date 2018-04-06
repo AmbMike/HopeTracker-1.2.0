@@ -15,7 +15,10 @@
     outline: none;
     overflow: hidden;
     width: 100%;
-    line-height: 20px;
+    line-height: 40px;
+    font-size: 2em !important;
+    font-weight: lighter;
+    font-family: Lato;
   }
 
 .dis-blk {
@@ -102,7 +105,10 @@
       display: inline-block;
       white-space: nowrap;
       position: relative;
-      top: 40px;
+      top: 32px;
+      font-size: .7em;
+      color: $header-gray;
+      font-weight: bold;
       @media (max-width: 551px) {
         top: unset;
         bottom: 80px;
@@ -122,6 +128,9 @@
       display: inline-block;
       color: darken($theme-gray, 20%);
     }
+   .fa-calendar-o {
+     color: darken($theme-gray, 20%);
+   }
   }
   .mce-toolbar-grp {
     background-color: #ffffff !important;
@@ -141,15 +150,19 @@
   }
   label{
     @extend .theme-font;
-    text-align: center;
-    display: block;
+      display: inline;
     font-size: .8em;
     margin-bottom: 4px;
+
+    @media (max-width:768px) {
+    float:left;
+    width:100px; }
+
   }
   input{
     &.title{
       border: none;
-      font-size: 2em;
+      font-size: 1.5em;
       padding: 15px 15px 15px 0px;
       outline: none;
       font-weight:bold;
@@ -186,8 +199,9 @@
           color: $theme-green;
         }
         .save-btn{
-          padding: 0;
-          color: $theme-blue;
+          padding: 5px 40px;
+          background: $theme-blue !important;
+          border-radius: 3px;
           background: none;
           border: none;
           -webkit-box-shadow: none;

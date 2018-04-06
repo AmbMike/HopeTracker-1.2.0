@@ -240,7 +240,7 @@
                         <div class="cell">
                             <div class="input-box">
                                 <div class="textarea-box">
-                                    <textarea data-comment-journal-id="<?php echo $latest_post['id']; ?>"  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Begin tying here..."></textarea>
+                                    <textarea data-comment-journal-id="<?php echo $latest_post['id']; ?>"  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Begin typing here..."></textarea>
                                 </div>
                             </div>
                         </div>

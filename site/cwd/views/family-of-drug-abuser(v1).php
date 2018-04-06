@@ -176,7 +176,7 @@ $ViewedPost = new ViewedPost();
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <textarea name="content" id="content" class="text-features" placeholder="Begin tying here..."></textarea>
+                                                                    <textarea name="content" id="content" class="text-features" placeholder="Begin typing here..."></textarea>
                                                                 </div>
                                                                 <div class="inside-box" id="range-box">
                                                                     <div class="row">
