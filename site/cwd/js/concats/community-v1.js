@@ -15,7 +15,13 @@ function communitySearchPosts() {
 
     /** Hide the search filter container. */
     var filterContainerEl = $(searchEl('filter-container'));
-    filterContainerEl.css({'display' : 'none'});
+
+    /** Gets the url get value for showing filter when anchor is in the URL */
+    var getValue = window.location.hash.substr(1);
+
+    if(getValue !== 'community-nav'){
+        filterContainerEl.css({'display' : 'none'});
+    }
 
     /** Hide the search filter container. */
     $(searchEl('order-container')).css({'display' : 'none'});

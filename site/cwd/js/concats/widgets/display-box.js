@@ -23,8 +23,19 @@ function display_box() {
     });
 
     $('body').on('click',obj.main_header,function () {
-        if(!$(this).hasClass('skipped')){
-            $(this).parent().find(obj.content).stop().slideToggle(500);
+
+        var $this = $(this)
+
+        /** toggle session time for clicked session */
+        if(!$this.hasClass('active')){
+           // $(obj.main_header).removeClass('active');
+            $this.addClass('active');
+        }else{
+            $this.removeClass('active');
+        }
+
+        if(!$this.hasClass('skipped')){
+            $this.parent().find(obj.content).stop().slideToggle(500);
         }
 
     });

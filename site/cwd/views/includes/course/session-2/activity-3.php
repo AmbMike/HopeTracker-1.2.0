@@ -1,4 +1,4 @@
-<p data-session-item="3" onclick="location.href= RELATIVE_PATH + '/profile/'" class="heading <?php echo ($Courses->session_status(2,3) == true) ? 'pre-complete' : '' ; ?> ">
+<p data-session-item="3" onclick="location.href= RELATIVE_PATH + '/families-of-drug-addicts/#community-nav'" class="heading <?php echo ($Courses->session_status(2,3) == true) ? 'pre-complete' : '' ; ?> ">
 	Find People to Follow
 </p>
 <p class="line-2">

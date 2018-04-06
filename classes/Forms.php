@@ -73,8 +73,12 @@ class Forms extends Database {
         $sql->execute();
 
         foreach ($sql->fetchAll() as $value){
-
-        echo '<label><input type="checkbox" value="' . $value['id']. '">'. ucwords($value['value']).'</label>';
+	        $showChecked = '';
+        	/** Set input to "checked" for table "status" if it's in the url */
+	        if ( isset( $_GET['filter'] ) && $_GET['filter'] == $value['id'] && $table_name == "status" ) {
+		        $showChecked = 'checked';
+	        }
+        echo '<label><input type="checkbox" '.$showChecked.' value="' . $value['id']. '">'. ucwords($value['value']).'</label>';
 
         }
     }
