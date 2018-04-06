@@ -77,7 +77,6 @@ endswitch;
         <div class="col-md-8" id="journal-new">
             <?php if(!isset($_GET['journal_id'])) : ?>
             <main>
-
                 <?php if($Session->get('logged_in') == 1) :
 
                         /** Show form and user header if is the user's profile */
