@@ -1,4 +1,5 @@
-<div data-session-item="3" onclick="location.href= RELATIVE_PATH + '<?php echo "/families-of-drug-addicts/user-". User::user_info("id")."/course/be_Proactive"; ?>'">
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/config/constants.php'); ?>
+<div data-session-item="3" onclick="location.href='/<?php echo RELATIVE_PATH . 'addiction-quotes/'; ?>'" role="button">
     <p class="heading <?php echo ($Courses->session_status(9,2) == true) ? 'pre-complete' : '' ; ?>  ">
         View & Save Inspirational Quotes
     </p>

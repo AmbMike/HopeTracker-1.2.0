@@ -12,7 +12,7 @@
 ?>
 <?php
 
-include_once($_SERVER['DOCUMENT_ROOT'].'/config/constants.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
 include_once( CLASSES . 'class.ForumAnswers.php' );
 
 $ForumAnswers = new ForumAnswers();

@@ -9,13 +9,17 @@
   textarea {
     box-sizing: border-box;
     resize: none;
-    font-size: 14px;
+    font-size: 22px;
     padding: 4px;
     border: none;
     outline: none;
     overflow: hidden;
     width: 100%;
     line-height: 20px;
+
+    @media(max-width: 1000px){
+      font-size: 18px;
+    }
   }
 
 .dis-blk {

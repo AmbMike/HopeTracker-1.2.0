@@ -392,10 +392,10 @@ class User extends Sessions {
 	}
 	public function him_or_her($user_id, $type = 'first person'){
 		$i_am = $this->user_i_am($this->user_info('i_am_a',$user_id));
-		$him_arr = array('dad','uncle','grandpa');
-		$her_arr = array('mom','sister','aunt','grandma');
+		$him_arr = array('dad','uncle','grandpa','brother','son','husband','nephew');
+		$her_arr = array('mom','sister','aunt','grandma','daughter','wife','niece');
 
-		$output = 'Other';
+		$output = 'their';
 
 		if(in_array($i_am,$him_arr)){
 			if($type == "first person"){

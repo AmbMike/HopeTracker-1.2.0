@@ -1163,7 +1163,6 @@ function course_action_tracker() {
                 }
             });
         }
-
     });
 }
 
@@ -1251,13 +1250,14 @@ function hide_course_activity() {
     var start_button_text = "Unpause";
     var skip_button_text = "Skip";
 
-    /** Hide all completed activities when page loads */
+    /** Hide all completed activities when page loads
     $('.content-item').each(function(){
         if($(this).find('p').hasClass("pre-complete")){
             $(this).css({'display' : 'none'});
         }
-    });
-    /** Show completed activities. */
+    });*/
+
+    /** Show completed activities.
     $('body').on('click','.show-complete',function () {
         var $this = $(this);
 
@@ -1272,28 +1272,9 @@ function hide_course_activity() {
                 $this.find('.text').text(button_text);
             }
         });
-       /* var match_classes =  $(this).attr('class');
+    });*/
 
-        /!** When Unpaused is clicked *!/
-        if(match_classes === 'show-complete '){
-            $this.parent().parent().find('.heading').removeClass('paused');
-            $this.find('.text').text(skip_button_text);
-            $this.removeClass('skipped');
-        }
 
-        /!** When skipped is clicked *!/
-        if(match_classes === 'show-complete' ){
-
-            $this.parent().parent().find('.heading').addClass('paused');
-            $this.find('.text').text(start_button_text);
-            $this.addClass('skipped');
-
-            $this.closest('.content').slideUp();
-        }
-*/
-
-    });
-    /** Show completed activities. */
     $('body').on('click','.hide-complete',function () {
         var $this = $(this);
 
@@ -1307,6 +1288,8 @@ function hide_course_activity() {
             $this.find('.text').text(original_button_text);
         });
     });
+    /** Show completed activities. */
+
     $('body').on('click', parent_class + ' .skip',function () {
         var $this = $(this);
         var $skipStatus = $this.data('skip-status');

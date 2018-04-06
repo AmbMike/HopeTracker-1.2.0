@@ -872,6 +872,16 @@ form{
     text-align: center;
   }
 }
+.error-msg{
+  float: left;
+  margin: -10px 5px 0 5px;
+  padding: 5px;
+  font-size: 14px;
+  display: block;
+  color: #ff2828;
+  border: 1px solid #ffcbcb;
+  background: rgba(255, 195, 195, 0.4);
+}
 .error-text{
   color: $error_red !important;
   text-shadow: none;

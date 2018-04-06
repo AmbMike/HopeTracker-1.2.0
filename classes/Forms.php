@@ -73,8 +73,12 @@ class Forms extends Database {
         $sql->execute();
 
         foreach ($sql->fetchAll() as $value){
-
-        echo '<label><input type="checkbox" value="' . $value['id']. '">'. ucwords($value['value']).'</label>';
+	        $showChecked = '';
+        	/** Set input to "checked" for table "status" if it's in the url */
+	        if ( isset( $_GET['filter'] ) && $_GET['filter'] == $value['id'] && $table_name == "status" ) {
+		        $showChecked = 'checked';
+	        }
+        echo '<label><input type="checkbox" '.$showChecked.' value="' . $value['id']. '">'. ucwords($value['value']).'</label>';
 
         }
     }
@@ -124,8 +128,8 @@ EOD;
             $sql = $db->prepare("INSERT INTO user_list (fname, lname, email,password,created_on,state,zip,profile_img,i_am_a,concerned_about,in_type,username,ip) 
     VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $sql->execute(array(
-	            $first,
-	            $last_name,
+	            trim($first),
+	            trim($last_name),
                 strtolower($data['email']),
                 md5($data['password']),
                 time(),

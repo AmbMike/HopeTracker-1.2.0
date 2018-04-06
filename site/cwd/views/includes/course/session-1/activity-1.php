@@ -1,9 +1,10 @@
-<div data-session-item="1" <?php ?> onClick="window.open('https://www.ambrosiatc.com/addiction/drug-addiction-disease/?fromHopeTracker&nav=no')">
+<div data-session-item="1" onClick="window.open('https://www.ambrosiatc.com/addiction/drug-addiction-disease/?fromHopeTracker&nav=no')">
     <p class="heading <?php echo ($Courses->session_status(1,1) == true) ? 'pre-complete' : '' ; ?> launch-modal ">
         Start with "Addiction 101"
     </p>
     <p class="line-2">Get answers to questions like "How did this happen?" and "Why can't they stop?"</p>
 </div>
+<?php /*
 <div class="modal video fade" id="modal-video" tabindex="-1" role="dialog" aria-labelledby="modal-video-label">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -41,3 +42,4 @@
         </div>
     </div>
 </div>
+*/ ?>

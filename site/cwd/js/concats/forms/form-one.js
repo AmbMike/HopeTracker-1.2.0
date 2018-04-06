@@ -78,7 +78,7 @@ function sign_up_process() {
         form_id : 'form-one',
         submit_btn : '#form-one .btn',
         require : true,
-        letters_only : true,
+        letters_only : 'Only letters allowed.',
         max_length : 20,
         min_length : 2
     });
@@ -86,30 +86,27 @@ function sign_up_process() {
         form_id : 'form-one',
         submit_btn : '#form-one .btn',
         require : true,
-        letters_only : true,
+        letters_dash_space_only : 'Only letters and hyphens allowed.',
         max_length : 20,
         min_length : 3
     });
     $(obj.id + ' input[name="zip"]').mg_validate({
         form_id : 'form-one',
         submit_btn : '#form-one .btn',
-        require : true,
-        exact_char_length : 5,
-        numbers_only : true
+        zip : 'Enter your zip code'
     });
     $(obj.id + ' input[name="email"]').mg_validate({
         form_id : 'form-one',
         submit_btn : '#form-one .btn',
         require : true,
-        email : true,
+        email : 'Enter a valid email.',
         duplicate_check : true
     });
     $(obj.id + ' input[name ="password"]').mg_validate({
         form_id : 'form-one',
         submit_btn : '#form-one .btn',
-        require : true,
-        min_length : 6,
-
+        min_length : 8,
+        require : true
     });
     $(obj.id + ' input[name ="re_password"]').mg_validate({
         form_id : 'form-one',

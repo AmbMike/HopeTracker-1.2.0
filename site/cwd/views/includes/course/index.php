@@ -31,8 +31,13 @@ $Page->header(array(
     <?php $index++; ?>
     <div class="display-box" data-session-number="<?php echo $session_arr['session-number']; ?>">
         <div class="row no-margins">
+            <?php
+            $activeClass = '';
+            if($ActivitySession->currentSession == $index):
+                $activeClass = 'active';
+            endif; ?>
             <?php if($ActivitySessionSkipped->isSessionSkipped($session_arr['session-number']) == false) : ?>
-            <div class="col-md-12 header-container">
+            <div class="col-md-12 header-container <?php echo $activeClass; ?>">
                 <p><span class="blue-text-loud-md session-title">Session <?php echo $session_arr['session-number']; ?></span> <span data-session-title="<?php echo $_SESSION_TITLE; ?>" class="session-sub-title"><?php echo $_SESSION_TITLE; ?></span> </p>
                 <?php else : ?>
             <div class="col-md-12 header-container skipped">
@@ -54,9 +59,11 @@ $Page->header(array(
                     <div id="step3" class="text-right">
                     <?php endif; ?>
                         <div class="text-right">
+	                        <?php /** show complete button has been disabled.
                             <?php if($ActivitySessionItems->totalCompleteActivitiesPerSession($session_arr['session-number'])  > 0): ?>
-                            <a class="show-complete" data-show-course="btn" role="button"><span class="text"><?php echo ($Courses->session_status_check(1) == true) ? 'Show Completed <i class="fa fa-angle-double-right"></i>' : ''; ?></span> </a>
-                           <?php endif; ?>
+                                <a class="show-complete" data-show-course="btn" role="button"><span class="text"><?php echo ($Courses->session_status_check(1) == true) ? 'Show Completed <i class="fa fa-angle-double-right"></i>' : ''; ?></span> </a>
+                            <?php endif; ?>
+                             */ ?>
                             <a class="skip" skip-status="<?php echo ($ActivitySession->sessionStatus() == 1) ? 'skip ' : 'un-skipped'; ?>" role="button"><span class="text"><?php echo ($ActivitySession->sessionStatus() == 1) ? 'Skip ' : 'Un-skip'; ?></span>  <i class="fa fa-angle-double-right"></i></a>
                         </div>
                     <?php if($Session->get('viewed_course') != true): ?>
@@ -67,10 +74,10 @@ $Page->header(array(
         </div>
     </div>
     <?php
-        /** Stop the loop to only show the completed sessions.  */
+        /** Stop the loop to only show the completed sessions.
         if($index  == $ActivitySession->currentSession){
         break;
-        } ?>
+        }  */?>
     <?php endforeach; ?>
     </div>
 </div>

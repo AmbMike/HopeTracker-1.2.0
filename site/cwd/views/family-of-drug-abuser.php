@@ -150,7 +150,7 @@ if($Session->get('logged_in') == 1){
                                         <h4 class="panel-title">
                                             <div class="main-collapse collapsed" data-toggle="collapse" href="#<?php echo $category_name; ?>-categories">
                                                 <h3 class="heading">
-                                                    <span class="category-text"><?php echo $category_name; ?></span>
+                                                    <span class="category-text"><?php echo $category['category'];?></span>
                                                 </h3>
                                                 <div id="moderator-container">
                                                     <div class="moderator-text-box">

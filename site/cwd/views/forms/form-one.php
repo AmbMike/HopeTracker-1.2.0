@@ -36,7 +36,7 @@
         <input data-toggle="tooltip" title="Email Required" name="email" placeholder="Email">
     </div>
     <div class="input-box">
-        <input data-toggle="tooltip" title="Password must be at least 6 characters long" type="password" name="password" autocomplete="off" placeholder="Password">
+        <input data-toggle="tooltip" title="Password must be at least 8 characters long" type="password" name="password" autocomplete="off" placeholder="Password">
     </div>
     <div class="input-box">
         <input type="password" data-toggle="tooltip" title="Re-enter your password" name="re_password" autocomplete="off" placeholder="Re-Password">
@@ -73,7 +73,6 @@
             <?php echo FORMS::get_states(); ?>
         </select>
     </div>
-
     <input type="hidden" name="profile_img_path" class="imgPath" id="imgPath">
     <div class="full-box" id="upload-btn-box">
         <label for="imgCrop">(Optional) A photo will help the community connect with you.</label>
@@ -88,6 +87,6 @@
     </div>
     <div class="clearfix"></div>
     <input type="hidden" name="form" value="Sign Up">
-    <input type="hidden" name="token" <!--id="session_token"--> value="<?php echo $_SESSION['session_token']; ?>">
+    <input type="hidden" name="token" value="<?php echo $_SESSION['session_token']; ?>">
     <input type="submit" class="btn btn-default green" value="Join Now">
 </form>

@@ -87,7 +87,7 @@ $UserProfile = new UserProfile();
 												<?php /** Disabled Chat Button */ ?>
 												<?php /**<span class="tooltip-mg <?php echo $chat_class; ?> chat-link-ACTION" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to chat" ' : 'data-pt-title="Request Chat"'; ?>  data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" id="chat-request-<?php echo $index33; ?>" data-requested-user-id="<?php echo $user_online['user_id']; ?>"><nobr> <?php echo $request_status; ?></nobr></span> */ ?>
                                             </div>
-                                        </div> <span class="accent">A <?php echo strtolower($User->user_i_am($User->user_info('i_am_a',$user_online['user_id']))); ?> <!--from St. Louis, MO--> concerned about <?php echo $User->him_or_her($user_online['user_id']); ?> <?php echo $User->user_concerned_about($User->user_info('i_am_a',$user_online['user_id'])); ?></span>
+                                        </div> <span class="accent">A <?php echo strtolower($User->user_i_am($User->user_info('i_am_a',$user_online['user_id']))); ?> <!--from St. Louis, MO--> concerned about <?php echo $User->him_or_her($user_online['user_id']); ?> <?php echo $User->user_concerned_about($User->user_info('concerned_about',$user_online['user_id'])); ?></span>
 
                                     </div>
                                 </div>

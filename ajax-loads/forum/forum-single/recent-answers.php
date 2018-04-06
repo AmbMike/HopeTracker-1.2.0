@@ -11,7 +11,7 @@
  */;
 ?>
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/config/constants.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
 require_once(CLASSES . 'class.ForumAnswers.php');
 require_once(CLASSES . 'class.ForumQuestions.php');
 require_once(CLASSES . 'class.FlagPost.php');
