@@ -88,9 +88,9 @@ if($Session->get('logged_in') == 1){
         <div class="col-md-12">
             <main>
                 <div class="header-box main-title-box">
-                    <span class="h1-addon"><?php echo $total_questions; ?> Questions Asked</span>
+                    <span class="h1-addon"><?php echo $total_questions; ?>838 Questions Asked</span>
                     <h1 class="green-heading-lg">Addiction Forum</h1>
-                    <p class="header-content">Find and give direct answers to any addition-related question — from "<i>What does heroin look like?</i>" to "<i>How do I know when they hit rock bottom?</i>" Browse the questions below or add your own to get real advice from experts and other families.</p>
+                    <p class="header-content">Find and give direct answers to any addiction-related question — from "<i>What does heroin look like?</i>" to "<i>How do I know when they hit rock bottom?</i>" Browse the questions below or add your own to get real advice from experts and other families.</p>
                 </div>
 				<?php if($Session->get('logged_in') == 1): ?>
                     <section class="box-one main-box">

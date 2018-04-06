@@ -47,9 +47,9 @@ $hide_side_inspiration = true;
         <div class="col-md-8" id="inspiration-v1">
             <main>
                 <div class="main-title-box">
-                    <span class="h1-addon">Self-Care Tips</span>
+                    <span class="h1-addon">45 Quotes & Tips</span>
                     <h1 class="green-heading-lg main-title">Quick Inspirations</h1>
-                    <p>Too often, our thoughts obsess over our loved one, leaving no time for ourselves. But, you deserve happiness. Worrying has never cured anyone of addiction. As hard as it seems, take time each day to focus on yourself and the positive things in your life. As you practice these simple, quick coping tools, apply the ones that work best for you to your life any time you feel stressed.</p>
+                    <p>Our thoughts obsess over our loved one, too often leaving no time for ourselves. You deserve happiness! Worrying has never cured anyone of addiction. As hard as it seems, take time each day to focus on yourself and the positive things in your life. </p>
                 </div>
                 <section class="box-one inspiration-content-box">
                     <span class="slider-title-text">Your life matters, and there is always hope.</span>
@@ -147,7 +147,7 @@ $hide_side_inspiration = true;
                                         <div class="cell">
                                             <div class="input-box">
                                                 <div class="textarea-box">
-                                                    <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Begin tying here..."></textarea>
+                                                    <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Begin typing here..."></textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -3,9 +3,9 @@ input[type=range], input.ranges {
   margin: auto;
   outline: none;
   padding: 0;
-  width: 100%;
-  height: 20px;
-  background-color: $theme-gray;
+  width: 60%;
+  height: 15px;
+  background-color: $body-gray;
   background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, $theme-gray), color-stop(100%, $theme-green));
   background-image: -webkit-linear-gradient($theme-green, $theme-green);
   background-image: -moz-linear-gradient($theme-green, $theme-green);
@@ -16,6 +16,7 @@ input[type=range], input.ranges {
   border-radius: 10px;
   cursor: pointer;
   -webkit-appearance: none;
+  display:inline;
 
   @media (max-width:768px) {
     margin-bottom: 12px;
@@ -57,3 +58,4 @@ input[type=range]::-moz-range-thumb, input.ranges::-moz-range-thumb {
   border-radius: 100%;
   box-shadow: 0 0 1px 0px rgba(0,0,0,0.1);
 }
+

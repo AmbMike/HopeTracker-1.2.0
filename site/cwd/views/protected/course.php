@@ -55,11 +55,11 @@ $totalCompleteActivities = $ActivitySessionItems->totalCompleteActivities;
 		<div class="col-md-8">
 			<main>
 				<section  class="box-one main-title-box" >
-					<span class="h1-addon"><span class=" total-sessions"></span> Session</span>
+					<span class="h1-addon">10-Session</span>
 					<h1 class="green-heading-lg top">Addiction University</h1>
 					<p class="heading-text">
-						Created by industry-leading therapists in collaboration with a team of moms, you'll "graduate" with a better understanding of addiction and your role in supporting recovery. It's a lot, but don't be overwhelmed!
-					</p>
+						Created by industry-leading therapists in collaboration with a team of moms, you'll "graduate" with a better understanding of addiction and your role in supporting recovery. It's a lot, but don't be overwhelmed. Commit to Session 1!
+                    </p>
 				</section>
 				<section class="box-one main-title-box session-container">
 					<?php include_once(VIEWS . 'includes/course/index.php'); ?>

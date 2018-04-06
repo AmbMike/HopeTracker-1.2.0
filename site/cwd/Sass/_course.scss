@@ -6,12 +6,11 @@
   }
 
   .line-2 {
-    margin: 0 0 0 51px;
-    position: relative;
-    bottom: 8px;
-    @media (max-width: 350px) {
+    margin: 0;
+    margin-left: 37px;
+    @media (max-width: 329px) {
       margin: 0;
-      bottom: 0;
+      margin-left: 37px;
     }
     span {
       text-transform: lowercase;
