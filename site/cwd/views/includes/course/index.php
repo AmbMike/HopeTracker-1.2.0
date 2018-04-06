@@ -59,9 +59,11 @@ $Page->header(array(
                     <div id="step3" class="text-right">
                     <?php endif; ?>
                         <div class="text-right">
+	                        <?php /** show complete button has been disabled.
                             <?php if($ActivitySessionItems->totalCompleteActivitiesPerSession($session_arr['session-number'])  > 0): ?>
-                            <a class="show-complete" data-show-course="btn" role="button"><span class="text"><?php echo ($Courses->session_status_check(1) == true) ? 'Show Completed <i class="fa fa-angle-double-right"></i>' : ''; ?></span> </a>
-                           <?php endif; ?>
+                                <a class="show-complete" data-show-course="btn" role="button"><span class="text"><?php echo ($Courses->session_status_check(1) == true) ? 'Show Completed <i class="fa fa-angle-double-right"></i>' : ''; ?></span> </a>
+                            <?php endif; ?>
+                             */ ?>
                             <a class="skip" skip-status="<?php echo ($ActivitySession->sessionStatus() == 1) ? 'skip ' : 'un-skipped'; ?>" role="button"><span class="text"><?php echo ($ActivitySession->sessionStatus() == 1) ? 'Skip ' : 'Un-skip'; ?></span>  <i class="fa fa-angle-double-right"></i></a>
                         </div>
                     <?php if($Session->get('viewed_course') != true): ?>
