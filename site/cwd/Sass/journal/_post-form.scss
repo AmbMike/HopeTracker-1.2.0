@@ -107,9 +107,11 @@
       white-space: nowrap;
       position: relative;
       top: 40px;
-      @media (max-width: 551px) {
+      @media (max-width: 552px) {
         top: unset;
-        bottom: 80px;
+        bottom: 60px;
+        width: 100%;
+        text-align: center;
       }
       .count-num {
         color: $theme-green;
@@ -154,11 +156,14 @@
     &.title{
       border: none;
       font-size: 2em;
-      padding: 15px 15px 15px 0px;
+      padding: 15px 15px 10px 0px;
       outline: none;
       font-weight:bold;
       background: $theme-white;
       width: 100%;
+      @media (max-width: 552px) {
+        padding-bottom: 0;
+      }
     }
   }
   select{

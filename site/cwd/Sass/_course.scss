@@ -7,8 +7,11 @@
 
   .line-2 {
     margin: 0 0 0 51px;
-    @media (max-width: 329px) {
+    position: relative;
+    bottom: 8px;
+    @media (max-width: 350px) {
       margin: 0;
+      bottom: 0;
     }
     span {
       text-transform: lowercase;
@@ -129,14 +132,15 @@
         background: #f5f5f5;
         border-top: 1px solid #ccc;
       }
+      .no-padd-xs {
+        padding: 0;
+      }
       .content{
         .content-item {
-          @media (max-width: 767px) {
-            margin: 0 15px;
-          }
-          padding-bottom: 10px;
+          padding: 0 15px;
           p {
             display: block;
+            cursor: pointer;
             @media (max-width: 992px){
               text-align: justify;
             }
@@ -144,9 +148,9 @@
               text-align: left;
             }
             &:first-child {
-              @media (max-width: 329px) {
+              @media (max-width: 350px) {
                 text-align: center;
-                margin-bottom: 7px;
+                margin: 15px 0 7px;
               }
             }
           }
@@ -158,8 +162,8 @@
             cursor: pointer;
 
             &:before {
-              content: '\f054' ;
               font-family: FontAwesome;
+              content: '\f054';
               color: lighten($theme-green, 18%);
               background: $theme-green;
               position: relative;
@@ -167,7 +171,7 @@
               border-radius: 50%;
               font-size: 13px;
               padding: 4px 0 0 8px;
-              margin-top: 15px;
+              margin-top: 10px;
               display: inline-block;
               height: 32px;
               width: 32px;
@@ -176,10 +180,10 @@
               margin-right: 0;
               right: 5px;
 
-              @media (max-width: 329px) {
+              @media (max-width: 350px) {
                 text-align: left;
                 display: block;
-                margin: 0 auto 7px;
+                margin: 0 auto 0;
               }
             }
 
@@ -192,7 +196,7 @@
                 padding: 3px 5px 5px 5px;
                 position: relative;
                 top: 0;
-                @media (max-width: 329px) {
+                @media (max-width: 350px) {
                   margin: 15px auto 7px;
                   display: block;;
                 }

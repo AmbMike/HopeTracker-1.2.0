@@ -8,7 +8,7 @@
   }
   .inspiration-content-box{
     padding-bottom: 0;
-    @media (max-width: 550px) {
+    @media (max-width: 574px) {
       text-align: center;
     }
     hr {
@@ -17,7 +17,7 @@
     }
     .dropdown {
       margin-bottom: 8px;
-      @media (max-width: 550px) {
+      @media (max-width: 574px) {
         float: none !important;
         position: relative;
         right: 4px;
@@ -66,7 +66,7 @@
             padding-top: 10px;
             font-size: 22px;
             color: darken($theme-gray,50%);
-            @media (max-width: 550px) {
+            @media (max-width: 574px) {
               font-size: 20px;
               padding-top: 15px;
             }
@@ -83,13 +83,23 @@
             font-size: 50px;
             color: $theme-blue;
             margin-top: 3px;
-            @media (max-width: 550px){
+            @media (max-width: 574px){
               display: block;
               width: 100%;
               font-size: 45px;
               float: none;
               position: relative;
               right: 4px;
+            }
+            .count-container {
+              display: inline-block;
+              font-size: 24px;
+              vertical-align: middle;
+              position: relative;
+              bottom: 2px;
+              span {}
+              .count {}
+              .total-count {}
             }
           }
         }
@@ -121,7 +131,7 @@
         & {
           display: flex;
           margin-bottom: 15px;
-          @media (max-width: 550px) {
+          @media (max-width: 574px) {
             display: block;
           }
         }
@@ -129,7 +139,7 @@
           margin-right: 10px;
           min-width: 65px;
           max-width: 65px;
-          @media (max-width: 550px) {
+          @media (max-width: 574px) {
             display: inline-block;
             margin: 0 0 15px;
           }

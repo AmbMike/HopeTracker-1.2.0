@@ -63,5 +63,3 @@ Redirect 301 /inspiration-v1/ /addiction-quotes/
   <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css|js)$">
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
-</IfModule>
-
