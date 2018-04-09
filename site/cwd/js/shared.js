@@ -194,6 +194,10 @@ $(document).ready(function () {
                 }, 1000);
             });
         });
+        
+        obj.close_btn.on('click',function () {
+            $('.menu-btn').removeClass('on');
+        })
     }
 });
 
