@@ -62,7 +62,11 @@ if(!file_exists(VIEWS . $p_url . '.php')){
 }
 /** Debug Panel */
 if(ENV == 'live' || ENV == 'dev'){
-	include_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/mg-error-panel/index.php');
+	if($_SESSION['logged_in'] == 1  ){
+		if(User::user_info('role',$Sessions->get('user-id')) == 1){
+			include_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/mg-error-panel/index.php');
+		}
+	}
 }
 if(isset($_GET['show_sessions'])){
     Debug::data($_SESSION);
