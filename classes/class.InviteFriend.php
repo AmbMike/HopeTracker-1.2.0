@@ -173,22 +173,22 @@ class InviteFriend
             $sql = $this->database->prepare("INSERT INTO invite_friend (senders_id, senders_name, recipients_name, recipients_email, senders_ip) VALUES (?,?,?,?,?)");
             $sql->execute(array(
                 $this->userId,
-                User::full_name(1),
+                User::full_name($this->userId),
                 $data['recipients_name'],
                 $data['recipients_email'],
                 $this->General->getUserIP()
-
             ));
 
             if($sql->rowCount() > 0){
-                echo "Successful";
+
+	           echo "Successful";
             }else{
                 echo "Failed";
             }
-
         }else{
             echo "Already Invited User";
         }
+
         // section -64--88-0-2-3801fad4:15f2a911f28:-8000:0000000000000BC3 end
     }
 
@@ -197,19 +197,29 @@ class InviteFriend
      *
      * @access public
      * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
+     * @param  userId
      * @return array
      */
-    public function getDataForCampaignMonitor()
+    public function getDataForCampaignMonitor($userId = false)
     {
         $returnValue = array();
 
         // section -64--88-0-13--63342b69:15f83a8c430:-8000:0000000000000C8B begin
 	    $this->database = new Database();
-	    $sql = $this->database->prepare( "SELECT * FROM invite_friend WHERE processed = 0 " );
-	    $sql->setFetchMode( PDO::FETCH_ASSOC );
-	    $sql->execute();
+	    if($userId == false){
+		    $sql = $this->database->prepare( "SELECT * FROM invite_friend WHERE processed = 0 " );
+		    $sql->setFetchMode( PDO::FETCH_ASSOC );
+		    $sql->execute();
 
-	    $returnValue = $sql->fetchAll();
+		    $returnValue = $sql->fetchAll();
+	    }else{
+		    $sql = $this->database->prepare( "SELECT * FROM invite_friend WHERE processed = 0 AND senders_id = ? " );
+		    $sql->setFetchMode( PDO::FETCH_ASSOC );
+		    $sql->execute(array($userId));
+		    $returnValue = $sql->fetchAll();
+		    $returnValue = $returnValue[0];
+
+	    }
         // section -64--88-0-13--63342b69:15f83a8c430:-8000:0000000000000C8B end
 
         return (array) $returnValue;

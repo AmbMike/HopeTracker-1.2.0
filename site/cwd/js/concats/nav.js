@@ -36,6 +36,13 @@ function  mobile_nav(){
         });
     });
 
+    if($(window).outerWidth() < 767 ){
+
+        $('header #form-one .close-btn').on('click',function () {
+            toggle_off();
+        });
+    }
+
     /* Local Functions */
     function toggle_off() {
         $('.nav-btn').stop().removeClass('nav-btn-1');
