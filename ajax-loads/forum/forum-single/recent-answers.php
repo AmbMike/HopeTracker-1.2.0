@@ -60,7 +60,7 @@ $forum_answers_arr = $ForumAnswers->getAnswers(false,$_GET['data']['questionId']
 <?php foreach ( $forum_answers_arr as $forum_answer) :  ?>
 	<div data-answers="container" data-answer-id="<?php echo $forum_answer['id']; ?>" data-answer-post-type="<?php echo $forum_answer['post_type']; ?>">
 		<div class="author-img-box cell">
-			<img <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>" class="img-circle profile-img">
+			<img <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo RELATIVE_PATH . (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>" class="img-circle profile-img">
 		</div>
 		<div class="post-text-box cell">
 			<div class="quote-box" itemprop="author" itemscope itemtype="http://schema.org/Person">

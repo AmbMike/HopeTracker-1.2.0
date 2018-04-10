@@ -78,7 +78,7 @@ if($Session->get('logged_in') == 1){
                                 </span>
                                 </div>
                                 <div class="moderator-img">
-                                    <img <?php echo PageLinks::userProfile($category['moderator_id']); ?> src="/<?php echo (User::user_info('profile_img',$category['moderator_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($category['moderator_id']); ?>" class="img-circle profile-img">
+                                    <img <?php echo PageLinks::userProfile($category['moderator_id']); ?> src="/<?php echo RELATIVE_PATH . (User::user_info('profile_img',$category['moderator_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($category['moderator_id']); ?>" class="img-circle profile-img">
                                 </div>
                             </div>
                         </a>

@@ -108,7 +108,7 @@ $getSubcategory = $_GET['subcategory'];
                 <div class="cell img-cell">
                     <div class="author-box">
                         <span itemprop="author" itemscope itemtype="http://schema.org/Person" class="hidden"> <span  itemprop="name"></span><?php echo User::Username($forum_question['created_user_id']); ?></span> </span>
-                        <img src="/<?php echo (User::user_info('profile_img',$forum_question['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($category['moderator_id']); ?>"  class="img-circle profile-img">
+                        <img src="/<?php echo RELATIVE_PATH . (User::user_info('profile_img',$forum_question['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($category['moderator_id']); ?>"  class="img-circle profile-img">
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@ $forum_answers_arr = $ForumAnswers->getAnswers(false,$_GET['data']['questionId']
 <?php foreach ( $forum_answers_arr as $forum_answer) :  ?>
 	<div class="table">
 		<div class="cell">
-			<img src="/<?php echo (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>"  class="img-circle profile-img ">
+			<img src="/<?php echo RELATIVE_PATH . (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>"  class="img-circle profile-img ">
 		</div>
 		<div class="cell">
 			<div class="user-info">
