@@ -1,1 +1,0 @@
-INSERT INTO concerned_about(value) value( 'niece' ), ( 'nephew' );

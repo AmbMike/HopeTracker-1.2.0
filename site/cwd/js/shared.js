@@ -133,16 +133,15 @@ $(document).ready(function () {
         obj.img.css({'display' : 'none'});
         obj.el.css({'display' : 'none'});
 
-      if($('.footer-form-btn').length > 0){
-          if($(window).outerWidth() < 767 ){
-              $('.footer-form-btn').on('click',function () {
-                  $('.mobile-nav-box').toggleClass('on');
-                  $('.nav-box nav > ul').stop().slideToggle(500);
-                  $('.overlay').fadeToggle(500);
-
-              });
-          }
-      }
+        if($('.footer-form-btn').length > 0){
+            if($(window).outerWidth() < 767 ){
+                $('.footer-form-btn').on('click',function () {
+                    $('.mobile-nav-box').toggleClass('on');
+                    $('.nav-box nav > ul').stop().slideToggle(500);
+                    $('.overlay').fadeToggle(500);
+                });
+            }
+        }
 
         setTimeout(function () {
             //obj.el.css({'height' : '0px'});
@@ -161,11 +160,16 @@ $(document).ready(function () {
 
                 /** if Mobile add mobile class */
                 if($(window).width()< 768){
+
+                    $('.mobile-nav-box').addClass('on');
+                    $('.nav-box nav > ul').slideDown(500);
                     $('nav').addClass('on');
+                }else{
+
                 }
 
                 obj.cover.fadeIn(300);
-                obj.el.stop().slideDown(300,function () {
+                obj.el.stop().slideDown(500,function () {
                     setTimeout(function () {
                         obj.img.fadeIn(500);
                     },100);
@@ -175,18 +179,18 @@ $(document).ready(function () {
 
         obj.close_btn.add(obj.cover).on('click',function () {
             $('nav').removeClass('on');
+            $('.menu-btn').removeClass('on');
             obj.img.fadeOut(200);
             obj.el.stop().slideUp(300,function () {
                 obj.cover.fadeOut(300);
                 obj.btn.removeClass('on');
-               if(('.close-btn-help').length > 0) {
-                   $('.form-btn').removeClass('on');
-               }
+                if(('.close-btn-help').length > 0) {
+                    $('.form-btn').removeClass('on');
+                }
                 $('.mobile-nav-box.on').removeClass('on');
-               if($(window).outerWidth() < 768){
-                   $('.nav-box nav > ul').stop().slideUp(500);
-               }
-
+                if($(window).outerWidth() < 768){
+                    $('.nav-box nav > ul').stop().slideUp(500);
+                }
 
                 /** Scroll page back to position when user clicked button. */
                 $('html, body').animate({
@@ -194,6 +198,7 @@ $(document).ready(function () {
                 }, 1000);
             });
         });
+
     }
 });
 
@@ -247,109 +252,109 @@ function screen_loader() {
 
 /** IntroJS for course Page */
 function course_intro() {
-      if(window.location.pathname === '/protected/course/' && $('.logged-in').length > 0){
-          $.getJSON("/site/public/json-data/course-intro-text/text.json", function(data) {
-              introJs().addSteps([{
-                  element: document.querySelectorAll('#step1')[0],
-                  intro: data['step 1'],
-                  position: 'top'
-              },{  element: document.querySelectorAll('#step2')[0],
-                  intro: data['step 2'],
-                  position: 'top'
-              },{  element: document.querySelectorAll('#step3')[0],
-                  intro: data['step 3'],
-                  position: 'top'
-              },{  element: document.querySelectorAll('#step4')[0],
-                  intro: data['step 4'],
-                  position: 'top'
-              },{  element: document.querySelectorAll('#courses #step5')[0],
-                  intro: data['step 5'],
-                  position: 'top'
-              },{  element: document.querySelectorAll('#courses #inspiration-box')[0],
-                  intro: data['step 61'],
-                  position: 'top'
-              }]).setOption(
-                  'showBullets', false,
-                  'scrollPadding', 400
-              ).start().onbeforeexit(function() {
+    if(window.location.pathname === '/protected/course/' && $('.logged-in').length > 0){
+        $.getJSON("/site/public/json-data/course-intro-text/text.json", function(data) {
+            introJs().addSteps([{
+                element: document.querySelectorAll('#step1')[0],
+                intro: data['step 1'],
+                position: 'top'
+            },{  element: document.querySelectorAll('#step2')[0],
+                intro: data['step 2'],
+                position: 'top'
+            },{  element: document.querySelectorAll('#step3')[0],
+                intro: data['step 3'],
+                position: 'top'
+            },{  element: document.querySelectorAll('#step4')[0],
+                intro: data['step 4'],
+                position: 'top'
+            },{  element: document.querySelectorAll('#courses #step5')[0],
+                intro: data['step 5'],
+                position: 'top'
+            },{  element: document.querySelectorAll('#courses #inspiration-box')[0],
+                intro: data['step 61'],
+                position: 'top'
+            }]).setOption(
+                'showBullets', false,
+                'scrollPadding', 400
+            ).start().onbeforeexit(function() {
 
-                  /** Adjust divs to allow for show more link btn */
-                  $('#step3 a').addClass('pull-right');
+                /** Adjust divs to allow for show more link btn */
+                $('#step3 a').addClass('pull-right');
 
-                  var replace_show_more_link = $('#step3').html();
-                  $( "#step3" ).replaceWith(replace_show_more_link);
-                  $( "#step3" ).replaceWith(replace_show_more_link);
+                var replace_show_more_link = $('#step3').html();
+                $( "#step3" ).replaceWith(replace_show_more_link);
+                $( "#step3" ).replaceWith(replace_show_more_link);
 
-                  /** Set the course page as viewed in the database to only show intro once  */
-                  $.post(RELATIVE_PATH + '/config/processing.php',{form : 'Course Intro Marked Viewed'},function (data) {
+                /** Set the course page as viewed in the database to only show intro once  */
+                $.post(RELATIVE_PATH + '/config/processing.php',{form : 'Course Intro Marked Viewed'},function (data) {
 
 
-                  });
-              });
+                });
+            });
 
-          });
+        });
 
     }
 }
 
 
- equalheight = function(container){
- var currentTallest = 0,
- currentRowStart = 0,
- rowDivs = new Array(),
- $el,
- topPosition = 0;
- $(container).each(function() {
- $el = $(this);
- $($el).height('auto')
- topPostion = $el.position().top;
+equalheight = function(container){
+    var currentTallest = 0,
+        currentRowStart = 0,
+        rowDivs = new Array(),
+        $el,
+        topPosition = 0;
+    $(container).each(function() {
+        $el = $(this);
+        $($el).height('auto')
+        topPostion = $el.position().top;
 
- if (currentRowStart != topPostion) {
- for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
- rowDivs[currentDiv].height(currentTallest);
- }
- rowDivs.length = 0; // empty the array
- currentRowStart = topPostion;
- currentTallest = $el.height();
- rowDivs.push($el);
- } else {
- rowDivs.push($el);
- currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
- }
- for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
- rowDivs[currentDiv].height(currentTallest);
- }
- });
- };
+        if (currentRowStart != topPostion) {
+            for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                rowDivs[currentDiv].height(currentTallest);
+            }
+            rowDivs.length = 0; // empty the array
+            currentRowStart = topPostion;
+            currentTallest = $el.height();
+            rowDivs.push($el);
+        } else {
+            rowDivs.push($el);
+            currentTallest = (currentTallest < $el.height()) ? ($el.height()) : (currentTallest);
+        }
+        for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+            rowDivs[currentDiv].height(currentTallest);
+        }
+    });
+};
 
- equalWidth = function(container){
- var currentTallest = 0,
- currentRowStart = 0,
- rowDivs = new Array(),
- $el,
- topPosition = 0;
- $(container).each(function() {
- $el = $(this);
- $($el).width('auto')
- topPostion = $el.position().top;
+equalWidth = function(container){
+    var currentTallest = 0,
+        currentRowStart = 0,
+        rowDivs = new Array(),
+        $el,
+        topPosition = 0;
+    $(container).each(function() {
+        $el = $(this);
+        $($el).width('auto')
+        topPostion = $el.position().top;
 
- if (currentRowStart !== topPostion) {
- for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
- rowDivs[currentDiv].width(currentTallest);
- }
- rowDivs.length = 0; // empty the array
- currentRowStart = topPostion;
- currentTallest = $el.width();
- rowDivs.push($el);
- } else {
- rowDivs.push($el);
- currentTallest = (currentTallest < $el.width()) ? ($el.width()) : (currentTallest);
- }
- for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
- rowDivs[currentDiv].width(currentTallest);
- }
- });
- };
+        if (currentRowStart !== topPostion) {
+            for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                rowDivs[currentDiv].width(currentTallest);
+            }
+            rowDivs.length = 0; // empty the array
+            currentRowStart = topPostion;
+            currentTallest = $el.width();
+            rowDivs.push($el);
+        } else {
+            rowDivs.push($el);
+            currentTallest = (currentTallest < $el.width()) ? ($el.width()) : (currentTallest);
+        }
+        for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+            rowDivs[currentDiv].width(currentTallest);
+        }
+    });
+};
 
 /** Equal Height for the homepage FAQs */
 equalheight('.faq-divider dt');
@@ -709,51 +714,51 @@ $(document).ready(function() {
     });
     if($('.crop-img-btn').length > 0){
         /*$('#img-crop-btn').on('click',function () {*/
-            var
-                modal =  $('#settings-croppic'),
-                crop = {
+        var
+            modal =  $('#settings-croppic'),
+            crop = {
                 el : modal,
                 pre_img :  $('.pre-profile'),
                 start_width :     400,
                 start_height :    400,
                 remove_btn     : '.cropControlRemoveCroppedImage'
             };
-            crop.el.css({'display' : 'none'});
+        crop.el.css({'display' : 'none'});
 
-            /* Reset box height if re-clicked upload button */
-            $('#img-crop-btn').on('click',function () { alert();
-                crop.el.css({'width' : crop.start_width + 'px', 'height' : crop.start_height + 'px'});
-            });
+        /* Reset box height if re-clicked upload button */
+        $('#img-crop-btn').on('click',function () { alert();
+            crop.el.css({'width' : crop.start_width + 'px', 'height' : crop.start_height + 'px'});
+        });
 
-            var croppicContainerModalOptions = {
-                uploadUrl:'/hopetracker/img_save_to_file.php',
-                cropUrl:'/hopetracker/img_crop_to_file.php',
-                outputUrlId: 'imgPath',
-                modal:true,
-                onReset: function(){
-                    crop.el.fadeOut(600,function () {
-                        crop.el.css({'width' : crop.start_width + 'px', 'height' : crop.start_height + 'px'});
-                        crop.pre_img.fadeIn(600);
-                    });
-                },
-                imgEyecandyOpacity:0.4,
-                loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
-                customUploadButtonId:'img-crop-btn',
-                onAfterImgCrop:		function(){
-                    var image_path = $('.croppedImg').attr('src');
+        var croppicContainerModalOptions = {
+            uploadUrl:'/hopetracker/img_save_to_file.php',
+            cropUrl:'/hopetracker/img_crop_to_file.php',
+            outputUrlId: 'imgPath',
+            modal:true,
+            onReset: function(){
+                crop.el.fadeOut(600,function () {
+                    crop.el.css({'width' : crop.start_width + 'px', 'height' : crop.start_height + 'px'});
+                    crop.pre_img.fadeIn(600);
+                });
+            },
+            imgEyecandyOpacity:0.4,
+            loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
+            customUploadButtonId:'img-crop-btn',
+            onAfterImgCrop:		function(){
+                var image_path = $('.croppedImg').attr('src');
 
-                    $('.cropControlRemoveCroppedImage').remove();
-                    $('.profile-img').attr('src',image_path);
-                    $('.pre-profile').css({'display' : 'none'});
-                    $('.croppedImg').addClass('img-responsive').addClass('img-circle').addClass('green-border').addClass('pre-profile');
-                    crop.el.fadeIn(600).css({'width' : '100%', 'height' : 'auto'});
-                },
-                onError:function(errormessage){ }
-            };
-            var settings_croppic = new Croppic('settings-croppic', croppicContainerModalOptions);
+                $('.cropControlRemoveCroppedImage').remove();
+                $('.profile-img').attr('src',image_path);
+                $('.pre-profile').css({'display' : 'none'});
+                $('.croppedImg').addClass('img-responsive').addClass('img-circle').addClass('green-border').addClass('pre-profile');
+                crop.el.fadeIn(600).css({'width' : '100%', 'height' : 'auto'});
+            },
+            onError:function(errormessage){ }
+        };
+        var settings_croppic = new Croppic('settings-croppic', croppicContainerModalOptions);
 
 
-       /* });*/
+        /* });*/
     }
     $('#settings-form').bootstrapValidator({
         message: 'This value is not valid',
@@ -879,8 +884,8 @@ $(document).ready(function() {
         var alert_box = $('#settings-form .alert-box');
 
         alert_box.on('click',function () {
-           $(this).slideUp();
-           return;
+            $(this).slideUp();
+            return;
         });
 
         $.ajax({
@@ -914,7 +919,7 @@ $(document).ready(function() {
 
 /* Close alert-box */
 $('body').on('click','.alert-box',function () {
-   $(this).slideToggle(600);
+    $(this).slideToggle(600);
 });
 /* Settings Page */
 if($('#settings-feedback-form').length > 0){
@@ -998,14 +1003,14 @@ function save_inspiration() {
         }
 
         $.ajax({
-           url  : '/config/processing.php',
-           type : 'POST',
-           data : {
-               form : 'Save Inspiration',
-               status : status,
-               img_id : image_id
-           },
-           dataType : 'json',
+            url  : '/config/processing.php',
+            type : 'POST',
+            data : {
+                form : 'Save Inspiration',
+                status : status,
+                img_id : image_id
+            },
+            dataType : 'json',
             success : function (response) {
 
                 if(response.status === "Saved"){
@@ -1102,20 +1107,20 @@ function inspiration_filter() {
         var count_update = $this.parent().find('.white-box span').text();
         count_update++;
         $this.parent().find('.white-box span').text(count_update);
-       $.ajax({
-           url: RELATIVE_PATH + '/config/processing.php',
-           type: 'POST',
-           data: {
-               form: 'Inspiration Img Shared',
-               data: {
-                   shared_img_id : $this.data('img-id'),
-                   shared_to : $this.data('shared-to')
-               }
-           },
-           success: function (response) {
+        $.ajax({
+            url: RELATIVE_PATH + '/config/processing.php',
+            type: 'POST',
+            data: {
+                form: 'Inspiration Img Shared',
+                data: {
+                    shared_img_id : $this.data('img-id'),
+                    shared_to : $this.data('shared-to')
+                }
+            },
+            success: function (response) {
 
-           }
-       });
+            }
+        });
     });
 }
 
@@ -1173,10 +1178,10 @@ $(document).ready(function () {
     /** Check if on the courses page */
     if($('.session-title').length > 0) {
         /** Get and set the total sessions on the courses page */
-       /* total_course_sessions();*/
+        /* total_course_sessions();*/
 
         /** Get and set the total activities */
-      /*  set_total_activities();*/
+        /*  set_total_activities();*/
 
         /** Set the total incomplete activities. */
         total_incomplete_activities();
@@ -1237,7 +1242,7 @@ function set_course_json_variables(progress_body,pattern,replace_with) {
     var replace = progress_body.replace(pattern,replace_with );
 
     /** replace the pattern in the progress body */
-   $('.progress-body').text(replace);
+    $('.progress-body').text(replace);
 }
 
 /* Show Hide Course Activities. */
@@ -1251,14 +1256,14 @@ function hide_course_activity() {
     var skip_button_text = "Skip";
 
     /** Hide all completed activities when page loads
-    $('.content-item').each(function(){
+     $('.content-item').each(function(){
         if($(this).find('p').hasClass("pre-complete")){
             $(this).css({'display' : 'none'});
         }
     });*/
 
     /** Show completed activities.
-    $('body').on('click','.show-complete',function () {
+     $('body').on('click','.show-complete',function () {
         var $this = $(this);
 
         $(this).closest('.content').find('.content-item').each(function () {
@@ -1279,7 +1284,7 @@ function hide_course_activity() {
         var $this = $(this);
 
         $(this).closest('.content').find('.content-item').each(function () {
-           var match_classes =  $(this).find('p').attr('class').trim();
+            var match_classes =  $(this).find('p').attr('class').trim();
             if(match_classes === 'heading pre-complete launch-modal' || match_classes === 'heading pre-complete'){
                 $(this).slideUp();
                 $this.removeClass('hide-complete').addClass('show-complete');

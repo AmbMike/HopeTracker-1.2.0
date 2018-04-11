@@ -97,10 +97,11 @@ function inviteFriendModal() {
                         recipients_name: $('#sidebar-share-form #recipients_name').val() ,
                         recipients_email: $('#sidebar-share-form #recipients_email').val()
                     }
-                }
+                },
+                dataType : 'json'
             }).done(function(response){
 
-                if(response === "Successful"){
+                if(response.status === "Successful"){
 
                     $(thisFormId).data('bootstrapValidator').resetForm();
                     $(thisFormId).slideUp(500,function () {
@@ -110,6 +111,9 @@ function inviteFriendModal() {
                         $(modal_id).find('.modal-header p').eq(0).prepend('<i class="fa fa-check-square-o" aria-hidden="true"></i> <br>');
                     });
 
+                    $.get(RELATIVE_PATH +  '/ajax-gets/campaignMonitor/pushNewInvite.php',{userId: response.userId },function (response) {
+                        console.log(response);
+                    },'json');
                 }
             });
         });
