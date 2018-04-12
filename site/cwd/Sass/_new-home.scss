@@ -34,13 +34,13 @@
     }
   }
   #top-container {
-    background: url('#{$relativePath}/site/public/images/home/hopetracker-hom-bg.jpg') no-repeat center top;
+    background: url('#{$relativePath}/site/public/images/home/hopetracker-hom-bg.jpg') no-repeat center center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     width: 100%;
-    height: 1060px;
+    height:770px;
 
     @media (max-width: 1420px) {
       height: 900px;
@@ -51,7 +51,7 @@
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
-      height: 800px;
+      height: 650px;
     }
 
     @media (max-width: 550px) {
@@ -60,7 +60,7 @@
     .heading-box {
       width: 100%;
       max-width: 600px;
-      margin: 232px auto;
+      margin: 159px auto 0;
       text-align: center;
       display: block;
       color:$button-text;
@@ -80,7 +80,7 @@
 
       @media (max-width: 767px) {
         max-width: 445px;
-        margin: 232px auto 0;
+        margin: 165px auto 0;
       }
 
       @media (max-width: 550px) {
@@ -102,7 +102,7 @@
         white-space: nowrap;
         margin: 10px 10px 0;
         font-family: sacramento !important;
-        font-weight: 600;
+        font-weight: 300;
 
         .text-left{
           display: inline-block;
@@ -149,7 +149,7 @@
         display: block;
         color:$button-text;
         font-family: sacramento;
-        font-weight: 600;
+        font-weight: 300;
         font-size: 5.2em;
 
         @media (max-width: 915px) {
