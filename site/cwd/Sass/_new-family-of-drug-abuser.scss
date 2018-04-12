@@ -52,7 +52,7 @@
           text-align: left;
           color: $theme-blue;
 
-          @media (max-width: 500px) {
+          @media (max-width: 550px) {
             text-align: center;
           }
         }
@@ -116,7 +116,7 @@
                 content:"\f067";
               }
             }
-            @media (max-width: 500px) {
+            @media (max-width: 550px) {
               text-align: center;
             }
             .sub-category-text{
@@ -124,14 +124,14 @@
               margin: 0 5px;
               font-weight: 600;
               text-transform: capitalize;
-              @media (max-width: 500px) {
+              @media (max-width: 550px) {
                 text-align: center;
                 margin: 0;
               }
             }
           }
           .question-title-text {
-            @media (max-width: 500px) {
+            @media (max-width: 550px) {
               display: block;
             }
           }
@@ -147,14 +147,14 @@
           border-radius: 0;
           cursor: pointer;
 
-          @media (max-width: 500px) {
+          @media (max-width: 550px) {
             text-align: center;
           }
 
           .heading {
             margin: 20px 0;
 
-            @media (max-width: 500px) {
+            @media (max-width: 550px) {
               margin-bottom: 10px;
             }
             .category-text {
@@ -179,9 +179,15 @@
                   display: inline-block;
                   float: right;
 
-                  @media (max-width: 500px) {
+                  @media (max-width: 550px) {
                     width: 100%;
                   }
+                }
+                .questions {
+                  display: inline-block;
+                  margin: 0 5px;
+                  font-size: 13px;
+                  text-transform: capitalize;
                 }
                 .moderator-text-box {
                   display: inline-block;
@@ -216,7 +222,7 @@
               & {
                 float: right;
 
-                @media (max-width: 500px) {
+                @media (max-width: 550px) {
                   float: none;
                 }
               }
@@ -226,7 +232,7 @@
                 font-weight: 600;
                 margin: 19px 15px 15px 15px;
 
-                @media (max-width: 500px) {
+                @media (max-width: 550px) {
                   margin-top: 0;
                 }
               }
@@ -238,7 +244,7 @@
             border-top: none;
             padding: 15px 15px 0 30px;
 
-            @media (max-width: 500px) {
+            @media (max-width: 550px) {
               padding: 15px 15px 0;
               text-align: center;
             }
@@ -314,7 +320,7 @@
               text-align: center;
               width: 20%;
               min-width: 70px;
-              @media (max-width: 500px) {
+              @media (max-width: 550px) {
                 display: block;
                 margin: 15px auto 0;
               }
@@ -323,7 +329,7 @@
                 width: 18%;
                 min-width: 60px;
                 float: right;
-                @media (max-width: 500px) {
+                @media (max-width: 550px) {
                   float: none;
                 }
               }
