@@ -113,10 +113,8 @@
       color: $header-gray;
       font-weight: bold;
       @media (max-width: 551px) {
-        top: unset;
-        bottom: 60px;
-        width: 100%;
-        text-align: center;
+        display:none;
+
       }
       .count-num {
         color: $theme-green;

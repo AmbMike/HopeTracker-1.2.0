@@ -317,6 +317,7 @@ header{
             @media (max-width: 767px) {
               text-align: center;
               float: none;
+              font-size: 35px;
             }
           }
         }
@@ -398,6 +399,8 @@ header{
           padding:0 15px;
           @media (max-width: 969px ) {
             padding:0;
+            border-bottom: 2px dotted $for-borders;
+            margin-bottom: 20px;
           }
 
           input{
@@ -410,7 +413,7 @@ header{
             @media (max-width: 767px) {
               position: relative;
               top: 0;
-              width: 98%;
+              width: 100%;
               margin: 10px auto;
               float: none;
               font-size: 18px;
@@ -428,7 +431,7 @@ header{
                 font-size: 18px;
                 height:auto;
                 margin-bottom: 20px;
-                width: auto;
+                width: 100%;
                 padding: 15px 30px;
                 font-weight: 700;
                 text-transform: uppercase;
