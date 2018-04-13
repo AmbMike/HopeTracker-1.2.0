@@ -209,7 +209,7 @@ class FollowPost
 
 		    /** Check query and set status for ajax */
 		    if($sql->rowCount() > 0){
-			    $returnValue['status'] = 'follow';
+			    $returnValue['status'] = 'following';
 			    $Notifications->setNotification($this->postsUserId,$this->postId,$this->postType,0,1);
 		    }else{
 			    $returnValue['status'] = 'failed follow query';
@@ -218,7 +218,7 @@ class FollowPost
 	    else:
 		    /** Un Follow post by user if the user already following the post */
 		    if($this->unfollowPost() == true){
-			    $returnValue['status'] = 'unfollow';
+			    $returnValue['status'] = 'unfollowed';
 			    $Notifications->setNotification($this->postsUserId,$this->postId,$this->postType,0,2);
 		    }else{
 			    $returnValue['status'] = 'failed unfollow query';

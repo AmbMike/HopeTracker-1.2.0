@@ -168,17 +168,18 @@ function follow_post_bound() {
             form : 'Follow Post',
             post_id : postId,
             post_type : postType,
-            post_user_id : postUserId
+            post_user_id : postUserId,
+            cache : false
         };
         /** Process the like btn */
         $.post(RELATIVE_PATH + '/config/processing.php',ajaxObject,function (response) {
             console.log(response);
-            if( response.status === 'unfollow'){
+            if( response.status === 'unfollowed'){
 
                 $thisFollowBtn.removeClass('liked');
                 $thisFollowBtn.find('span').text('Follow');
 
-            }else if(response.status === 'follow'){
+            }else if(response.status === 'following'){
 
                 $thisFollowBtn.addClass('liked');
                 $thisFollowBtn.find('span').text('Following');

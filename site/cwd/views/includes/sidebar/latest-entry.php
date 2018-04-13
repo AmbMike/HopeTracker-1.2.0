@@ -148,7 +148,7 @@ if($post_type == 3){
             <hr>
             <div  <?php echo 'class="action-btns ' . $follow_post; ?>">
                 <div data-bound-follow-post="btn" data-post-user-id="<?php echo $post_user_id; ?>" data-post-id="<?php echo $post_id; ?>" data-post-type="<?php echo $post_type; ?>"  class="simple-heading post-like tooltip-mg" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to like the post"  disabled' : ' '; ?> data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"  data-user-id="<?php echo ($Session->get('user-id')) ? : '' ?>">
-                    <i class="fa fa-star" aria-hidden="true"></i> <span><?php echo ($follow_post == 'liked') ? 'Follow' : 'Follow'; ?></span>
+                    <i class="fa fa-star" aria-hidden="true"></i> <span><?php echo ($follow_post == 'liked') ? 'Following' : 'Follow'; ?></span>
                 </div>
                 <div class="simple-heading comment" id="comment-btn-level-1" data-toggle="collapse" data-target="#sidebar-comment-box">
                     <i class="fa fa-comments-o" aria-hidden="true"></i> <span>Answer</span>

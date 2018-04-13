@@ -47,7 +47,7 @@ $hide_side_inspiration = true;
         <div class="col-md-8" id="inspiration-v1">
             <main>
                 <div class="main-title-box">
-                    <span class="h1-addon">45 Quotes & Tips</span>
+                    <span class="h1-addon"><!--45 -->Quotes & Tips</span>
                     <h1 class="green-heading-lg main-title">Quick Inspirations</h1>
                     <p>Our thoughts obsess over our loved one, too often leaving no time for ourselves. You deserve happiness! Worrying has never cured anyone of addiction. As hard as it seems, take time each day to focus on yourself and the positive things in your life. </p>
                 </div>
@@ -93,8 +93,8 @@ $hide_side_inspiration = true;
                                 <a target="_blank" class="share-link" href=""><div class="share-box"><i class="fa fa-share action-btn" aria-hidden="true"></i>Share</div></a>
                                 <div class="nav-btn-box nav-first">
                                     <i class="fa fa-angle-double-left next" role="button" aria-hidden="true"></i>
-                                    <div class="count-container"><span class="count">1</span><span>/</span><span class="total-count">4</span></div>
-                                    <i class="fa fa-angle-double-right prev" role="button" aria-hidden="true"></i>
+<!--                                    <div class="count-container"><span class="count">1</span><span>/</span><span class="total-count">4</span></div>
+-->                                    <i class="fa fa-angle-double-right prev" role="button" aria-hidden="true"></i>
                                 </div>
                             </div>
                         </div>
