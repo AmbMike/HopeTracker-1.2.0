@@ -26,7 +26,7 @@ function followUser() {
             console.log(response);
             if(response.status === 'Following'){
                 $this.html('<i class="fa fa-user-times"></i> Un-Friend');
-            }else if(response.status === 'Un-followed'){
+            }else if(response.status === 'Unfollowed'){
                 $this.html('<i class="fa fa-user-plus"></i> Add Friend');
             }
         },'json');

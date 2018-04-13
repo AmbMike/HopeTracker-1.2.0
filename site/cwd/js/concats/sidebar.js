@@ -268,7 +268,7 @@ function sidebar_share_quote(){
             }
 
             $.ajax({
-                url  : '/config/processing.php',
+                url  : RELATIVE_PATH + '/config/processing.php',
                 cache : false,
                 type : 'POST',
                 data : {
@@ -345,9 +345,10 @@ function sidebar_like_journal() {
         }
 
         $.ajax({
-            url : '/config/processing.php',
+            url : RELATIVE_PATH + '/config/processing.php',
             type : 'POST',
             data : ajax_data,
+            cache : false,
 
             success : function (response) {
 

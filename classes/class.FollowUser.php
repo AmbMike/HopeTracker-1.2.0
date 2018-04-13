@@ -201,7 +201,7 @@ class FollowUser
 	    if($this->isFollowingUser() == true):
 		    if($this->unFollowUser() == true):
 
-			        $returnValue['status'] = 'Un-followed';
+			        $returnValue['status'] = 'Unfollowed';
 			    else:
 
 				    $returnValue['status'] = 'Failed to Un-follow';
