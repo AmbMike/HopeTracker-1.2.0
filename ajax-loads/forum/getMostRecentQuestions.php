@@ -69,7 +69,7 @@ $getSubcategory = $_GET['subcategory'];
                 <div class="cell">
                     <div  class="quote-box">
                         <?php $forum_title_url = $General->url_safe_string($forum_question['question']) ; ?>
-                        <a class="link-title" href="/forum/<?php echo $General->url_safe_string($getSubcategory); ?>-<?php echo $forum_question['id']; ?>/<?php echo $forum_title_url; ?>">"<span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span>"</a>
+                        <a class="link-title" href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string($getSubcategory); ?>/<?php echo $forum_question['id']; ?>/<?php echo $forum_title_url; ?>">"<span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span>"</a>
                     </div >
                     <div class="insurance-treatment-box">
                     <span class="insurance">
@@ -86,7 +86,7 @@ $getSubcategory = $_GET['subcategory'];
                             /** @var  $total_answers : total number of answers for the question.  */
                             $total_answers = $ForumAnswers->countAnswers(true,false,$forum_question['id']);
                             ?>
-                            <data itemprop="answerCount" value="<?php echo $total_answers; ?>" class="answers-count"><?php echo $total_answers; ?></data>
+                            <data itemprop="answerCount" value="<?php echo $total_answers; ?>" class="answers-count"><?php echo $total_answers; ?> </data>
                             <span class="answers">Answers</span>
                         </div>
                         <span class="dot">
@@ -120,7 +120,7 @@ $getSubcategory = $_GET['subcategory'];
                     <?php foreach ( $forum_answers as $forum_answer) :  ?>
                         <div class="table">
                             <div class="cell">
-                                <img src="/<?php echo (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>"  class="img-circle profile-img ">
+                                <img src="/<?php echo RELATIVE_PATH . (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>"  class="img-circle profile-img ">
                             </div>
                             <div class="cell">
                                 <div class="user-info">

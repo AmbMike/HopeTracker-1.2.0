@@ -58,6 +58,9 @@ $getCategory = $_GET['category'];
 /** The subcategory from the ajax call.  */
 $getSubcategory = $_GET['subcategory'];
 
+include_once( CLASSES . 'class.UserProfile.php' );
+$UserProfile = new UserProfile();
+
 ?>
 
 <div data-questions="container">
@@ -68,7 +71,7 @@ $getSubcategory = $_GET['subcategory'];
                 <div class="cell">
                     <div  class="quote-box">
                         <?php $forum_title_url = $General->url_safe_string($forum_question['question']) ; ?>
-                        <a class="link-title" href="/forum/<?php echo $General->url_safe_string($getSubcategory); ?>-<?php echo $forum_question['id']; ?>/<?php echo $forum_title_url; ?>">"<span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span>"</a>
+                        <a class="link-title" href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string($getSubcategory); ?>/<?php echo $forum_question['id']; ?>/<?php echo $forum_title_url; ?>">"<span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span>"</a>
                     </div >
                     <div class="insurance-treatment-box">
                     <span class="insurance">
@@ -85,11 +88,11 @@ $getSubcategory = $_GET['subcategory'];
                             /** @var  $total_answers : total number of answers for the question.  */
                             $total_answers = $ForumAnswers->countAnswers(true,false,$forum_question['id']);
                             ?>
-                            <data itemprop="answerCount" value="<?php echo $total_answers; ?>" class="answers-count"><?php echo $total_answers; ?></data>
+                            <data itemprop="answerCount" value="<?php echo $total_answers; ?>" class="answers-count"><?php echo $total_answers; ?> </data>
                             <span class="answers">Answers</span>
                         </div>
                         <span class="dot">
-                        <i class="fa fa-circle" aria-hidden="true"></i>&nbsp;
+                         <i class="fa fa-circle" aria-hidden="true"></i>&nbsp;
                     </span>
                         <span class="asked-about">
                         Asked about <span class="asked-when"><time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_question['date_created']) ?>"><?php echo date("j F Y H:i",$forum_question['date_created']) ?></time></span>
@@ -106,8 +109,8 @@ $getSubcategory = $_GET['subcategory'];
                 </div>
                 <div class="cell img-cell">
                     <div class="author-box">
-                        <span itemprop="author" itemscope itemtype="http://schema.org/Person" class="hidden"> <span  itemprop="name"></span><?php echo User::Username($forum_question['created_user_id']); ?></span> </span>
-                        <img src="/<?php echo RELATIVE_PATH .(User::user_info('profile_img',$forum_question['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($category['moderator_id']); ?>"  class="img-circle profile-img">
+                        <span itemprop="author" itemscope itemtype="http://schema.org/Person" class="hidden"> <span itemprop="name" <?php echo $UserProfile->profile($forum_question['created_user_id']); ?> ><?php echo User::Username($forum_question['created_user_id']); ?></span> </span>
+                        <img <?php echo $UserProfile->profile($forum_question['user_id']); ?> role="button" src="/<?php echo RELATIVE_PATH .(User::user_info('profile_img',$forum_question['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($category['moderator_id']); ?>"  class="img-circle profile-img">
                     </div>
                 </div>
             </div>
@@ -119,11 +122,11 @@ $getSubcategory = $_GET['subcategory'];
                     <?php foreach ( $forum_answers as $forum_answer) :  ?>
                         <div class="table">
                             <div class="cell">
-                                <img src="/<?php echo (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>"  class="img-circle profile-img ">
+                                <img <?php echo $UserProfile->profile($forum_answer['user_id']); ?> role="button" src="/<?php echo RELATIVE_PATH . (User::user_info('profile_img',$forum_answer['user_id'])) ? : DEFAULT_PROFILE_IMG; ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>"  class="img-circle profile-img ">
                             </div>
                             <div class="cell">
                                 <div class="user-info">
-                                    <span itemprop="author" itemscope itemtype="http://schema.org/Person" class="username"><span itemprop="name"><?php echo User::Username($forum_answer['user_id']); ?></span></span>
+                                    <span itemprop="author" itemscope itemtype="http://schema.org/Person" class="username"><span itemprop="name" <?php echo $UserProfile->profile($forum_answer['user_id']); ?>><?php echo User::Username($forum_answer['user_id']); ?></span></span>
                                     <span itemprop="text" class="answer"><?php echo $forum_answer['answer']; ?></span>
                                     <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
                                 </div>

@@ -189,7 +189,7 @@ function askQuestion() {
 
         $(form.subcategoryOptions).remove();
 
-        $.post(RELATIVE_PATH + '/config/processing.php', {form : 'Get Subcategory List', category : category}, function (response) {
+        $.post(RELATIVE_PATH + '/config/processing.php', {form : 'Get Subcategory List', category : category, cache :  false}, function (response) {
 
             /** Initialize Sub-topic options */
             $(form.subcategorySelect).text('Select Sub-topic');
@@ -246,7 +246,8 @@ function askQuestion() {
                     subcategory : $(form.subcategorySelect).text(),
                     question : $(form.id + ' [name="question"]').val(),
                     description : $(form.id + ' [name="description"]').val(),
-                }
+                },
+                cache :  false
 
             };
 
@@ -309,6 +310,7 @@ function questionFilters() {
         var jsonObject = {
             category : $thisFilter.closest('.category').data('category'),
             subcategory : $thisFilter.closest('.subcategory').data('subcategory'),
+            cache :  false
         };
         var ajaxFile;
 
@@ -426,7 +428,8 @@ function answerQuestion() {
                     questionId : questionId,
                     paginationNumber : paginationNumber,
                     paginationLimit : paginationLimit
-                }
+                },
+                cache :  false
             };
 
             /** switch active class around */
@@ -494,7 +497,8 @@ function answerQuestion() {
                 data : {
                     question_id : $(form.id).attr('date-question-id'),
                     answer : $(form.id + ' [name="answer"]').val()
-                }
+                },
+                cache :  false
 
             };
             $.post(RELATIVE_PATH + '/config/processing.php',ajaxData,function (response) {
@@ -557,9 +561,6 @@ function answerQuestion() {
         }
 
     });
-
-
-
 
 }
 
