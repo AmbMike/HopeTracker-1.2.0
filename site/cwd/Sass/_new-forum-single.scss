@@ -156,9 +156,8 @@
             display: inline-block;
             font-weight: 600;
             color: $header-gray;
-
             &.liked{
-              color: $theme-blue;
+              color: $theme-green;
             }
           }
           .asked-about-box {
