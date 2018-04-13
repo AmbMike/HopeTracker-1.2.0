@@ -154,8 +154,8 @@ if($Session->get('logged_in') == 1){
                                                 </h3>
                                                 <div id="moderator-container">
                                                     <div class="moderator-text-box">
-                                                        <span <?php echo ($total_user_forums == 0 ) ? ' data-pt-title="You haven\'t asked any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="questions  <?php echo ($total_user_forums == 0 ) ? 'tooltip-mg' : ''; ?>"> <span data-profile="question"><data data-users-count="question" value="<?php echo $total_user_forums; ?>" class="user-questions"><?php echo $total_user_forums; ?></data> <span data-filter-text="Question">Questions </span></span></span>
-                                                <span class="title">
+<!--                                                        <span class="questions"><?php /*echo count($ForumQuestions->getQuestionsBySubcategory($subcategory['sub_category'])); */?> Question</span>
+-->                                                <span class="title">
                                                     Moderated by:
                                                 </span>
                                                         <span <?php echo PageLinks::userProfile($category['moderator_id']); ?> class="moderator">
