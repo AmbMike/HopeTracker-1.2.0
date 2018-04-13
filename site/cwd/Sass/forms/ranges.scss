@@ -21,6 +21,9 @@ input[type=range], input.ranges {
   @media (max-width:768px) {
     margin-bottom: 12px;
   }
+  @media(max-width: 328px){
+    width: 100%;
+  }
 }
 
 input[type=range]::-webkit-slider-runnable-track,input.ranges::-webkit-slider-runnable-track {
