@@ -146,6 +146,90 @@ EOD;
 
             if($sql->rowCount() > 0) :
 
+	            function sendToCampaignMonitor($last_id){
+
+		            require_once ABSPATH . '/campaign-monitor-api/csrest_campaigns.php';
+		            require_once ABSPATH . '/campaign-monitor-api/csrest_general.php';
+		            require_once ABSPATH . '/campaign-monitor-api/csrest_clients.php';
+		            require_once ABSPATH . '/campaign-monitor-api/csrest_subscribers.php';
+		            require_once (CLASSES .'Admin.php');
+		            require_once (CLASSES .'User.php');
+		            require_once (CLASSES .'Courses.php');
+		            require_once (CLASSES .'class.ForumQuestions.php');
+		            require_once (CLASSES .'class.FollowedPost.php');
+		            require_once (CLASSES .'Journal.php');
+
+		            $Admin = new Admin();
+		            $User = new User();
+		            $Courses = new Courses();
+		            $Journal = new Journal();
+		            $ForumQuestions = new ForumQuestions();
+		            $FollowedPost = new FollowedPost();
+
+		            $userListStatus1 = $Admin->all_users();
+
+		            $wrap = new CS_REST_Subscribers('1abc19b3dcd7794d37363f6e8a9902ec', '29a644cdec042cb0fb39f389f20afc9a');
+
+			            /** @var  $value : loops through each record that has not been sent to CM. */
+			            $result = $wrap->add(array(
+				            'Name' => User::full_name($last_id),
+				            'EmailAddress' => User::users_email($last_id),
+				            "CustomFields" => array(
+					            array(
+						            'Key' => 'iAm',
+						            'Value' => ucfirst($User->user_i_am($last_id))
+					            ),
+					            array(
+						            'Key' => 'signUpDate',
+						            'Value' => date("m-d-Y", time())
+					            ),
+					            array(
+						            'Key' => 'ActivitesCompleted',
+						            'Value' => $Courses->get_total_clicked_activities($last_id)
+					            ),
+					            array(
+						            'Key' => 'TotalForumPosts',
+						            'Value' => $ForumQuestions->totalApprovedQuestions($last_id)
+					            ),
+					            array(
+						            'Key' => 'TotalForumPostsFollowing',
+						            'Value' => $FollowedPost->getTotalPostUserIsFollowing($last_id, 3)
+					            ),
+					            array(
+						            'Key' => 'TotalJournalPosts',
+						            'Value' => $Journal->total_journal_post($last_id)
+					            ),
+					            array(
+						            'Key' => 'userId',
+						            'Value' => $last_id
+					            )
+				            )
+			            ));
+
+			            /* Check if user's row was updated to sent to campaign monitor.*/
+			            if($Admin->recordUpdateStatus($last_id) == true):
+				            /*echo "Recorded in Database. \n";*/
+
+			            else:
+				            echo "Failed to Recorded in Database. \n";
+				            Debug::to_file( $Admin->recordUpdateStatus( $last_id ), 'signupCMErrorLog.txt');
+
+			            endif;
+
+		            if($result->was_successful()) {
+			            /*echo "Recorded to Campaign Monitor. \n";*/
+
+		            } else {
+			            Debug::to_file('Failed with code '.$result->http_status_code."\n<br />", 'signupCMErrorLog.txt');
+			           /* var_dump($result->response);
+			            echo '</pre>';
+			            error_log("Campaign Monitor :  failed!" .$result->http_status_code. "errors: ".$result->response , 0);*/
+		            }
+
+	            }
+
+	            sendToCampaignMonitor($last_id);
+
 	            /** Set Username Value */
 	            switch(strtolower($data['username'])) :
 		            case 'full_name' :
@@ -170,7 +254,6 @@ EOD;
 	            /** Set the username */
 	            $sql = $db->prepare("update `user_list` SET `username` = ? WHERE `id` = ?");
 	            $sql->execute(array($build_username,$last_id));
-
 
                /* Set the session values for the user*/
                 $session->set('user-id', $last_id);

@@ -10,18 +10,21 @@
 <?php
 include_once(ARRAYS . 'states.php');
 include_once(CLASSES . 'class.UserProfile.php');
+include_once(CLASSES . 'Admin.php');
 $UserProfile = new UserProfile();
 $Page = new \Page_Attr\Page();
 $Forms = new Forms();;
 $Session = new Sessions();
 $General = new General();
 $User = new User();
+$Admin = new Admin();
 
 $Page->header(array(
     'Title' => 'Families of Drug Addicts | HopeTracker',
     'Description' => 'Follow real-time stories of parent, spouses, grandparents or siblings going through the emotions of addiction. A community of support and understanding.',
     'OG Image'  => OG_IMAGES  . 'community-pg.jpg',
-    'OG Title'  => 'Families of Drug Addicts'
+    'OG Title'  => 'Families of Drug Addicts',
+    'Active Link' => 'Community'
 ));
 //Debug::data($CommunityLog->new_forum_from_followed_users());
 ?>
@@ -51,7 +54,7 @@ if(isset($_GET['user_id'])){
         <div class="col-md-8" id="the-community">
             <main>
                 <section class="inside-box no-p">
-                    <span class="h1-addon"><span class="total-members"></span>12 Members</span>
+                    <data class="h1-addon"><data value="" class="total-members"><?php echo $Admin->total_users(); ?> Members</data>
                     <h1 class="green-heading-lg top">The Community</h1>
                 </section>
                 <section class="box-one no-p">
