@@ -19,8 +19,8 @@
         <label class="user-label" for="username">Display As: </label>
         <div class="select-box username">
             <select name="username" id="username">
-                <option data-toggle="tooltip" title="Required" value="full_name">First Last</option>
-                <option value="first_l">First L.</option>
+                <option data-toggle="tooltip"  value="first_l" title="Required">First L.</option>
+                <option value="full_name">First Last</option>
                 <option value="anonymous">Anonymous</option>
                 <?php //$forms->generate_select_list('i_am', true); ?>
             </select>

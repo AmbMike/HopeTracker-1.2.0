@@ -23,7 +23,7 @@ RewriteRule ^admin/([^/]+)/([^/]+)/?$  HopeAdmin/index.php?page_url=$1&widget_pa
 
 RewriteRule ^chat-mods/([^/]+)/?$  index.php?page_url=$1&chat_mod=true [L,QSA]
 
-RewriteRule ^profile/$ index.php?page_url=journal-v1 [L,QSA]
+RewriteRule ^profile/$ index.php?page_url=journal-v1&profileActive=1 [L,QSA]
 RewriteRule ^profile/user-([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&userId=$1 [L,QSA]
 
 ## Conditions with page variables ##

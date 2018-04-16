@@ -21,7 +21,12 @@ $Comments = new Comments();
 $Session = new Sessions();
 
 /** @var $ActiveLinkName : Set the active link value for line under link in nav*/
-$ActiveLinkName = ( isset( $_GET['userId'] ) ) ? 'Profile' : 'Community';
+if(isset($_GET['profileActive'])){
+	$ActiveLinkName = 'Profile';
+}else{
+	$ActiveLinkName = ( isset( $_GET['userId'] ) ) ? 'Profile' : 'Community';
+}
+
 
 $Page = new \Page_Attr\Page();
 $Page->header(array(
