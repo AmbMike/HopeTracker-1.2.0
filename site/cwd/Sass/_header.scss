@@ -445,7 +445,6 @@ header{
         > li{
           padding:0;
           margin:-0;
-
           .bubble-alert{
             position: absolute;
             width: 25px;
@@ -474,9 +473,8 @@ header{
             display: inline-block;
             padding:15px 17px 8px 17px;
             @extend .lato-black;
-            margin: 0;
+            margin: 0 0 4px;
             color:$body-gray;
-
             @media (max-width: 767px) {
               display: block;
               font-size: 18px;
@@ -484,7 +482,6 @@ header{
               padding-bottom: 14px;
               border-top:transparentize(#ffffff, .9) 1px solid;
             }
-
 
             &:after {
               content: "";
@@ -506,8 +503,6 @@ header{
             height: 4px;
             margin: 0 15px;
             border-radius: 9px;
-            position: relative;
-            bottom: -1px;
             @media (max-width: 767px) {
               height:0px;
             }
@@ -618,6 +613,14 @@ header{
               &:hover{
                 background-color: transparent;
               }
+              &:visited {
+                text-decoration: none;
+              }
+            }
+          }
+          .user-tab {
+            @media (min-width: 768px) {
+              margin-bottom: 1px;
             }
           }
         }
