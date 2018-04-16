@@ -245,7 +245,6 @@ header{
       font-size: 17px;
       @media (max-width: 801px) {
         top: -43px;
-        padding: 0 15px 15px;
       }
       @media (max-width: 767px) {
         height:auto;
@@ -302,8 +301,6 @@ header{
         &:first-child{
           padding-left: 20px;
           padding-right: 20px;
-          position: relative;
-          top: -24px;
 
           @media (max-width: 820px) {
             padding-left: 10px;
@@ -494,7 +491,6 @@ header{
               border: 0;
               height: 25px;
               width: 2px;
-              float: right;
               left: 17px;
               position: relative;
               background: transparentize(darken($theme-blue,20%),.8);
@@ -507,19 +503,16 @@ header{
           }
           .active{
             background: transparentize($theme-green,.6);
-            position: relative;
             height: 4px;
-            width: 80%;
-            top: -3px;
-            margin: auto;
+            margin: 0 15px;
             border-radius: 9px;
-
+            position: relative;
+            bottom: -1px;
             @media (max-width: 767px) {
               height:0px;
             }
           }
           .target{
-            margin-left: 43px;
             @media (max-width: 767px) {
               margin-left: 0px;
               border:none;
@@ -531,9 +524,10 @@ header{
             border-radius: 50%;
             width: 45px;
             height:45px;
-            position: absolute;
-            left: 0px;
-            top:-6px;
+            vertical-align: middle;
+            position: relative;
+            bottom: 2px;
+            left: 10px;
             border: $theme-green 2px solid;
             @media (max-width: 920px) {
               top: 0;
@@ -625,7 +619,7 @@ header{
               }
             }
           }
-        }
+       }
       }
     }
 
