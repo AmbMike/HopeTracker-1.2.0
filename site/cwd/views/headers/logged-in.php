@@ -35,7 +35,7 @@ error_reporting( 3 );
             <li class="clicker" id="sign-out">Sign Out </li>
         </ul>*/ ?>
     </li>
-    <li <?php echo $UserProfile->profile($Sessions->get('user-id')); ?> class="menu-one-trigger"><span class="target"><?php echo User::user_info('username'); ?></span><?php echo (Nav::show_active($active_link,'Profile') ? : ''); ?></li>
+    <li <?php echo $UserProfile->profile($Sessions->get('user-id')); ?> class="menu-one-trigger"><span class="target user-tab"><?php echo User::user_info('username'); ?></span><?php echo (Nav::show_active($active_link,'Profile') ? : ''); ?></li>
     <li><a href="/<?php echo RELATIVE_PATH; ?>protected/course/">University</a><?php echo (Nav::show_active($active_link,'University') ? : ''); ?></li>
     <li><a href="/<?php echo RELATIVE_PATH; ?>families-of-drug-addicts/">Community</a><?php echo (Nav::show_active($active_link,'Community') ? : ''); ?></li>
 	<?php /* <li><a href="/inspiration/">Inspiration</a> <?php echo (Nav::show_active($active_link,'Inspiration') ? : ''); ?></li> */ ?>
