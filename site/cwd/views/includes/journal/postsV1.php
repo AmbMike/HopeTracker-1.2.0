@@ -254,15 +254,24 @@
             } ?>
         <?php endforeach; ?>
     <?php elseif (!isset($posts_array['endPosts'])): ?>
-        <div class="box-one no-search-found">
-            <h3>No one in the community (yet) matches your search. If you were searching a name, check the spelling. Otherwise, try again limiting to just one filter option — see examples below.</h3>
-                        <ul><li>Search for "Long-Term Recovery" to get inspired. </li>
-                        <li>Enter your Zip to find people near you to meet offline. </li>
-                        <li>Search for "A Better Place," if you're also grieving. </li>
-                        <li>Search for "Early Addiction" to offer support. </li>
-                        <li>Search for "Son" <i>and</i> "Daughter" to find others with addicted parents. </li>
-                        </ul>
-        </div>
+
+    <?php if(isset($_GET['userId'])): ?>
+            <div class="box-one no-search-found">
+                <h3>This user has not posted a Journal yet. </h3>
+
+            </div>
+    <?php else: ?>
+            <div class="box-one no-search-found">
+                <h3>No one in the community (yet) matches your search. If you were searching a name, check the spelling. Otherwise, try again limiting to just one filter option — see examples below.</h3>
+                <ul><li>Search for "Long-Term Recovery" to get inspired. </li>
+                    <li>Enter your Zip to find people near you to meet offline. </li>
+                    <li>Search for "A Better Place," if you're also grieving. </li>
+                    <li>Search for "Early Addiction" to offer support. </li>
+                    <li>Search for "Son" <i>and</i> "Daughter" to find others with addicted parents. </li>
+                </ul>
+            </div>
+    <?php endif; ?>
+
     <?php elseif (isset($posts_array['endPosts'])): ?>
         <span data-stop-post-query=""></span>
     <?php endif; ?>

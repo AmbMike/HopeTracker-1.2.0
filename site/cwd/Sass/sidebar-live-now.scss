@@ -1,5 +1,8 @@
 @import "constants";
 #sidebar-live-now {
+  max-height: 500px;
+  overflow: auto;
+  overflow-x: hidden;
 
   .live-now-title {
     display: inline-block;
@@ -9,7 +12,6 @@
   }
 
   #live-update-box {
-
     &.load-items{
       display: none;
 
