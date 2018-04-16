@@ -503,12 +503,11 @@ header{
           }
           .active{
             background: transparentize($theme-green,.6);
-            position: relative;
             height: 4px;
-            top: -3px;
             margin: 0 15px;
             border-radius: 9px;
-
+            position: relative;
+            bottom: -1px;
             @media (max-width: 767px) {
               height:0px;
             }
