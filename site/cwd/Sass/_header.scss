@@ -505,9 +505,8 @@ header{
             background: transparentize($theme-green,.6);
             position: relative;
             height: 4px;
-            width: 80%;
             top: -3px;
-            margin: auto;
+            margin: 0 15px;
             border-radius: 9px;
 
             @media (max-width: 767px) {
