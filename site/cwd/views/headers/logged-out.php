@@ -14,7 +14,7 @@
 <?php Forms::sign_up($_POST); ?>
 
 <ul>
-    <li class="sign-title-text">Sign In</li>
+    <li>Sign In</li>
     <li class="form">
         <form id="sign-in" method="post">
             <input class="form-control" name="email" type="text" placeholder="Email">
