@@ -252,10 +252,10 @@ header{
         display: none;
         top: -3px;
       }
-      @media (max-width: 920px) {
+      @media (max-width: 930px) {
         font-size: 14px;
       }
-      @media (max-width: 800px) {
+      @media (max-width: 801px) {
         font-size: 12px;
         margin-top: 10px;
       }
@@ -477,6 +477,12 @@ header{
             @extend .lato-black;
             margin: 0 0 4px;
             color:$body-gray;
+            @media (max-width: 929px) {
+              margin-bottom: 7px;
+            }
+            @media (max-width: 801px) {
+              margin-bottom: 9px;
+            }
             @media (max-width: 767px) {
               display: block;
               font-size: 18px;
@@ -501,8 +507,14 @@ header{
             }
           }
           span.user-tab {
-            @media (min-width: 768px) {
+            @media (min-width: 930px) {
               margin-bottom: 1px;
+            }
+            @media (max-width: 929px) {
+              margin-bottom: 6px;
+            }
+            @media (max-width: 801px) {
+              margin-bottom: 9px;
             }
           }
           .active{
@@ -531,7 +543,7 @@ header{
             bottom: 2px;
             left: 10px;
             border: $theme-green 2px solid;
-            @media (max-width: 920px) {
+            @media (max-width: 930px) {
               top: 0;
             }
             @media (max-width: 767px) {
