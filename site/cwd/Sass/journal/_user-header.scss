@@ -47,10 +47,27 @@
       @media (max-width: 767px) {
         white-space: normal;
       }
+      .dot-spacer {
+        margin: 0;
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
       i {
         font-size: 18px;
         color: $theme-blue;
         padding: 5px;
+      }
+      .fa-sign-out {
+        @media (min-width: 768px) {
+          position: absolute;
+          right: 25px;
+          top: 5px;
+          font-size: 40px;
+        }
+        @media (min-width: 991px) {
+          top: 20px;
+        }
       }
     }
   }
