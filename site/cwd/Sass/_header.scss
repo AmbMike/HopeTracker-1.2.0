@@ -441,6 +441,10 @@ header{
       }
       /* Logged in area */
       &.logged-in{
+        .profile-nav{
+          margin-right: 27px;
+        }
+
         @media (max-width: 767px) {
           width: 100%;
           top: -10px;
@@ -526,7 +530,7 @@ header{
             position: relative;
             height: 4px;
             width: 80%;
-            top: -3px;
+            top: -1px;
             margin: auto;
             border-radius: 9px;
 
@@ -548,8 +552,8 @@ header{
             width: 45px;
             height:45px;
             position: absolute;
-            left: 0px;
-            top:-6px;
+            left: -10px;
+            top: 3px;
             border: $theme-green 2px solid;
             @media (max-width: 930px) {
               top: 0;
