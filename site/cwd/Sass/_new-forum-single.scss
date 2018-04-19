@@ -83,8 +83,8 @@
       }
     }
     .author-post-container {
-      padding: 40px;
-      margin-top: 0;
+      margin: 0;
+      padding: 15px;
 
       .author-img-box {
         width: 50px;
@@ -150,6 +150,7 @@
             margin-right: 2px;
           }
           .flag-box {
+            float: right;
             color: $header-gray;
           }
           .like-box{
@@ -168,6 +169,41 @@
             color: $theme-blue;
             white-space: nowrap;
           }
+        }
+      }
+    }
+    #visitor-response {
+      list-style-type: none;
+      margin: 15px;
+      padding: 0;
+      .wrap {
+        display: inline-block;
+        vertical-align: middle;
+        .profile-img {
+          vertical-align: middle;
+          margin-right: 15px;
+          @media (max-width: 550px) {
+            margin-right: 0;
+          }
+        }
+      }
+      .textarea-box {
+        display: inline-block;
+        vertical-align: middle;
+        width: 88%;
+        textarea {
+          font-weight: lighter;
+          font-size: 20px;
+          box-sizing: border-box;
+          padding: 15px;
+          border: 1px solid $theme-gray;
+          border-radius: 2px;
+          outline: none;
+          overflow: hidden;
+          width: 100%;
+          line-height: 20px;
+          resize: none;
+          vertical-align: middle;
         }
       }
     }

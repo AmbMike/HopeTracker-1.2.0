@@ -99,11 +99,10 @@ if($Session->get('logged_in') == 1) {
 										<?php else : ?>
                                             <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
 										<?php endif; ?>
-                                        <i class="fa fa-circle dot"aria-hidden="true"></i>
 										<?php if($FlagPost->checkIfUserFlaggedPost($questionId,$Question->postType) == false) : ?>
-                                            <span class="flag-box" data-question="flag-btn" role="button" ><i class="fa fa-flag" aria-hidden="true"></i> Report</span>
+                                            <span class="flag-box" data-question="flag-btn" role="button" ><i class="fa fa-flag" aria-hidden="true"></i></span>
 										<?php else: ?>
-                                            <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i> Flagged</span>
+                                            <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
 										<?php endif; // End if if user has not flagged the post. ?>
 									<?php endif; // End if user is logged in.  ?>
 
@@ -120,6 +119,13 @@ if($Session->get('logged_in') == 1) {
                                     </span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div data-toggle-box="member-posts" id="visitor-response">
+                            <?php /* php on line 126 is dummy text it need to be replaced */ ?>
+                            <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
+                            <div class="textarea-box">
+                                <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
                             </div>
                         </div>
                         <div class="panel-group sub-posts">
@@ -183,9 +189,9 @@ if($Session->get('logged_in') == 1) {
 																			<?php endif; ?>
                                                                             <i class="fa fa-circle dot"aria-hidden="true"></i>
 																			<?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
-                                                                                <span class="flag-box" data-question="flag-btn" role="button" >Flag</span>
+                                                                                <span class="flag-box" data-question="flag-btn" role="button" ><i class="fa fa-flag" aria-hidden="true"></i></span>
 																			<?php else: ?>
-                                                                                <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">Flagged</span>
+                                                                                <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
 																			<?php endif; // End if if user has not flagged the post. ?>
 																		<?php endif; // End if user is logged in.  ?>
 
