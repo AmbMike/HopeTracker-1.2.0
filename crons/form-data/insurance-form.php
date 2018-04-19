@@ -1,9 +1,11 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/config/constants.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
 require_once(CLASSES .'Email.php');
 require_once(CLASSES .'class.InsuranceForm.php');
 require_once(CLASSES .'User.php');
+require_once(CLASSES .'Database.php');
 
+$DB = new Database();
 error_reporting( 3 );
 @$Email = new Email();
 
@@ -22,11 +24,9 @@ foreach ( $InsuranceForm->getUnsentData() as $unsent_data ) :
 		'IP Address : ' . $unsent_data['ip'] . '<br>'.
 		'Inserted Date : ' . date('l jS \of F Y h:i:s A',$unsent_data['insert_time']);
 
-	$Email->send_general_email('michaelgiammattei@gmail.com','Admissions' ,'sendhopetracker@gmail.com','Insurance Form Submission From HopeTracker.com',$unsent_data['lovedOneName'] ,$htmlcontent,'insurance-data');
-	//$Email->send_general_email('tracking@ambrosiatc.com','Admissions' ,'sendhopetracker@gmail.com','Insurance Form Submission From HopeTracker.com',$unsent_data['lovedOneName'] ,$htmlcontent,'insurance-data');
-
+	$Email->send_general_email('tracking@ambrosiatc.com','Admissions' ,'sendhopetracker@gmail.com','Insurance Form Submission From HopeTracker.com',$unsent_data['lovedOneName'] ,$htmlcontent,'insurance-data');
+	$sql = $DB->prepare("UPDATE insurance_form SET sent = ? WHERE id = ? ");
+	$sql->execute(array(1,$unsent_data['id']));
 	sleep( 10 );
 
 endforeach;
-//Debug::data( $InsuranceForm->getUnsentData() );
-//$Email->send_general_email('mjgseb@gmail.com', 'Hope Tracker','sendhopetracker@gmail.com','This is the subject for the test email.','Mike','This is the message for the email','insurance-data');

@@ -101,5 +101,7 @@ class Email extends Mailer {
 		        $m->subject($this->mailSubject);
 	        });
         endif;
+
+
     }
 }
