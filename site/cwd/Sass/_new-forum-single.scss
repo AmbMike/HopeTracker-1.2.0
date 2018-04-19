@@ -150,8 +150,50 @@
             margin-right: 2px;
           }
           .flag-box {
+            display: inline-block;
+            position: relative;
             float: right;
             color: $header-gray;
+            margin-left: 10px;
+            .flag-tooltip-text {
+              visibility: hidden;
+              width: 210px;
+              background-color: $theme-blue;
+              color: #fff;
+              text-align: center;
+              border-radius: 6px;
+              padding: 10px;
+              position: absolute;
+              z-index: 1;
+              bottom: 125%;
+              left: -270%;
+              margin-left: -60px;
+              opacity: 0;
+              transition: opacity 0.3s;
+              .alt-flag {
+                display: inline-block;
+                background-color: $theme-green;
+                padding: 2px 5px;
+                text-transform: uppercase;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+              }
+            }
+            .flag-tooltip-text:after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: $theme-blue transparent transparent transparent;
+            }
+            &:hover .flag-tooltip-text {
+              visibility: visible;
+              opacity: 1;
+            }
           }
           .like-box{
             display: inline-block;

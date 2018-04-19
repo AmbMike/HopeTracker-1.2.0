@@ -396,7 +396,7 @@ header{
         }
         &.form{
           padding:0 15px;
-          @media (max-width: 969px ) {
+          @media (max-width: 767px ) {
             padding:0;
             border-bottom: 2px dotted $for-borders;
             margin-bottom: 20px;
