@@ -29,16 +29,16 @@
           }
         }
         .img-box {
-          display: inline-block;
-          width: 90px;
-          height: 90px;
-          margin-right: 15px;
-          float: left;
-
+          display: table-cell;
           @media (max-width: 767px) {
             float: none;
             display: block;
             margin: auto;
+          }
+          img {
+            width: 90px;
+            height: 90px;
+            margin-right: 15px;
           }
         }
         .user-text-box {
@@ -63,6 +63,18 @@
             font-size: 14px;
             color: $theme-blue;
           }
+        }
+        .find-answer-title {
+          display: table-cell;
+          vertical-align: middle;
+          font-size: 35px;
+          @media (max-width: 767px) {
+            display: block;
+          }
+        }
+        .find-answer-text {
+          font-size: 14px;
+          color: darken($theme-gray,20%);
         }
       }
       .invite-box {
@@ -127,9 +139,6 @@
           font-weight: 600;
           margin-bottom: 15px;
         }
-        .author-text-box {
-          .author-text {}
-        }
         .tracker-box {
           margin-top: 20px;
           color: darken($theme-gray,15%);
@@ -170,6 +179,9 @@
               margin-left: -60px;
               opacity: 0;
               transition: opacity 0.3s;
+              @media (max-width: 767px) {
+                left: -860%;
+              }
               .alt-flag {
                 color: $theme-white;
                 display: inline-block;
@@ -194,6 +206,9 @@
               border-width: 5px;
               border-style: solid;
               border-color: $theme-blue transparent transparent transparent;
+              @media (max-width: 767px) {
+                left: 89%;
+              }
             }
             &:hover .flag-tooltip-text {
               visibility: visible;
@@ -223,11 +238,18 @@
       list-style-type: none;
       margin: 15px;
       padding: 0;
+      @media (max-width: 767px) {
+        margin: 15px 0;
+      }
       .wrap {
-        display: inline-block;
-        vertical-align: middle;
+        display: table-cell;
+        vertical-align: top;
+        @media (max-width: 500px) {
+          display: block;
+          margin-bottom: 5px;
+        }
+
         .profile-img {
-          vertical-align: middle;
           margin-right: 15px;
           @media (max-width: 550px) {
             margin-right: 0;
@@ -235,9 +257,12 @@
         }
       }
       .textarea-box {
-        display: inline-block;
+        display: table-cell;
         vertical-align: middle;
-        width: 88%;
+        width: 100%;
+        @media (max-width: 500px) {
+          display: block;
+        }
         textarea {
           font-weight: lighter;
           font-size: 20px;
@@ -251,6 +276,32 @@
           line-height: 20px;
           resize: none;
           vertical-align: middle;
+        }
+      }
+      .comment-btn-box {
+        font-size: 22px;
+        width: 100%;
+        text-align: right;
+        vertical-align: middle;
+        margin-top: 15px;
+
+        @media (max-width: 500px) {
+          text-align: center;
+
+        }
+        i {
+          color: $theme-green;
+        }
+        .save-btn{
+          padding: 5px 40px;
+          background: $theme-blue !important;
+          border-radius: 3px;
+          background: none;
+          border: none;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          display: inline-block;
         }
       }
     }

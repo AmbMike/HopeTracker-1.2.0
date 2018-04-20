@@ -134,6 +134,9 @@ if($Session->get('logged_in') == 1) {
                             <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
                                 <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
+                                <div class="comment-btn-box">
+                                    <input type="submit" name="submit" value="Comment" class="save-btn blue">
+                                </div>
                             </div>
                         </div>
                         <div class="panel-group sub-posts">
@@ -219,6 +222,16 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <div data-toggle-box="member-posts" id="visitor-response">
+                                                                    <?php /* php on line 126 is dummy text it need to be replaced */ ?>
+                                                                    <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
+                                                                    <div class="textarea-box">
+                                                                        <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
+                                                                        <div class="comment-btn-box">
+                                                                            <input type="submit" name="submit" value="Comment" class="save-btn blue">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                                 <hr>
                                                             </div>
 														<?php endforeach; ?>
@@ -247,22 +260,29 @@ if($Session->get('logged_in') == 1) {
         </section>
         <section class="box-one main-box">
             <div class="row no-margins">
-                <div class="col-sm-8 no-p">
+                <div class="col-sm-9 no-p">
                     <div id="user-title" class="user-title-box">
                         <div class="img-box">
                             <img <?php echo PageLinks::userProfile($Question->questionUsersId); ?> src="/<?php echo $User->get_user_profile_img( false, $Question->questionUsersId); ?>"  class="img-circle profile-img">
                         </div>
-                        <div class="user-text-box">
+                        <div class="find-answer-title">
+                            Did you find your answer?
+                            <?php /* Remove this code when change is final
+
                                     <span <?php echo PageLinks::userProfile($Question->questionUsersId); ?> class="simple-heading user-name">
                                         <?php echo User::Username($Question->questionUsersId); ?>
                                     </span>
-                            <div class="user-count-container">
+                            */ ?>
+                            <div class="find-answer-text">
+                                We hope you did, but feel free to ask everyone a question of your own.
+                                <?php /* Remove this code when change is final
                                 <span><data class="user-questions" value="<?php echo $total_user_questions; ?>"><?php echo $total_user_questions; ?></data> Questions • <data  value="<?php echo $total_user_answers; ?>" class="user-answers"><?php echo $total_user_answers; ?></data> Answers</span>
+                                */ ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4 no-p text-center">
+                <div class="col-sm-3 no-p text-center">
                     <div class="invite-box">
                         <a href="#" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#ask-question-modal"';?>  class="<?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to chat" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?>><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ask a Question</a>
                         <div class="clearfix"></div>
