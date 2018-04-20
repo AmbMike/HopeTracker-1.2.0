@@ -103,9 +103,9 @@ if($Session->get('logged_in') == 1) {
                                             <span class="flag-box" data-question="flag-btn" role="button" >
                                                 <span class="flag-tooltip-text">
                                                         Click here to report this post as inappropriate.
-                                                    <div class="alt-flag">
+                                                    <a class="alt-flag">
                                                         flag
-                                                    </div>
+                                                    </a>
                                                 </span>
                                                 <i class="fa fa-flag" aria-hidden="true"></i>
                                             </span>
@@ -197,9 +197,19 @@ if($Session->get('logged_in') == 1) {
 																			<?php endif; ?>
                                                                             <i class="fa fa-circle dot"aria-hidden="true"></i>
 																			<?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
-                                                                                <span class="flag-box" data-question="flag-btn" role="button" ><i class="fa fa-flag" aria-hidden="true"></i></span>
+                                                                                <span class="flag-box" data-question="flag-btn" role="button" >
+                                                                                    <span class="flag-tooltip-text">
+                                                                                        Click here to report this post as inappropriate.
+                                                                                        <a class="alt-flag">
+                                                                                            flag
+                                                                                        </a>
+                                                                                    </span>
+                                                                                    <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                                </span>
 																			<?php else: ?>
-                                                                                <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
+                                                                                <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">
+                                                                                    <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                                </span>
 																			<?php endif; // End if if user has not flagged the post. ?>
 																		<?php endif; // End if user is logged in.  ?>
 

@@ -171,13 +171,18 @@
               opacity: 0;
               transition: opacity 0.3s;
               .alt-flag {
+                color: $theme-white;
                 display: inline-block;
                 background-color: $theme-green;
                 padding: 2px 5px;
+                margin: 0;
                 text-transform: uppercase;
                 -webkit-border-radius: 3px;
                 -moz-border-radius: 3px;
                 border-radius: 3px;
+                &:hover {
+                  color: $theme-blue;
+                }
               }
             }
             .flag-tooltip-text:after {
