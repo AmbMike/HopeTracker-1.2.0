@@ -47,10 +47,18 @@
       @media (max-width: 767px) {
         white-space: normal;
       }
+      .dot-spacer {
+        margin: 0;
+        vertical-align: middle;
+      }
       i {
         font-size: 18px;
         color: $theme-blue;
         padding: 5px;
+        vertical-align: middle;
+        position: relative;
+        bottom: 1px;
+        right: 4px;
       }
     }
   }

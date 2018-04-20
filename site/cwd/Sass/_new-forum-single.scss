@@ -29,16 +29,16 @@
           }
         }
         .img-box {
-          display: inline-block;
-          width: 90px;
-          height: 90px;
-          margin-right: 15px;
-          float: left;
-
+          display: table-cell;
           @media (max-width: 767px) {
             float: none;
             display: block;
             margin: auto;
+          }
+          img {
+            width: 90px;
+            height: 90px;
+            margin-right: 15px;
           }
         }
         .user-text-box {
@@ -64,6 +64,18 @@
             color: $theme-blue;
           }
         }
+        .find-answer-title {
+          display: table-cell;
+          vertical-align: middle;
+          font-size: 35px;
+          @media (max-width: 767px) {
+            display: block;
+          }
+        }
+        .find-answer-text {
+          font-size: 14px;
+          color: darken($theme-gray,20%);
+        }
       }
       .invite-box {
         margin: 30px 0 0 0;
@@ -83,8 +95,8 @@
       }
     }
     .author-post-container {
-      padding: 40px;
-      margin-top: 0;
+      margin: 0;
+      padding: 15px;
 
       .author-img-box {
         width: 50px;
@@ -127,9 +139,6 @@
           font-weight: 600;
           margin-bottom: 15px;
         }
-        .author-text-box {
-          .author-text {}
-        }
         .tracker-box {
           margin-top: 20px;
           color: darken($theme-gray,15%);
@@ -142,20 +151,88 @@
             display: inline-block;
           }
           .forum-details{
-            display:block;
-            margin-top:5px;
+            display:inline-block;
+            vertical-align: middle;
           }
           .dot {
             margin-left: 2px;
             margin-right: 2px;
           }
+          .question-liked-box {
+            display: inline-block;
+            .fa-thumbs-up {
+              background-color: $theme-blue;
+              border-radius: 50%;
+              color: $theme-white;
+              padding: 2px 3px 4px;
+            }
+            .question-liked-text {
+              color: $theme-blue;
+              vertical-align: middle;
+            }
+          }
           .flag-box {
+            display: inline-block;
+            position: relative;
+            float: right;
             color: $header-gray;
+            margin-left: 10px;
+            .flag-tooltip-text {
+              visibility: hidden;
+              width: 210px;
+              background-color: $theme-blue;
+              color: #fff;
+              text-align: center;
+              border-radius: 6px;
+              padding: 10px;
+              position: absolute;
+              z-index: 1;
+              bottom: 125%;
+              left: -270%;
+              margin-left: -60px;
+              opacity: 0;
+              transition: opacity 0.3s;
+              @media (max-width: 767px) {
+                left: -860%;
+              }
+              .alt-flag {
+                color: $theme-white;
+                display: inline-block;
+                background-color: $theme-green;
+                padding: 2px 5px;
+                margin: 0;
+                text-transform: uppercase;
+                -webkit-border-radius: 3px;
+                -moz-border-radius: 3px;
+                border-radius: 3px;
+                &:hover {
+                  color: $theme-blue;
+                }
+              }
+            }
+            .flag-tooltip-text:after {
+              content: "";
+              position: absolute;
+              top: 100%;
+              left: 50%;
+              margin-left: -5px;
+              border-width: 5px;
+              border-style: solid;
+              border-color: $theme-blue transparent transparent transparent;
+              @media (max-width: 767px) {
+                left: 89%;
+              }
+            }
+            &:hover .flag-tooltip-text {
+              visibility: visible;
+              opacity: 1;
+            }
           }
           .like-box{
             display: inline-block;
             font-weight: 600;
             color: $header-gray;
+            vertical-align: middle;
             &.liked{
               color: $theme-green;
             }
@@ -168,6 +245,74 @@
             color: $theme-blue;
             white-space: nowrap;
           }
+        }
+      }
+    }
+    #visitor-response {
+      list-style-type: none;
+      margin: 15px;
+      padding: 0;
+      .wrap {
+        display: table-cell;
+        vertical-align: top;
+        @media (max-width: 500px) {
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        .profile-img {
+          margin-right: 15px;
+          @media (max-width: 550px) {
+            margin-right: 0;
+          }
+        }
+      }
+      .textarea-box {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        @media (max-width: 500px) {
+          display: block;
+        }
+        textarea {
+          font-weight: lighter;
+          font-size: 20px;
+          box-sizing: border-box;
+          padding: 15px;
+          border: 1px solid $theme-gray;
+          border-radius: 2px;
+          outline: none;
+          overflow: hidden;
+          width: 100%;
+          line-height: 20px;
+          resize: none;
+          vertical-align: middle;
+        }
+      }
+      .comment-btn-box {
+        font-size: 22px;
+        width: 100%;
+        text-align: right;
+        vertical-align: middle;
+        margin-top: 15px;
+
+        @media (max-width: 500px) {
+          text-align: center;
+
+        }
+        i {
+          color: $theme-green;
+        }
+        .save-btn{
+          padding: 5px 40px;
+          background: $theme-blue !important;
+          border-radius: 3px;
+          background: none;
+          border: none;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          box-shadow: none;
+          display: inline-block;
         }
       }
     }

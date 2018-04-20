@@ -20,7 +20,7 @@
                <?php echo ucwords(User::user_info('username',$user_id)); ?>
             </span>
             <div class="user-count-container">
-                A <?php echo $User->user_i_am($User->user_info('i_am_a',$user_id)); ?> from <?php echo strtoupper(User::user_info('state',$user_id)); ?> concerned about <?php echo $User->him_or_her($user_id); ?> <?php echo $User->user_concerned_about($User->user_info('concerned_about',$user_id)); ?> › <a class="wrap" href="/<?php echo RELATIVE_PATH; ?>protected/settings">Edit</a> • <i id="sign-out" class="fa fa-sign-out" aria-hidden="true"></i>
+                A <?php echo $User->user_i_am($User->user_info('i_am_a',$user_id)); ?> from <?php echo strtoupper(User::user_info('state',$user_id)); ?> concerned about <?php echo $User->him_or_her($user_id); ?> <?php echo $User->user_concerned_about($User->user_info('concerned_about',$user_id)); ?> › <a class="wrap" href="/<?php echo RELATIVE_PATH; ?>protected/settings">Edit</a> <a class="dot-spacer">•</a> <i id="sign-out" class="fa fa-sign-out" aria-hidden="true"></i>
                 <!--<span class="user-questions">0</span> Questions <span class="user-answers">0</span>
                 Answers-->
             </div>
