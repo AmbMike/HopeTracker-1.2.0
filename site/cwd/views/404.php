@@ -9,9 +9,8 @@
 <?php
 $Page = new \Page_Attr\Page();
 $Page->header(array(
-    'Title' => 'My Journal',
-    'Description' => 'My Journal page displays all my journal entries as well as entries from post I\'ve liked. ',
-    'Active Link' => 'Journal'
+    'Title' => 'Page Not Found | 404',
+    'Description' => '',
 ));
 ?>
 <?php

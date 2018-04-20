@@ -40,6 +40,8 @@ if(isset($_COOKIE['fromHopeTracker'])){
 }
 /**  General Redirects */
 $Redirects = new Redirects($p_url);
+/** Check if page specific parameters exists */
+$p_url = URL::isPage();
 
 /* Check if url points to restricted page. URL CLASS */
 $p_url = URL::restricted_url($p_url);
@@ -48,7 +50,7 @@ if(isset($_GET['chat_mod'])){
     $p_url = 'chat-mods/' . $p_url;
 }
 
-if(!file_exists(VIEWS . $p_url . '.php')){
+if(!file_exists(VIEWS . $p_url . '.php') || $p_url == '404'){
     header("HTTP/1.0 404 Not Found");
     include_once(CLASSES .'Page.php');
     include(VIEWS . '404.php');

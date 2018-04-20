@@ -124,8 +124,16 @@
           }
         }
         .insurance-treatment-box{
+          color: inherit;
           font-weight: 600;
           margin-bottom: 15px;
+
+          a{
+            color: darken($theme-gray,20%);
+            margin:0;
+            padding:0;
+          }
+
         }
         .author-text-box {
           .author-text {}
