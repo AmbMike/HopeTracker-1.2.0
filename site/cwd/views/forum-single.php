@@ -87,7 +87,7 @@ if($Session->get('logged_in') == 1) {
                                 <div class="insurance-treatment-box">
                                     <span class="insurance"><?php echo  $Question->category; ?></span>
                                     <span class="dot"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-                                    <span class="treatment"><?php echo  $Question->subcategory; ?></span>
+                                    <a class="treatment"><?php echo  $Question->subcategory; ?></a>
                                 </div>
                                 <div class="author-text-box" data-question="description">
 									<?php echo  $Question->description; ?>
