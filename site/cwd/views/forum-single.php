@@ -193,31 +193,36 @@ if($Session->get('logged_in') == 1) {
 																		$LikePost= new LikePost($forum_answer['id'], $forum_answer['post_type'],$forum_answer['user_id']);
 																		?>
 																		<?php if($Session->get('logged_in')== 1) : ?>
-																			<?php if($LikePost->checkLikedQuestion() == true) : ?>
-                                                                                <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>"  class="like-box liked">Liked</span>
-																			<?php else : ?>
-                                                                                <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>" class="like-box">Like</span>
-																			<?php endif; ?>
-                                                                            <i class="fa fa-circle dot"aria-hidden="true"></i>
-																			<?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
-                                                                                <span class="flag-box" data-question="flag-btn" role="button" >
-                                                                                    <span class="flag-tooltip-text">
-                                                                                        Click here to report this post as inappropriate.
-                                                                                        <a class="alt-flag">
-                                                                                            flag
-                                                                                        </a>
-                                                                                    </span>
-                                                                                    <i class="fa fa-flag" aria-hidden="true"></i>
-                                                                                </span>
-																			<?php else: ?>
-                                                                                <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">
-                                                                                    <i class="fa fa-flag" aria-hidden="true"></i>
-                                                                                </span>
-																			<?php endif; // End if if user has not flagged the post. ?>
-																		<?php endif; // End if user is logged in.  ?>
-
+                                                                        <?php if($LikePost->checkLikedQuestion() == true) : ?>
+                                                                            <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>"  class="like-box liked">Liked</span>
+                                                                        <?php else : ?>
+                                                                            <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>" class="like-box">Like</span>
+                                                                        <?php endif; ?>
+                                                                        <i class="fa fa-circle dot"aria-hidden="true"></i>
+                                                                        <div class="question-liked-box">
+                                                                            <i class="fa fa-thumbs-up"></i>
+                                                                            <span class="question-liked-text">23</span>
+                                                                        </div>
+                                                                        <?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
+                                                                        <span class="flag-box" data-question="flag-btn" role="button" >
+                                                                            <span class="flag-tooltip-text">
+                                                                                Click here to report this post as inappropriate.
+                                                                                <a class="alt-flag">
+                                                                                    flag
+                                                                                </a>
+                                                                            </span>
+                                                                            <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                        </span>
+                                                                        <?php else: ?>
+                                                                        <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">
+                                                                            <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                        </span>
+                                                                        <?php endif; // End if if user has not flagged the post. ?>
+                                                                        <?php endif; // End if user is logged in.  ?>
                                                                         <div class="asked-about-box">
-                                                                            <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                                                            <span class="dot">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </span>
                                                                             Asked <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
                                                                         </div>
                                                                     </div>
@@ -242,12 +247,11 @@ if($Session->get('logged_in') == 1) {
 															<?php
 															$show_btns =  $forum_answer['total'] / $answers_to_show;
 															for ( $i = 0; $i < ceil( $show_btns ); $i ++ ) : ?>
-                                                                <span class="btns <?php echo ($i == 0) ? 'active' : ''; ?>" data-pagination-number="<?php echo $i + 1; ?>"><?php echo $i + 1; ?></span>
+                                                            <span class="btns <?php echo ($i == 0) ? 'active' : ''; ?>" data-pagination-number="<?php echo $i + 1; ?>"><?php echo $i + 1; ?></span>
 															<?php endfor; ?>
                                                         </div>
 													<?php endif; ?>
                                                     <button data-answers="question" data-answer-page="single-question" data-question-id="<?php echo $Question->postId; ?>" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#answer-question-modal"';?>  class="btn btn-primary <?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to chat" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?>>Submit your answer</button>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -256,40 +260,40 @@ if($Session->get('logged_in') == 1) {
                             </div>
                         </div>
                     </div>
-        </div>
-        </section>
-        <section class="box-one main-box">
-            <div class="row no-margins">
-                <div class="col-sm-9 no-p">
-                    <div id="user-title" class="user-title-box">
-                        <div class="img-box">
-                            <img <?php echo PageLinks::userProfile($Question->questionUsersId); ?> src="/<?php echo $User->get_user_profile_img( false, $Question->questionUsersId); ?>"  class="img-circle profile-img">
-                        </div>
-                        <div class="find-answer-title">
-                            Did you find your answer?
-                            <?php /* Remove this code when change is final
-
-                                    <span <?php echo PageLinks::userProfile($Question->questionUsersId); ?> class="simple-heading user-name">
-                                        <?php echo User::Username($Question->questionUsersId); ?>
-                                    </span>
-                            */ ?>
-                            <div class="find-answer-text">
-                                We hope you did, but feel free to ask everyone a question of your own.
+                </div>
+            </section>
+            <section class="box-one main-box">
+                <div class="row no-margins">
+                    <div class="col-sm-9 no-p">
+                        <div id="user-title" class="user-title-box">
+                            <div class="img-box">
+                                <img <?php echo PageLinks::userProfile($Question->questionUsersId); ?> src="/<?php echo $User->get_user_profile_img( false, $Question->questionUsersId); ?>"  class="img-circle profile-img">
+                            </div>
+                            <div class="find-answer-title">
+                                Did you find your answer?
                                 <?php /* Remove this code when change is final
-                                <span><data class="user-questions" value="<?php echo $total_user_questions; ?>"><?php echo $total_user_questions; ?></data> Questions • <data  value="<?php echo $total_user_answers; ?>" class="user-answers"><?php echo $total_user_answers; ?></data> Answers</span>
+
+                                        <span <?php echo PageLinks::userProfile($Question->questionUsersId); ?> class="simple-heading user-name">
+                                            <?php echo User::Username($Question->questionUsersId); ?>
+                                        </span>
                                 */ ?>
+                                <div class="find-answer-text">
+                                    We hope you did, but feel free to ask everyone a question of your own.
+                                    <?php /* Remove this code when change is final
+                                    <span><data class="user-questions" value="<?php echo $total_user_questions; ?>"><?php echo $total_user_questions; ?></data> Questions • <data  value="<?php echo $total_user_answers; ?>" class="user-answers"><?php echo $total_user_answers; ?></data> Answers</span>
+                                    */ ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-3 no-p text-center">
-                    <div class="invite-box">
-                        <a href="#" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#ask-question-modal"';?>  class="<?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to chat" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?>><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ask a Question</a>
-                        <div class="clearfix"></div>
+                    <div class="col-sm-3 no-p text-center">
+                        <div class="invite-box">
+                            <a href="#" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#ask-question-modal"';?>  class="<?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to chat" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?>><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Ask a Question</a>
+                            <div class="clearfix"></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         </main>
     </div>
     <div class="col-md-4 sidebar-box">

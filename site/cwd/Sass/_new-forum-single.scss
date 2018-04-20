@@ -158,6 +158,19 @@
             margin-left: 2px;
             margin-right: 2px;
           }
+          .question-liked-box {
+            display: inline-block;
+            .fa-thumbs-up {
+              background-color: $theme-blue;
+              border-radius: 50%;
+              color: $theme-white;
+              padding: 2px 3px 4px;
+            }
+            .question-liked-text {
+              color: $theme-blue;
+              vertical-align: middle;
+            }
+          }
           .flag-box {
             display: inline-block;
             position: relative;
@@ -239,7 +252,7 @@
       margin: 15px;
       padding: 0;
       @media (max-width: 767px) {
-        margin: 15px 0;
+        margin-top: 0;
       }
       .wrap {
         display: table-cell;
