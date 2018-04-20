@@ -113,7 +113,7 @@ if($Session->get('logged_in') == 1) {
                                             <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
 										<?php endif; // End if if user has not flagged the post. ?>
 									<?php endif; // End if user is logged in.  ?>
-
+                                    <i class="fa fa-circle dot"aria-hidden="true"></i>
                                     <div class="forum-details">
                                     <span class="asked-about-box">
                                         Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by

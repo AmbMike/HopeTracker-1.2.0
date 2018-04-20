@@ -151,8 +151,8 @@
             display: inline-block;
           }
           .forum-details{
-            display:block;
-            margin-top:5px;
+            display:inline-block;
+            vertical-align: middle;
           }
           .dot {
             margin-left: 2px;
@@ -232,6 +232,7 @@
             display: inline-block;
             font-weight: 600;
             color: $header-gray;
+            vertical-align: middle;
             &.liked{
               color: $theme-green;
             }
@@ -251,9 +252,6 @@
       list-style-type: none;
       margin: 15px;
       padding: 0;
-      @media (max-width: 767px) {
-        margin-top: 0;
-      }
       .wrap {
         display: table-cell;
         vertical-align: top;
