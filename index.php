@@ -26,9 +26,6 @@ $general = new General();
 $Admin = new Admin();
 $url = new URL();
 
-/* Page Engine */
-$p_url = (isset($_GET['page_url'])) ? $_GET['page_url'] : 'home';
-
 /* check if is a user for journal page */
 if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
     $p_url = '404';
@@ -38,10 +35,11 @@ if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
 if(isset($_COOKIE['fromHopeTracker'])){
 	unset( $_COOKIE['fromHopeTracker'] );
 }
-/**  General Redirects */
-$Redirects = new Redirects($p_url);
 /** Check if page specific parameters exists */
 $p_url = URL::isPage();
+
+/**  General Redirects */
+$Redirects = new Redirects($p_url);
 
 /* Check if url points to restricted page. URL CLASS */
 $p_url = URL::restricted_url($p_url);

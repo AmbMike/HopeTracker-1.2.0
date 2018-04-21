@@ -203,6 +203,7 @@ if($Session->get('logged_in') == 1){
                                         /* The loop category*/
                                         $loopCategory = preg_replace( '/\-/', ' ', $category_name );
                                         $loopCategory = preg_replace( '/\s+/', '',$loopCategory );
+                                        $loopCategory = preg_replace( '/\//', '',$loopCategory );
                                         $loopCategory = strtolower( $loopCategory );
 
                                         if($categoryMatchName == strtolower($category_name)): ?>
@@ -264,6 +265,7 @@ if($Session->get('logged_in') == 1){
                                                         /* The loop category*/
                                                         $loopSubcategory = preg_replace( '/\-/', ' ', $subcategory['sub_category'] );
                                                         $loopSubcategory = preg_replace( '/\s+/', '',$loopSubcategory );
+                                                        $loopSubcategory = preg_replace( '/\//', '',$loopSubcategory );
                                                         $loopSubcategory = strtolower( $loopSubcategory );
 
                                                             if($subcategoryMatchName == $loopSubcategory): ?>

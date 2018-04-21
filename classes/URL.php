@@ -44,40 +44,50 @@ class URL extends Sessions {
         }
     }
     public static function isPage(){
-	    switch ( $_GET['page_url'] ) {
 
-	    	/** Process 404 for the "Forum Page" */
-		    case 'family-of-drug-abuser' :
-		    	if(isset($_GET['category'])){
-				    include_once(CLASSES . 'class.ForumPageProcessing.php');
-				    $urlParameters = array();
+    	if(isset($_GET['page_url'])):
+		    switch ( $_GET['page_url'] ) {
+			    /** Process 404 for the "Forum Page" */
+			    case 'family-of-drug-abuser' :
+				    if(isset($_GET['category'])){
+					    include_once(CLASSES . 'class.ForumPageProcessing.php');
+					    $urlParameters = array();
 
-				    /** Check if any parameters are set in the URL */
-				    if (isset($_GET['category'])){
-				    	/** Set the category value */
-					    $urlParameters[] = $_GET['category'];
+					    /** Check if any parameters are set in the URL */
+					    if (isset($_GET['category'])){
+						    /** Set the category value */
+						    $urlParameters[] = $_GET['category'];
 
-					    /** Set the subcategory value if there is one in the parameter */
-					    if(isset($_GET['subcategory'])){
-						    $urlParameters[] = $_GET['subcategory'];
+						    /** Set the subcategory value if there is one in the parameter */
+						    if(isset($_GET['subcategory'])){
+							    $urlParameters[] = $_GET['subcategory'];
+						    }
+
+						    $ForumPageProcessing = new ForumPageProcessing($urlParameters);
+
+						    if($ForumPageProcessing->isPage){
+							    return $_GET['page_url'];
+						    } else{
+							    return 404;
+						    }
 					    }
-
-					    $ForumPageProcessing = new ForumPageProcessing($urlParameters);
-
-					    if($ForumPageProcessing->isPage){
-						    return $_GET['page_url'];
-					    } else{
-						    return 404;
-					    }
+				    }else{
+					    /** If the category parameter was not set return page url */
+					    return $_GET['page_url'];
 				    }
-			    }else{
-				    /** If the category parameter was not set return page url */
-				    return $_GET['page_url'];
-			    }
 
-	        break;
-		    default : return $_GET['page_url'];
-	    }
+				    break;
+			    default : return $_GET['page_url'];
+		    }
+
+	    else:
+
+		    /** If the page url is empty / at the root of the site, set the page to home file.  */
+			$_GET['page_url'] = 'home';
+			return $_GET['page_url'];
+
+	    endif;
+
     }
     public function current_url(){
         $current_URL = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
