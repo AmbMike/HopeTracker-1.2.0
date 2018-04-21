@@ -13,6 +13,8 @@ if($('[data-questions-parent="true"]').length > 0){
 
         questionFilters();
 
+        forumJumpTo();
+
     });
 }
 
@@ -577,4 +579,23 @@ function updatedSubcategoryQuestionCount() {
 
         $this.val($thisValue).text($thisValue);
     });
+}
+
+function forumJumpTo() {
+
+    /** Functions for url param as a category */
+    if($('[data-page-jump-value]').length > 0){
+
+        var jumpToValue =   $('[data-page-jump-value]').data('page-jump-value'); console.log(jumpToValue);
+        $('html,body').animate({scrollTop: $('[data-page-jump-to-href="'+jumpToValue+'"]').offset().top},'slow');
+    }
+
+
+    /** Functions for url param as a subcategory */
+    if($('[data-page-jump-value-subcategory]').length > 0){
+
+        var jumpToValue =   $('[data-page-jump-value-subcategory]').data('page-jump-value-subcategory'); console.log(jumpToValue);
+        $('html,body').animate({scrollTop: $('[data-page-jump-to-href="'+jumpToValue+'"]').offset().top},'slow');
+    }
+
 }

@@ -6,6 +6,10 @@
  * Created On: 5/12/2017, 9:21 AM
  */;
 
+ /** PAGE NOTES
+  * Check the URL class for redirects for url parameters that are not found.
+  */
+
 $Page = new \Page_Attr\Page();
 $Page->header(array(
 	'Title' => 'Family of Drug Abuser Forum | HopeTracker',
@@ -81,9 +85,28 @@ if($Session->get('logged_in') == 1){
 	$FollowedPostIds = $FollowedPosts->getUsersFollowedPostIds();
 
 }
+    /** Page Jump Value */
+    if(isset($_GET['category'])){
+
+	    $categoryParam = preg_replace( '/\-/', ' ', $_GET['category'] );
+	    $categoryParam = preg_replace( '/\s+/', '',$categoryParam );
+        $pageJumpToId = $categoryParam;
+
+	    $jumpData = 'data-page-jump-value="'.$pageJumpToId.'"';
+
+        if(isset($_GET['subcategory'])){
+	        $subcategoryParam = preg_replace( '/\-/', ' ', $_GET['subcategory'] );
+	        $subcategoryParam = preg_replace( '/\s+/', '',$subcategoryParam );
+	        $pageJumpToId = $subcategoryParam;
+
+	        $jumpData = 'data-page-jump-value-subcategory="'.$pageJumpToId.'"';
+        }
+
+
+    }
 
 ?>
-<div class="con main" data-questions-parent="true" id="new-forum" data-user-id="<?php echo $user_id; ?>">
+<div <?php echo $jumpData; ?> class="con main" data-questions-parent="true" id="new-forum" data-user-id="<?php echo $user_id; ?>">
     <div class="row">
         <div class="col-md-12">
             <main>
@@ -169,8 +192,31 @@ if($Session->get('logged_in') == 1){
                                             </div>
                                         </h4>
                                     </div>
+                                    <?php
+                                        /** Set values for jump to accordion functionality */
+                                    if(isset($_GET['category'])) :
+
+                                        /* The category set in the URL */
+                                        $categoryMatchName = preg_replace( '/\-/', ' ', $_GET['category'] );
+                                        $categoryMatchName = preg_replace( '/\s+/', '',$categoryMatchName );
+
+                                        /* The loop category*/
+                                        $loopCategory = preg_replace( '/\-/', ' ', $category_name );
+                                        $loopCategory = preg_replace( '/\s+/', '',$loopCategory );
+                                        $loopCategory = preg_replace( '/\//', '',$loopCategory );
+                                        $loopCategory = strtolower( $loopCategory );
+
+                                        if($categoryMatchName == strtolower($category_name)): ?>
+                                             <div data-page-jump-to-href="<?php echo $loopCategory; ?>" id="<?php echo $category_name; ?>-categories" class="panel-collapse collapse in">
+                                        <?php else: ?>
+                                             <div data-page-jump-to-href="<?php echo $loopCategory; ?>" id="<?php echo $category_name; ?>-categories" class="panel-collapse collapse ">
+                                         <?php endif; ?>
+
+                                     <?php else: ?>
                                     <div id="<?php echo $category_name; ?>-categories" class="panel-collapse collapse">
-										<?php /** Replies/Answers to the category post/question.  */ ?>
+                                    <?php endif; ?>
+
+                                        <?php /** Replies/Answers to the category post/question.  */ ?>
 										<?php $subcategories = $Forum->subcategory_list_by_cat_id($category['id']); ?>
 										<?php foreach ($subcategories as $index => $subcategory) :?>
 											<?php
@@ -209,7 +255,28 @@ if($Session->get('logged_in') == 1){
                                                         </h4>
                                                     </div>
 													<?php if(count($forum_questions) > 0): ?>
-                                                        <div id="<?php echo $category_name; ?>-sub-accordion-<?php echo $index; ?>" class="panel-collapse collapse">
+	                                                <?php
+                                                        if(isset($_GET['subcategory'])) :
+
+                                                        /* The category set in the URL */
+                                                        $subcategoryMatchName = preg_replace( '/\-/', ' ', $_GET['subcategory'] );
+                                                        $subcategoryMatchName = preg_replace( '/\s+/', '',$subcategoryMatchName );
+
+                                                        /* The loop category*/
+                                                        $loopSubcategory = preg_replace( '/\-/', ' ', $subcategory['sub_category'] );
+                                                        $loopSubcategory = preg_replace( '/\s+/', '',$loopSubcategory );
+                                                        $loopSubcategory = preg_replace( '/\//', '',$loopSubcategory );
+                                                        $loopSubcategory = strtolower( $loopSubcategory );
+
+                                                            if($subcategoryMatchName == $loopSubcategory): ?>
+                                                            <div data-page-jump-to-href="<?php echo $loopSubcategory; ?>" id="<?php echo $category_name; ?>-sub-accordion-<?php echo $index; ?>" class="panel-collapse collapse in">
+                                                            <?php else: ?>
+                                                            <div data-page-jump-to-href="<?php echo $loopSubcategory; ?>" id="<?php echo $category_name; ?>-sub-accordion-<?php echo $index; ?>" class="panel-collapse collapse">
+                                                            <?php endif; ?>
+
+                                                        <?php else: ?>
+                                                            <div id="<?php echo $category_name; ?>-sub-accordion-<?php echo $index; ?>" class="panel-collapse collapse">
+                                                        <?php endif; ?>
                                                             <div class="panel-body">
 																<?php /** Subcategory filter section  */ ?>
                                                                 <ul data-top-filter="container" class="body-nav-box">

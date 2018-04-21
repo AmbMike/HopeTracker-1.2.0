@@ -85,9 +85,9 @@ if($Session->get('logged_in') == 1) {
                                     "<?php echo $Question->question; ?>"
                                 </div>
                                 <div class="insurance-treatment-box">
-                                    <span class="insurance"><?php echo  $Question->category; ?></span>
+                                    <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category); ?>"><?php echo  $Question->category; ?></a>
                                     <span class="dot"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-                                    <span class="treatment"><?php echo  $Question->subcategory; ?></span>
+                                    <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category) . '/' . $General->url_safe_string($Question->subcategory); ?>"><?php echo  $Question->subcategory; ?></a>
                                 </div>
                                 <div class="author-text-box" data-question="description">
 									<?php echo  $Question->description; ?>

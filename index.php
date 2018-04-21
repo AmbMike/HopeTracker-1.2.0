@@ -26,9 +26,6 @@ $general = new General();
 $Admin = new Admin();
 $url = new URL();
 
-/* Page Engine */
-$p_url = (isset($_GET['page_url'])) ? $_GET['page_url'] : 'home';
-
 /* check if is a user for journal page */
 if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
     $p_url = '404';
@@ -38,6 +35,9 @@ if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
 if(isset($_COOKIE['fromHopeTracker'])){
 	unset( $_COOKIE['fromHopeTracker'] );
 }
+/** Check if page specific parameters exists */
+$p_url = URL::isPage();
+
 /**  General Redirects */
 $Redirects = new Redirects($p_url);
 
@@ -48,7 +48,7 @@ if(isset($_GET['chat_mod'])){
     $p_url = 'chat-mods/' . $p_url;
 }
 
-if(!file_exists(VIEWS . $p_url . '.php')){
+if(!file_exists(VIEWS . $p_url . '.php') || $p_url == '404'){
     header("HTTP/1.0 404 Not Found");
     include_once(CLASSES .'Page.php');
     include(VIEWS . '404.php');

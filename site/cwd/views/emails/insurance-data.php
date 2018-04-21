@@ -11,7 +11,7 @@
  */;
 ?>
 <?php
-$base_url = 'http://hopetracker.com'
+$base_url = 'http://ambrosiatc.com/hopetracker'
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--[if IE]><html xmlns="http://www.w3.org/1999/xhtml" class="ie-browser" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><![endif]--><!--[if !IE]><!--><html style="margin: 0;padding: 0;" xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]--><head>
 	<!--[if gte mso 9]><xml>
@@ -173,7 +173,7 @@ $base_url = 'http://hopetracker.com'
 									<!--[if !mso]><!--><div style="Margin-right: 0px;Margin-left: 0px;"><!--<![endif]-->
 										<!--[if mso]><table width="250" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right:  0px; padding-left: 0px;" align="center"><![endif]-->
 										<a href="<?php echo $base_url; ?>" target="_blank">
-											<img class="center fullwidth" align="center" border="0" src="<?php echo $base_url; ?>/site/public/images/main/LOGO-1.jpg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block;border: none;height: auto;float: none;width: 100%;max-width: 250px" width="250">
+											<img class="center fullwidth" align="center" border="0" src="<?php echo $base_url; ?>/site/public/images/main/hopetracker-logo.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block;border: none;height: auto;float: none;width: 100%;max-width: 250px" width="250">
 										</a>
 
 

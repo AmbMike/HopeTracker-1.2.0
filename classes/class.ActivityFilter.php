@@ -398,8 +398,8 @@ class ActivityFilter
 				     * adding the link properties.
 				     * @var $notificationLink
 				     */
-				    $href = '/families-of-drug-addicts/journal-' . $function['liked_journal'][0]['id'] . '/' . $this->General->url_safe_string($function['liked_journal'][0]['title']) . '/';
-				    $linkValue = $function['liked_journal'][0]['title'];
+				    $href = '/families-of-drug-addicts/journal-' . $function['liked_journal'][0]['id'] . '/' . $this->General->url_safe_string($this->General->trim_text($function['liked_journal'][0]['content'],'40',true,true)) . '/';
+				    $linkValue = ($function['liked_journal'][0]['title']) ? $function['liked_journal'][0]['title'] : $this->General->trim_text($function['liked_journal'][0]['content'],'40',true,true);
 				    $options = array(
 					    'class' => 'notification-link'
 				    );
