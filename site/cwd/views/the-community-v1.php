@@ -153,12 +153,15 @@ if(isset($_GET['user_id'])){
 	                    <?php if($Session->get('logged_in') == 1): ?>
                         <div data-toggle-box="member-posts" id="community-user-title">
                             <div class="table">
-                                <div class="cell" style="width:70px">
+                                <div class="cell user-img-container">
                                     <a class="wrap" <?php echo $UserProfile->profile($post_user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                 </div>
                                 <div class="cell">
                                     <div class="textarea-box">
                                         <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="What's on your mind?"></textarea>
+                                    </div>
+                                    <div class="post-btn-box">
+                                        <input type="submit" name="submit" value="Post" class="save-btn blue">
                                     </div>
                                 </div>
                             </div>
