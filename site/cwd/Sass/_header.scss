@@ -243,22 +243,19 @@ header{
       top: -33px;
       background: $theme-blue;
       font-size: 17px;
-      @media (max-width: 801px) {
+      @media (max-width: 920px) {
+        font-size: 14px;
+      }
+      @media (max-width: 800px) {
         top: -43px;
-        padding: 0 15px 15px;
+        font-size: 12px;
+        margin-top: 10px;
       }
       @media (max-width: 767px) {
         height:auto;
         background: $theme-blue;
         display: none;
         top: -3px;
-      }
-      @media (max-width: 920px) {
-        font-size: 14px;
-      }
-      @media (max-width: 800px) {
-        font-size: 12px;
-        margin-top: 10px;
       }
 
       &:before,&:after{
@@ -449,7 +446,7 @@ header{
           top: -10px;
         }
        > li{
-          padding:0;
+          padding:1px;
           margin:-0;
 
           .bubble-alert{
