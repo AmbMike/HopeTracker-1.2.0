@@ -815,6 +815,7 @@ $(document).ready(function() {
                         message: 'Password Incorrect',
                         url: RELATIVE_PATH + '/config/processing.php',
                         type: 'POST',
+                        cache: false,
                         data : {
                             form : 'Password Check'
                         }
@@ -891,19 +892,20 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: RELATIVE_PATH + '/config/processing.php',
+            cache : false,
             data: {
                 form : 'Update User Settings',
                 data : post_data
             },
-            dataType : 'json'
-        }).done(function(response){
-
-            if(response.updated === true){
+            dataType : 'json',
+        }).done(function(result){
+console.log(result);
+            if(result.updated === true){
                 alert_box.slideDown();
 
                 return;
             }
-            if(response.password_updated === true){
+            if(result.password_updated === true){
                 var el_color = $('.green-heading-lg').css('color');
                 $('input[name="current_pass"]').before("<span class='updated-pass' style='color :"+el_color+"; display: block; font-size: 14px;'>Password Updated!</span>");
                 $('input[name="current_pass"]').val('');
@@ -942,6 +944,7 @@ if($('#settings-feedback-form').length > 0){
 
             $.ajax({
                 type: 'POST',
+                cache: false,
                 url: RELATIVE_PATH + '/config/processing.php',
                 data: {
                     form : 'Settings Feedback',
@@ -1005,6 +1008,7 @@ function save_inspiration() {
         $.ajax({
             url  : '/config/processing.php',
             type : 'POST',
+            cache: false,
             data : {
                 form : 'Save Inspiration',
                 status : status,
@@ -1075,6 +1079,7 @@ function inspiration_filter() {
             $.ajax({
                 url : load_inspiration_path,
                 type : 'POST',
+                cache : false,
                 dataType : 'html',
                 success : function (response) {
                     $('.slider-outer .loading').css({'opacity' : '0'});
@@ -1110,6 +1115,7 @@ function inspiration_filter() {
         $.ajax({
             url: RELATIVE_PATH + '/config/processing.php',
             type: 'POST',
+            cache: false,
             data: {
                 form: 'Inspiration Img Shared',
                 data: {
@@ -1150,6 +1156,7 @@ function course_action_tracker() {
             $.ajax({
                 url: RELATIVE_PATH + '/config/processing.php',
                 type: 'post',
+                cache: false,
                 data: {
                     form : 'Course Session Action',
                     data:{
