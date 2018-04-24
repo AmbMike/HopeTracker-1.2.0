@@ -49,6 +49,7 @@ function admin_login() {
         $.ajax({
             type: 'POST',
             url: RELATIVE_PATH + '/config/processing.php',
+            cache : false,
             data: {
                 form : 'Admin Sign In',
                 email : $(obj.form_id + ' input[name="email"]').val(),
@@ -77,7 +78,8 @@ function admin_login() {
 $('#sign-out').on('click',function () {
     $.ajax({
         type: 'POST',
-        url : '/config/processing.php',
+        url :RELATIVE_PATH +'/config/processing.php',
+        cache : false,
         data : {
             form : 'Sign Out'
         },
@@ -92,6 +94,7 @@ $(window).load(function () {
         $.ajax({
             url: RELATIVE_PATH + '/config/processing.php',
             type: 'POST',
+            cache : false,
             data: {
                 form: 'Update User Online Status'
             },
@@ -139,8 +142,9 @@ function forum_add_categories_form(){
 
 
         $.ajax({
-            url : '/config/processing.php',
+            url :RELATIVE_PATH + '/config/processing.php',
             type : 'POST',
+            cache : false,
             data : {
                 form : 'Forum Add Category',
                 category : $(form_id + ' input[name="category"]').val(),
@@ -190,8 +194,9 @@ $(function () {
 
         $this.parent().parent().prepend('<div class="overlay"> <i class="fa fa-refresh fa-spin"></i> </div>');
         $.ajax({
-            url : '/config/processing.php',
+            url : RELATIVE_PATH + '/config/processing.php',
             type : 'POST',
+            cache : false,
             data : {
                 list : post_data,
                 form : 'Sort Forum Categories'
@@ -220,8 +225,9 @@ $(function () {
             if(confirm('Are you sure you want to delete the "' + confirm_cat_msg + '" category?')){
 
                 $.ajax({
-                    url : '/config/processing.php',
+                    url : RELATIVE_PATH + '/config/processing.php',
                     type : 'POST',
+                    cache : false,
                     data : {
                         form : 'Forum Delete Category',
                         id : $this.data('category-id')
@@ -272,8 +278,9 @@ function forum_add_subcategories_form(){
     }).on('success.form.bv',function(e){
         e.preventDefault();
                 $.ajax({
-            url : '/config/processing.php',
+            url : RELATIVE_PATH + '/config/processing.php',
             type : 'POST',
+            cache : false,
             data : {
                 form : 'Forum Add Subcategory',
                 data : $( this ).serialize()
@@ -326,7 +333,8 @@ function forum_add_subcategories_form(){
             if(confirm('Are you sure you want to delete the "' + confirm_cat_msg + '" subcategory?')){
 
                 $.ajax({
-                    url : '/config/processing.php',
+                    url : RELATIVE_PATH + '/config/processing.php',
+                    cache : false,
                     type : 'POST',
                     data : {
                         form : 'Forum Delete Subcategory',
@@ -362,6 +370,7 @@ function edit_subcategories() {
         $.ajax({
             url: RELATIVE_PATH + '/config/processing.php',
             type: 'POST',
+            cache: false,
             data: {
                 form: 'Edit Forum Category',
                 form_data : {
