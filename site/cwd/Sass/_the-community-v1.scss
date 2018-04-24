@@ -311,7 +311,6 @@
     list-style-type: none;
     margin: 15px;
     padding: 0;
-
     @media (max-width: 550px){
       li:nth-child(1), li:nth-child(2), li:nth-child(3) {
         display: block;
@@ -325,10 +324,17 @@
         }
       }
     }
+    .user-img-container {
+      vertical-align: top;
+      width: 70px;
+    }
     .textarea-box {
       position: relative;
       width: 100%;
-
+      border: 1px solid darken($theme-gray,10%);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
     }
 
     textarea, .textarea-resize {
@@ -337,7 +343,7 @@
       font-weight: lighter;
       font-size: 20px;
       box-sizing: border-box;
-      padding: 8px 15px;
+      padding: 10px 15px 8px;
       border: none;
       border-radius: 22px;
       outline: none;
@@ -365,6 +371,29 @@
       }
       .user-content {
         color: darken($theme-gray,15%);
+      }
+    }
+    .post-btn-box {
+      font-size: 22px;
+      width: 100%;
+      text-align: right;
+      vertical-align: middle;
+      margin-top: 15px;
+
+      @media (max-width: 500px) {
+        text-align: center;
+
+      }
+      .save-btn{
+        padding: 5px 40px;
+        background: $theme-blue !important;
+        border-radius: 3px;
+        background: none;
+        border: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        display: inline-block;
       }
     }
   }
