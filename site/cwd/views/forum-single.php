@@ -129,18 +129,17 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
+                        <?php /* Reactivate after backend is complete. php on line 126 is dummy text it need to be replaced.
                         <div data-toggle-box="member-posts" id="visitor-response">
-                            <?php /* php on line 126 is dummy text it need to be replaced */ ?>
                             <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
                                 <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
-                                <?php /* Reactivate after backend is complete.
                                 <div class="comment-btn-box">
                                     <input type="submit" name="submit" value="Comment" class="save-btn blue">
                                 </div>
-                                */ ?>
                             </div>
                         </div>
+                        */ ?>
                         <div class="panel-group sub-posts">
                             <div class="panel panel-default">
                                 <div class="panel-heading more-answers-box">
@@ -231,18 +230,17 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <?php /* Reactivate after backend is complete.
                                                                 <div data-toggle-box="member-posts" id="visitor-response">
-                                                                    <?php /* php on line 126 is dummy text it need to be replaced */ ?>
                                                                     <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
                                                                         <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
-                                                                        <?php /* Reactivate after backend is complete.
                                                                         <div class="comment-btn-box">
                                                                             <input type="submit" name="submit" value="Comment" class="save-btn blue">
                                                                         </div>
-                                                                        */ ?>
                                                                     </div>
                                                                 </div>
+                                                                */ ?>
                                                                 <hr>
                                                             </div>
 														<?php endforeach; ?>
