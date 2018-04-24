@@ -78,8 +78,6 @@ class ForumPageProcessing
 	    /** Create the parameter value(s) */
 	    $this->urlParameters = $paramArray;
 
-	    Debug::out( $paramArray );
-
 	    if(count($paramArray) == 1){
 	    	if($this->isCategory($paramArray[0])){
 			   return $this->isCategory( $paramArray[0] );
@@ -142,15 +140,17 @@ class ForumPageProcessing
 		foreach($allSubcategories as $subcategoryName){
 
 			/** Escape spaces and  forwards slash from  subcategories database*/
-			$subcategoryName = preg_replace('/\//','',$subcategoryName['sub_category']);
-			$subcategoryNameSingle = preg_replace('/\s+/','',$subcategoryName);
+			$subcategoryNameSingle = preg_replace('/\//','',$subcategoryName['sub_category']);
+			$subcategoryNameSingle = preg_replace('/\s+/','',$subcategoryNameSingle);
+			$subcategoryNameSingle = preg_replace('/\?/','',$subcategoryNameSingle);
 
 
 			/** Escape spaces and  forwards slash from  sub categories client side*/
 			$subcategory = preg_replace('/\//','',$subcategory);
+			$subcategory = preg_replace('/\?/','',$subcategory);
 			$subcategory = preg_replace('/\s+/','',$subcategory);
 
-
+Debug::out($subcategoryNameSingle);
 			if(strtolower($subcategoryNameSingle) == $subcategory){
 				$subcategoryMatch = true;
 			}
