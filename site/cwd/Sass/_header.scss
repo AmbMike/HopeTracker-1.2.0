@@ -72,6 +72,16 @@ header{
       }
     }
   }
+
+  .livechat_button {
+    max-width:310px;
+    margin-top: 5px;
+    @media (max-width: 768px) {
+      display:none;
+    }
+  }
+
+
   .box{
     text-align: center;
     border-top:10px solid $theme-green;
