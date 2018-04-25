@@ -160,9 +160,9 @@ if(isset($_GET['user_id'])){
                                     <div class="textarea-box">
                                         <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="What's on your mind?"></textarea>
                                     </div>
-                                    <div class="post-btn-box">
+                                    <!--<div class="post-btn-box">
                                         <input type="submit" name="submit" value="Post" class="save-btn blue">
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                           <!--  <li><a class="wrap" href="<?php /*echo $user_profile_path; */?>"><img src="/<?php /*echo (User::user_info('profile_img',$post_user_id)) ? : DEFAULT_PROFILE_IMG; */?>" class="img-circle profile-img sm"></a></li>
