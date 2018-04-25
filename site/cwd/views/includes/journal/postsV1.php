@@ -186,21 +186,25 @@
                 <?php if($LikePosts->checkLikedQuestion() == true): ?>
                     <li>
                         <span class="like-box"><i class="fa fa-thumbs-up" aria-hidden="true"></i> <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $latest_post['user_id'];  ?>" data-post-id="<?php echo $latest_post['id'];  ?>" data-post-type="2">Liked </span>
+                           <?php /* Remove comment when backend is complete
                             <i class="fa fa-circle dot"aria-hidden="true"></i>
                             <div class="question-liked-box">
                                 <i class="fa fa-thumbs-up"></i>
                                 <span class="question-liked-text">23</span>
                             </div>
+                            */ ?>
                         </span>
                     </li>
                 <?php else: ?>
                     <li>
                         <span class="like-box">
                             <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $latest_post['user_id'];  ?>" data-post-id="<?php echo $latest_post['id'];  ?>" data-post-type="2">Like </span><i class="fa fa-circle dot"aria-hidden="true"></i>
+                            <?php /* Remove comment when backend is complete
                             <div class="question-liked-box">
                                 <i class="fa fa-thumbs-up"></i>
                                 <span class="question-liked-text">23</span>
                             </div>
+                            */ ?>
                         </span>
                     </li>
                 <?php endif; ?>
