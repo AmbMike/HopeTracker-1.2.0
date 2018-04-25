@@ -209,6 +209,18 @@
                     </li>
                 <?php endif; ?>
                 <li data-toggle="collapse" role="button" data-target="#post-commentV1-<?php echo $index; ?>"><span class="comment-box"><i class="fa fa-comments-o" aria-hidden="true"></i> Comment</span></li>
+                <span class="flag-box" data-question="flag-btn" role="button" >
+                        <span class="flag-tooltip-text">
+                                Click here to report this post as inappropriate.
+                            <a class="alt-flag">
+                                flag
+                            </a>
+                        </span>
+                        <i class="fa fa-flag" aria-hidden="true"></i>
+                    </span>
+                <?php /* Remove comment when backend is complete.
+                    <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
+                <?php // End if if user has not flagged the post. */ ?>
             </ul>
             <?php /* Post Reply Box - collapse */ ?>
             <div  id="post-commentV1-<?php echo $index; ?>" class="reply-box <?php echo (!isset($_GET['journal_id'])) ? 'collapse' : ' in'; ?> ">
