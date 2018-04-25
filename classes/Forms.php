@@ -422,6 +422,7 @@ VALUES (?,?,?,?,?,?,?,?,?)");
             $General->getUserIP(),
             (int)$user_id
         ));
+
         if($sql->rowCount() > 0){
 
             $data_out['updated'] =  true;
@@ -466,7 +467,7 @@ VALUES (?,?,?,?,?,?,?,?,?)");
             }
 
         }
-
+	    Debug::to_file( $data_out,'setting.txt' );
         echo json_encode($data_out);
 
     }
