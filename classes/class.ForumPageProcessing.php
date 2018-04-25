@@ -124,9 +124,15 @@ class ForumPageProcessing
     {
         // section -64--88-0-2-e6f1a6:162e40cb4e6:-8000:0000000000001104 begin
 
+	    function cleanStr($string) {
+		    $string = preg_replace('/\-/','',$string);
+		    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+	    }
+
 	    $subcategoryMatch = false;
 
-	    $subcategory = preg_replace('/\-/',' ', $subcategory);
+	    /** Escape spaces and  forwards slash from  sub categories client side*/
+	    $subcategory = cleanStr($subcategory);
 
 	    $this->Database = new Database();
 	    $sql = $this->Database->prepare("SELECT sub_category FROM forum_sub_categories");
@@ -135,22 +141,12 @@ class ForumPageProcessing
 
 	    $allSubcategories = $sql->fetchAll();
 
-
 	    /** loop through subcategories to see if their is a match */
 		foreach($allSubcategories as $subcategoryName){
 
 			/** Escape spaces and  forwards slash from  subcategories database*/
-			$subcategoryNameSingle = preg_replace('/\//','',$subcategoryName['sub_category']);
-			$subcategoryNameSingle = preg_replace('/\s+/','',$subcategoryNameSingle);
-			$subcategoryNameSingle = preg_replace('/\?/','',$subcategoryNameSingle);
+			$subcategoryNameSingle = cleanStr($subcategoryName['sub_category']);
 
-
-			/** Escape spaces and  forwards slash from  sub categories client side*/
-			$subcategory = preg_replace('/\//','',$subcategory);
-			$subcategory = preg_replace('/\?/','',$subcategory);
-			$subcategory = preg_replace('/\s+/','',$subcategory);
-
-Debug::out($subcategoryNameSingle);
 			if(strtolower($subcategoryNameSingle) == $subcategory){
 				$subcategoryMatch = true;
 			}
