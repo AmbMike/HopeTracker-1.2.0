@@ -1,21 +1,29 @@
 @import "constants";
 #forum-single {
   .header-box {
-    padding: 15px;
-    @media (max-width: 526px) {
+    padding: 15px 15px 15px 30px;
+    text-align: left;
+    @media (max-width: 767px) {
       padding: 15px 0 5px 0;
+      text-align: center;
     }
     h1{
-      text-align: left;
-      margin-bottom: 5px;
-
-      @media (max-width: 526px) {
-        text-align: center;
-      }
+      margin: 15px 0 5px;
     }
-    p {
-      margin: 0;
+    .insurance-treatment-box {
+      color: $theme-blue;
       font-size: 16px;
+      font-weight: 600;
+      margin: 0 4px;
+      a{
+        margin: 0;
+        padding:0;
+      }
+      .dot {
+        font-size: 5px;
+        vertical-align: middle;
+        margin: 1px;
+      }
     }
   }
   .main-box {
@@ -99,7 +107,6 @@
       padding: 15px;
 
       .author-img-box {
-        width: 50px;
         vertical-align: top;
         @media (max-width: 767px) {
           display: block;
@@ -108,15 +115,21 @@
         @media (max-width: 500px) {
           display: none;
         }
+        .profile-img {
+          width: 50px;
+        }
       }
       .post-text-box {
-        padding: 0 15px;
+        padding: 0 0 0 15px;
         text-align: justify;
+        width: 100%;
+
         @media (max-width: 767px) {
           text-align: center;
           padding: 0;
           display: block;
         }
+
         .quote-box {
           color: $theme-blue;
           font-weight: 500;
@@ -126,29 +139,7 @@
             margin-left: 9px;
           }
         }
-        .insurance-treatment-box, .tracker-box {
-          color: darken($theme-gray,20%);
-          font-size: 16px;
-          .dot {
-            font-size: 5px;
-            vertical-align: middle;
-            margin: 1px;
-          }
-        }
-        .insurance-treatment-box{
-          color: inherit;
-          font-weight: 600;
-          margin-bottom: 15px;
-
-          a{
-            color: darken($theme-gray,20%);
-            margin:0;
-            padding:0;
-          }
-
-        }
         .tracker-box {
-          margin-top: 20px;
           color: darken($theme-gray,15%);
           text-align: left;
           font-size: 14px;
@@ -163,77 +154,21 @@
             vertical-align: middle;
           }
           .dot {
-            margin-left: 2px;
-            margin-right: 2px;
+            font-size: 5px;
+            vertical-align: middle;
+            margin: 2px;
           }
           .question-liked-box {
             display: inline-block;
-            .fa-thumbs-up {
+            .like-count-icon {
               background-color: $theme-blue;
               border-radius: 50%;
               color: $theme-white;
-              padding: 2px 3px 4px;
+              padding: 2px 4px 3px;
             }
             .question-liked-text {
               color: $theme-blue;
               vertical-align: middle;
-            }
-          }
-          .flag-box {
-            display: inline-block;
-            position: relative;
-            float: right;
-            color: $header-gray;
-            margin-left: 10px;
-            .flag-tooltip-text {
-              visibility: hidden;
-              width: 210px;
-              background-color: $theme-blue;
-              color: #fff;
-              text-align: center;
-              border-radius: 6px;
-              padding: 10px;
-              position: absolute;
-              z-index: 1;
-              bottom: 125%;
-              left: -270%;
-              margin-left: -60px;
-              opacity: 0;
-              transition: opacity 0.3s;
-              @media (max-width: 767px) {
-                left: -860%;
-              }
-              .alt-flag {
-                color: $theme-white;
-                display: inline-block;
-                background-color: $theme-green;
-                padding: 2px 5px;
-                margin: 0;
-                text-transform: uppercase;
-                -webkit-border-radius: 3px;
-                -moz-border-radius: 3px;
-                border-radius: 3px;
-                &:hover {
-                  color: $theme-blue;
-                }
-              }
-            }
-            .flag-tooltip-text:after {
-              content: "";
-              position: absolute;
-              top: 100%;
-              left: 50%;
-              margin-left: -5px;
-              border-width: 5px;
-              border-style: solid;
-              border-color: $theme-blue transparent transparent transparent;
-              @media (max-width: 767px) {
-                left: 89%;
-              }
-            }
-            &:hover .flag-tooltip-text {
-              visibility: visible;
-              opacity: 1;
             }
           }
           .like-box{
@@ -254,12 +189,82 @@
             white-space: nowrap;
           }
         }
+        .flag-box {
+          display: inline-block;
+          position: relative;
+          float: right;
+          color: $header-gray;
+          margin: 0 3px 0 10px;
+          font-size: 14px;
+          bottom: -4px;
+          .flag-tooltip-text {
+            visibility: hidden;
+            width: 210px;
+            background-color: $theme-blue;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: -270%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            @media (max-width: 991px) {
+              left: -860%;
+            }
+            .alt-flag {
+              color: $theme-white;
+              display: inline-block;
+              background-color: $theme-green;
+              padding: 2px 5px;
+              margin: 0;
+              text-transform: uppercase;
+              -webkit-border-radius: 3px;
+              -moz-border-radius: 3px;
+              border-radius: 3px;
+              &:hover {
+                color: $theme-blue;
+              }
+            }
+          }
+          .flag-tooltip-text:after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: $theme-blue transparent transparent transparent;
+            @media (max-width: 991px) {
+              left: 89%;
+            }
+          }
+          &:hover .flag-tooltip-text {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+        .author-text-box {
+          margin: 20px 0 0 1px;
+
+        }
+      }
+      #answerInner {
+        .post-text-box {
+          padding: 0 15px;
+        }
       }
     }
     #visitor-response {
-      list-style-type: none;
-      margin: 15px;
-      padding: 0;
+      & {
+        list-style-type: none;
+        margin: 15px;
+        padding: 0;
+      }
       .wrap {
         display: table-cell;
         vertical-align: top;

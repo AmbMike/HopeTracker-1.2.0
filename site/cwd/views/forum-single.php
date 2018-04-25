@@ -73,6 +73,11 @@ if($Session->get('logged_in') == 1) {
             <main>
                 <div class="header-box">
                     <h1 class="green-heading-lg">Forum Question</h1>
+                    <div class="insurance-treatment-box">
+                        <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category); ?>"><?php echo  $Question->category; ?></a>
+                        <span class="dot"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                        <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category) . '/' . $General->url_safe_string($Question->subcategory); ?>"><?php echo  $Question->subcategory; ?></a>
+                    </div>
                 </div>
                 <section class="box-one no-p">
                     <div id="post-single" class="table question-container">
@@ -84,36 +89,15 @@ if($Session->get('logged_in') == 1) {
                                 <div class="quote-box" data-question="question" data-question="text">
                                     "<?php echo $Question->question; ?>"
                                 </div>
-                                <div class="insurance-treatment-box">
-                                    <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category); ?>"><?php echo  $Question->category; ?></a>
-                                    <span class="dot"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
-                                    <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category) . '/' . $General->url_safe_string($Question->subcategory); ?>"><?php echo  $Question->subcategory; ?></a>
-                                </div>
-                                <div class="author-text-box" data-question="description">
-									<?php echo  $Question->description; ?>
-                                </div>
                                 <div class="tracker-box">
-									<?php if($Session->get('logged_in')== 1) : ?>
-										<?php if($FollowPost->checkFollowedPost() == true) : ?>
+                                    <?php if($Session->get('logged_in')== 1) : ?>
+                                        <?php if($FollowPost->checkFollowedPost() == true) : ?>
                                             <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box liked"><i class="fa fa-star" aria-hidden="true"></i> <span>Following</span></span>
-										<?php else : ?>
+                                        <?php else : ?>
                                             <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
-										<?php endif; ?>
-										<?php if($FlagPost->checkIfUserFlaggedPost($questionId,$Question->postType) == false) : ?>
-                                            <span class="flag-box" data-question="flag-btn" role="button" >
-                                                <span class="flag-tooltip-text">
-                                                        Click here to report this post as inappropriate.
-                                                    <a class="alt-flag">
-                                                        flag
-                                                    </a>
-                                                </span>
-                                                <i class="fa fa-flag" aria-hidden="true"></i>
-                                            </span>
-										<?php else: ?>
-                                            <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
-										<?php endif; // End if if user has not flagged the post. ?>
-									<?php endif; // End if user is logged in.  ?>
-                                    <i class="fa fa-circle dot"aria-hidden="true"></i>
+                                        <?php endif; ?>
+                                    <?php endif; // End if user is logged in.  ?>
+                                    <i class="fa fa-circle dot" aria-hidden="true"></i>
                                     <div class="forum-details">
                                     <span class="asked-about-box">
                                         Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by
@@ -122,15 +106,31 @@ if($Session->get('logged_in') == 1) {
                                        <span class="liked-by"  <?php echo PageLinks::userProfile($Question->questionUsersId); ?>><?php echo User::Username($Question->questionUsersId); ?></span>
                                     </span>
                                         <span class="seen-count-box">
-                                        <span class="dot"><i class="fa fa-circle" aria-hidden="true"></i></span>
+                                        <i class="fa fa-circle dot" aria-hidden="true"></i>
                                         Seen by <data value="<?php echo $ViewedPost->countPostViews(3,$Question->postId) ?>" class="seen-count"><?php echo $ViewedPost->countPostViews(3,$Question->postId) ?></data>
                                     </span>
                                     </div>
                                 </div>
+                                <div class="author-text-box" data-question="description">
+									<?php echo  $Question->description; ?>
+                                    <?php if($FlagPost->checkIfUserFlaggedPost($questionId,$Question->postType) == false) : ?>
+                                        <span class="flag-box" data-question="flag-btn" role="button" >
+                                                <span class="flag-tooltip-text">
+                                                        Click here to report this post as inappropriate.
+                                                    <a class="alt-flag">
+                                                        flag
+                                                    </a>
+                                                </span>
+                                                <i class="fa fa-flag" aria-hidden="true"></i>
+                                            </span>
+                                    <?php else: ?>
+                                        <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
+                                    <?php endif; // End if if user has not flagged the post. ?>
+                                </div>
                             </div>
                         </div>
+                        <?php /* Reactivate after backend is complete. php on line 126 is dummy text it need to be replaced.
                         <div data-toggle-box="member-posts" id="visitor-response">
-                            <?php /* php on line 126 is dummy text it need to be replaced */ ?>
                             <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
                                 <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
@@ -139,6 +139,7 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
+                        */ ?>
                         <div class="panel-group sub-posts">
                             <div class="panel panel-default">
                                 <div class="panel-heading more-answers-box">
@@ -198,11 +199,13 @@ if($Session->get('logged_in') == 1) {
                                                                         <?php else : ?>
                                                                             <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>" class="like-box">Like</span>
                                                                         <?php endif; ?>
+                                                                            <?php /* Reactivate after backend is complete.
                                                                         <i class="fa fa-circle dot"aria-hidden="true"></i>
                                                                         <div class="question-liked-box">
-                                                                            <i class="fa fa-thumbs-up"></i>
+                                                                            <i class="fa fa-thumbs-o-up like-count-icon"></i>
                                                                             <span class="question-liked-text">23</span>
                                                                         </div>
+                                                                        */ ?>
                                                                         <?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
                                                                         <span class="flag-box" data-question="flag-btn" role="button" >
                                                                             <span class="flag-tooltip-text">
@@ -217,7 +220,7 @@ if($Session->get('logged_in') == 1) {
                                                                         <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">
                                                                             <i class="fa fa-flag" aria-hidden="true"></i>
                                                                         </span>
-                                                                        <?php endif; // End if if user has not flagged the post. ?>
+                                                                        <?php endif; // Look at the flag after like is clicked End if if user has not flagged the post. ?>
                                                                         <?php endif; // End if user is logged in.  ?>
                                                                         <div class="asked-about-box">
                                                                             <span class="dot">
@@ -227,8 +230,8 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <?php /* Reactivate after backend is complete.
                                                                 <div data-toggle-box="member-posts" id="visitor-response">
-                                                                    <?php /* php on line 126 is dummy text it need to be replaced */ ?>
                                                                     <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
                                                                         <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
@@ -237,6 +240,7 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                */ ?>
                                                                 <hr>
                                                             </div>
 														<?php endforeach; ?>
