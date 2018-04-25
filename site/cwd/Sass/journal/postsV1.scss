@@ -199,6 +199,35 @@
         vertical-align: middle;
       }
     }
+    #user-edit-dropdown {
+      &.dropdown {
+        margin: 0;
+        @media (max-width: 574px) {
+          float: none !important;
+          position: relative;
+          right: 4px;
+        }
+        #edit-label{
+          text-transform: capitalize;
+        }
+        .dropdown-toggle {
+          padding: 0 15px;
+          font-size: 20px;
+          border: none;
+        }
+        li {
+          display: block;
+          text-transform: capitalize;
+          font-size: 20px;
+          .first, .second {
+            font-weight: 600;
+          }
+          i {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
     .like-box, .comment-box {
       color: $header-gray;
       font-size: 18px;

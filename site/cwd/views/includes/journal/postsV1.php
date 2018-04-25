@@ -139,6 +139,19 @@
                         </div>
                     </div>
                 </li>
+                <div id="user-edit-dropdown" class="dropdown pull-right margin-sides">
+                    <button class="btn btn-white dropdown-toggle <?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg gray' : ''; ?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="Login to enable this functionality" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?> type="button" data-toggle="dropdown">
+                        <span id="edit-label"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+                    </button>
+                    <ul id="edit-box" class="dropdown-menu">
+                        <li data-filter-value="newest">
+                            <a class="cursor-pointer first" ><i class="fa fa-pencil" aria-hidden="true"></i>edit</a>
+                        </li>
+                        <li data-filter-value="liked">
+                            <a class="cursor-pointer second"><i class="fa fa-trash" aria-hidden="true"></i>delete</a>
+                        </li>
+                    </ul>
+                </div>
                 <li class="comment-content">
                     <?php echo ($latest_post['title']) ? '<h5>' . $latest_post['title'] . '</h5>' : ''; ?>
                     <div class="text-content">
