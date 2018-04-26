@@ -46,7 +46,7 @@
                 <div class="col-sm-12 no-p">
                     <hr>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 status-container">
                     <label for="anxiety">Anxiety</label>
                     <?php if($anxiety == null): ?>
                     <input class="range" id="anxiety" type="range" min="0" max="100" />
@@ -54,7 +54,7 @@
                     <input class="range" id="anxiety" type="range" min="0" max="100" value="<?php echo $anxiety['value']; ?>" style="background-size: <?php echo $anxiety['size']; ?>;" />
                     <?php endif; ?>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 status-container">
                     <label for="isolation">Isolation</label>
 	                <?php if($isolation == null): ?>
                     <input class="range" id="isolation" type="range" min="0" max="100" value="50" />
@@ -62,7 +62,7 @@
                     <input class="range" id="isolation" type="range" min="0" max="100" value="<?php echo $isolation['value']; ?>" style="background-size: <?php echo $isolation['size'];?>"  />
 	                <?php endif; ?>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-3 status-container">
                     <label for="happiness">Happiness</label>
 	                <?php if($happiness == null): ?>
                     <input class="range" id="happiness" type="range" min="0" max="100" value="50" />
@@ -71,7 +71,7 @@
 	                <?php endif; ?>
 
                 </div>
-                <div class="col-sm-3 drop-status-col">
+                <div class="col-sm-3 drop-status-col status-container">
                     <div class="save-btn-box">
                         <input type="submit" name="submit" value="Publish" class="save-btn blue">
                     </div>

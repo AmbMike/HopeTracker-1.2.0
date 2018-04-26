@@ -221,6 +221,14 @@
         }
       }
     }
+    .status-container {
+      @media (min-width: 768px){
+        display: inline-flex;
+      }
+      .range {
+        min-width: 70px;
+      }
+    }
   }
   .updater-box{
     display: none;
