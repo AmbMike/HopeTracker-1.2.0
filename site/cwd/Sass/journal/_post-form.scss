@@ -87,7 +87,11 @@
     .input-box {
       display: inline-block;
       width: 85%;
-
+      .error-msg {
+        position: relative;
+        bottom: 10px;
+        margin-top: 0;
+      }
 
       /*
       &:after {
