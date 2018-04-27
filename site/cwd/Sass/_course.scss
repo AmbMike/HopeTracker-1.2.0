@@ -192,7 +192,10 @@
             }
 
             &.pre-complete {
-
+              color: darken($theme-gray,10%);
+              & ~ p {
+                color: darken($theme-gray,10%);
+              }
               &:before {
                 content: '\f00c';
                 color: darken($theme-gray, 18%);

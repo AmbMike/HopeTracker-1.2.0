@@ -311,19 +311,6 @@
     list-style-type: none;
     margin: 15px;
     padding: 0;
-    @media (max-width: 550px){
-      li:nth-child(1), li:nth-child(2), li:nth-child(3) {
-        display: block;
-        text-align: center;
-        margin: 0 0 10px 0;
-        &.user-content {
-          margin: 0;
-        }
-        p {
-          margin: 0;
-        }
-      }
-    }
     .user-img-container {
       vertical-align: top;
       width: 70px;
@@ -364,10 +351,6 @@
       }
       .user-name{
         text-transform: capitalize;
-        @media (max-width: 550px) {
-          position: relative;
-          right: 7px;
-        }
       }
       .user-content {
         color: darken($theme-gray,15%);
@@ -478,16 +461,6 @@
     #community-post-reply {
       list-style-type: none;
       margin: 20px 25px;
-      @media (max-width: 550px){
-        li:nth-child(2), li:nth-child(3), .reply-user-img, .reply-user-text-box {
-          display: block;
-          text-align: center;
-          margin: 0 0 10px 0;
-          &.user-content {
-            margin: 0;
-          }
-        }
-      }
       hr {
         margin-top: 15px;
       }
@@ -515,6 +488,7 @@
       }
       .reply-user-name{
         text-transform: capitalize;
+
       }
       .user-content {
         color: darken($theme-gray,15%);
