@@ -140,7 +140,7 @@ if($('#journal-entry').length > 0){
 
         $(obj.form_id + ' input[name="submit"]').on('click',function (event) {
             event.preventDefault();
-
+            var $thisSubmitInput = $(this);
            /* var tinyMCE_error_box = 'div #tinyMCE-body';
 
             if($(tinyMCE_error_box).length === 0){
@@ -169,7 +169,7 @@ if($('#journal-entry').length > 0){
                 if($(obj.form_id).attr('data-post-draft-id')){
                     draftPostId = $(obj.form_id).attr('data-post-draft-id');
                 }
-
+                $thisSubmitInput.prop('disabled', true);
 
                 $.ajax({
                     type: 'POST',
@@ -219,7 +219,10 @@ if($('#journal-entry').length > 0){
 
                                $(obj.form_id + ' .updater-box').slideUp(500);
 
-                               $(obj.form_id).parent().find('.alert-success').slideDown(600);
+                               $(obj.form_id).parent().find('.alert-success').slideDown(600,function () {
+                                   // Enable submit button.
+                                   $thisSubmitInput.prop('disabled', false);
+                               });
 
 
                                  /** Reset the form ranges. */
@@ -232,6 +235,7 @@ if($('#journal-entry').length > 0){
                                  $('.input-box').removeClass('valid');
 
                              });
+
                         }
                     }
                 });
