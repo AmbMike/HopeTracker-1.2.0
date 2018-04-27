@@ -64,8 +64,7 @@ if(isset($_GET['user_id'])){
                             <li <?php /* Remove this class class="on" */ ?> data-toggle-btn="member-posts"><a class="simple-heading make-post"><i class="fa fa-pencil" aria-hidden="true"></i><span> Make Post</span></a></li>
                             <?php endif; ?>
                             <li data-toggle-btn="member-search" data-search="dropdown-btn"><a class="simple-heading search-members"><i class="fa fa-address-book-o" aria-hidden="true"></i> Search Members</a></li>
-                            <li data-toggle-btn="member-order" class="newest-drop-box"><a class="simple-heading newest-text"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i>  <span data-order-val="newest">Newest</span> <i class="fa fa-caret-down" aria-hidden="true"></i></a>
-                            </li>
+                            <li data-toggle-btn="member-order" class="newest-drop-box"><a class="simple-heading newest-text"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i>  <span id="filter-value" data-order-val="newest">Newest</span> <i class="fa fa-caret-down" aria-hidden="true"></i></a></li>
                         </ul>
                         <div data-toggle-box="member-search" id="member-filter" data-search="filter-container" class="filter-container">
                             <form class="form-horizontal by-name" id="search-by-name">
