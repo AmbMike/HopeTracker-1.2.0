@@ -236,7 +236,7 @@
                             </li>
                             <li>
                                 <div class="reply-user-name">
-                                    <a class="wrap simple-heading " href="<?php echo $user_profile_path; ?>"> <?php echo User::user_info('username',$post_user_id); ?></a> <?php echo $comment['comment']; ?>
+                                    <a class="wrap simple-heading " <?php echo $UserProfile->profile($comment['user_id']); ?>> <?php echo User::user_info('username',$comment['user_id']); ?></a> <?php echo $comment['comment']; ?>
                                     <div class="reply-user-info-box">
                                         <time itemprop="dateCreated"  class="human-time date" datetime="<?php echo date("j F Y H:i",$comment['created_on']) ?>"><?php echo date("j F Y H:i",$comment['created_on']) ?></time> <i class="fa fa-circle" aria-hidden="true"></i><span class="author-local"> <?php echo $state_list[strtoupper(user::user_info('state',$comment['user_id']))]; ?></span>
                                         <?php /* Check if the logged in user liked the post already*/ ?>
