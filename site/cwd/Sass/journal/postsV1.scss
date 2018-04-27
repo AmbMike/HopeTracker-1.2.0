@@ -139,19 +139,6 @@
       margin-top: 5px;
       margin-bottom: 15px;
     }
-    @media (max-width: 550px){
-      li:nth-child(1), li:nth-child(2), li:nth-child(3) {
-        display: block;
-        text-align: center;
-        margin: 0 0 10px 0;
-        &.user-content {
-          margin: 0;
-        }
-        p {
-          margin: 0;
-        }
-      }
-    }
 
     li {
       display: inline-block;
@@ -165,10 +152,6 @@
       }
       .user-name{
         text-transform: capitalize;
-        @media (max-width: 550px) {
-          position: relative;
-          right: 7px;
-        }
       }
       .user-content {
         color: darken($theme-gray,15%);
@@ -312,7 +295,6 @@
     .post-reply {
       list-style-type: none;
       margin: 0 15px;
-
       .like-btn{
         display: inline-block;
 
@@ -328,24 +310,20 @@
           }
         }
       }
-
-      @media (max-width: 550px){
-        li:nth-child(2), li:nth-child(3), .reply-user-img, .reply-user-text-box {
-          display: block;
-          text-align: center;
-          margin: 0 0 10px 0;
-          &.user-content {
-            margin: 0;
-          }
-        }
-      }
       hr {
         margin-top: 5px;
         margin-bottom: 15px;
       }
       li {
-        display: inline-block;
-        vertical-align: middle;
+        display: table-cell;
+        vertical-align: top;
+        width: 100%;
+        @media (max-width: 550px) {
+          display: block;
+        }
+      }
+      .reply-user-img {
+        width: 50px;
       }
       .profile-img {
         width: 50px;
@@ -369,7 +347,6 @@
       }
       .reply-user-name{
         text-transform: capitalize;
-        margin-top: 12px;
 
         .simple-heading{
          color:  $theme-blue;
