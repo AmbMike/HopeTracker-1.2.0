@@ -116,7 +116,7 @@ function communitySearchPosts() {
             $('#related-post').html(response);
             $('[data-toggle-box]').stop().slideUp(700);
             $('[data-toggle-box]').removeClass('on');
-
+            $('time.human-time').timeago();
         });
 
     });

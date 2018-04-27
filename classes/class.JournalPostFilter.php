@@ -297,7 +297,7 @@ class JournalPostFilter
 
 		  	switch ($order_type):
 			    case 'newest' :
-			    	$sql =  $this->Database->prepare("SELECT * FROM journal_entries  status = 1 ORDER BY timestamp DESC LIMIT :startLimit, :maxlimit" );
+			    	$sql =  $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1 ORDER BY timestamp DESC LIMIT :startLimit, :maxlimit" );
 				    $sql->setFetchMode( PDO::FETCH_ASSOC );
 				    $sql->bindParam('startLimit',$startPost, PDO::PARAM_INT);
 				    $sql->bindParam('maxlimit',$endPost, PDO::PARAM_INT);
@@ -305,7 +305,8 @@ class JournalPostFilter
 				    $returnValue['posts'] = $sql->fetchAll();
 			    	break;
 			    case 'oldest' :
-				    $sql =  $this->Database->prepare("SELECT * FROM journal_entries  status = 1  ORDER BY timestamp ASC LIMIT :startLimit, :maxlimit" );
+
+				    $sql =  $this->Database->prepare("SELECT * FROM journal_entries WHERE status = 1  ORDER BY timestamp ASC LIMIT :startLimit, :maxlimit" );
 				    $sql->setFetchMode( PDO::FETCH_ASSOC );
 				    $sql->bindParam('startLimit',$startPost, PDO::PARAM_INT);
 				    $sql->bindParam('maxlimit',$endPost, PDO::PARAM_INT);
