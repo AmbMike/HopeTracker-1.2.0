@@ -46,6 +46,8 @@
 
     /** Set for incoming ajax calls */
     $post_out_array = array();
+
+    // Initial posts show before  lazy load is in affect.
     if(!isset($_GET['ajaxPost'])){
 
         /* If the GET journal id is in the url, then get just the one journal.  Else get all the journals per normal */
@@ -55,8 +57,12 @@
         else:
 	        $post_out_array  = $JournalPosts->getLatestPosts($posts_qty);
         endif;
-    }else if($_GET['ajaxPost'] == 'by name'){
+    }
 
+    /** Lazy load in effect. */
+
+    // Do if search is by name.
+    else if($_GET['ajaxPost'] == 'by name'){
 
         /** Searched users name */
 	    $data['name'] = $_GET['name'];
@@ -69,7 +75,9 @@
         $post_out_array = $posts_array['posts'];
 
 
-    }else if($_GET['ajaxPost'] == 'by filters'){
+    }
+    // Do if search is by filters.
+    else if($_GET['ajaxPost'] == 'by filters'){
         $ajaxData = $_GET['data'] ;
 
 	    /** Total posts to show */
@@ -79,6 +87,7 @@
 	    $post_out_array = $posts_array['posts'];
 
     }
+    // Do if search is set do show order by
     else if($_GET['ajaxPost'] == 'order by'){
 
 	    /** Total posts to show */
@@ -88,7 +97,10 @@
 	    $posts_array = $JournalPostsFilter->getPosts($ajaxData);
 	    $post_out_array = $posts_array['posts'];
     }
+
+    /** If the ajax is to show more  */
     else if($_GET['ajaxPost'] == 'more posts'){
+
 	    /** Total posts to show */
 	    $ajaxData['startPost'] = (int)$_GET['startPost'];
 	    $ajaxData['endPost'] = (int)$totalPostToShow;
@@ -105,7 +117,7 @@
     }
 
     ?>
-<div <?php echo (isset($posts_array['posts_user_ids'])) ? 'data-post-user-ids="'.$posts_array['posts_user_ids'].'"' : '' ?> id="journal-postV1" data-post-start="0" data-postV1="parent">
+<div <?php echo (isset($posts_array['posts_user_ids'])) ? 'data-post-user-ids="'.$posts_array['posts_user_ids'].'"' : '' ?> id="journal-postV1" data-post-start="<?php echo $totalPostToShow; ?>" data-postV1="parent">
     <?php /** Loop through most recent journal posts !IMPORTANT - the variables below come in from the file that's including this file */ ?>
     <?php if(count($post_out_array) > 0): ?>
 	    <?php
@@ -273,6 +285,7 @@
 
             </div>
     <?php else: ?>
+        <?php if($_GET['ajaxPost'] != 'more posts'): ?>
             <div class="box-one no-search-found">
                 <h3>No one in the community (yet) matches your search. If you were searching a name, check the spelling. Otherwise, try again limiting to just one filter option — see examples below.</h3>
                 <ul><li>Search for "Long-Term Recovery" to get inspired. </li>
@@ -282,6 +295,7 @@
                     <li>Search for "Son" <i>and</i> "Daughter" to find others with addicted parents. </li>
                 </ul>
             </div>
+        <?php endif; ?>
     <?php endif; ?>
 
     <?php elseif (isset($posts_array['endPosts'])): ?>

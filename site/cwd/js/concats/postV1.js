@@ -102,7 +102,8 @@ function processPostV1Comments() {
                                 postUserIds : postUserIds,
                                 startPost : $(container).attr('data-post-start')
 
-                            }
+                            },
+                            cache: false
                         };
                     }else{
                         ajaxData = {
@@ -110,13 +111,16 @@ function processPostV1Comments() {
                             data  : {
                                 type : 'no filter scroll',
                                 startPost : $(container).attr('data-post-start'),
-                            }
+                            },
+                            cache: false
                         };
                     }
+
 
                     if(inAction === false && !$('[data-stop-post-query]').length  > 0) {
                         inAction = true;
                         $.get(RELATIVE_PATH + '/site/cwd/views/includes/journal/postsV1.php',ajaxData,function (response) {
+
                             if(response !== ''){
                                 $('#related-post').append(response);
 

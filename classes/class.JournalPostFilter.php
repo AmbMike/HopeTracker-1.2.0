@@ -355,7 +355,7 @@ class JournalPostFilter
 
 	    }
 
-	    /** Get post by limit index */
+	    /** Get post by limit with NO filter - SCROLL EFFECT */
 	    if($data['type'] == 'no filter scroll'){
 
 	    	/** Get full row count */
@@ -363,11 +363,15 @@ class JournalPostFilter
 		    $sql->execute();
 		    $totalRows = $sql->fetchColumn();
 
+
+	    /** Stop scripts if scroll is done */
+	    if($totalRows <= $startPost) exit;
+
 		    /** Send back value telling the php page the post are from scrolled post */
 		    $returnValue['scrolled_posts'] = $startPost;
 
 		    /** Check if there are more posts to serve to the user on scroll. */
-		    if($totalRows > $startPost){
+		    if($totalRows > $endPost){
 			    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1 ORDER BY id DESC LIMIT :startLimit, :maxlimit ");
 			    $sql->setFetchMode(PDO::FETCH_ASSOC);
 			    $sql->bindParam('startLimit',$startPost, PDO::PARAM_INT);
@@ -381,8 +385,10 @@ class JournalPostFilter
 		    	$returnValue['endPosts'] = true;
 		    }
 	    }
-	    /** Get post by limit index */
+
+	    /** Get post by limit with IS filter - SCROLL EFFECT */
 	    if($data['type'] == 'filter scroll'){
+
 	    	$user_ids = $data['postUserIds'];
 
 		    $totalPosts = $this->getTotalPostForUsers($user_ids);
