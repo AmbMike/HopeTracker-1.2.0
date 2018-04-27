@@ -151,6 +151,21 @@
                         </div>
                     </div>
                 </li>
+                <?php /* Remove comment when backend is complete
+                <div id="user-edit-dropdown" class="dropdown pull-right margin-sides">
+                    <button class="btn btn-white dropdown-toggle <?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg gray' : ''; ?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="Login to enable this functionality" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?> type="button" data-toggle="dropdown">
+                        <span id="edit-label"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></span>
+                    </button>
+                    <ul id="edit-box" class="dropdown-menu">
+                        <li data-filter-value="newest">
+                            <a class="cursor-pointer first" ><i class="fa fa-pencil" aria-hidden="true"></i>edit</a>
+                        </li>
+                        <li data-filter-value="liked">
+                            <a class="cursor-pointer second"><i class="fa fa-trash" aria-hidden="true"></i>delete</a>
+                        </li>
+                    </ul>
+                </div>
+                */ ?>
                 <li class="comment-content">
                     <?php echo ($latest_post['title']) ? '<h5>' . $latest_post['title'] . '</h5>' : ''; ?>
                     <div class="text-content">
@@ -198,25 +213,41 @@
                 <?php if($LikePosts->checkLikedQuestion() == true): ?>
                     <li>
                         <span class="like-box"><i class="fa fa-thumbs-up" aria-hidden="true"></i> <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $latest_post['user_id'];  ?>" data-post-id="<?php echo $latest_post['id'];  ?>" data-post-type="2">Liked </span>
-                            <!--<i class="fa fa-circle dot"aria-hidden="true"></i>
+                           <?php /* Remove comment when backend is complete
+                            <i class="fa fa-circle dot"aria-hidden="true"></i>
                             <div class="question-liked-box">
                                 <i class="fa fa-thumbs-up"></i>
                                 <span class="question-liked-text">23</span>
-                            </div>-->
+                            </div>
+                            */ ?>
                         </span>
                     </li>
                 <?php else: ?>
                     <li>
                         <span class="like-box">
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $latest_post['user_id'];  ?>" data-post-id="<?php echo $latest_post['id'];  ?>" data-post-type="2">Like </span><!--<i class="fa fa-circle dot"aria-hidden="true"></i>-->
-                            <!--<div class="question-liked-box">
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $latest_post['user_id'];  ?>" data-post-id="<?php echo $latest_post['id'];  ?>" data-post-type="2">Like </span><i class="fa fa-circle dot"aria-hidden="true"></i>
+                            <?php /* Remove comment when backend is complete
+                            <div class="question-liked-box">
                                 <i class="fa fa-thumbs-up"></i>
                                 <span class="question-liked-text">23</span>
-                            </div>-->
+                            </div>
+                            */ ?>
                         </span>
                     </li>
                 <?php endif; ?>
                 <li data-toggle="collapse" role="button" data-target="#post-commentV1-<?php echo $index; ?>"><span class="comment-box"><i class="fa fa-comments-o" aria-hidden="true"></i> Comment</span></li>
+                <span class="flag-box" data-question="flag-btn" role="button" >
+                        <span class="flag-tooltip-text">
+                                Click here to report this post as inappropriate.
+                            <a class="alt-flag">
+                                flag
+                            </a>
+                        </span>
+                        <i class="fa fa-flag" aria-hidden="true"></i>
+                    </span>
+                <?php /* Remove comment when backend is complete.
+                    <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"><i class="fa fa-flag" aria-hidden="true"></i></span>
+                <?php // End if if user has not flagged the post. */ ?>
             </ul>
             <?php /* Post Reply Box - collapse */ ?>
             <div  id="post-commentV1-<?php echo $index; ?>" class="reply-box <?php echo (!isset($_GET['journal_id'])) ? 'collapse' : ' in'; ?> ">
