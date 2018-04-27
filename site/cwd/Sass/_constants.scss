@@ -127,6 +127,14 @@ $header-gray: #90949c;
   font-family: sacramento;
   src: url(#{$relativePath}/site/public/fonts/Sacramento/Sacramento-Regular.ttf);
 }
+@font-face {
+  font-family:Northwell;
+  src: url(#{$relativePath}/site/public/fonts/northwell-webfont.ttf);
+}
+@font-face {
+  font-family:northwell;
+  src: url(#{$relativePath}/site/public/fonts/northwell-webfont.ttf);
+}
 /* Extends */
 .lato-regular{
   font-family: Lato-Regular;
