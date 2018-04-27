@@ -20,3 +20,5 @@ users/user-10/
 package-lock.json
 .idea/dictionaries/
 .idea/php.xml
+/classes/local-env.zip
+
