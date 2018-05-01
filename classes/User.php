@@ -444,6 +444,25 @@ class User extends Sessions {
 
 		return $returnValue;
 	}
+	public function full_name_public($user_id){
+		$returnValue = ucfirst(self::user_info('fname',$user_id)) . ' ' .  ucfirst(self::user_info('lname',$user_id));
+
+		return $returnValue;
+	}
+	public function Username_public($user_id = false ){
+
+		if($user_id != false){
+			$returnValue = ucwords(self::user_info('username',$user_id));
+		}else{
+			$returnValue = ucwords(self::user_info('username'));
+		}
+		return $returnValue;
+	}
+	public function users_email_public($user_id){
+		$returnValue = ucfirst(self::user_info('email',$user_id));
+
+		return $returnValue;
+	}
 	public function get_user_id_by_name($name) {
 		$db = new Database();
 		$General = new General();

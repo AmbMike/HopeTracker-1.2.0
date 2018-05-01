@@ -647,6 +647,11 @@ hr {
     border-radius:4px;
     font-size: 14px;
     outline: none;
+
+    &.danger{
+      background: $error_red !important;
+      color: #ffffff !important;
+    }
   }
   &.sm{
     padding-top: 3px;
@@ -839,6 +844,10 @@ hr {
   top:0px;
   background: rgba(0,0,0,.64);
   display: none;
+
+  &.show-el{
+    display: block;
+  }
 }
 /* General Form */
 form{
@@ -1090,6 +1099,16 @@ img{
     font-size: 1.5em;
   }
 }
+.modal{
+  &.deleted{
+    width: 400px;
+    height: 300px;
+    margin: auto;
+    top: 20px;
+    z-index: 90;
+  }
+
+}
 /*.modal-backdrop:nth-child(2n-1) {
  display: none !important;
 }*/
@@ -1260,4 +1279,7 @@ input:-webkit-autofill:active {
   .md-center-text{
     text-align: center;
   }
+}
+.gray-text{
+  color: $main_font_color;
 }

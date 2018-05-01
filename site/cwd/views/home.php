@@ -25,6 +25,7 @@ $Page->header(array(
 $text_left = true;
 $Users = new User();
 $SignUpBtn = new SignUpBtn('/protected/course','Get Started','Join Now <small>(It\'s free)</small>');
+
 ?>
 <main id="new-home">
 	<section id="top-container">
