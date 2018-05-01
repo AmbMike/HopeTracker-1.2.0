@@ -225,7 +225,7 @@
                 <?php else: ?>
                     <li>
                         <span class="like-box">
-                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $latest_post['user_id'];  ?>" data-post-id="<?php echo $latest_post['id'];  ?>" data-post-type="2">Like </span><i class="fa fa-circle dot"aria-hidden="true"></i>
+                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $latest_post['user_id'];  ?>" data-post-id="<?php echo $latest_post['id'];  ?>" data-post-type="2">Like </span><!--<i class="fa fa-circle dot"aria-hidden="true"></i>-->
                             <?php /* Remove comment when backend is complete
                             <div class="question-liked-box">
                                 <i class="fa fa-thumbs-up"></i>
@@ -234,7 +234,7 @@
                             */ ?>
                         </span>
                     </li>
-                <?php endif; ?>
+                <?php endif; ?>General comments/questions:
                 <li data-toggle="collapse" role="button" data-target="#post-commentV1-<?php echo $index; ?>"><span class="comment-box"><i class="fa fa-comments-o" aria-hidden="true"></i> Comment</span></li>
                 <span class="flag-box" data-question="flag-btn" role="button" >
                         <span class="flag-tooltip-text">

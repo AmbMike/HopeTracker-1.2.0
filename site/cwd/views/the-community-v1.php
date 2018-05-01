@@ -20,11 +20,11 @@ $User = new User();
 $Admin = new Admin();
 
 $Page->header(array(
-    'Title' => 'Families of Drug Addicts | HopeTracker',
-    'Description' => 'Follow real-time stories of parent, spouses, grandparents or siblings going through the emotions of addiction. A community of support and understanding.',
-    'OG Image'  => OG_IMAGES  . 'community-pg.jpg',
-    'OG Title'  => 'Families of Drug Addicts',
-    'Active Link' => 'Community'
+	'Title' => 'Families of Drug Addicts | HopeTracker',
+	'Description' => 'Follow real-time stories of parent, spouses, grandparents or siblings going through the emotions of addiction. A community of support and understanding.',
+	'OG Image'  => OG_IMAGES  . 'community-pg.jpg',
+	'OG Title'  => 'Families of Drug Addicts',
+	'Active Link' => 'Community'
 ));
 //Debug::data($CommunityLog->new_forum_from_followed_users());
 ?>
@@ -53,18 +53,19 @@ if(isset($_GET['user_id'])){
     <div class="row">
         <div class="col-md-8" id="the-community">
             <main>
-                <section class="inside-box no-p">
-                    <data class="h1-addon"><data value="" class="total-members"><?php echo $Admin->total_users(); ?> Members</data>
+                <div class="header-box">
+                    <span class="h1-addon"><data value="<?php echo $Admin->total_users(); ?> " class="total-members"><?php echo $Admin->total_users(); ?></data> Members</span>
                     <h1 class="green-heading-lg top">The Community</h1>
-                </section>
+                </div>
                 <section class="box-one no-p">
                     <div class="filter-navigation">
                         <ul id="community-nav">
-	                        <?php if($Session->get('logged_in') == 1): ?>
-                            <li <?php /* Remove this class class="on" */ ?> data-toggle-btn="member-posts"><a class="simple-heading make-post"><i class="fa fa-pencil" aria-hidden="true"></i><span> Make Post</span></a></li>
-                            <?php endif; ?>
+							<?php if($Session->get('logged_in') == 1): ?>
+                                <li <?php /* Remove this class class="on" */ ?> data-toggle-btn="member-posts"><a class="simple-heading make-post"><i class="fa fa-pencil" aria-hidden="true"></i><span> Make Post</span></a></li>
+							<?php endif; ?>
                             <li data-toggle-btn="member-search" data-search="dropdown-btn"><a class="simple-heading search-members"><i class="fa fa-address-book-o" aria-hidden="true"></i> Search Members</a></li>
-                            <li data-toggle-btn="member-order" class="newest-drop-box"><a class="simple-heading newest-text"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i>  <span id="filter-value" data-order-val="newest">Newest</span> <i class="fa fa-caret-down" aria-hidden="true"></i></a></li>
+                            <li data-toggle-btn="member-order" class="newest-drop-box"><a class="simple-heading newest-text"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i>  <span data-order-val="newest">Newest</span> <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            </li>
                         </ul>
                         <div data-toggle-box="member-search" id="member-filter" data-search="filter-container" class="filter-container">
                             <form class="form-horizontal by-name" id="search-by-name">
@@ -91,7 +92,7 @@ if(isset($_GET['user_id'])){
                                                     <span role="button" data-toggle="collapse" data-target="#role-filter" class="title">They are a:</span>
                                                     <div id="role-filter" class="checkboxes in">
                                                         <div class="list-container">
-	                                                        <?php  $Forms->generate_checkbox_label_list('i_am'); ?>
+															<?php  $Forms->generate_checkbox_label_list('i_am'); ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -101,7 +102,7 @@ if(isset($_GET['user_id'])){
                                                     <span role="button" data-toggle="collapse" data-target="#loved-ones" class="title">Concerned About Their</span>
                                                     <div id="loved-ones" class="checkboxes in">
                                                         <div class="list-container">
-                                                         <?php  $Forms->generate_checkbox_label_list('concerned_about'); ?>
+															<?php  $Forms->generate_checkbox_label_list('concerned_about'); ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -111,7 +112,7 @@ if(isset($_GET['user_id'])){
                                                     <span role="button" data-toggle="collapse" data-target="#stage-filter" class="title">Their loved one is in:</span>
                                                     <div id="stage-filter" class="checkboxes in">
                                                         <div class="list-container">
-	                                                        <?php  $Forms->generate_checkbox_label_list('status'); ?>
+															<?php  $Forms->generate_checkbox_label_list('status'); ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -120,7 +121,7 @@ if(isset($_GET['user_id'])){
                                                     <div class="col-md-6 col-xs-6">
                                                         <select name="state" class="form-control" data-toggle="tooltip" title="State Required">
                                                             <option value="hide">-- State --</option>
-                                                            <?php echo FORMS::get_states(); ?>
+															<?php echo FORMS::get_states(); ?>
                                                         </select>
                                                     </div>
                                                     <div class="col-md-6 col-xs-6">
@@ -131,8 +132,8 @@ if(isset($_GET['user_id'])){
                                                     <div class="col-md-12 text-center">
                                                         <button type="submit" class="btn green btn-default filter-search-btn">Search by Filters</button></div></div>
                                             </div>
-                                            <?php /** Add section in database to incorporate this filter. */ ?>
-                                            <?php /*
+											<?php /** Add section in database to incorporate this filter. */ ?>
+											<?php /*
                                             <div class="col-sm-6">
                                                 <div id="showing-as" class="filters">
                                                     <span role="button" data-toggle="collapse" data-target="#show-as-filter" class="title">Showing As</span>
@@ -149,22 +150,22 @@ if(isset($_GET['user_id'])){
                                 <div class="clearfix"></div>
                             </form>
                         </div>
-	                    <?php if($Session->get('logged_in') == 1): ?>
-                        <div data-toggle-box="member-posts" id="community-user-title">
-                            <div class="table">
-                                <div class="cell user-img-container">
-                                    <a class="wrap" <?php echo $UserProfile->profile($post_user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
-                                </div>
-                                <div class="cell">
-                                    <div class="textarea-box">
-                                        <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="What's on your mind?"></textarea>
+						<?php if($Session->get('logged_in') == 1): ?>
+                            <div data-toggle-box="member-posts" id="community-user-title">
+                                <div class="table">
+                                    <div class="cell user-img-container">
+                                        <a class="wrap" <?php echo $UserProfile->profile($post_user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                     </div>
-                                    <!--<div class="post-btn-box">
-                                        <input type="submit" name="submit" value="Post" class="save-btn blue">
-                                    </div>-->
+                                    <div class="cell">
+                                        <div class="textarea-box">
+                                            <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="What's on your mind?"></textarea>
+                                        </div>
+                                        <!--<div class="post-btn-box">
+											<input type="submit" name="submit" value="Post" class="save-btn blue">
+										</div>-->
+                                    </div>
                                 </div>
-                            </div>
-                          <!--  <li><a class="wrap" href="<?php /*echo $user_profile_path; */?>"><img src="/<?php /*echo (User::user_info('profile_img',$post_user_id)) ? : DEFAULT_PROFILE_IMG; */?>" class="img-circle profile-img sm"></a></li>
+                                <!--  <li><a class="wrap" href="<?php /*echo $user_profile_path; */?>"><img src="/<?php /*echo (User::user_info('profile_img',$post_user_id)) ? : DEFAULT_PROFILE_IMG; */?>" class="img-circle profile-img sm"></a></li>
                             <li>
                                 <div class="simple-heading user-name">
                                     <a class="wrap" href="<?php /*echo $user_profile_path; */?>"> <?php /*echo User::user_info('username',$post_user_id); */?></a>
@@ -175,8 +176,8 @@ if(isset($_GET['user_id'])){
                                     <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="What's on your mind?."></textarea>
                                 </div>
                             </li>-->
-                        </div>
-                        <?php endif; ?>
+                            </div>
+						<?php endif; ?>
                         <div data-toggle-box="member-order" data-search="order-container" class="member-order-box" id="member-order">
                             <h4>How would you like to order the posts?</h4>
                             <div data-order-checkbox="newest">
@@ -202,14 +203,14 @@ if(isset($_GET['user_id'])){
                     <div class="clearfix"></div>
                 </section>
                 <div id="related-post">
-                    <?php include_once(VIEWS . 'includes/journal/postsV1.php'); ?>
+					<?php include_once(VIEWS . 'includes/journal/postsV1.php'); ?>
                 </div>
                 <div id="post-feeder"></div>
             </main>
         </div>
         <div class="col-md-4 sidebar-box">
             <aside>
-                <?php include(SIDEBAR); ?>
+				<?php include(SIDEBAR); ?>
             </aside>
         </div>
     </div>
