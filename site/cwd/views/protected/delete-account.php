@@ -8,18 +8,18 @@
 ?>
 
 <?php
-
+$showDeleteForm = true;
 if($_POST['submit']){
-
 	require_once( CLASSES . 'class.DeleteUser.php' );
-	$DeleteUser = new DeleteUser();
+	if($DeleteUser = new DeleteUser()){
+		$showDeleteForm = false;
+	}
 
 }
-
 $Page = new \Page_Attr\Page();
 $Page->header(array(
-	'Title' => 'Delete Account',
-	'Description' => 'If for any reason you\'d like to delete your account, simply confirm your decision to delete your account.',
+	'Title' => 'Disable Account',
+	'Description' => 'If for any reason you\'d like to Disable your account, simply confirm your decision to Disable your account.',
 ));
 
 ?>
@@ -29,14 +29,20 @@ $Page->header(array(
 		<div class="col-md-8" id="delete-user-account">
 			<main>
                 <section class="box-one">
+                    <?php if($showDeleteForm): ?>
                     <div class="inside-box">
-                        <h1 class="blk-heading-main">Delete Account</h1>
+                        <h1 class="blk-heading-main">Disable Account</h1>
                         <p>IMPORTANT - Once your account is deleted you will no longer have access to the Hopetracker member features. </p>
 
                         <form method="post" onsubmit='return confirm("Confirm you would like to delete your account by clicking Ok, or click cancel if you do not want to delete your account.")'>
-                            <p><input name="submit" type="submit" value="Delete My Account" class="btn btn-primary danger"></p>
+                            <p><input name="submit" type="submit" value="Disable My Account" class="btn btn-primary danger"></p>
                         </form>
                     </div>
+                    <?php else: ?>
+                        <div class="inside-box">
+                            <h1 class="blk-heading-main">Account Disabled Successfully!</h1>
+                        </div>
+                    <?php endif; ?>
                 </section>
 			</main>
 		</div>
