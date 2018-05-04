@@ -292,7 +292,7 @@ class User extends Sessions {
 
 		$data = $sql->fetch();
 		if(!empty($data['profile_img'])){
-			return RELATIVE_PATH .  $data['profile_img'];
+			return RELATIVE_PATH .  $data['profile_img'] . '?cache='. rand(4,1000);
 		}else{
 			return RELATIVE_PATH . 'site/public/images/main/icon.jpg';
 		}
