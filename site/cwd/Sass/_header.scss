@@ -143,8 +143,8 @@ header{
       a{
         line-height: 100%;
         position: relative;
-        right: 3px;
-        top: -9px;
+        right: 5px;
+        bottom: 11px;
         color: $button-text;
       }
       @media (max-width: 450px) {
@@ -152,7 +152,7 @@ header{
         width: 40px;
         font-size: 23px;
         a{
-          right: 5px;
+          right: 8px;
         }
       }
     }
