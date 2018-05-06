@@ -45,12 +45,14 @@
     <?php echo ($no_index) == true ? '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">' : ''; ?>
 
     <?php echo ($custom_stylesheet) ? ' <link rel="stylesheet" href="'.CSS.'/'.$custom_stylesheet.'.css" type="text/css">' : ''; ?>
-    <meta property="og:image:type" content="image/jpeg" />
+
     <meta property="og:title" content="<?php echo ($og_title)  ? : 'HomeTracker | There is Hope'; ?>" />
     <meta property="og:url" content="<?php echo BASE_URL; echo ($og_url)  ? : $_SERVER['REQUEST_URI']; ?>" />
     <meta property="og:image" content="<?php echo BASE_URL; echo ($og_img) ? :IMAGES .'quotes/quote.cant_shine.jpg'; ?>" />
     <meta property="og:description" content="<?php echo ($page_title) ? : 'Hope Tracker | Ambrosia'; ?>"/>
     <meta property="fb:app_id" content="169128966857060"/>
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="Website" />
     
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
