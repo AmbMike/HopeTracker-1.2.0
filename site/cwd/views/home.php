@@ -20,7 +20,6 @@ $Page->header(array(
     'OG Image'  => OG_IMAGES  . 'main-pg.jpg',
     'OG Title'  => 'HopeTracker | Do You Love Someone Struggling with Addiction?'
 ));
-
 /** Include Text Left JS */
 $text_left = true;
 $Users = new User();
