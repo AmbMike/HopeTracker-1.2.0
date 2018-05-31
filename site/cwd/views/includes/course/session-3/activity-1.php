@@ -1,4 +1,4 @@
-<div  data-session-item="1" onClick="window.open('https://www.ambrosiatc.com/addiction/drug-addiction-and-families/?fromHopeTracker&nav=no')">
+<div  data-session-item="1" onClick="window.open('https://www.ambrosiatc.com/addiction/course/drug-addiction-and-families/?fromHopeTracker&nav=no')">
     <p class="heading <?php echo ($Courses->session_status(3,1) == true) ? 'pre-complete' : '' ; ?> ">
         Understand Enabling
     </p>
