@@ -1,4 +1,4 @@
-<div data-session-item="2" onClick="window.open('https://www.ambrosiatc.com/addiction/course/information-addiction/?fromHopeTracker&nav=no')">
+<div data-session-item="2" onClick="window.open('https://www.ambrosiatc.com/addiction/information-addiction/course/?fromHopeTracker&nav=no')">
     <p class="heading <?php echo ($Courses->session_status(10,2) == true) ? 'pre-complete' : '' ; ?>  ">
         Test Your Knowledge
     </p>
