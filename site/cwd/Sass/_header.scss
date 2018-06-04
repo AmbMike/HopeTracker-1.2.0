@@ -143,8 +143,8 @@ header{
       a{
         line-height: 100%;
         position: relative;
-        right: 3px;
-        top: -9px;
+        right: 5px;
+        bottom: 11px;
         color: $button-text;
       }
       @media (max-width: 450px) {
@@ -152,7 +152,7 @@ header{
         width: 40px;
         font-size: 23px;
         a{
-          right: 5px;
+          right: 8px;
         }
       }
     }
@@ -231,6 +231,7 @@ header{
     border-top: 3px solid $theme-green;
     position: relative;
     z-index: 95;
+
     -webkit-box-shadow:  0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     -moz-box-shadow:  0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     box-shadow:  0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
