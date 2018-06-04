@@ -79,7 +79,7 @@ $theme-green : #48C000;
 $body-gray  : #E9EBEE;
 $theme-gray : #f6f7f9;
 $button-text : #4b4f56;
-$error_red : rgb(255, 158, 157);
+$error_red : #eb2826;
 $select-color: #ffffff;
 $main_font_color : #4b4f56;
 $theme-white : #ffffff;
@@ -126,6 +126,14 @@ $header-gray: #90949c;
 @font-face {
   font-family: sacramento;
   src: url(#{$relativePath}/site/public/fonts/Sacramento/Sacramento-Regular.ttf);
+}
+@font-face {
+  font-family:Northwell;
+  src: url(#{$relativePath}/site/public/fonts/northwell-webfont.ttf);
+}
+@font-face {
+  font-family:northwell;
+  src: url(#{$relativePath}/site/public/fonts/northwell-webfont.ttf);
 }
 /* Extends */
 .lato-regular{

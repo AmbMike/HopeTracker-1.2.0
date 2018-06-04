@@ -84,7 +84,6 @@ function processPostV1Comments() {
         if($('[data-no-lazy-load-posts]').length !== 1){
             /** Get more post when the user scrolls to the bottom of the posts */
             $(window).scroll(function(){
-
                 /** Check if the posts have filters */
                 if ($(container).attr('data-post-user-ids')) {
                     hasFilters = true;
@@ -100,9 +99,11 @@ function processPostV1Comments() {
                             data  : {
                                 type : 'filter scroll',
                                 postUserIds : postUserIds,
-                                startPost : $(container).attr('data-post-start')
+                                startPost : $(container).attr('data-post-start'),
+                                filterType : $(' #filter-value').text()
 
-                            }
+                            },
+                            cache: false
                         };
                     }else{
                         ajaxData = {
@@ -110,13 +111,16 @@ function processPostV1Comments() {
                             data  : {
                                 type : 'no filter scroll',
                                 startPost : $(container).attr('data-post-start'),
-                            }
+                            },
+                            cache: false
                         };
                     }
+
 
                     if(inAction === false && !$('[data-stop-post-query]').length  > 0) {
                         inAction = true;
                         $.get(RELATIVE_PATH + '/site/cwd/views/includes/journal/postsV1.php',ajaxData,function (response) {
+
                             if(response !== ''){
                                 $('#related-post').append(response);
 

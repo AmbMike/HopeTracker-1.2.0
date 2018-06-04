@@ -28,7 +28,7 @@ $UserProfile = new UserProfile();
 error_reporting( 3 );
 ?>
 
-<ul class="logged-in">
+<ul class="logged-in" data-loggedin-user-id="<?php echo USER::user_info('id'); ?>">
     <li class="profile-nav" <?php echo $UserProfile->profile($Sessions->get('user-id')); ?>><img src="/<?php echo $User->get_user_profile_img(false,$Sessions->get('user-id')); ?>" class="profile-img menu-one-trigger">
 		<?php /*  <ul class="dropdown-menu text-center">
 	      <li class="clicker"><a href="/protected/settings/">Settings</a> </li>

@@ -292,7 +292,7 @@ class User extends Sessions {
 
 		$data = $sql->fetch();
 		if(!empty($data['profile_img'])){
-			return RELATIVE_PATH .  $data['profile_img'];
+			return RELATIVE_PATH .  $data['profile_img'] . '?cache='. rand(4,1000);
 		}else{
 			return RELATIVE_PATH . 'site/public/images/main/icon.jpg';
 		}
@@ -440,6 +440,25 @@ class User extends Sessions {
 		return $returnValue;
 	}
 	public static function users_email($user_id){
+		$returnValue = ucfirst(self::user_info('email',$user_id));
+
+		return $returnValue;
+	}
+	public function full_name_public($user_id){
+		$returnValue = ucfirst(self::user_info('fname',$user_id)) . ' ' .  ucfirst(self::user_info('lname',$user_id));
+
+		return $returnValue;
+	}
+	public function Username_public($user_id = false ){
+
+		if($user_id != false){
+			$returnValue = ucwords(self::user_info('username',$user_id));
+		}else{
+			$returnValue = ucwords(self::user_info('username'));
+		}
+		return $returnValue;
+	}
+	public function users_email_public($user_id){
 		$returnValue = ucfirst(self::user_info('email',$user_id));
 
 		return $returnValue;

@@ -20,11 +20,11 @@ $Page->header(array(
     'OG Image'  => OG_IMAGES  . 'main-pg.jpg',
     'OG Title'  => 'HopeTracker | Do You Love Someone Struggling with Addiction?'
 ));
-
 /** Include Text Left JS */
 $text_left = true;
 $Users = new User();
 $SignUpBtn = new SignUpBtn('/protected/course','Get Started','Join Now <small>(It\'s free)</small>');
+
 ?>
 <main id="new-home">
 	<section id="top-container">

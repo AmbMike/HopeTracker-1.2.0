@@ -75,7 +75,31 @@ if(!isset($SignUpBtn)){
         </div>
     </div>
 </div>
-<div class="overlay"></div>
+<?php
+    /* HomeVar switch - set logic for showing overlay - See jquery to show in the footer*/
+    $home_var = ($_GET['homeVar']) ? $_GET['homeVar'] : null;
+    switch ($home_var) :
+        case null :
+              echo '<div class="overlay"></div>';
+        break;
+	    case 'deleted-account' :
+		    echo '<div id="modal-deleted" class="modal modal-message modal-success" >
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <i class="fa fa-thumbs-up"></i>
+                        </div>
+                        <div class="modal-body">Your account has been successfully disabled. </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>';
+        break;
+        default:  echo '<div class="overlay"></div>';
+    endswitch;
+?>
 <?php
 /** Set a cookie that allows the Hopetracker back button to be
  * displayed when a user arrive from the HT site. */
@@ -152,6 +176,12 @@ $users_chatroom = $Chat->user_in_chatroom();
 <?php if(isset($text_left)) : ?>
     <script src="<?php echo JS . 'includes/text-left.js'; ?>" type="text/javascript"></script>
     <script src="<?php echo JS . 'includes/home-slider.js'; ?>" type="text/javascript"></script>
+<?php endif; ?>
+
+<?php if($home_var == 'deleted-account'): ?>
+    <script>
+        $('#modal-deleted').modal('show');
+    </script>
 <?php endif; ?>
 
 </body>
