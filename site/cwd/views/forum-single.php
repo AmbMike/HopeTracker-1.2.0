@@ -90,14 +90,6 @@ if($Session->get('logged_in') == 1) {
                                     "<?php echo $Question->question; ?>"
                                 </div>
                                 <div class="tracker-box">
-                                    <?php if($Session->get('logged_in')== 1) : ?>
-                                        <?php if($FollowPost->checkFollowedPost() == true) : ?>
-                                            <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box liked"><i class="fa fa-star" aria-hidden="true"></i> <span>Following</span></span>
-                                        <?php else : ?>
-                                            <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
-                                        <?php endif; ?>
-                                    <?php endif; // End if user is logged in.  ?>
-                                    <i class="fa fa-circle dot" aria-hidden="true"></i>
                                     <div class="forum-details">
                                     <span class="asked-about-box">
                                         Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by
@@ -129,7 +121,13 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
-                        <?php /* Reactivate after backend is complete.
+                        <?php if($Session->get('logged_in')== 1) : ?>
+                            <?php if($FollowPost->checkFollowedPost() == true) : ?>
+                                <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box liked"><i class="fa fa-star" aria-hidden="true"></i> <span>Following</span></span>
+                            <?php else : ?>
+                                <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
+                            <?php endif; ?>
+                        <?php endif; // End if user is logged in.  ?>
                         <div data-toggle-box="member-posts" id="visitor-response">
                             <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
@@ -139,7 +137,6 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
-                        */ ?>
                         <div class="panel-group sub-posts">
                             <div class="panel panel-default">
                                 <div class="panel-heading more-answers-box">
