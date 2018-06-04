@@ -88,6 +88,12 @@
     .input-box {
       display: inline-block;
       width: 85%;
+      white-space: nowrap;
+      &:before {
+        display: inline-block;
+        white-space: nowrap;
+        position: initial;
+      }
       .error-msg {
         position: relative;
         bottom: 10px;

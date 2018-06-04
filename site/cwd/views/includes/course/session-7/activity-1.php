@@ -1,4 +1,4 @@
-<div data-session-item="1" onClick="window.open('https://www.ambrosiatc.com/addiction/detachment-with-love/?fromHopeTracker&nav=no')">
+<div data-session-item="1" onClick="window.open('https://www.ambrosiatc.com/addiction/detachment-with-love/course/?fromHopeTracker&nav=no')">
     <p class="heading <?php echo ($Courses->session_status(7,1) == true) ? 'pre-complete' : '' ; ?> ">
         Assess Next Steps Now
     </p>

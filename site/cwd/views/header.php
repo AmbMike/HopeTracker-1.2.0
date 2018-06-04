@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="phone-btn">
-            <a  href="tel:<?php echo MAIN_PHONE ?>"><i class="fa fa-phone" aria-hidden="true"></i></a>
+            <a  href="tel:<?php echo MAIN_PHONE ?>"><i class="fa fa-check" aria-hidden="true"></i></a>
         </div>
     </div>
     <div class="nav-box">
