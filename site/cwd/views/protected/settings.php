@@ -173,7 +173,7 @@ $Page->header(array(
                                 </div>
                             </div>
                         </form>
-                        <a class="pull-right gray-text" href="/<?php echo RELATIVE_PATH . 'protected/delete-account/'; ?>"><small>Delete Account</small></a>
+                        <a class="pull-right gray-text" href="/<?php echo RELATIVE_PATH . 'protected/delete-account/'; ?>"><small>Disable Account</small></a>
                 </section>
             </main>
         </div>

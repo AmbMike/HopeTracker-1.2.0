@@ -68,3 +68,6 @@ Redirect 301 /inspiration-v1/ /addiction-quotes/
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
 </IfModule>
+<FilesMatch "\.(jpg|jpeg)$">
+FileETag MTime Size
+</FilesMatch>

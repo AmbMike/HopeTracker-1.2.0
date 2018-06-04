@@ -71,7 +71,10 @@ class DeleteUser
         // section -64--88-0-2--137fbda7:1631728b918:-8000:0000000000001129 begin
 	    parent::__construct();
 
-	    Debug::data($this->archiveUser());
+	    if( $this->archiveUser()){
+	    	return true;
+	    }
+
         // section -64--88-0-2--137fbda7:1631728b918:-8000:0000000000001129 end
     }
 
@@ -158,7 +161,9 @@ class DeleteUser
 
 				    $this->User->sign_out();
 				    $this->User->log_user_offline($this->user_id);
-				    header('Location: /' . RELATIVE_PATH . 'home/deleted-account');
+				    //header('Location: /' . RELATIVE_PATH . 'home/deleted-account');
+
+				    $returnValue['Deleted'] = true;
 			    }else{
 				    $returnValue['Deleted'] = 'False';
 				    Debug::data( $sql->errorInfo() );
@@ -310,7 +315,7 @@ class DeleteUser
 	    require_once ABSPATH . '/campaign-monitor-api/csrest_subscribers.php';
 
 
-	    $wrap = new CS_REST_Subscribers('24eb9414bd07dd60844e8cae93ac1435', '29a644cdec042cb0fb39f389f20afc9a');
+	    $wrap = new CS_REST_Subscribers('c125c4b41769100b4ade31909b16ca42', '29a644cdec042cb0fb39f389f20afc9a');
 
 	    $result = $wrap->add(array(
 		    'Name' => $user_data['userFullName'],
