@@ -16,6 +16,9 @@ RewriteRule ^addiction-quotes/([^/]+)/([^/]+)/?$ index.php?page_url=inspiration-
 ## Page Masks URLS
 RewriteRule ^families-of-drug-addicts/$ index.php?page_url=the-community-v1 [L,QSA]
 
+## Page Home URLS
+RewriteRule ^home/([^/]+)/?$ index.php?page_url=home&homeVar=$1 [L,QSA]
+
 ## Hope Tracker Admin ##
 RewriteRule ^admin/$ HopeAdmin/index.php [L,QSA]
 RewriteRule ^admin/([^/]+)/?$ HopeAdmin/index.php?page_url=$1 [L,QSA]
@@ -65,3 +68,6 @@ Redirect 301 /inspiration-v1/ /addiction-quotes/
     Header set Access-Control-Allow-Origin "*"
   </FilesMatch>
 </IfModule>
+<FilesMatch "\.(jpg|jpeg)$">
+FileETag MTime Size
+</FilesMatch>

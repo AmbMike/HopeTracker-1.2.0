@@ -707,12 +707,14 @@ $('body').on('click','#chatWidget .close',function () {
 
 /* Validator for the settings form */
 $(document).ready(function() {
+
     $('input[name="current_pass"]').on('click', function () {
         if( $('.updated-pass').length > 0) {
             $('.updated-pass').remove();
         }
     });
     if($('.crop-img-btn').length > 0){
+
         /*$('#img-crop-btn').on('click',function () {*/
         var
             modal =  $('#settings-croppic'),
@@ -726,7 +728,7 @@ $(document).ready(function() {
         crop.el.css({'display' : 'none'});
 
         /* Reset box height if re-clicked upload button */
-        $('#img-crop-btn').on('click',function () { alert();
+        $('#img-crop-btn').on('click',function () {
             crop.el.css({'width' : crop.start_width + 'px', 'height' : crop.start_height + 'px'});
         });
 
@@ -748,7 +750,18 @@ $(document).ready(function() {
                 var image_path = $('.croppedImg').attr('src');
 
                 $('.cropControlRemoveCroppedImage').remove();
-                $('.profile-img').attr('src',image_path);
+
+                if($('header .logged-in').length > 0){
+                    var userId = $('header .logged-in').data('loggedin-user-id');
+
+                    $('.profile-img').each(function () {
+                        var $thisImg = $(this);
+
+                        if ($thisImg.attr('src').indexOf('/user-' + userId + '/') > -1) {
+                            $thisImg.attr('src',image_path);
+                        }
+                    });
+                }
                 $('.pre-profile').css({'display' : 'none'});
                 $('.croppedImg').addClass('img-responsive').addClass('img-circle').addClass('green-border').addClass('pre-profile');
                 crop.el.fadeIn(600).css({'width' : '100%', 'height' : 'auto'});

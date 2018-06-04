@@ -22,7 +22,7 @@ include_once(CLASSES.'class.ActivitySessionSkipped.php');
 
 $Page = new \Page_Attr\Page();
 $Page->header(array(
-	'Title' => 'My Course Page Title',
+	'Title' => 'HopeTracker University',
 	'Description' => 'The course page displays an overview of the course and the current status that are in. ',
 	'Active Link' => 'University'
 ));
