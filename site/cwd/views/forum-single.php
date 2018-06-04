@@ -230,7 +230,7 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <?php /* Reactivate after backend is complete.
+                                                                <?php /* Reactivate after backend is complete.*/ ?>
                                                                 <div data-toggle-box="member-posts" id="visitor-response">
                                                                     <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
@@ -240,7 +240,7 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                */ ?>
+
                                                                 <hr>
                                                             </div>
 														<?php endforeach; ?>
