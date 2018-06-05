@@ -9,7 +9,8 @@ if($('[data-questions-parent="true"]').length > 0){
 
         askQuestion();
 
-        answerQuestion();
+        //answerQuestion('#forum-answer-question-form');
+        answerQuestionMain('#forum-answer-question-form-1');
 
         questionFilters();
 
@@ -338,7 +339,7 @@ function questionFilters() {
             questionsContainer.html(response);
 
             /** Reset the answer section once the new question load. */
-            answerQuestion();
+            answerQuestion('#forum-answer-question-form');
 
             /** Reset profile filters if the are set */
             $(profileFilters).each(function () {
@@ -357,13 +358,13 @@ function questionFilters() {
 
     });
 }
-function answerQuestion() {
+function answerQuestion(formIdVar) {
     'use strict';
 
     /** Parent Ids */
     var pageParent = '[data-questions-parent="true"]';
     var modalId = '#answer-question-modal';
-    var formId =  '#forum-answer-question-form';
+    var formId =  formIdVar;
 
     /* Content to be displayed before form is successfully submitted. */
     var preFormContent = modalId + ' .pre-form-content';
@@ -510,8 +511,6 @@ function answerQuestion() {
                 answerCount++;
                 var answerCountUp =  answerCount;
 
-                /** get and set the question count sub category. */
-                var questionAnswerCountData = $('[data-question-id="'+forumQuestionId+'"] ' + ' [data-users-answers-count="subcategory"]' );
 
                 var answerCountSubcategory =  questionAnswerCountData.val();
                 answerCountSubcategory++;
@@ -559,6 +558,82 @@ function answerQuestion() {
             $(selector).css({'background': 'pink'});
             setTimeout(function () {
                 $(selector).removeAttr('style');
+            },3000);
+        }
+
+    });
+
+}
+function answerQuestionMain(formIdVar) {
+    'use strict';
+
+    /** Parent Ids */
+    var pageParent = '[data-questions-parent="true"]';
+    var formId =  formIdVar;
+
+    /* Content to be displayed before form is successfully submitted. */
+    var preFormContent =  ' .pre-form-content';
+
+    /** The form success message box */
+    var successBox = ' .success-box';
+
+
+
+    /** Form object */
+    var form = {
+        id : formId,
+        question : formId + ' #question',
+        answer : formId + ' [name="answer"]'
+    };
+
+
+    /** Process the "Answer a question" form. */
+    $(form.id).on('submit',function (e) {
+        e.preventDefault();
+
+        /** The question id that the form is submitting the answer for */
+        var forumQuestionId = $(this).attr('date-question-id');
+
+        var answerBoxIdData = '#question-answer-box-data-' + forumQuestionId;
+        var answerBoxId = '#question-answer-box-' + forumQuestionId;
+        var errors = [];
+
+        /** Check if user entered a description */
+        if($(form.answer).val() === ''){
+            errorFunc(form.answer,'Empty answer');
+        }
+
+        if(errors.length > 0){
+            console.log('Error validating the form');
+        }else{
+
+
+            var ajaxData = {
+                form : 'Answer Question Forum',
+                data : {
+                    question_id : $(form.id).attr('date-question-id'),
+                    answer : $(form.id + ' [name="answer"]').val()
+                },
+                cache :  false
+
+            };
+            $.post(RELATIVE_PATH + '/config/processing.php',ajaxData,function (response) {
+                console.log(response);
+
+                if(response.status === 'Success'){
+                    $(preFormContent).slideUp(300,function () {
+                        $(successBox).slideDown(300);
+
+                        $('#answerOuter').load(document.URL+  ' #answerInner');
+                    });
+                }
+            },'json');
+        }
+        function errorFunc(selector,errorMsg){
+            errors.push(errorMsg);
+            $(selector).css({'background': 'pink'});
+            setTimeout(function () {
+                $(selector).removeAttr('style').css({'color' : '#555555'});
             },3000);
         }
 

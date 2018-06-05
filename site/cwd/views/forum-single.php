@@ -90,6 +90,14 @@ if($Session->get('logged_in') == 1) {
                                     "<?php echo $Question->question; ?>"
                                 </div>
                                 <div class="tracker-box">
+                                    <?php if($Session->get('logged_in')== 1) : ?>
+                                        <?php if($FollowPost->checkFollowedPost() == true) : ?>
+                                            <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box liked"><i class="fa fa-star" aria-hidden="true"></i> <span>Following</span></span>
+                                        <?php else : ?>
+                                            <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
+                                        <?php endif; ?>
+                                    <?php endif; // End if user is logged in.  ?>
+                                    <i class="fa fa-circle dot" aria-hidden="true"></i>
                                     <div class="forum-details">
                                     <span class="asked-about-box">
                                         Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by
@@ -121,22 +129,25 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
-                        <?php if($Session->get('logged_in')== 1) : ?>
-                            <?php if($FollowPost->checkFollowedPost() == true) : ?>
-                                <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box liked"><i class="fa fa-star" aria-hidden="true"></i> <span>Following</span></span>
-                            <?php else : ?>
-                                <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
-                            <?php endif; ?>
-                        <?php endif; // End if user is logged in.  ?>
-                        <div data-toggle-box="member-posts" id="visitor-response">
+
+                        <div id="visitor-response">
                             <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
-                                <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
-                                <div class="comment-btn-box">
-                                    <input type="submit" name="submit" value="Comment" class="save-btn blue">
+                                <div class="success-box" style="display: none">
+                                    <div class="modal-header">
+                                        <span class="green-text-md">Submitted Successfully!</span>
+                                    </div>
+                                    <p>Your answer is very valuable to the entire Hopetracker community. </p>
                                 </div>
+                                <form class="pre-form-content" id="forum-answer-question-form-1" date-question-id="<?php echo $questionId; ?>">
+                                    <textarea  rows="1" data-autoresize class="text-features" name="answer" placeholder="Share your advice and experience"></textarea>
+                                    <div class="comment-btn-box">
+                                        <input type="submit" name="submit" value="Comment" class="save-btn blue">
+                                    </div>
+                                </form>
                             </div>
                         </div>
+
                         <div class="panel-group sub-posts">
                             <div class="panel panel-default">
                                 <div class="panel-heading more-answers-box">
@@ -227,7 +238,7 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <?php /* Reactivate after backend is complete.*/ ?>
+                                                                <?php /* Reactivate after backend is complete.
                                                                 <div data-toggle-box="member-posts" id="visitor-response">
                                                                     <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
@@ -237,7 +248,7 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
+                                                                */ ?>
                                                                 <hr>
                                                             </div>
 														<?php endforeach; ?>
