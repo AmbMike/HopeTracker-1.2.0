@@ -247,6 +247,27 @@
       #answerInner {
         .post-text-box {
           padding: 0 15px;
+          .like-box {
+            margin-left: 2px;
+            &:before {
+              content: '\f164';
+              font-family: FontAwesome;
+              font-weight: 400;
+            }
+          }
+          .comment-access-btn {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 14px;
+            color: $theme-blue;
+            vertical-align: middle;
+            &:before {
+              content: '\f075';
+              font-family: FontAwesome;
+              font-weight: 400;
+              margin-left: 5px;
+            }
+          }
         }
       }
     }
@@ -267,7 +288,7 @@
     #visitor-response {
       & {
         list-style-type: none;
-        margin: 15px;
+        margin: 15px 15px 15px 0;
         padding: 0;
       }
       .wrap {
@@ -436,6 +457,7 @@
           hr {
             height: 1px;
             margin: 20px 15px;
+            background-color: darken($theme-gray,15%);
           }
           .body-nav-box {
             color: darken($theme-gray, 20%);

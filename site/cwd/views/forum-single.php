@@ -91,16 +91,16 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                                 <div class="tracker-box">
                                     <div class="forum-details">
-                                    <span class="asked-about-box">
-                                        Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by
-                                    </span>
+                                        <span class="asked-about-box">
+                                            Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by
+                                        </span>
                                         <span class="liked-by-box">
-                                       <span class="liked-by"  <?php echo PageLinks::userProfile($Question->questionUsersId); ?>><?php echo User::Username($Question->questionUsersId); ?></span>
-                                    </span>
-                                        <span class="seen-count-box">
-                                        <i class="fa fa-circle dot" aria-hidden="true"></i>
-                                        Seen by <data value="<?php echo $ViewedPost->countPostViews(3,$Question->postId) ?>" class="seen-count"><?php echo $ViewedPost->countPostViews(3,$Question->postId) ?></data>
-                                    </span>
+                                           <span class="liked-by"  <?php echo PageLinks::userProfile($Question->questionUsersId); ?>><?php echo User::Username($Question->questionUsersId); ?></span>
+                                        </span>
+                                            <span class="seen-count-box">
+                                            <i class="fa fa-circle dot" aria-hidden="true"></i>
+                                            Seen by <data value="<?php echo $ViewedPost->countPostViews(3,$Question->postId) ?>" class="seen-count"><?php echo $ViewedPost->countPostViews(3,$Question->postId) ?></data>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="author-text-box" data-question="description">
@@ -196,13 +196,12 @@ if($Session->get('logged_in') == 1) {
                                                                         <?php else : ?>
                                                                             <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>" class="like-box">Like</span>
                                                                         <?php endif; ?>
-                                                                            <?php /* Reactivate after backend is complete.
+                                                                        <span role="button" class="comment-access-btn">Comment</span>
                                                                         <i class="fa fa-circle dot"aria-hidden="true"></i>
                                                                         <div class="question-liked-box">
                                                                             <i class="fa fa-thumbs-o-up like-count-icon"></i>
                                                                             <span class="question-liked-text">23</span>
                                                                         </div>
-                                                                        */ ?>
                                                                         <?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
                                                                         <span class="flag-box" data-question="flag-btn" role="button" >
                                                                             <span class="flag-tooltip-text">
@@ -227,7 +226,6 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <?php /* Reactivate after backend is complete.
                                                                 <div data-toggle-box="member-posts" id="visitor-response">
                                                                     <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
@@ -237,7 +235,6 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                */ ?>
                                                                 <hr>
                                                             </div>
 														<?php endforeach; ?>
@@ -252,7 +249,9 @@ if($Session->get('logged_in') == 1) {
 															<?php endfor; ?>
                                                         </div>
 													<?php endif; ?>
+                                                    <?php /* Remove when textarea comment section is complete
                                                     <button data-answers="question" data-answer-page="single-question" data-question-id="<?php echo $Question->postId; ?>" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#answer-question-modal"';?>  class="btn btn-primary <?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to chat" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?>>Submit your answer</button>
+                                                    */?>
                                                 </div>
                                             </div>
                                         </div>
