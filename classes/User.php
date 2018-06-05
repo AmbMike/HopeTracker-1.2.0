@@ -383,12 +383,20 @@ class User extends Sessions {
 			return true;
 		}
 	}
-	public function users_online_plus_moderators(){
+	public function users_online_plus_moderators($hideLoggedUser = true){
 		$db = new Database();
 		$unique_array = array();
-		$sql = $db->prepare("SELECT * FROM moderators
+
+		if($hideLoggedUser == true){
+			$sql = $db->prepare("SELECT * FROM moderators
                             UNION ALL
-                            SELECT * FROM users_online");
+                            SELECT * FROM users_online ");
+		}else{
+			$sql = $db->prepare("SELECT * FROM moderators
+                            UNION ALL
+                            SELECT * FROM users_online WHERE user_id <> " .$this->Session->get('user-id'));
+		}
+
 		$sql->setFetchMode(PDO::FETCH_ASSOC);
 		$sql->execute();
 

@@ -1,6 +1,16 @@
 /*
  * Copyright (c) 2017.
  */
+function test(){
+    $.ajax({
+        url : 'http://jsonplaceholder.typicode.com/users',
+        method : 'GET',
+
+    }).then(function(data){
+        //console.table(data);
+    });
+  
+}
 
 if($('[data-questions-parent="true"]').length > 0){
     $(document).ready(function () {

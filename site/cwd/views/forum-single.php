@@ -134,7 +134,7 @@ if($Session->get('logged_in') == 1) {
                             <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
                                 <div class="success-box" style="display: none">
-                                    <div class="modal-header">
+                                    <div class="modal-header" style="padding-top: 0;: ;">
                                         <span class="green-text-md">Submitted Successfully!</span>
                                     </div>
                                     <p>Your answer is very valuable to the entire Hopetracker community. </p>

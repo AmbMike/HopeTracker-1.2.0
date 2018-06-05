@@ -33,12 +33,12 @@ $UserProfile = new UserProfile();
 				<?php endif; ?>
                 <div class="clearfix"></div>
 				<?php
-				$live_users= array();
-				foreach ( $chat_users as $chat_user ) {
+				$live_users= $chat_user;
+				/*foreach ( $chat_users as $chat_user ) {
 					if($chat_user['user_id'] != $Sessions->get('user-id')){
 						$live_users [] = $chat_user;
 					}
-				}
+				}*/
 				?>
 				<?php foreach ( $live_users as $index33 => $user_online) :  ?>
 					<?php /** Hide chat users after first 3  */ ?>

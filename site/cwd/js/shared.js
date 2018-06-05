@@ -224,7 +224,9 @@ $.fn.isOnScreen = function(){
 
 /* Screen Load */
 $(document).ready(function() {
-    screen_loader();
+    if($('[data-show-page-loader]').data('show-page-loader') === 'Yes'){
+        screen_loader();
+    }
 });
 function screen_loader() {
     'use strict';

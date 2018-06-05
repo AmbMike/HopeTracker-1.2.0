@@ -68,8 +68,11 @@
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <?php endif; ?>
-<div id="loader-wrapper">
-    <div id="loader"></div>
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
-</div>
+<?php if(SHOW_PAGE_LOADER == "Yes"): ?>
+    <div id="loader-wrapper" data-show-page-loader="<?php echo SHOW_PAGE_LOADER; ?>">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+<?php endif; ?>
+

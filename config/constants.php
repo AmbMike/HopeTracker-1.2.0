@@ -14,6 +14,9 @@ $Application_Mode = 'dev';
 
 define('ENV',$Application_Mode);
 
+/** Toggle the page loader feature : Yes || No */
+define('SHOW_PAGE_LOADER','No');
+
 if(ENV == 'dev'){
     define('SRC_PATH','cwd');
 

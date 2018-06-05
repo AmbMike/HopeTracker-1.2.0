@@ -4,6 +4,8 @@
  * Author: Mike Giammattei
  * Created On: 3/21/2017, 4:29 PM
  */
+
+  
 $(function(){
     $("#faq_v_1 dd").slideUp(1);
 
