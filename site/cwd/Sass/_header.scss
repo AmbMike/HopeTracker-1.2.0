@@ -372,11 +372,6 @@ header{
               display: none;
               cursor: text;
               box-shadow: 0 2px 4px 0 rgba(0,0,0,.13);
-
-              &.on{
-
-              }
-
               & > li{
                 display: block;
                 list-style:none;
@@ -644,7 +639,12 @@ header{
       position: absolute;
       top: 0;
       width: 100%;
-
+      @media (max-width: 767px) {
+        top: 83px;
+      }
+      @media (max-width: 450px) {
+        top: 67px;
+      }
       #form-one{
         top: 0 !important;;
       }
