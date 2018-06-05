@@ -114,6 +114,7 @@
 		text-align: center;
 		bottom: 0;
 		right: 0;
+        z-index: 10000000000;
 		background: black;
 		color: rgba(255,255,255,.6);
 		padding: 10px;

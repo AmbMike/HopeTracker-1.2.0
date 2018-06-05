@@ -81,6 +81,5 @@
                 <button type="button" data-part="1" id="form-btn" data-step-two-text="Submit" class="btn btn-default btn-block form-btn">Next</button>
             </form>
         </div>
-
 	</div>
 </div>

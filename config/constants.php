@@ -35,7 +35,7 @@ if(ENV == 'dev'){
     define('DB_NAME','hopetrac_main');
     define('DB_HOST','localhost');
     define('DB_USER','hopetrac_main');
-    define('DB_PASS','%gw)(rA5qL(r'); 
+    define('DB_PASS','%gw)(rA5qL(r');
 }
 
 /* if file does not include index.php */
@@ -88,8 +88,7 @@ define('TINYMCE',  root_slash . RELATIVE_PATH . 'mod/tinymce/tinymce.min.js');
 define('CROPPIC',  root_slash . RELATIVE_PATH . 'mod/croppic/croppic.js');
 define('ADMIN',  root_slash . 'HopeAdmin/');
 define('QUOTE_SLIDES', root_slash .  IMAGES . 'quotes/');
-define('OG_IMAGES', root_slash . IMAGES . 'og-images/');
-
+define('OG_IMAGES', root_slash . 'site/public/images/og-images/');
 
 /* Default Profile Image */
 define('DEFAULT_PROFILE_IMG', 'site/public/images/main/icon.jpg');

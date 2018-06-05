@@ -67,7 +67,7 @@ $SignUpBtn = new SignUpBtn('/protected/course','Get Started','Join Now <small>(I
                             <button <?php echo $SignUpBtn->btnActionHTML; ?>>
                                <?php  echo $SignUpBtn->optionBtnText(' Sign Up Now'); ?>
                             </button>
-                            <p><i class="fa fa-star"></i> Join <?php echo count($Users->all_users()); ?> Families</p>
+                            <?php /* <p><i class="fa fa-star"></i> Join <?php echo count($Users->all_users()); ?> Families</p> */ ?>
                         </div>
                     </div>
 					<div class="col-md-6">
