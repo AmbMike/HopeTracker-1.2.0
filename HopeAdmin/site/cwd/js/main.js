@@ -88,7 +88,7 @@ $('#sign-out').on('click',function () {
     })
 });
 
-/* Updated Users Logged in Status */
+/* Updated Users Logged in Status
 $(window).load(function () {
     if($('#user-logger').length > 0) {
         $.ajax({
@@ -112,7 +112,7 @@ $(window).load(function () {
 
         });
     }
-});
+});*/
 
 /* Forum Add Categories Form */
 forum_add_categories_form();

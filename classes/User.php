@@ -383,27 +383,35 @@ class User extends Sessions {
 			return true;
 		}
 	}
-	public function users_online_plus_moderators($hideLoggedUser = true){
+	public function users_online_plus_moderators($hideLoggedUser = true, $start = 0, $qty = 4000){
 		$db = new Database();
 		$unique_array = array();
 
-		if($hideLoggedUser == true){
-			$sql = $db->prepare("SELECT * FROM moderators
+		if($hideLoggedUser == false){
+			/*$sql = $db->prepare("SELECT * FROM moderators
                             UNION ALL
-                            SELECT * FROM users_online ");
+                            SELECT * FROM users_online ");*/
+			$userId = 0;
+			$sql = $db->prepare(" SELECT user_id FROM users_online  WHERE user_id <> :userId ORDER BY id DESC LIMIT :start, :qty ");
 		}else{
-			$sql = $db->prepare("SELECT * FROM moderators
+			/*$sql = $db->prepare("SELECT user_id FROM moderators WHERE user_id <> " .$this->Session->get('user-id') . "
                             UNION ALL
-                            SELECT * FROM users_online WHERE user_id <> " .$this->Session->get('user-id'));
+                            SELECT * FROM users_online WHERE user_id <> " . $this->Session->get('user-id'));*/
+			$userId =  $this->Session->get('user-id');
+			$sql = $db->prepare(" SELECT user_id FROM users_online WHERE  user_id <> :userId ORDER BY id DESC LIMIT :start, :qty ");
 		}
 
 		$sql->setFetchMode(PDO::FETCH_ASSOC);
+		$sql->bindParam(':userId', $userId, PDO::PARAM_INT);
+		$sql->bindParam(':start', $start, PDO::PARAM_INT);
+		$sql->bindParam(':qty', $qty, PDO::PARAM_INT);
 		$sql->execute();
 
 		foreach($sql->fetchAll() as $element) {
 			$hash = $element['user_id'];
 			$unique_array[$hash] = $element;
 		}
+		$unique_array = array_values($unique_array);
 		return $unique_array;
 	}
 	public function him_or_her($user_id, $type = 'first person'){

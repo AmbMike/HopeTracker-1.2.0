@@ -76,6 +76,13 @@
 	    case 'Journal Entry Comment' :
 		    $Journal->entry_comment($_POST);
 		    break;
+		case 'Show More Online Users' :
+			error_reporting( 3 );
+			include_once(CLASSES . 'User.php');
+		   	$chat_users = $User->users_online_plus_moderators(true, (int)$_POST['start'],  (int)$_POST['qty']);
+		   	echo json_encode($chat_users);
+		    break;
+
 	    case 'Journal Entry Comment Sidebar' :
 		    $Journal->entry_comment_sidebar($_POST);
 		    break;

@@ -372,7 +372,7 @@ $(document).ready(function () {
     /** Format time globally */
     $('time.human-time').timeago();
 
-    if($('#user-logger').length > 0) {
+   /* if($('#user-logger').length > 0) {
         $.ajax({
             url: RELATIVE_PATH + '/config/processing.php',
             cache : false,
@@ -392,7 +392,7 @@ $(document).ready(function () {
             }
 
         });
-    }
+    }*/
 });
 
 /*$( function() {
