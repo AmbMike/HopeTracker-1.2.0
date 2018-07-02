@@ -219,7 +219,7 @@ class User extends Sessions {
 				$data = $sql->fetch();
 
 				$subject = 'Reset your HopeTracker password';
-				$emailer->send_email($data["email"],$subject,$data['fname'],BASE_URL .'/rpd/reset-password.'.FILE_EXTENSION.'?verify=' . $data['password'] .'&verifyE=' . $encrypt->mask_get_var($data['email']));
+				$emailer->send_email($data["email"],$subject,$data['fname'],BASE_URL .'/rpd/?verify=' . $data['password'] .'&verifyE=' . $encrypt->mask_get_var($data['email']));
 			}
 			echo 'Sent';
 

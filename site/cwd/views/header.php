@@ -15,9 +15,10 @@
             </div>
             <div class="col-md-6 col-sm-6">
                <a href="/hopetracker"><img src="<?php echo IMAGES; ?>main/hopetracker-logo.png" class="img-responsive logo" alt="HopeTracker.com"/></a>
-                <div class="project-text">
+                <?php /*<div class="project-text">
                     <span><a href="https://www.ambrosiatc.com/?ambTRK=HOPETRACKER" target="blank"><img src="<?php echo IMAGES; ?>main/amb-bird-icon-2016.png" class="img-responsive project"> An Ambrosia Project &rsaquo;</a></span>
                 </div>
+                */ ?>
             </div>
             <div class="col-md-3 col-sm-5">
                 <div class="box hidden-xs">

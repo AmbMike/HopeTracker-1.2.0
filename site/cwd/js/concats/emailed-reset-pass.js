@@ -70,7 +70,7 @@ function emailed_password_reset() {
             }).done(function(response){
 
                 if(response === 'Email and Password Match'){
-                    location.href = "/protected/course/";
+                    location.href = RELATIVE_PATH + "/protected/course/";
                 }else{
                     location.href = "/home/";
                 }
