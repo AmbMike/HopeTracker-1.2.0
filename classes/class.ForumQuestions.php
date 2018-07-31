@@ -455,7 +455,7 @@ class ForumQuestions
      * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
      * @return array
      */
-    public function getQuestions()
+    public function getQuestions($notEmailed = false)
     {
         $returnValue = array();
 
@@ -463,14 +463,32 @@ class ForumQuestions
 
 	    $this->Database = new Database();
 
-	    $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC ");
-	    $sql->setFetchMode( PDO::FETCH_ASSOC);
-	    $sql->execute();
+	    if($notEmailed == false):
+            $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC ");
+            $sql->setFetchMode( PDO::FETCH_ASSOC);
+            $sql->execute();
+        else:
+            $sql = $this->Database->prepare("SELECT * FROM ask_question_forum WHERE emailed = 0");
+            $sql->setFetchMode( PDO::FETCH_ASSOC);
+            $sql->execute();
+        endif;
 
 	    $returnValue = $sql->fetchAll();
         // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001100 end
 
         return (array) $returnValue;
+    }
+    function markAsEmailed($id){
+        $this->Database = new Database();
+
+        $sql = $this->Database->prepare("UPDATE ask_question_forum SET emailed = 1  WHERE  id=?");
+        $sql->execute(array($id));
+
+        if($sql->rowCount() > 0){
+            return  "Updated: " . $id;
+        }else{
+            return  "Failed to update: " . $id;
+        }
     }
 
 } /* end of class ForumQuestions */
