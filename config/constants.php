@@ -56,6 +56,14 @@ define('DOMAIN', 'hopetracker.com/hopetracker');
 
 /* URLs */
 define('BASE_URL', 'http://hopetracker.com/hopetracker');
+function siteURL()
+{
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $domainName = $_SERVER['HTTP_HOST'].'/';
+    return $protocol.$domainName;
+}
+
+define('DYNAMIC_URL', siteURL() . 'hopetracker/');
 
 /* Information */
 define('MAIN_PHONE','8884924199');

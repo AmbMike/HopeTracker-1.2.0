@@ -443,6 +443,7 @@ class ForumQuestions
 
 	    $returnValue = $sql->fetchAll();
 	    $returnValue = $returnValue[0];
+        //Debug::data($returnValue);
         // section -64--88-0-19-359969c0:161e3016d5d:-8000:00000000000010EF end
 
         return (array) $returnValue;
