@@ -18,7 +18,7 @@ $QuestionData = new QuestionData();
 $AuthorQuestionArr =  $QuestionData->build();
 
 
-//Debug::data( $AuthorQuestionArr );
+//Debug::data( $AuthorQuestionArr ); exit;
 
 /** Run loop on all users with a "recordedUpdated" status to 0,
  * meaning the user has either never been recorded in campaign monitor

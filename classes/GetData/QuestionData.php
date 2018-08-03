@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(3);
 include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/DebugMg.php');
@@ -151,6 +150,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
                     if(count($authorLatestQuestions) > 1){
 
                         /** Latest Answer array of author's first question */
+                        $FirstAnswerToAuthorLatestQuestion = $this->answerToAuthorsQuestion($authorLatestQuestions['id'],'first answer');
+
+                        /** Latest Answer array of author's first question */
                         $LatestAnswerToAuthorLatestQuestion = $this->answerToAuthorsQuestion($authorLatestQuestions['id'],'latest answer');
 
                         $this->Information[$index]['Date of Latest question asked'] = date('m/d/y',$authorLatestQuestions['date_created']);
@@ -160,9 +162,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
                         /** Total number of answers to the latest question asked by the author*/
                         $totalAnswersToLatestQuestion = $this->totalAnswersToQuestion($authorLatestQuestions['id']);
                         if($totalAnswersToLatestQuestion > 0){
-                            $this->Information[$index]['Date of first answer for latest question asked'] = date("m/d/y", $LatestAnswerToAuthorLatestQuestion['date_created']);
-                            $this->Information[$index]['Author of first answer for latest question asked'] = User::full_name($LatestAnswerToAuthorLatestQuestion['user_id']);
-                            $this->Information[$index]['First answer text for latest question asked'] = $this->General->trim_text($LatestAnswerToAuthorLatestQuestion['answer'],150);
+                            $this->Information[$index]['Date of first answer for latest question asked'] = date("m/d/y", $FirstAnswerToAuthorLatestQuestion['date_created']);
+                            $this->Information[$index]['Author of first answer for latest question asked'] = User::full_name($FirstAnswerToAuthorLatestQuestion['user_id']);
+                            $this->Information[$index]['First answer text for latest question asked'] = $this->General->trim_text($FirstAnswerToAuthorLatestQuestion['answer'],150);
                         }
 
                         /** URL to the latest question */

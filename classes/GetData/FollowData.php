@@ -7,7 +7,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/Database.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/General.php');
     require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/class.ForumQuestions.php');
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/getData/QuestionData.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/GetData/QuestionData.php');
 
     class FollowData extends DebugMg {
 
@@ -124,7 +124,10 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
                     if(count($LatestQuestionFollowed) > 1){
 
                         /** Latest Answer array of author's first question */
-                        $LatestAnswerToLatestFollowedQuestion = $this->QuestionData->answerToAuthorsQuestion($follower['follows_user_id'],'latest answer');
+                        $FirstAnswerToLatestFollowedQuestion = $this->QuestionData->answerToAuthorsQuestion($latestQuestionFollowed['post_id'],'first answer');
+
+                        /** Latest Answer array of author's first question */
+                        $LatestAnswerToAuthorLatestQuestion = $this->QuestionData->answerToAuthorsQuestion($latestQuestionFollowed['post_id'],'latest answer');
 
                         $this->Information[$index]['Date of Latest question asked'] = date('m/d/y',$latestFollowedQuestionArr['date_created']);
                         $this->Information[$index]['Latest question asked text'] = $this->General->trim_text($latestFollowedQuestionArr['question'],'150');
@@ -133,23 +136,22 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
                         /** Total number of answers to the latest question asked by the author*/
                         $totalAnswersToLatestQuestion = $this->QuestionData->totalAnswersToQuestion($latestFollowedQuestionArr['id']);
                         if($totalAnswersToLatestQuestion > 0){
-                            $this->Information[$index]['Date of first answer for latest question asked'] = date("m/d/y", $LatestAnswerToLatestFollowedQuestion['date_created']);
-                            $this->Information[$index]['Author of first answer for latest question asked'] = User::full_name($LatestAnswerToLatestFollowedQuestion['user_id']);
-                            $this->Information[$index]['First answer text for latest question asked'] = $this->General->trim_text($LatestAnswerToLatestFollowedQuestion['answer'],150);
+                            $this->Information[$index]['Date of first answer for latest question asked'] = date("m/d/y", $FirstAnswerToLatestFollowedQuestion['date_created']);
+                            $this->Information[$index]['Author of first answer for latest question asked'] = User::full_name($FirstAnswerToLatestFollowedQuestion['user_id']);
+                            $this->Information[$index]['First answer text for latest question asked'] = $this->General->trim_text($FirstAnswerToLatestFollowedQuestion['answer'],150);
                         }
 
                         /** URL to the latest question */
                         $latestQuestionURL = DYNAMIC_URL . 'forum/' .$this->General->url_safe_string( $latestFollowedQuestionArr['subcategory']). '/'. $latestFollowedQuestionArr['id']  . '/' .  $this->General->url_safe_string( $authorLatestQuestions['question']);
                         $this->Information[$index]['URL to latest question asked'] = $latestQuestionURL;
 
-
                         $this->Information[$index]['Answer count of latest question asked'] = $totalAnswersToLatestQuestion;
 
                         /** If the latest question has an answer, get data */
                         if($totalAnswersToLatestQuestion > 1) {
-                           // Debug::data($LatestAnswerToLatestFollowedQuestion);
-                            $this->Information[$index]['Author of latest answer of latest question asked'] = User::full_name($LatestAnswerToLatestFollowedQuestion['user_id']);
-                            $this->Information[$index]['Latest answer text of latest question asked'] = $this->General->trim_text($LatestAnswerToLatestFollowedQuestion['answer'], 150);
+                           // Debug::data($LatestAnswerToAuthorLatestQuestion);
+                            $this->Information[$index]['Author of latest answer of latest question asked'] = User::full_name($LatestAnswerToAuthorLatestQuestion['user_id']);
+                            $this->Information[$index]['Latest answer text of latest question asked'] = $this->General->trim_text($LatestAnswerToAuthorLatestQuestion['answer'], 150);
                         }
 
                     }
@@ -157,7 +159,7 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
                 }
             endforeach;
 
-            Debug::data($this->Information);
+            //Debug::data($this->Information);
             //Debug::data($this->follows);
 
             return $this->Information;
