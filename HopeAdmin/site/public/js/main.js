@@ -2682,20 +2682,6 @@ function edit_subcategories() {
     }).done(function(a) {
         location.reload();
     });
-}), $(window).load(function() {
-    $("#user-logger").length > 0 && $.ajax({
-        url: RELATIVE_PATH + "/config/processing.php",
-        type: "POST",
-        cache: !1,
-        data: {
-            form: "Update User Online Status"
-        },
-        success: function(a) {
-            console.log(a), "Logged Out User" === a && setTimeout(function() {
-                location.href = "/HopeAdmin", $("#user-logger").remove(), a = "";
-            }, 1e3);
-        }
-    });
 }), forum_add_categories_form(), $(function() {
     var a = $("#sort-cat").sortable();
     $(".alert-success").length > 0 && $(".alert-success").on("click", function() {

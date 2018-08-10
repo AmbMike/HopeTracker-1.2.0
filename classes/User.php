@@ -148,7 +148,7 @@ class User extends Sessions {
 			$cur_url
 		));
 	}
-	public function sign_in($data){
+	public function sign_in($data, $userId = false){
 		$db = new Database();
 		$session = new parent();
 		$Forms = new Forms();
@@ -179,7 +179,7 @@ class User extends Sessions {
 				$this->log_user_online($data_out['id']);
 
 				/* Set Admin Session if is Admin */
-				if($data_out['role'] == 1){
+				if($data_out['role'] == 1 || $data_out['role'] == 2){
 					$session->set('Admin Logged',1);
 
 				}
