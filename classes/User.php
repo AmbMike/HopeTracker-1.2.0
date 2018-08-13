@@ -276,6 +276,20 @@ class User extends Sessions {
 		}
 
 	}
+	public static  function isAnonymousUser($userId){
+        $db = new Database();
+
+        $sql = $db->prepare("SELECT id FROM user_list WHERE anonymous = 1  AND id =?");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute(array($userId));
+
+        if($sql->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 	public function get_user_profile_img($user_id,$id = false){
 		$db = new Database(); 
 

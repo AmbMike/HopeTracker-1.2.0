@@ -152,7 +152,7 @@ $Page->header(array(
                                                     ?>
                                                     <img src="<?php echo $notification['extraData']['fullPath']; ?>" class="inspiration-thumbnail">
                                                 <?php else:  ?>
-                                                    <a <?php echo $UserProfile->profile($notification['liked_by_user_id']); ?> <u><?php echo ucfirst(User::user_info('fname',$notification['liked_by_user_id'])); ?> <?php echo ucfirst(User::user_info('lname',$notification['liked_by_user_id'])); ?></u></a>
+                                                    <a <?php echo $UserProfile->profile($notification['liked_by_user_id']); ?> <u><?php echo (User::isAnonymousUser($notification['liked_by_user_id'])) ? 'Anonymous': User::full_name($notification['liked_by_user_id']); ?> </u></a>
                                                 <?php endif; ?>
                                             </div>
                                         </div>

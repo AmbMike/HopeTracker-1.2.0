@@ -102,6 +102,7 @@ function forumQuestions(){
         /** Hide all questions that the user did not submit an answer to. */
         if(!$this.hasClass('on')){
             showUserAnsweredCategories();
+            showAnsweredSubcategories()
 
         }else{
             showAllAnsweredCategories();
@@ -129,6 +130,13 @@ function forumQuestions(){
             });
             $this.removeClass('on');
             $(pageID + ' [data-user-answered-category="No"').slideDown(600);
+        }
+        function showAnsweredSubcategories() {
+            $(pageID + ' [data-users-answer-subcategory="Yes"]').parent().addClass('in');
+            $(pageID + ' [data-users-answer-subcategory="Yes"]').find('.collapse').addClass('in');
+            $(pageID + ' [data-users-answer-subcategory="Yes"]').find('[data-question-answered="No"]').css({'display' : 'none'});
+
+            $(pageID + ' [data-users-answer-subcategory="Yes"]').slideDown();
         }
     });
     $(profileFollowing).on('click', function(){

@@ -190,11 +190,11 @@ if($Session->get('logged_in') == 1) {
                                                                         <span <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>  itemprop="name"  <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><?php echo User::Username($forum_answer['user_id']); ?></span>
                                                                     </div>
                                                                     <div class="user-count-container">
-																		<?php $answer_user_question_count = $ForumQuestions->totalApprovedQuestions(true,$forum_answer['user_id']) ?>
+																		<?php $answer_user_question_count = $ForumQuestions->totalApprovedQuestions($forum_answer['user_id']) ?>
 																		<?php $answer_user_answer_count = $ForumAnswers->countAnswers(true,$forum_answer['user_id']) ?>
                                                                         <span><data value="<?php echo $answer_user_question_count; ?>" class="user-questions"><?php echo $answer_user_question_count; ?></data> Questions <data value="<?php echo $answer_user_answer_count; ?>" class="user-answers"><?php echo $answer_user_answer_count; ?></data> Answers</span>
                                                                     </div>
-                                                                    <div class="author-text-box">
+                                                                    <div class="author-text-box">dd
                                                                         <span itemprop="text" class="author-text"><?php echo $forum_answer['answer']; ?></span>
                                                                     </div>
                                                                     <div class="tracker-box">

@@ -88,7 +88,7 @@ class AnswerFilters
         // section -64--88-0-2-66d49434:160937b2759:-8000:0000000000000ED3 begin
 	        $this->Database = new Database();
 
-		    $sql = $this->Database->prepare("SELECT DISTINCT question_id FROM answers_forum WHERE user_id = ?");
+		    $sql = $this->Database->prepare("SELECT  question_id FROM answers_forum WHERE user_id = ?");
 		    $sql->setFetchMode( PDO::FETCH_COLUMN);
 		    $sql->execute(array($this->userId));
 
@@ -159,10 +159,25 @@ class AnswerFilters
         // section -64--88-0-2-66d49434:160937b2759:-8000:0000000000000EDE begin
 	    $this->Database = new Database();
 
+	    $ForumAnswers = new ForumAnswers();
+
 	    if($postId == false):
-		    $sql = $this->Database->prepare("SELECT DISTINCT subcategory FROM ask_question_forum WHERE user_id = ?");
+
+            $sql = $this->Database->prepare("SELECT question_id FROM answers_forum WHERE user_id = ? AND approved = 1 ORDER BY id");
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+
+	        $sql->execute(array($this->userId));
+
+	        /** Array of questions ids that the logged in user has answered. */
+            $questionIds = array_map('current', $sql->fetchAll());
+
+            $questionIdsCommas = implode(',', $questionIds);
+
+            unset($sql);
+
+		    $sql = $this->Database->prepare("SELECT DISTINCT subcategory FROM ask_question_forum WHERE id IN (?)");
 		    $sql->setFetchMode( PDO::FETCH_ASSOC );
-		    $sql->execute(array($this->userId));
+		    $sql->execute(array($questionIdsCommas));
 
 		    else:
 			    $sql = $this->Database->prepare("SELECT DISTINCT subcategory FROM ask_question_forum WHERE id = ?");
@@ -171,7 +186,7 @@ class AnswerFilters
 	     endif;
 
 
-	    $returnValue = $sql->fetchAll(PDO::FETCH_COLUMN, 0);
+        $returnValue = $sql->fetchAll(PDO::FETCH_COLUMN, 0);
         // section -64--88-0-2-66d49434:160937b2759:-8000:0000000000000EDE end
 
         return (array) $returnValue;

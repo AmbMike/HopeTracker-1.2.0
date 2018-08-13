@@ -181,8 +181,17 @@ class ForumAnswers
 		    }
 		    /** Get count for answers */
 		    if($userId != false && $questionId == false){
+
+		        /** Test
+                $sql = $this->Database->prepare("SELECT * FROM answers_forum WHERE user_id = ? AND approved = 1");
+                $sql->execute(array($userId));
+
+                Debug::out($sql->fetchAll());
+                unset($sql);*/
 			    $sql = $this->Database->prepare("SELECT count(*) FROM answers_forum WHERE user_id = ? AND approved = 1");
 			    $sql->execute(array($userId));
+
+
 		    }
 
 		    $returnValue = $sql->fetchColumn();
@@ -222,6 +231,7 @@ class ForumAnswers
 			    $sql->bindParam('startLimit',$startLimit, PDO::PARAM_INT);
 			    $sql->bindParam('maxlimit',$maxLimit, PDO::PARAM_INT);
 			    $sql->execute();
+
 		    }
 
 		    /** Get answers for user id. */

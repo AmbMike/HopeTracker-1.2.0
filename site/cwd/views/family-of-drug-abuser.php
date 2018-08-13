@@ -128,8 +128,8 @@ if($Session->get('logged_in') == 1){
                                        <?php echo User::Username(); ?>
                                     </span>
                                         <div class="user-count-container">
-                                            <span <?php echo ($total_user_forums == 0 ) ? ' data-pt-title="You haven\'t asked any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="questions  <?php echo ($total_user_forums == 0 ) ? 'tooltip-mg' : ''; ?>"> <span data-profile="question"><data data-users-count="question" value="<?php echo $total_user_forums; ?>" class="user-questions"><?php echo $total_user_forums; ?></data> <span data-filter-text="Question">Questions </span></span></span> <i class="fa fa-circle"></i>
-                                            <span <?php echo ($total_user_answers == 0 ) ? ' data-pt-title="You haven\'t answered any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="answers <?php echo ($total_user_answers == 0 ) ? 'tooltip-mg' : ''; ?>"><span  data-profile="answers"><data data-users-count="answer" value="<?php echo $total_user_answers; ?>" class="user-answers"><?php echo $total_user_answers; ?></data> <span data-filter-text="Answers">Answers </span></span></span> <i class="fa fa-circle"></i>
+                                            <span <?php echo ($total_user_forums == 0 ) ? ' data-pt-title="You haven\'t asked any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="questions  <?php echo ($total_user_forums == 0 ) ? 'tooltip-mg' : ''; ?>"> <span data-profile="question"><data data-users-count="question" value="<?php echo $total_user_forums; ?>" class="user-questions"><?php echo $total_user_forums; ?></data> <span data-filter-text="Question">Questions </span></span> </span> <i class="fa fa-circle"></i>
+                                            <span <?php echo ($total_user_answers == 0 ) ? ' data-pt-title="You haven\'t answered any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="answers <?php echo ($total_user_answers == 0 ) ? 'tooltip-mg' : ''; ?>"> <span  data-profile="answers"><data data-users-count="answer" value="<?php echo $total_user_answers; ?>" class="user-answers"><?php echo $total_user_answers; ?></data> <span data-filter-text="Answers">Answers </span></span> </span> <i class="fa fa-circle"></i>
                                             <span <?php echo ($FollowedPosts->getTotalPostUserIsFollowing() == 0 ) ? ' data-pt-title="You haven\'t followed any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> role="button" class="following <?php echo ($FollowedPosts->getTotalPostUserIsFollowing() == 0 ) ? 'tooltip-mg' : ''; ?>"><span data-profile="following"><data value="<?php echo $FollowedPosts->getTotalPostUserIsFollowing(); ?>" class="user-answers"><?php echo $FollowedPosts->getTotalPostUserIsFollowing(); ?></data> <span data-filter-text="Following">Following</span></span></span>
                                         </div>
                                     </div>
@@ -155,14 +155,17 @@ if($Session->get('logged_in') == 1){
 							 */
 							$isUserPostInCategory = (in_array($category['category'] ,$categoriesOfUserQuestions)) ? 'Yes' : "No";
 
-							if($Session->get('logged_in') == 1) :
-								/** @var  $isUserPostInCategory :
-								 * Check if the user has a post in  the category in the loop.
-								 */
-								$isUserAnswerSubcategory = (in_array($subcategory['sub_category'] ,$AnswerFilters->getSubcategoriesOfUsersAnswers())) ? 'Yes' : "No";
-							endif;
+							/*if($Session->get('logged_in') == 1) :
 
-							/**
+								$isUserAnswerSubcategory = (in_array($subcategory['sub_category'] ,$AnswerFilters->getSubcategoriesOfUsersAnswers())) ? 'Yes' : "No";
+							endif;*/
+
+                            /** @var  $isUserPostInCategory :
+                             * Check if the user has a post in  the category in the loop.
+                             */
+                            $userAnsweredCategory = (in_array($category['category'] ,$AnsweredCategories)) ? 'Yes' : "No";
+
+                            /**
 							 * Check if the user has a followed posts in the category.
 							 */
 							$userFollowedPostCategory = (in_array($category['category'] ,$FollowedPostCategories)) ? 'Yes' : "No";
@@ -227,14 +230,13 @@ if($Session->get('logged_in') == 1){
 											$isUserPostInSubcategory = (in_array($subcategory['sub_category'] ,$subcategoriesOfQuestions)) ? 'Yes' : "No";
 
 											if($Session->get('logged_in') == 1) :
-
 												$isUserAnswerSubcategory = (in_array($subcategory['sub_category'] ,$AnswerFilters->getSubcategoriesOfUsersAnswers())) ? 'Yes' : "No";
 											endif;
 
 											$isUserFollowedPostSubcategory = (in_array($subcategory['sub_category'] ,$FollowedPostSubcategories)) ? 'Yes' : "No";
 
 											?>
-                                            <div class="panel-group subcategory" id="subcategory" data-followed-post-subcategory="<?php echo $isUserFollowedPostSubcategory; ?>" data-users-answer-subcategory="<?php echo $isUserPostInSubcategory; ?>" data-users-answered="<?php echo $isUserPostInSubcategory; ?>" data-users-post-subcategory="<?php echo $isUserPostInSubcategory; ?>" data-subcategory="<?php echo ucwords($subcategory['sub_category']); ?>">
+                                            <div class="panel-group subcategory" id="subcategory" data-followed-post-subcategory="<?php echo $isUserFollowedPostSubcategory; ?>" data-users-answer-subcategory="<?php echo $isUserAnswerSubcategory; ?>" data-users-answered="<?php echo $isUserPostInSubcategory; ?>" data-users-post-subcategory="<?php echo $isUserPostInSubcategory; ?>" data-subcategory="<?php echo ucwords($subcategory['sub_category']); ?>">
                                                 <div class="panel sub-panel panel-default">
                                                     <div class="panel-heading sub-heading">
                                                         <h4 class="panel-title sub-title">
@@ -292,7 +294,7 @@ if($Session->get('logged_in') == 1){
 																		<?php
 																		/** Check if the user is answered the question */
 																		if($Session->get('logged_in') == 1) :
-																			$userAnsweredQuestion = (in_array($AnswerFilters->getUserQuestionIds(), $forum_question['id']) ? 'Yes' : 'No');
+																			$userAnsweredQuestion = (in_array($forum_question['id'],$AnswerFilters->getUserQuestionIds()) ? 'Yes' : 'No');
 																		endif;
 																		/** Check if the user is following the question */
 																		$userFollowingQuestion = (in_array($forum_question['id'], $FollowedPostIds,true) ? 'Yes' : 'No');
@@ -309,8 +311,8 @@ if($Session->get('logged_in') == 1){
                                                                                   <?php echo $category_name; ?>
                                                                                 </span>
                                                                                         <span class="dot">
-                                                                                    <i class="fa fa-circle" aria-hidden="true"></i>
-                                                                                </span>
+                                                                                            <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                                        </span>
                                                                                         <span class="treatment">&nbsp;<?php echo $subcategory['sub_category']; ?></span>
                                                                                     </div>
                                                                                     <div class="tracker-box">
@@ -326,8 +328,8 @@ if($Session->get('logged_in') == 1){
                                                                                         <i class="fa fa-circle" aria-hidden="true"></i>&nbsp;
                                                                                     </span>
                                                                                         <span class="asked-about">
-                                                                                        Asked <span class="asked-when"><time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_question['date_created']) ?>"><?php echo date("j F Y H:i",$forum_question['date_created']) ?></time></span>
-                                                                                    </span>
+                                                                                               Asked <span class="asked-when"><time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_question['date_created']) ?>"><?php echo date("j F Y H:i",$forum_question['date_created']) ?></time></span>
+                                                                                        </span>
 																						<?php if(!empty($forum_question['updated_time'])) :  ?>
                                                                                             <span class="dot">
                                                                                         <i class="fa fa-circle" aria-hidden="true"></i>
