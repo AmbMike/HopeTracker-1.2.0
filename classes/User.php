@@ -290,6 +290,15 @@ class User extends Sessions {
         }
 
     }
+    static function displayName($userId){
+        $db = new Database();
+
+        $sql = $db->prepare("SELECT username FROM user_list WHERE id = ?");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute(array($userId));
+
+        return $sql->fetchColumn();
+    }
 	public function get_user_profile_img($user_id,$id = false){
 		$db = new Database(); 
 
