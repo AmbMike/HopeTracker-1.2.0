@@ -97,7 +97,6 @@ if($Session->get('logged_in') == 1) {
                                             <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
                                         <?php endif; ?>
                                     <?php endif; // End if user is logged in.  ?>
-                                    <i class="fa fa-circle dot" aria-hidden="true"></i>
                                     <div class="forum-details">
                                         <span class="asked-about-box">
                                             Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by

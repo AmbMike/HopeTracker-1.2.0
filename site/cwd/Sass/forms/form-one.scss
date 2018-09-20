@@ -75,7 +75,10 @@ $select-height: 40px;
          margin-top: -41px;
          margin-right: 14px;
          text-shadow: none;
-
+         /* continue rework for proper positioning */
+         @media (max-width:920px) {
+           margin-top: -38px;
+         }
          @media (max-width:650px) {
            margin-top: -42px;
          }

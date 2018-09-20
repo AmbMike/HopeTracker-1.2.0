@@ -105,6 +105,7 @@
     .author-post-container {
       margin: 0;
       padding: 15px;
+      position: relative;
 
       .author-img-box {
         vertical-align: top;
@@ -154,9 +155,9 @@
             vertical-align: middle;
           }
           .dot {
-            font-size: 5px;
+            font-size: 12px;
             vertical-align: middle;
-            margin: 2px;
+            margin: 0 0 0 5px;
           }
           .question-liked-box {
             display: inline-block;
@@ -248,6 +249,7 @@
         .post-text-box {
           padding: 0 15px;
           .like-box {
+            position: relative;
             margin-left: 2px;
             &:before {
               content: '\f164';
@@ -277,7 +279,8 @@
       font-size: 14px;
       color: $header-gray;
       vertical-align: middle;
-      margin-left: 80px;
+      position: absolute;
+      bottom: 0;
       @media (max-width: 767px) {
         margin: 0;
       }
