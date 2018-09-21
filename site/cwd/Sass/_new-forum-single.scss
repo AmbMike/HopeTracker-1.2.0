@@ -104,7 +104,7 @@
     }
     .author-post-container {
       margin: 0;
-      padding: 15px;
+      padding: 30px;
       position: relative;
 
       .author-img-box {
@@ -155,7 +155,7 @@
             vertical-align: middle;
           }
           .dot {
-            font-size: 12px;
+            font-size: 5px;
             vertical-align: middle;
             margin: 0 0 0 5px;
           }
@@ -183,12 +183,12 @@
         }
         .flag-box {
           display: inline-block;
-          position: relative;
-          float: right;
+          position: absolute;
           color: $header-gray;
           margin: 0 3px 0 10px;
           font-size: 14px;
-          bottom: -4px;
+          bottom: 0;
+          right: 30px;
           .flag-tooltip-text {
             visibility: hidden;
             width: 210px;
@@ -248,6 +248,7 @@
       #answerInner {
         .post-text-box {
           padding: 0 15px;
+          position: relative;
           .like-box {
             position: relative;
             margin-left: 2px;
@@ -291,7 +292,7 @@
     #visitor-response {
       & {
         list-style-type: none;
-        margin: 15px 15px 15px 0;
+        margin: 30px;
         padding: 0;
       }
       .wrap {
@@ -476,6 +477,29 @@
                 border: 1px solid transparent;
                 border-radius: 4px;
               }
+            }
+          }
+        }
+      }
+    }
+
+    #related-questions {
+      #relatedInner {
+        .related-content {
+          width: 80%;
+          margin: 15px auto 0;
+          p {
+            display: block;
+            margin: 0 15px 15px;
+            color: $header-gray;
+            .related-qa-image {
+              width: 30px;
+              height: 30px;
+              background-repeat: no-repeat;
+              background-size: cover;
+              background-position: center;
+              display: inline-block;
+              vertical-align: text-bottom;
             }
           }
         }

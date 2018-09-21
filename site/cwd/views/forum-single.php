@@ -269,6 +269,41 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
+
+                        <?php /* Updated related questions section requires backend before launch */?>
+                        <div id="related-questions" class="panel-group sub-posts">
+                            <div class="panel panel-default">
+                                <div class="panel-heading more-answers-box">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse-related">
+                                            <h3>
+                                                <span class="more-answers"><i class="fa fa-caret-down" aria-hidden="true"></i> Related Questions</span>
+                                            </h3>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-related" class="panel-collapse collapse in">
+                                    <?php /** Related questions output area requires backend before launch */ ?>
+                                    <div class="panel-body">
+                                        <div  class="table">
+                                            <div id="relatedOuter">
+                                                <div id="relatedInner">
+                                                    <div class="related-content">
+                                                        <p>
+                                                            <span class="related-qa-image" style="background-image: url('/hopetracker/site/public/images/testimonials/GIRLFRIEND.png')"></span> What if I find rolling paper in my car and my son used it last?
+                                                        </p>
+                                                        <p>
+                                                            <span class="related-qa-image" style="background-image: url('/hopetracker/site/public/images/testimonials/GIRLFRIEND.png')"></span> What if I find rolling paper in my car and my son used it last?
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
