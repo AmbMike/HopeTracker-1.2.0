@@ -75,7 +75,7 @@ if($Session->get('logged_in') == 1) {
                     <h1 class="green-heading-lg">Forum Question</h1>
                     <div class="insurance-treatment-box">
                         <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category); ?>"><?php echo  $Question->category; ?></a>
-                        <span class="dot"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                        <span class="dot"><i class="fa fa-angle-right"></i></span>
                         <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category) . '/' . $General->url_safe_string($Question->subcategory); ?>"><?php echo  $Question->subcategory; ?></a>
                     </div>
                 </div>
@@ -192,6 +192,12 @@ if($Session->get('logged_in') == 1) {
 																		<?php $answer_user_question_count = $ForumQuestions->totalApprovedQuestions(true,$forum_answer['user_id']) ?>
 																		<?php $answer_user_answer_count = $ForumAnswers->countAnswers(true,$forum_answer['user_id']) ?>
                                                                         <span><data value="<?php echo $answer_user_question_count; ?>" class="user-questions"><?php echo $answer_user_question_count; ?></data> Questions <data value="<?php echo $answer_user_answer_count; ?>" class="user-answers"><?php echo $answer_user_answer_count; ?></data> Answers</span>
+                                                                        <div class="asked-about-box">
+                                                                            <span class="dot">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </span>
+                                                                            Asked <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
+                                                                        </div>
                                                                     </div>
                                                                     <div class="author-text-box">
                                                                         <span itemprop="text" class="author-text"><?php echo $forum_answer['answer']; ?></span>
@@ -202,16 +208,18 @@ if($Session->get('logged_in') == 1) {
 																		?>
 																		<?php if($Session->get('logged_in')== 1) : ?>
                                                                         <?php if($LikePost->checkLikedQuestion() == true) : ?>
+                                                                            <?php /* Removed per mock up.
                                                                             <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>"  class="like-box liked">Liked</span>
                                                                         <?php else : ?>
                                                                             <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>" class="like-box">Like</span>
+                                                                        */ ?>
+
                                                                         <?php endif; ?>
-                                                                        <span role="button" class="comment-access-btn">Comment</span>
-                                                                        <i class="fa fa-circle dot"aria-hidden="true"></i>
                                                                         <div class="question-liked-box">
                                                                             <i class="fa fa-thumbs-o-up like-count-icon"></i>
                                                                             <span class="question-liked-text">23</span>
                                                                         </div>
+                                                                        <span role="button" class="comment-access-btn">Comment</span>
                                                                         <?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
                                                                         <span class="flag-box" data-question="flag-btn" role="button" >
                                                                             <span class="flag-tooltip-text">
@@ -228,12 +236,6 @@ if($Session->get('logged_in') == 1) {
                                                                         </span>
                                                                         <?php endif; // Look at the flag after like is clicked End if if user has not flagged the post. ?>
                                                                         <?php endif; // End if user is logged in.  ?>
-                                                                        <div class="asked-about-box">
-                                                                            <span class="dot">
-                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
-                                                                            </span>
-                                                                            Asked <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                                 <div data-toggle-box="member-posts" id="visitor-response">

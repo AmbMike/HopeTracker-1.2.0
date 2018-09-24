@@ -427,7 +427,7 @@
           font-size:16px;
         }
         .action-btns {
-
+          display: table;
           width: 100%;
           font-size: 20px;
           text-align: center;
@@ -448,28 +448,26 @@
             display: inline-block;
           }
           .simple-heading {
-            width: 32%;
-            display: inline-block;
             color: $header-gray;
             white-space: nowrap;
             width: auto;
             font-size: 18px;
-
+            display: table-cell;
+            vertical-align: middle;
             @media (max-width: 400px) {
               font-size: 14px;
             }
             &.post-like{
               text-align: left;
-              float: left;
               cursor: pointer;
             }
             &.comment{
               cursor: pointer;
             }
+            &.read-more {
+              text-align: right;
+            }
             &.read-more, a{
-              float: right;
-              margin-top: 1px;
-
               a{
                 margin: 0;
                 color: inherit;
