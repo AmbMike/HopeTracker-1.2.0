@@ -9,6 +9,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 ## Chatroom ##
 RewriteRule ^chats/$ /chatroom/index.php [L,QSA]
 
+## Password Reset
+RewriteRule ^rpd/([^/]+)?  index.php?page_url=rpd/reset-password [L,QSA]
+#RewriteRule ^rpd/?  index.php?page_url=home [L,QSA]
+
 ## Inspriation ##
 RewriteRule ^addiction-quotes/?$ index.php?page_url=inspiration-v1 [L,QSA]
 RewriteRule ^addiction-quotes/([^/]+)/([^/]+)/?$ index.php?page_url=inspiration-v1&folder=$1&filename=$2 [L,QSA]
@@ -53,8 +57,6 @@ RewriteCond %{REQUEST_URI} !(/$|\.)
 RewriteRule (.*) %{REQUEST_URI}/ [R=301,L]
 ErrorDocument 404 /index.php?page_url=404
 
-## Password Reset
-RewriteRule ^rpd/reset-password.ambrosia([^/]+)?  index.php?page_url=rpd/reset-password [L,QSA]
 
 ## Redirects ##
 #Redirect 301 /inspiration/ /addiction-quotes/

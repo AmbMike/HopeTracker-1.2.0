@@ -121,7 +121,7 @@ class AskQuestionForum
 		$approval = 1;
 
 	    if($this->Session->get('logged_in') == 1){
-		    $sql =  $this->Database->prepare("INSERT INTO ask_question_forum (user_id, category, subcategory, question, description, ip, date_created,post_type,approved) VALUES (?,?,?,?,?,?,?,?,?)");
+		    $sql =  $this->Database->prepare("INSERT INTO ask_question_forum (user_id, category, subcategory, question, description, ip, date_created,post_type,approved, CampaignMonitorError) VALUES (?,?,?,?,?,?,?,?,?, '')");
 		    $sql->execute(array(
 			    $this->userId,
 			    $data['category'],
@@ -137,7 +137,7 @@ class AskQuestionForum
 		    if($sql->rowCount() > 0){
 			     $returnValue['status'] = 'Success';
 		    }else{
-			     $returnValue['status'] = 'Failed';
+			     $returnValue['status'] = $sql->errorInfo();
 		    }
 	    }else{
 		     $returnValue['status'] = 'Not Logged In';
