@@ -37,7 +37,7 @@ $forumPosts = $ForumQuestions->getQuestions();
 /** @object  $wrap : core object for campaign monitor */
 
 $wrap = new CS_REST_Subscribers('b4ac39220d37331cb61459e658896cc6', '29a644cdec042cb0fb39f389f20afc9a');
-Debug::data($forumPosts);
+
 foreach ($forumPosts as $forumPost):
 
 	/** @var  $value : loops through each record that has not been sent to CM. */

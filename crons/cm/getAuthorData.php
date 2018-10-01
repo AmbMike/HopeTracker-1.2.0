@@ -11,10 +11,12 @@ require_once ABSPATH . 'campaign-monitor-api/csrest_clients.php';
 require_once ABSPATH . 'campaign-monitor-api/csrest_subscribers.php';
 require_once(CLASSES . 'User.php');
 require_once(CLASSES . 'General.php');
+require_once(CLASSES . 'class.AskQuestionForum.php');
 
 $User = new User();
 $General = new General();
 $QuestionData = new QuestionData();
+$AskQuestionForum = new AskQuestionForum();
 $AuthorQuestionArr =  $QuestionData->build();
 
 
@@ -27,9 +29,12 @@ $AuthorQuestionArr =  $QuestionData->build();
 
 /* Add the user's data to Campaign Monitor*/
 /** @object  $wrap : core object for campaign monitor */
-
+error_reporting(3);
 $wrap = new CS_REST_Subscribers('586deb4c4d517f0e35f7b701d0423bde', '29a644cdec042cb0fb39f389f20afc9a');
-foreach ($AuthorQuestionArr as $AuthorQuestion):
+require_once(CLASSES . 'class.AskQuestionForum.php');
+$AskQuestionForum = new AskQuestionForum();
+
+foreach ($AuthorQuestionArr as $index => $AuthorQuestion):
 
     /** @var  $value : loops through each record that has not been sent to CM. */
     $result = $wrap->add(array(
@@ -109,17 +114,19 @@ foreach ($AuthorQuestionArr as $AuthorQuestion):
                 'Value' => $AuthorQuestion['Latest answer text of latest question asked']
             )
         ),
+    ), true);
 
-
-    ));
     if($result->was_successful()) {
+        $QuestionData->setCampaignMonitorStatus($AuthorQuestion['id']);
         echo "Recorded to Campaign Monitor. \n";
-
-
+        Debug::data("Recorded to Campaign Monitor.");
     } else {
         echo 'Failed with code '.$result->http_status_code."\n<br /><pre>";
-        var_dump($result->response);
+        $AskQuestionForum->addErrorMsgCampaignMonitor($AuthorQuestion['id'],$result->response->Message);
+        Debug::data($result->response);
         echo '</pre>';
-        error_log("Campaign Monitor : invite friend failed!" .$result->http_status_code. "errors: ".$result->response , 0);
+        //error_log("Campaign Monitor : getAuthorData.php!" .$result->http_status_code. "errors: ".$result->response , 0);
+
     }
+
 endforeach;

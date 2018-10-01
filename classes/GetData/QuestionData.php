@@ -22,14 +22,23 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
             $this->General = new General();
             $this->questions = $this->getUnsentCMQuestionData();
         }
+        function setCampaignMonitorStatus($questionId){
+            $this->DB = new Database();
+            $sql = $this->DB->prepare("UPDATE ask_question_forum SET CampaignMonitor = 1 WHERE id = ?");
+            $sql->execute(array((int)$questionId));
+        }
         public function getUnsentCMQuestionData(){
             $this->DB = new Database();
             //$sql = $this->DB->prepare("SELECT DISTINCT user_id FROM ask_question_forum WHERE CampaignMonitor = 0");
-            $sql = $this->DB->prepare("SELECT * FROM ask_question_forum  WHERE CampaignMonitor = 0 GROUP BY user_id");
+            $sql = $this->DB->prepare("SELECT * FROM `ask_question_forum` WHERE id IN (SELECT MAX(id) FROM ask_question_forum GROUP BY user_id) ORDER BY `ask_question_forum`.`user_id` ASC ");
             $sql->setFetchMode(PDO::FETCH_ASSOC);
             $sql->execute();
+            $dataOut = $sql->fetchAll();
 
-            return $sql->fetchAll();
+            //$this->userCampaignMonitorHasError($dataOut);
+            //exit();
+
+            return $dataOut;
         }
         public function authorQuestions($userId, $filter = false){
             $this->DB = new Database();
@@ -127,7 +136,9 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/hopetracker/config/constants.php');
                 //Debug::data($LatestAnswerToAuthorFirstQuestion);
 
                 if(!empty($AuthorEmail)){
-                        $this->Information[$index]['id'] = $authorQuestions['id'];
+                        $this->Information[$index]['userId'] = $authorQuestions['user_id'];
+                        $this->Information[$index]['id'] = $question['id'];
+                        $this->Information[$index]['CampaignMonitorError'] = $question['CampaignMonitorError'];
                         $this->Information[$index]['Author Email'] = $AuthorEmail;
                         $this->Information[$index]['Author Name'] = User::full_name($authorQuestions['user_id']);
                         $this->Information[$index]['Date of first question asked'] = date('m/d/y',$authorQuestions['date_created']);

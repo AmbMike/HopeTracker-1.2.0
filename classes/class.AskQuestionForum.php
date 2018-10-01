@@ -99,6 +99,12 @@ class AskQuestionForum
         // section -64--88-0-17--66a83ae2:1602c49e480:-8000:0000000000000D45 end
     }
 
+    public function addErrorMsgCampaignMonitor($questionId, $errorMsg){
+        $this->Database = new Database();
+
+        $sql = $this->Database->prepare("UPDATE ask_question_forum SET CampaignMonitorError = ?, CampaignMonitor = 2 WHERE id = ?");
+        $sql->execute(array($errorMsg,(int)$questionId));
+    }
     /**
      * Store the form data to the database.
      *
