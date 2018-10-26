@@ -271,7 +271,6 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
-
                         <?php /* Updated related questions section requires backend before launch */?>
                         <div id="related-questions" class="panel-group sub-posts">
                             <div class="panel panel-default">
@@ -305,7 +304,6 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>

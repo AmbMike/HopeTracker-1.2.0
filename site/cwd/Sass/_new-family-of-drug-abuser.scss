@@ -120,9 +120,7 @@
               text-align: center;
             }
             .sub-category-text{
-              color: $theme-blue;
               margin: 0 5px;
-              font-weight: 600;
               text-transform: capitalize;
               @media (max-width: 550px) {
                 text-align: center;
@@ -138,8 +136,6 @@
         }
         .panel-heading {
           padding: 5px 15px 3px;
-          background: $theme-blue;
-          color: #ffffff;
           text-decoration: none;
           margin-bottom: 0;
           -webkit-border-radius: 0;

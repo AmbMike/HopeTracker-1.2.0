@@ -168,7 +168,7 @@ if($Session->get('logged_in') == 1){
 							$userFollowedPostCategory = (in_array($category['category'] ,$FollowedPostCategories)) ? 'Yes' : "No";
 							?>
                             <div class="panel-group category" data-followed-post-category="<?php echo $userFollowedPostCategory; ?>" data-user-answered-category="<?php echo $userAnsweredCategory; ?>" data-user-post-category="<?php echo $isUserPostInCategory; ?>"  data-category="<?php echo ucwords($category['category']); ?>">
-                                <div class="panel panel-default">
+                                <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <div class="main-collapse collapsed" data-toggle="collapse" href="#<?php echo $category_name; ?>-categories">
