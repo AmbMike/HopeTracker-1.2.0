@@ -175,11 +175,20 @@ if($Session->get('logged_in') == 1){
                                                 <h3 class="heading">
                                                     <span class="category-text"><?php echo $category['category'];?></span>
                                                 </h3>
+
+                                                <?php /* Updated js Category Count below before going live */ ?>
+                                                <div class="category-count-box">
+                                                    <span class="h4 thin">26</span>
+                                                </div>
+
                                                 <div id="moderator-container">
                                                     <div class="moderator-text-box">
 <!--                                                        <span class="questions"><?php /*echo count($ForumQuestions->getQuestionsBySubcategory($subcategory['sub_category'])); */?> Question</span>
 -->                                                <span class="title">
-                                                    Moderated by:
+
+                                                            <?php /* Update js to show the last contributed user post. No longer use the Moderator image and name here. */ ?>
+                                                    Last Post: 2 Days Ago
+
                                                 </span>
                                                         <span <?php echo PageLinks::userProfile($category['moderator_id']); ?> class="moderator">
                                                    <?php echo User::Username($category['moderator_id']); ?>
