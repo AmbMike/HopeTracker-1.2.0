@@ -43,13 +43,13 @@
     <link rel="stylesheet" href="<?php echo CSS; ?>main-full.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
-    <link rel="canonical" href="<?php echo ($canonical_url) ? : BASE_URL . $_SERVER['REQUEST_URI'] ?>" />
+    <link rel="canonical" href="<?php echo ($canonical_url) ? : BASE_URL; ?>" />
     <?php echo ($no_index) == true ? '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">' : ''; ?>
 
     <?php echo ($custom_stylesheet) ? ' <link rel="stylesheet" href="'.CSS.'/'.$custom_stylesheet.'.css" type="text/css">' : ''; ?>
 
     <meta property="og:title" content="<?php echo ($og_title)  ? : 'HomeTracker | There is Hope'; ?>" />
-    <meta property="og:url" content="<?php echo BASE_URL; echo ($og_url)  ? : $_SERVER['REQUEST_URI']; ?>" />
+    <meta property="og:url" content="<?php echo (BASE_URL . $og_url)  ? : $_SERVER['REQUEST_URI']; ?>" />
     <meta property="og:image" content="<?php echo BASE_URL; echo ($og_img) ? :IMAGES .'quotes/quote.cant_shine.jpg'; ?>" />
     <meta property="og:description" content="<?php echo ($page_title) ? : 'Hope Tracker | Ambrosia'; ?>"/>
     <meta property="fb:app_id" content="169128966857060"/>

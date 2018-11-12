@@ -14,6 +14,7 @@ require_once(CLASSES . 'class.ViewedPost.php');
 require_once(CLASSES . 'class.LikePost.php');
 require_once(CLASSES . 'class.FollowPost.php');
 
+
 /** @var $questionId : the id of the question for the page.  */
 $questionId = $_GET['forum_id'];
 
@@ -65,6 +66,8 @@ if($Session->get('logged_in') == 1) {
 	/** @var  $user_id */
 	$user_id = $Session->get( 'user-id' );
 }
+error_reporting(3);
+
 ?>
 
 <div class="con main" data-questions-parent="true">
@@ -72,10 +75,10 @@ if($Session->get('logged_in') == 1) {
         <div class="col-md-8" id="forum-single">
             <main>
                 <div class="header-box">
-                    <h1 class="green-heading-lg">Forum Question</h1>
+                    <h1 class="green-heading-lg">Forum Questions</h1>
                     <div class="insurance-treatment-box">
                         <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category); ?>"><?php echo  $Question->category; ?></a>
-                        <span class="dot"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
                         <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category) . '/' . $General->url_safe_string($Question->subcategory); ?>"><?php echo  $Question->subcategory; ?></a>
                     </div>
                 </div>
@@ -97,18 +100,17 @@ if($Session->get('logged_in') == 1) {
                                             <span role="button" data-bound-follow-post="btn" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box"><i class="fa fa-star" aria-hidden="true"></i> <span>Follow</span></span>
                                         <?php endif; ?>
                                     <?php endif; // End if user is logged in.  ?>
-                                    <i class="fa fa-circle dot" aria-hidden="true"></i>
                                     <div class="forum-details">
-                                    <span class="asked-about-box">
-                                        Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by
-                                    </span>
+                                        <span class="asked-about-box">
+                                            Asked <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$Question->dateCreated) ?>"><?php echo date("j F Y H:i",$Question->dateCreated) ?></time> by
+                                        </span>
                                         <span class="liked-by-box">
-                                       <span class="liked-by"  <?php echo PageLinks::userProfile($Question->questionUsersId); ?>><?php echo User::Username($Question->questionUsersId); ?></span>
-                                    </span>
-                                        <span class="seen-count-box">
-                                        <i class="fa fa-circle dot" aria-hidden="true"></i>
-                                        Seen by <data value="<?php echo $ViewedPost->countPostViews(3,$Question->postId) ?>" class="seen-count"><?php echo $ViewedPost->countPostViews(3,$Question->postId) ?></data>
-                                    </span>
+                                           <span class="liked-by"  <?php echo PageLinks::userProfile($Question->questionUsersId); ?>><?php echo User::Username($Question->questionUsersId); ?></span>
+                                        </span>
+                                            <span class="seen-count-box">
+                                            <i class="fa fa-circle dot" aria-hidden="true"></i>
+                                            Seen by <data value="<?php echo $ViewedPost->countPostViews(3,$Question->postId) ?>" class="seen-count"><?php echo $ViewedPost->countPostViews(3,$Question->postId) ?></data>
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="author-text-box" data-question="description">
@@ -130,11 +132,11 @@ if($Session->get('logged_in') == 1) {
                             </div>
                         </div>
 
-                        <div id="visitor-response">
-                            <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
+                        <div class="visitor-response">
+                            <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img($user_id,true); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
                                 <div class="success-box" style="display: none">
-                                    <div class="modal-header" style="padding-top: 0;: ;">
+                                    <div class="modal-header">
                                         <span class="green-text-md">Submitted Successfully!</span>
                                     </div>
                                     <p>Your answer is very valuable to the entire Hopetracker community. </p>
@@ -180,7 +182,7 @@ if($Session->get('logged_in') == 1) {
                                             <div id="answerOuter" data-questions="container" data-answer="output boxes">
                                                 <div id="answerInner">
                                                     <div data-answer="tables">
-														<?php foreach ( $forum_answers as $forum_answer) :  ?>
+														<?php foreach ( $forum_answers as $index => $forum_answer) :  ?>
                                                             <div data-answers="container" data-answer-id="<?php echo $forum_answer['id']; ?>" data-answer-post-type="<?php echo $forum_answer['post_type']; ?>">
                                                                 <div class="author-img-box cell">
                                                                     <img <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $forum_answer['user_id']); ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>" class="img-circle profile-img">
@@ -193,8 +195,14 @@ if($Session->get('logged_in') == 1) {
 																		<?php $answer_user_question_count = $ForumQuestions->totalApprovedQuestions($forum_answer['user_id']) ?>
 																		<?php $answer_user_answer_count = $ForumAnswers->countAnswers(true,$forum_answer['user_id']) ?>
                                                                         <span><data value="<?php echo $answer_user_question_count; ?>" class="user-questions"><?php echo $answer_user_question_count; ?></data> Questions <data value="<?php echo $answer_user_answer_count; ?>" class="user-answers"><?php echo $answer_user_answer_count; ?></data> Answers</span>
+                                                                        <div class="asked-about-box">
+                                                                            <span class="dot">
+                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
+                                                                            </span>
+                                                                            Asked <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
+                                                                        </div>
                                                                     </div>
-                                                                    <div class="author-text-box">dd
+                                                                    <div class="author-text-box">
                                                                         <span itemprop="text" class="author-text"><?php echo $forum_answer['answer']; ?></span>
                                                                     </div>
                                                                     <div class="tracker-box">
@@ -203,17 +211,21 @@ if($Session->get('logged_in') == 1) {
 																		?>
 																		<?php if($Session->get('logged_in')== 1) : ?>
                                                                         <?php if($LikePost->checkLikedQuestion() == true) : ?>
+                                                                            <?php /* Removed per mock up.
                                                                             <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>"  class="like-box liked">Liked</span>
                                                                         <?php else : ?>
                                                                             <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>" class="like-box">Like</span>
-                                                                        <?php endif; ?>
-                                                                            <?php /* Reactivate after backend is complete.
-                                                                        <i class="fa fa-circle dot"aria-hidden="true"></i>
-                                                                        <div class="question-liked-box">
-                                                                            <i class="fa fa-thumbs-o-up like-count-icon"></i>
-                                                                            <span class="question-liked-text">23</span>
-                                                                        </div>
                                                                         */ ?>
+
+                                                                        <?php endif; ?>
+                                                                        <?php
+                                                                        $LikePost = new LikePost($forum_answer['id'],4,$forum_answer['user_id']);
+                                                                       ?>
+                                                                        <div class="question-liked-box">
+                                                                            <i class="fa fa-thumbs-o-up like-count-icon updated-txt-false" role="button" data-bound-post-like="btn" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="4" data-post-user-id="<?php echo $forum_answer['user_id']; ?>"></i>
+                                                                            <data data-like-post-count-updater value="<?php echo $LikePost->getTotalLikes()?>" class="question-liked-text"><?php echo $LikePost->getTotalLikes()?></data>
+                                                                        </div>
+                                                                        <span role="button" data-toggle="collapse" data-target="#answer-comment-<?php echo $index; ?>" class="comment-access-btn">Comment</span>
                                                                         <?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
                                                                         <span class="flag-box" data-question="flag-btn" role="button" >
                                                                             <span class="flag-tooltip-text">
@@ -230,17 +242,10 @@ if($Session->get('logged_in') == 1) {
                                                                         </span>
                                                                         <?php endif; // Look at the flag after like is clicked End if if user has not flagged the post. ?>
                                                                         <?php endif; // End if user is logged in.  ?>
-                                                                        <div class="asked-about-box">
-                                                                            <span class="dot">
-                                                                                <i class="fa fa-circle" aria-hidden="true"></i>
-                                                                            </span>
-                                                                            Asked <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <?php /* Reactivate after backend is complete.
-                                                                <div data-toggle-box="member-posts" id="visitor-response">
-                                                                    <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
+                                                                <div data-toggle-box="member-posts" id="answer-comment-<?php echo $index; ?>" class="visitor-response collapse">
+                                                                    <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
                                                                         <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
                                                                         <div class="comment-btn-box">
@@ -248,7 +253,6 @@ if($Session->get('logged_in') == 1) {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                */ ?>
                                                                 <hr>
                                                             </div>
 														<?php endforeach; ?>
@@ -263,7 +267,9 @@ if($Session->get('logged_in') == 1) {
 															<?php endfor; ?>
                                                         </div>
 													<?php endif; ?>
+                                                    <?php /* Remove when textarea comment section is complete
                                                     <button data-answers="question" data-answer-page="single-question" data-question-id="<?php echo $Question->postId; ?>" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#answer-question-modal"';?>  class="btn btn-primary <?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be signed in to chat" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?>>Submit your answer</button>
+                                                    */?>
                                                 </div>
                                             </div>
                                         </div>
@@ -271,6 +277,41 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                         </div>
+
+                        <?php /* Updated related questions section requires backend before launch */?>
+                        <div id="related-questions" class="panel-group sub-posts">
+                            <div class="panel panel-default">
+                                <div class="panel-heading more-answers-box">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" href="#collapse-related">
+                                            <h3>
+                                                <span class="more-answers"><i class="fa fa-caret-down" aria-hidden="true"></i> Related Questions</span>
+                                            </h3>
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapse-related" class="panel-collapse collapse in">
+                                    <?php /** Related questions output area requires backend before launch */ ?>
+                                    <div class="panel-body">
+                                        <div  class="table">
+                                            <div id="relatedOuter">
+                                                <div id="relatedInner">
+                                                    <div class="related-content">
+                                                        <p>
+                                                            <span class="related-qa-image" style="background-image: url('/hopetracker/site/public/images/testimonials/GIRLFRIEND.png')"></span> What if I find rolling paper in my car and my son used it last?
+                                                        </p>
+                                                        <p>
+                                                            <span class="related-qa-image" style="background-image: url('/hopetracker/site/public/images/testimonials/GIRLFRIEND.png')"></span> What if I find rolling paper in my car and my son used it last?
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>

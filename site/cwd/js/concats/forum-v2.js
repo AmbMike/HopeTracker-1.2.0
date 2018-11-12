@@ -160,15 +160,18 @@ function forumQuestions(){
 
             $this.addClass('on');
             $(pageID + ' [data-followed-post-category="No"').add(pageID + ' [data-followed-post="No"]').add(pageID + ' [data-followed-post-subcategory="No"]').slideUp(600);
+
+            $('[data-followed-post-category="Yes"]').find('.collapse').addClass('in');
         }
         function showAllFollowedPost() {
             $this.add($this.find('span')).fadeOut(300,function () {
-                $this.find('[data-filter-text]').text('Answers').css({'text-decoration' : 'none'});
+                $this.find('[data-filter-text]').text('Following').css({'text-decoration' : 'none'});
 
                 $this.parent().find('span').add($this.parent().find('i')).show();
                 $this.parent().add('[data-followed-post-subcategory="No"]').fadeIn(200);
             });
             $this.removeClass('on');
+            $('.panel-group').find('.collapse').removeClass('in');
             $(pageID + ' [data-followed-post-category="No"').add(pageID + ' [data-followed-post-subcategory="No"]').add(pageID + ' [data-followed-post="No"]').slideDown(600);
         }
     });

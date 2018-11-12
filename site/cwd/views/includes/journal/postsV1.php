@@ -263,7 +263,7 @@
                         <ul class="post-reply">
                             <hr>
                             <li class="reply-user-img">
-                                <a class="wrap" href="/families-of-drug-addicts/user-<?php echo $comment['user_id'];  ?>/<?php echo User::Username($comment['user_id']); ?>"><img src="/<?php echo $User->get_user_profile_img(false, $comment['user_id']); ?>" class="img-circle profile-img sm"></a>
+                                <a class="wrap" href="/<?php echo RELATIVE_PATH; ?>families-of-drug-addicts/user-<?php echo $comment['user_id'];  ?>/<?php echo $General->url_safe_string(User::Username($comment['user_id'])); ?>"><img src="/<?php echo $User->get_user_profile_img(false, $comment['user_id']); ?>" class="img-circle profile-img sm"></a>
                             </li>
                             <li>
                                 <div class="reply-user-name">

@@ -112,7 +112,7 @@ function like_post_bound() {
         /** Process the like btn */
 
         $.post(RELATIVE_PATH + '/config/processing.php',ajaxObject,function (response) {
-            console.log(response);
+
             /** Bind a constant count value for output */
             var countBinderEl = $thisLikeBtn.parent().find('[data-like-post-count-updater]');
             var countBinder = countBinderEl.val();
@@ -121,8 +121,12 @@ function like_post_bound() {
 
             if( response.status === 'unliked'){
 
+
                 $thisLikeBtn.removeClass('liked');
-                $thisLikeBtn.text('Like');
+                if(!$thisLikeBtn.hasClass('updated-txt-false')){
+                    $thisLikeBtn.text('Like');
+                }
+
 
                 /** Update constant count value for output */
                 if(countBinder){
@@ -134,7 +138,9 @@ function like_post_bound() {
             }else if(response.status === 'liked'){
 
                 $thisLikeBtn.addClass('liked');
-                $thisLikeBtn.text('Liked');
+                if(!$thisLikeBtn.hasClass('updated-txt-false')) {
+                    $thisLikeBtn.text('Liked');
+                }
 
                 /** Update constant count value for output */
                 if( countBinder){

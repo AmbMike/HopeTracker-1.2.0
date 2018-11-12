@@ -161,11 +161,11 @@ function communitySearchPosts() {
         var html = '<section data-post-parent="post" class="box-one no-p">\n' +
             '            <ul class="post">\n' +
             '                <li>\n' +
-            '                    <a class="wrap" href="/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'"><img src="/'+userProfile+'" class="img-circle profile-img sm"></a>\n' +
+            '                    <a class="wrap" href="' + RELATIVE_PATH + '/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'"><img src="/'+userProfile+'" class="img-circle profile-img sm"></a>\n' +
             '                </li>\n' +
             '                <li>\n' +
             '                    <div class="simple-heading user-name">\n' +
-            '                        <a class="wrap" href="/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'">'+usernameFormatted+'</a>\n' +
+            '                        <a class="wrap" href="' + RELATIVE_PATH + '/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'">'+usernameFormatted+'</a>\n' +
             '                        <div class="author-info-box">\n' +
             '                            <time itemprop="dateCreated" class="human-time date" datetime="'+entryDate+'" title="'+entryDate+'"></time> <i class="fa fa-circle" aria-hidden="true"></i><span class="author-local"> '+state+', '+zip+' </span>\n' +
             '                        </div>\n' +
