@@ -42,14 +42,14 @@ $ViewedPost = new ViewedPost();
 $ForumQuestions = new ForumQuestions();
 $UserProfile = new UserProfile();
 
+/** @var  $total_questions : total number of questions asked by all users */
+$total_questions =  $ForumQuestions->totalApprovedQuestions;
+
 /** Logged in  values and variables */
 if($Session->get('logged_in') == 1){
 
 	/** @var  $user_id */
 	$user_id = $Session->get('user-id');
-
-	/** @var  $total_questions : total number of questions asked by all users */
-	$total_questions =  $ForumQuestions->totalApprovedQuestions;
 
 	/** @var  $total_user_forums : the total number of
 	 * forums/questions created by the user.
@@ -146,6 +146,15 @@ if($Session->get('logged_in') == 1){
 				<?php endif; ?>
                 <div id="category-fill-box">
                     <section id="categories">
+                        <?php /** Start loop for popular question  */ ?>
+                        <?php
+
+
+                        ?>
+                        <?php $count = 0; foreach (  $ForumQuestions->mostPopular() as $question) : ?>
+
+                        <?php endforeach; ?>
+
 						<?php /** Start loop for forum categories  */ ?>
 						<?php $count = 0; foreach ( $Forum->get_category_list() as $category) : ?>
 							<?php $category_name = preg_replace('/[^a-zA-Z0-9-_\.]/','', $category['category']); ?>
@@ -178,6 +187,10 @@ if($Session->get('logged_in') == 1){
                                                 <h3 class="heading">
                                                     <span class="category-text"><?php echo $category['category'];?></span>
                                                 </h3>
+
+                                                <?php /* Updated js Category Count below before going live */ ?>
+                                                <span class="category-count-box h4"><?php echo $ForumQuestions->totalPostPerCategory( $category['category']); ?></span>
+
                                                 <div id="moderator-container">
                                                     <div class="moderator-text-box">
 <!--                                                        <span class="questions"><?php /*echo count($ForumQuestions->getQuestionsBySubcategory($subcategory['sub_category'])); */?> Question</span>

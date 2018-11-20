@@ -109,7 +109,7 @@ class Emails{
         }
     }
 
-    public function sendInitialPostEmail($id,$userId,$question,$subcategory,$dateCreated,$subcategory){
+    public function sendInitialPostEmail($id,$userId,$question,$subcategory,$dateCreated,$category){
         error_reporting(3);
         date_default_timezone_set("America/New_York");
 

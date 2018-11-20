@@ -491,6 +491,32 @@ class ForumQuestions
             return  "Failed to update: " . $id;
         }
     }
+    function mostPopular($qty = 5)
+    {
+        include_once(CLASSES . 'class.ForumAnswers.php');
+
+        $ForumAnswer = new ForumAnswers();
+        $this->Database = new Database();
+
+        $ids = $ForumAnswer->popularQuestionIds($qty);
+        $questionCSV = implode(',',$ids);
+
+        $sql = $this->Database->prepare("SELECT * FROM ask_question_forum WHERE id IN(" . $questionCSV .")");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute();
+
+        return $sql->fetchAll();
+    }
+    public function totalPostPerCategory($category){
+        $this->Database = new Database();
+
+        $sql = $this->Database->prepare("SELECT count(*) FROM ask_question_forum WHERE category = ?");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute(array($category));
+
+        return $sql->fetchColumn();
+    }
+
 
 } /* end of class ForumQuestions */
 

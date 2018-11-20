@@ -587,7 +587,6 @@ function answerQuestion(formIdVar) {
 }
 function answerQuestionMain(formIdVar) {
     'use strict';
-
     /** Parent Ids */
     var pageParent = '[data-questions-parent="true"]';
     var formId =  formIdVar;

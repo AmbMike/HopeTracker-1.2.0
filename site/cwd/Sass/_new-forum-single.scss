@@ -18,6 +18,7 @@
       i {
         font-size: 12px;
         vertical-align: middle;
+        margin-left: 5px;
       }
       a{
         margin: 0;
@@ -197,12 +198,12 @@
         }
         .flag-box {
           display: inline-block;
-          position: absolute;
-          color: $header-gray;
+          position: relative;
+          color: #90949c;
           margin: 0 3px 0 10px;
           font-size: 14px;
-          bottom: 0;
-          right: 30px;
+          top: 6px;
+          float: right;
           .flag-tooltip-text {
             visibility: hidden;
             width: 210px;

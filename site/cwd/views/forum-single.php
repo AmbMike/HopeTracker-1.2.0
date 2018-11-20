@@ -141,7 +141,7 @@ error_reporting(3);
                                     </div>
                                     <p>Your answer is very valuable to the entire Hopetracker community. </p>
                                 </div>
-                                <form class="pre-form-content" id="forum-answer-question-form-1" date-question-id="<?php echo $questionId; ?>">
+                                <form class="pre-form-content" id="forum-answer-question-form-1 collapse" date-question-id="<?php echo $questionId; ?>">
                                     <textarea  rows="1" data-autoresize class="text-features" name="answer" placeholder="Share your advice and experience"></textarea>
                                     <div class="comment-btn-box">
                                         <input type="submit" name="submit" value="Comment" class="save-btn blue">
@@ -183,73 +183,117 @@ error_reporting(3);
                                                 <div id="answerInner">
                                                     <div data-answer="tables">
 														<?php foreach ( $forum_answers as $index => $forum_answer) :  ?>
-                                                            <div data-answers="container" data-answer-id="<?php echo $forum_answer['id']; ?>" data-answer-post-type="<?php echo $forum_answer['post_type']; ?>">
-                                                                <div class="author-img-box cell">
-                                                                    <img <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $forum_answer['user_id']); ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>" class="img-circle profile-img">
-                                                                </div>
-                                                                <div class="post-text-box cell">
-                                                                    <div class="quote-box" itemprop="author" itemscope itemtype="http://schema.org/Person">
-                                                                        <span <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>  itemprop="name"  <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><?php echo User::Username($forum_answer['user_id']); ?></span>
+                                                            <div class="answer-container" data-answers="container" data-answer-id="<?php echo $forum_answer['id']; ?>" data-answer-post-type="<?php echo $forum_answer['post_type']; ?>">
+                                                                <div class="answer-data-container">
+                                                                    <div class="author-img-box cell">
+                                                                        <img <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $forum_answer['user_id']); ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>" class="img-circle profile-img">
                                                                     </div>
-                                                                    <div class="user-count-container">
-																		<?php $answer_user_question_count = $ForumQuestions->totalApprovedQuestions($forum_answer['user_id']) ?>
-																		<?php $answer_user_answer_count = $ForumAnswers->countAnswers(true,$forum_answer['user_id']) ?>
-                                                                        <span><data value="<?php echo $answer_user_question_count; ?>" class="user-questions"><?php echo $answer_user_question_count; ?></data> Questions <data value="<?php echo $answer_user_answer_count; ?>" class="user-answers"><?php echo $answer_user_answer_count; ?></data> Answers</span>
-                                                                        <div class="asked-about-box">
+                                                                    <div class="post-text-box cell">
+                                                                        <div class="quote-box" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                                                            <span <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>  itemprop="name"  <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><?php echo User::Username($forum_answer['user_id']); ?></span>
+                                                                        </div>
+                                                                        <div class="user-count-container">
+                                                                            <?php $answer_user_question_count = $ForumQuestions->totalApprovedQuestions($forum_answer['user_id']) ?>
+                                                                            <?php $answer_user_answer_count = $ForumAnswers->countAnswers(true,$forum_answer['user_id']) ?>
+                                                                            <span><data value="<?php echo $answer_user_question_count; ?>" class="user-questions"><?php echo $answer_user_question_count; ?></data> Questions <data value="<?php echo $answer_user_answer_count; ?>" class="user-answers"><?php echo $answer_user_answer_count; ?></data> Answers</span>
+                                                                            <div class="asked-about-box">
                                                                             <span class="dot">
                                                                                 <i class="fa fa-circle" aria-hidden="true"></i>
                                                                             </span>
-                                                                            Asked <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
+                                                                                Asked <time itemprop="dateCreated"  class="human-time" datetime="<?php echo date("j F Y H:i",$forum_answer['date_created']) ?>"><?php echo date("j F Y H:i",$forum_answer['date_created']) ?></time>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="author-text-box">
-                                                                        <span itemprop="text" class="author-text"><?php echo $forum_answer['answer']; ?></span>
-                                                                    </div>
-                                                                    <div class="tracker-box">
-																		<?php
-																		$LikePost= new LikePost($forum_answer['id'], $forum_answer['post_type'],$forum_answer['user_id']);
-																		?>
-																		<?php if($Session->get('logged_in')== 1) : ?>
-                                                                        <?php if($LikePost->checkLikedQuestion() == true) : ?>
-                                                                            <?php /* Removed per mock up.
-                                                                            <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>"  class="like-box liked">Liked</span>
-                                                                        <?php else : ?>
-                                                                            <span role="button" data-bound-post-like="btn" data-post-user-id="<?php echo $forum_answer['user_id']; ?>" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="<?php echo $forum_answer['post_type']; ?>" class="like-box">Like</span>
-                                                                        */ ?>
+                                                                        <div class="author-text-box">
+                                                                            <span itemprop="text" class="author-text"><?php echo $forum_answer['answer']; ?></span>
+                                                                        </div>
+                                                                        <div class="tracker-box">
+                                                                            <?php
+                                                                            $LikePost= new LikePost($forum_answer['id'], $forum_answer['post_type'],$forum_answer['user_id']);
+                                                                            ?>
+                                                                            <?php if($Session->get('logged_in')== 1) : ?>
+                                                                                <?php
+                                                                                $LikePost = new LikePost($forum_answer['id'],4,$forum_answer['user_id']);
+                                                                                ?>
+                                                                                <div class="question-liked-box">
+                                                                                    <i class="fa fa-thumbs-o-up like-count-icon updated-txt-false" role="button" data-bound-post-like="btn" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="4" data-post-user-id="<?php echo $forum_answer['user_id']; ?>"></i>
+                                                                                    <data data-like-post-count-updater value="<?php echo $LikePost->getTotalLikes()?>" class="question-liked-text"><?php echo $LikePost->getTotalLikes()?></data>
+                                                                                </div>
+                                                                                <span role="button" data-toggle="collapse" data-target=".answer-comment-<?php echo $index; ?>" class="comment-access-btn">Comment</span>
+                                                                                <?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
+                                                                                    <span class="flag-box" data-question="flag-btn" role="button" >
+                                                                                        <span class="flag-tooltip-text">
+                                                                                            Click here to report this post as inappropriate.
+                                                                                            <a class="alt-flag">flag</a>
+                                                                                        </span>
+                                                                                        <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                                    </span>
+                                                                                <?php else: ?>
+                                                                                    <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">
+                                                                                        <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                                    </span>
+                                                                                <?php endif; // Look at the flag after like is clicked End if if user has not flagged the post. ?>
+                                                                            <?php endif; // End if user is logged in.  ?>
+                                                                        </div>
+                                                                        <div class="comment-fill"></div>
 
-                                                                        <?php endif; ?>
                                                                         <?php
-                                                                        $LikePost = new LikePost($forum_answer['id'],4,$forum_answer['user_id']);
-                                                                       ?>
-                                                                        <div class="question-liked-box">
-                                                                            <i class="fa fa-thumbs-o-up like-count-icon updated-txt-false" role="button" data-bound-post-like="btn" data-post-id="<?php echo $forum_answer['id']; ?>" data-post-type="4" data-post-user-id="<?php echo $forum_answer['user_id']; ?>"></i>
-                                                                            <data data-like-post-count-updater value="<?php echo $LikePost->getTotalLikes()?>" class="question-liked-text"><?php echo $LikePost->getTotalLikes()?></data>
-                                                                        </div>
-                                                                        <span role="button" data-toggle="collapse" data-target="#answer-comment-<?php echo $index; ?>" class="comment-access-btn">Comment</span>
-                                                                        <?php if($FlagPost->checkIfUserFlaggedPost($forum_answer['id'],$forum_answer['post_type']) == false) : ?>
-                                                                        <span class="flag-box" data-question="flag-btn" role="button" >
-                                                                            <span class="flag-tooltip-text">
-                                                                                Click here to report this post as inappropriate.
-                                                                                <a class="alt-flag">
-                                                                                    flag
-                                                                                </a>
-                                                                            </span>
-                                                                            <i class="fa fa-flag" aria-hidden="true"></i>
-                                                                        </span>
-                                                                        <?php else: ?>
-                                                                        <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">
-                                                                            <i class="fa fa-flag" aria-hidden="true"></i>
-                                                                        </span>
-                                                                        <?php endif; // Look at the flag after like is clicked End if if user has not flagged the post. ?>
-                                                                        <?php endif; // End if user is logged in.  ?>
+
+                                                                            include_once(CLASSES . 'class.ForumAnswerComment.php');
+                                                                            $ForumAnswerComment = new ForumAnswerComment();
+                                                                            $comments = $ForumAnswerComment->getAnswerComment($forum_answer['id']);
+                                                                            if(!empty($comments)):
+                                                                                foreach ($comments as $comment) :
+                                                                        ?>
+                                                                                <div class="comment-fill collapse answer-comment-<?php echo $index; ?>">
+                                                                                    <hr>
+                                                                                    <div class="clearfix">
+                                                                                        <div class="table">
+                                                                                            <div class="author-img-box cell">
+                                                                                                <img <?php echo PageLinks::userProfile($comment['post_user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $comment['post_user_id']); ?>" alt="<?php echo User::Username($comment['post_user_id']); ?>" class="img-circle profile-img">
+                                                                                            </div>
+                                                                                            <div class="post-text-box cell">
+                                                                                                <div class="quote-box" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+                                                                                                    <span <?php echo PageLinks::userProfile($comment['post_user_id']); ?>  role="button" itemprop="name"><?php echo User::Username($comment['post_user_id']); ?></span>
+                                                                                                </div>
+                                                                                                <div class="user-count-container">
+                                                                                                    <div class="asked-about-box">
+                                                                                                        <span><!--<i class="fa fa-circle" aria-hidden="true"></i>--></span> Asked
+                                                                                                        <time itemprop="dateCreated" class="human-time" datetime="<?php echo date("j F Y H:i",$comment['timestamp']) ?>" title="<?php echo date("j F Y H:i",$comment['timestamp']) ?>"></time>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="author-text-box">
+                                                                                                    <span itemprop="text" class="author-text"><?php echo$comment['content']; ?></span>
+                                                                                                </div>
+                                                                                                <div class="tracker-box">
+                                                                                                    <div class="question-liked-box"> <i class="fa fa-thumbs-o-up like-count-icon updated-txt-false" style="margin-right: 5px;" role="button" data-bound-post-like="btn" data-post-id="<?php echo $comment['id']; ?>" data-post-type="7" data-post-user-id="<?php echo $comment['post_user_id']; ?>"></i>
+                                                                                                        <?php $LikePost = new LikePost($comment['id'],7,$comment['post_user_id']); ?>
+                                                                                                        <data data-like-post-count-updater="" value="<?php echo $LikePost->getTotalLikes()?>" class="question-liked-text"><?php echo $LikePost->getTotalLikes()?></data>
+                                                                                                    </div>
+                                                                                                    <?php if($FlagPost->checkIfUserFlaggedPost($comment['id'],7) == false) : ?>
+                                                                                                    <span class="flag-box is-comment" data-question="flag-btn" data-comment-id="<?php echo $comment['id']; ?>" data-post-type="7" role="button">
+                                                                                                        <span class="flag-tooltip-text">Click here to report this post as inappropriate.<a class="alt-flag">flag</a></span>
+                                                                                                        <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                                                    </span>
+                                                                                                    <?php else: ?>
+                                                                                                        <span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">
+                                                                                                            <i class="fa fa-flag" aria-hidden="true"></i>
+                                                                                                        </span>
+                                                                                                    <?php endif; ?>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            <?php endforeach; ?>
+                                                                        <?php endif; ?>
                                                                     </div>
                                                                 </div>
-                                                                <div data-toggle-box="member-posts" id="answer-comment-<?php echo $index; ?>" class="visitor-response collapse">
+                                                                <div data-toggle-box="answer-comment" id="answer-comment-<?php echo $index; ?>" class="visitor-response collapse answer-comment-<?php echo $index; ?>">
                                                                     <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
-                                                                        <textarea data-comment-journal-id=""  rows="1" data-autoresize data-postV1="comment-input" class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
+                                                                        <textarea data-comment-journal-id=""  rows="1" data-autoresize  class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
                                                                         <div class="comment-btn-box">
-                                                                            <input type="submit" name="submit" value="Comment" class="save-btn blue">
+                                                                            <input type="submit" name="submit" data-answer-id="<?php echo $forum_answer['id']; ?>" value="Comment" class="save-btn blue">
                                                                         </div>
                                                                     </div>
                                                                 </div>

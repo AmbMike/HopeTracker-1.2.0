@@ -408,6 +408,30 @@ class ForumAnswers
 
         return $returnValue;
     }
+    public function popularQuestionIds($qty = 5)
+    {
+        $returnValue = null;
+
+        // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001104 begin
+	    $this->Database = new Database();
+
+	    $sql = $this->Database->prepare("SELECT COUNT(id) as qty, question_id FROM answers_forum WHERE question_id != '' GROUP BY question_id ORDER BY qty DESC LIMIT 0, :qty");
+	    $sql->bindParam('qty', $qty, PDO::PARAM_INT);
+	    $sql->setFetchMode(PDO::FETCH_ASSOC);
+	    $sql->execute();
+	    $questionData= $returnValue = $sql->fetchAll();
+
+	    $questionIds = array();
+
+	    foreach ($questionData as $question){
+	        $questionIds[] = $question['question_id'];
+        }
+        $returnValue = $questionIds;
+
+        // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001104 end
+
+        return $returnValue;
+    }
 
 } /* end of class ForumAnswers */
 

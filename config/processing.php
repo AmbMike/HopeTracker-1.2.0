@@ -289,7 +289,12 @@
 		$ForumAnswers = new ForumAnswers();
 		$ForumAnswers->storeAnswer($_POST['data']);
 		break;
+    case 'Answer Comment' :
 
+        include_once(CLASSES . 'class.ForumAnswerComment.php');
+        $ForumAnswerComment = new ForumAnswerComment();
+        $ForumAnswerComment->storeComment($_POST['data']);
+        break;
 	/** Like Post */
 	case 'Like Post' :
 		include_once( CLASSES . 'class.LikePost.php' );
