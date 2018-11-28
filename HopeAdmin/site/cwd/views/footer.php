@@ -11,10 +11,10 @@
 <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-        Anything you want
+        HopeTracker
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="/">Ambrosia Treatment Centers</a>.</strong> All rights reserved.
 </footer>
 
 <!-- Control Sidebar -->
@@ -124,7 +124,61 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+
+        if($('.flagged-action-btn').length > 0){
+            deleteFlaggedPost()
+        }
+
     });
+
+    function deleteFlaggedPost() {
+        $('.flagged-action-btn').on('click', function () {
+
+            var r =  confirm("Are you sure you want to delete this post?");
+            if (r === true) {
+
+                let $this = $(this);
+                let postType = $this.data('delete-flag-post-type');
+                let postId = $this.data('delete-flag-post-id');
+                let flagId = $this.data('delete-flag-id');
+                if (r === true) {
+                    var ajaxData = {
+                        form : "Delete Flagged Post",
+                        cache : false,
+                        postType : postType,
+                        postId : postId,
+                        flagId : flagId
+
+                    };
+                    $('#flagged-action-success').html(" ");
+                    $.post("/" + '<?php echo RELATIVE_PATH ?>config/processing.php',ajaxData,function (response) {
+                       if(response.status === "Success"){
+                           var htmlSuccess;
+
+                           $this.closest('tr').remove();
+                            htmlSuccess = '<div class="alert alert-success alert-dismissible ">\n' +
+                               '                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\n' +
+                               '                        <h4><i class="icon fa fa-check"></i> Success!</h4>\n' +
+                               '                        You\'ve just delete the flagged post.\n' +
+                               '                    </div>';
+                           $('#flagged-action-success').html(htmlSuccess);
+                           $('#flagged-action-success').slideDown(500);
+                       }else{
+                            htmlSuccess = '<div class="alert alert-danger alert-dismissible ">\n' +
+                               '                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>\n' +
+                               '                        <h4><i class="icon fa fa-check"></i> Failed!</h4>\n' +
+                               '                        The post did not delete successfully. Please try again.\n' +
+                               '                    </div>';
+                           $('#flagged-action-success').html(htmlSuccess);
+                           $('#flagged-action-success').slideDown(500);
+                       }
+                    },'json');
+                }
+
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

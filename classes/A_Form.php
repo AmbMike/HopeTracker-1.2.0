@@ -38,7 +38,7 @@ class A_Form extends Database {
                 /* Login in user to database */
                 $this->User->log_user_online($data_out['id']);
 
-                if($this->Admin->user_role($data_out['id']) == 1){
+                if($this->Admin->user_role($data_out['id']) == 1 || $this->Admin->user_role($data_out['id']) == 2){
                     $ajax_out['result'] = 'granted';
                     $this->Session->set('Admin Logged',1);
 

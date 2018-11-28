@@ -14,7 +14,7 @@ module.exports = function(grunt){
             dist: {
                 options:{
                     style: 'compressed',
-                    sourcemap: 'none'
+
                 },
                 files: [{
                     expand: true,
@@ -93,7 +93,7 @@ module.exports = function(grunt){
                 files: [
                     'HopeAdmin/site/cwd/**',
                 ],
-                tasks: ['htmlclean','sass','cssmin','uglify','ftpush']
+                tasks: ['htmlclean','sass','cssmin','uglify'/*,'ftpush'*/]
             }
         }
     });
@@ -106,5 +106,5 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-watch');
 
     // Do the Task
-    grunt.registerInitTask('default', ['htmlclean','sass','cssmin','uglify','ftpush','watch']);
+    grunt.registerInitTask('default', ['htmlclean','sass','cssmin','uglify'/*,'ftpush'*/,'watch']);
 }

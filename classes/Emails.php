@@ -109,7 +109,7 @@ class Emails{
         }
     }
 
-    public function sendInitialPostEmail($id,$userId,$question,$subcategory,$dateCreated,$category){
+    public function sendInitialPostEmail($id,$userId,$question,$subcategory,$dateCreated,$subcategory){
         error_reporting(3);
         date_default_timezone_set("America/New_York");
 
@@ -129,12 +129,38 @@ class Emails{
         $msg_str .=  '<br>';
         $msg_str .=  '<p><b>Timestamp of submission:</b> '. date("F j, Y, g:i a",$dateCreated) .'</p>';
 
-        $Email->send_general_email('Wellness@ambrosiatc.com',User::full_name($userId),User::users_email($userId),$subject,$receivers_name,$msg_str,'initiated-forum-post');
+        $Email->send_general_email('Wellness@ambrosiatc.com',$senders_name,$senders_email,$subject,$receivers_name,$msg_str,'initiated-forum-post');
         $Email->send_general_email('mgiammattei@ambrosiatc.com',$senders_name,$senders_email,$subject,$receivers_name,$msg_str,'initiated-forum-post');
 
         require_once(CLASSES . 'class.ForumQuestions.php');
         $ForumQuestions = new ForumQuestions();
 
         $ForumQuestions->markAsEmailed($id);
+    }
+    public function sendFlaggedEmail($userId,$post,$flaggedTime){
+        error_reporting(3);
+        date_default_timezone_set("America/New_York");
+
+        @$Email = new Email();
+        $User = new User();
+        $General = new General();
+
+        $linkToPost = BASE_URL.'/admin/flagged';
+
+        $receivers_email = 'mjgseb@gmail.com';
+        $senders_name = 'Hope Tracker';
+        $senders_email = 'sendhopetracker@gmail.com';
+        $subject = 'Post Was Flagged By User';
+        $receivers_name = 'Hope Tracker';
+        $msg_str =  '<h2>'.User::full_name($userId) . ' Flagged a post. </h2>';
+        $msg_str .= '<p>Conduct Action on the Admin Panel here: <a href="' . $linkToPost . '">'.$linkToPost.'</a></p>';
+        $msg_str .= '<h3>Flagged Post Content: </h3>';
+        $msg_str .= '<p>' . $post . '</p>';
+        $msg_str .=  '<br>';
+        $msg_str .=  '<p><b>Timestamp of flagged Post:</b> '. date("F j, Y, g:i a",$flaggedTime) .'</p>';
+
+        //$Email->send_general_email('Wellness@ambrosiatc.com',User::full_name($userId),User::users_email($userId),$subject,$receivers_name,$msg_str,'initiated-forum-post');
+        $Email->send_general_email('mgiammattei@ambrosiatc.com',$senders_name,$senders_email,$subject,$receivers_name,$msg_str,'initiated-forum-post');
+
     }
 }

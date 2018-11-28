@@ -506,19 +506,29 @@
       #relatedInner {
         .related-content {
           width: 80%;
-          margin: 15px auto 0;
-          p {
-            display: block;
-            margin: 0 15px 15px;
-            color: $header-gray;
-            .related-qa-image {
-              width: 30px;
-              height: 30px;
-              background-repeat: no-repeat;
-              background-size: cover;
-              background-position: center;
-              display: inline-block;
-              vertical-align: text-bottom;
+
+          @media (max-width: 767px) {
+            width: 100%;
+          }
+          margin: 15px auto ;
+          .related-question-item{
+            margin: 5px 0px;
+            .table{
+
+              .cell{
+                text-align:left;
+                &:nth-child(1){
+                  width: 40px;
+                }
+              }
+              a {
+                margin: 0;
+                color: inherit;
+
+                &:hover{
+                  color:inherit;
+                }
+              }
             }
           }
         }

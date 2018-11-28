@@ -131,7 +131,7 @@ error_reporting(3);
                                 </div>
                             </div>
                         </div>
-
+                        <?php if($Session->get('logged_in') == 1) : ?>
                         <div class="visitor-response">
                             <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img($user_id,true); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
@@ -141,15 +141,15 @@ error_reporting(3);
                                     </div>
                                     <p>Your answer is very valuable to the entire Hopetracker community. </p>
                                 </div>
-                                <form class="pre-form-content" id="forum-answer-question-form-1 collapse" date-question-id="<?php echo $questionId; ?>">
+                                <form class="pre-form-content" id="forum-answer-question-form-1" date-question-id="<?php echo $questionId; ?>">
                                     <textarea  rows="1" data-autoresize class="text-features" name="answer" placeholder="Share your advice and experience"></textarea>
                                     <div class="comment-btn-box">
-                                        <input type="submit" name="submit" value="Comment" class="save-btn blue">
+                                        <input type="submit" name="submit" value="Post" class="save-btn blue">
                                     </div>
                                 </form>
                             </div>
                         </div>
-
+                        <?php endif ?>
                         <div class="panel-group sub-posts">
                             <div class="panel panel-default">
                                 <div class="panel-heading more-answers-box">
@@ -293,7 +293,7 @@ error_reporting(3);
                                                                     <div class="textarea-box">
                                                                         <textarea data-comment-journal-id=""  rows="1" data-autoresize  class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
                                                                         <div class="comment-btn-box">
-                                                                            <input type="submit" name="submit" data-answer-id="<?php echo $forum_answer['id']; ?>" value="Comment" class="save-btn blue">
+                                                                            <button data-answer-id="<?php echo $forum_answer['id']; ?>" class="save-btn blue">Comment</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -321,8 +321,11 @@ error_reporting(3);
                                 </div>
                             </div>
                         </div>
+                    <?php
+                        $relatedQuestions = $ForumQuestions->getQuestionsBySubcategory($Question->subcategory);
 
-                        <?php /* Updated related questions section requires backend before launch */?>
+                        if(!empty($relatedQuestions)):
+                   ?>
                         <div id="related-questions" class="panel-group sub-posts">
                             <div class="panel panel-default">
                                 <div class="panel-heading more-answers-box">
@@ -341,12 +344,25 @@ error_reporting(3);
                                             <div id="relatedOuter">
                                                 <div id="relatedInner">
                                                     <div class="related-content">
-                                                        <p>
+                                                        <?php Debug::out($relatedQuestions); foreach ( $relatedQuestions as $relatedQuestion) : ?>
+                                                        <div class="related-question-item">
+                                                            <div class="table">
+                                                                <div class="cell">
+                                                                    <img <?php echo PageLinks::userProfile($relatedQuestion['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $relatedQuestion['user_id']); ?>"  class="img-circle profile-img xxs">
+                                                                </div>
+                                                                <div class="cell">
+                                                                    <?php $forum_title_url = $General->url_safe_string($relatedQuestion['question']) ; ?>
+                                                                    <a href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string( $relatedQuestion['subcategory']); ?>/<?php echo $relatedQuestion['id']; ?>/<?php echo $forum_title_url; ?>"><?php echo $relatedQuestion['question']; ?></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <?php endforeach; ?>
+                                                       <!-- <p>
                                                             <span class="related-qa-image" style="background-image: url('/hopetracker/site/public/images/testimonials/GIRLFRIEND.png')"></span> What if I find rolling paper in my car and my son used it last?
                                                         </p>
                                                         <p>
                                                             <span class="related-qa-image" style="background-image: url('/hopetracker/site/public/images/testimonials/GIRLFRIEND.png')"></span> What if I find rolling paper in my car and my son used it last?
-                                                        </p>
+                                                        </p>-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -355,7 +371,7 @@ error_reporting(3);
                                 </div>
                             </div>
                         </div>
-
+                        <?php endif; ?>
                     </div>
                 </div>
             </section>

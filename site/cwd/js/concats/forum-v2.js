@@ -587,6 +587,7 @@ function answerQuestion(formIdVar) {
 }
 function answerQuestionMain(formIdVar) {
     'use strict';
+
     /** Parent Ids */
     var pageParent = '[data-questions-parent="true"]';
     var formId =  formIdVar;
@@ -627,7 +628,6 @@ function answerQuestionMain(formIdVar) {
             console.log('Error validating the form');
         }else{
 
-
             var ajaxData = {
                 form : 'Answer Question Forum',
                 data : {
@@ -635,11 +635,9 @@ function answerQuestionMain(formIdVar) {
                     answer : $(form.id + ' [name="answer"]').val()
                 },
                 cache :  false
-
             };
             $.post(RELATIVE_PATH + '/config/processing.php',ajaxData,function (response) {
                 console.log(response);
-
                 if(response.status === 'Success'){
                     $(preFormContent).slideUp(300,function () {
                         $(successBox).slideDown(300);

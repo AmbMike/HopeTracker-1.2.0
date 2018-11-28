@@ -132,7 +132,7 @@ function communitySearchPosts() {
     var postInput = postInputParent + ' textarea';
 
     /** Process post entry when user clicks enter on in the input section. */
-    $(postInput).keypress(function(e) { alert();
+    $(postInput).keypress(function(e) {
         if(e.which === 13) {
 
             var $thisInput = $(this);
@@ -159,9 +159,9 @@ function communitySearchPosts() {
     }
     function answer_comment() {
         /** Parent container for post input */
-        var postInputParent = '[data-toggle-box="answer-comment"]';
+        var postInputParent = '[data-toggle-box="answer-comment"] button ';
 
-        $(postInputParent).find('input[name="submit"]').on('click',function () {
+        $('body').on('click',postInputParent,function () {
             var $this = $(this);
             var answerId = $this.data("answer-id");
             var inputValue = $this.closest('.textarea-box').find('textarea').val();
@@ -180,7 +180,7 @@ function communitySearchPosts() {
                 if(response.status === 'Success'){
                     $this.closest('.answer-container').find('.answer-data-container .comment-fill').append(buildComment(response.userId, response.usernameUrl, response.usernameFormatted, response.entryDate, response.state, response.zip, inputValue, response.postId,response.userProfile));
                     $('time.human-time').timeago();
-                    $(inputValue).val(' ');
+                    $('textarea').val(' ');
 
                 }
             },'json');

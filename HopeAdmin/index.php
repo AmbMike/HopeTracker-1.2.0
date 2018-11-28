@@ -57,5 +57,3 @@ if(!file_exists(VIEWS . $p_url . '.php')){
     include(VIEWS . $p_url.'.php');
     include_once(VIEWS . 'footer.php');
 }
-
-Debug::data($_SESSION);

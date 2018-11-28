@@ -102,7 +102,36 @@ class Email extends Mailer {
 	        });
         endif;
 
+    }
 
+    public function send_email_flag($recipient_email,$subject,$name,$link){
+        $this->toMail = $recipient_email;
+        $this->mailSubject = $subject;
 
+        include_once(ABSOLUTE_PATH_NO_END_SLASH.'/config/constants.php');
+        include_once(LIBS . 'phpMailer/PHPMailerAutoload.php');
+        include_once(CLASSES . 'Debug.php');
+        include_once(CLASSES . 'Mailer.php');
+        include_once(CLASSES . 'Message.php');
+
+        $mailer = new PHPMailer;
+
+        $mailer->isSMTP();
+        $mailer->SMTPAuth = true;
+        $mailer->Host = 'smtp.gmail.com';
+        $mailer->SMTPSecure = 'ssl';
+        $mailer->Port = '465';
+        $mailer->Username = 'sendhopetracker@gmail.com';
+        $mailer->Password = 'X?{,O._(U@w0';
+        $mailer->From = "sendhopetracker@gmail.com";
+        $mailer->FromName = 'Hope Tracker';
+        $mailer->isHTML(true);
+
+        $mail = new Mailer($mailer);
+        $mail->send(VIEWS .'emails/reset-password.php',['name' => $name,'base_url' => BASE_URL,'target_url' => $link], function ($m){
+
+            $m->to($this->toMail);
+            $m->subject($this->mailSubject);
+        });
     }
 }

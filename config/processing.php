@@ -223,6 +223,12 @@
 		$A_Form = new A_Form(); // Admin Form Class
 		$A_Form->admin_sign_in($_POST);
 		break;
+    case 'Delete Flagged Post' :
+		include_once(CLASSES.'class.Post.php'); // Admin Class
+
+		$Post= new Post();
+        $Post->delete($_POST);
+		break;
 
 	/* Forum Category */
 	case 'Forum Add Category' :
@@ -316,6 +322,13 @@
 		include_once( CLASSES . 'class.FlagPost.php' );
 		$FlagPost = new FlagPost;
 		echo json_encode($FlagPost->flagPost($_POST['post_id'],$_POST['post_type'] ));
+		//include_once(CLASSES . 'Emails.php');
+
+		include_once(CLASSES . 'class.Post.php');
+		$Post = new Post();
+		//$Emails = new Emails();
+        //$Sessions = new Sessions();
+		//$Emails->sendFlaggedEmail($Sessions->get('user-id'),$Post->get($_POST['post_type'],$_POST['post_id']),time());
 		break;
 	default : echo 'No Good';
 }

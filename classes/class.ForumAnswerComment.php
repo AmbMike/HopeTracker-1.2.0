@@ -34,31 +34,34 @@ class ForumAnswerComment{
         $Notifications = new Notifications();
         $this->Database = new Database();
 
-        $sql = $this->Database->prepare("INSERT INTO comments (post_type, parent_post_type, parent_post_id, post_user_id, ip, content, `timestamp`) VALUES(?,?,?,?,?,?,?)");
-        $sql->execute(array(
-            $data['post_type'],
-            $data['parent_post_type'],
-            $data['parent_post_id'],
-            $this->userId,
-            $this->General->getUserIP(),
-            $data['content'],
-            time()
-        ));
-        if($sql->rowCount() > 0){
-            $returnValue['status'] = 'Success';
-            $returnValue['userId'] = $this->userId;
-            $returnValue['usernameUrl'] = $this->General->url_safe_string(User::Username($this->userId));
-            $returnValue['usernameFormatted'] = User::Username($this->userId);
-            $returnValue['entryDate'] = date('j F Y H:i', time());
-            $returnValue['state'] = User::user_info('state', $this->userId);
-            $returnValue['zip'] = User::user_info('zip', $this->userId);
-            $returnValue['postId'] = $this->Database->lastInsertId();;
-            $returnValue['userProfile'] = $this->user->get_user_profile_img( false, $this->userId );
+        if (!empty($data['content'])) {
+            $sql = $this->Database->prepare("INSERT INTO comments (post_type, parent_post_type, parent_post_id, post_user_id, ip, content, `timestamp`) VALUES(?,?,?,?,?,?,?)");
+            $sql->execute(array(
+                $data['post_type'],
+                $data['parent_post_type'],
+                $data['parent_post_id'],
+                $this->userId,
+                $this->General->getUserIP(),
+                $data['content'],
+                time()
+            ));
+            if($sql->rowCount() > 0){
+                $returnValue['status'] = 'Success';
+                $returnValue['userId'] = $this->userId;
+                $returnValue['usernameUrl'] = $this->General->url_safe_string(User::Username($this->userId));
+                $returnValue['usernameFormatted'] = User::Username($this->userId);
+                $returnValue['entryDate'] = date('j F Y H:i', time());
+                $returnValue['state'] = User::user_info('state', $this->userId);
+                $returnValue['zip'] = User::user_info('zip', $this->userId);
+                $returnValue['postId'] = $this->Database->lastInsertId();;
+                $returnValue['userProfile'] = $this->user->get_user_profile_img( false, $this->userId );
 
-        }else {
-            $returnValue['status'] = 'Failed';
+            }else {
+                $returnValue['status'] = 'Failed';
+            }
+            echo json_encode($returnValue);
         }
-        echo json_encode($returnValue);
+
         // section -64--88-0-17--e38ad68:1602d4487e4:-8000:0000000000000DA0 end
 
         return (array) $returnValue;
