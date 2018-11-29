@@ -35,6 +35,17 @@ if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
 if(isset($_COOKIE['fromHopeTracker'])){
 	unset( $_COOKIE['fromHopeTracker'] );
 }
+
+if(isset($_COOKIE['logged_in'])){
+
+    $Sessions->set('logged_in',$_COOKIE['logged_in']);
+    $Sessions->set('user-id',$_COOKIE['user-id']);
+}
+/** Set Log cookies when user logs in */
+if(isset($_GET['logged_in'])){
+    setcookie('logged_in', 1,  time()+2678400);
+    setcookie('user-id', $Sessions->get('user-id'),  time()+2678400);;
+}
 /** Check if page specific parameters exists */
 $p_url = URL::isPage();
 
@@ -72,5 +83,6 @@ if(ENV == 'live' || ENV == 'dev'){
 }
 if(isset($_GET['show_sessions'])){
     Debug::data($_SESSION);
+    Debug::data($_COOKIE);
 }
 

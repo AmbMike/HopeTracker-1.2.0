@@ -91,7 +91,7 @@ $(document).ready(function () {
             }).done(function(response) {
                 if(response === 'Email and Password Match'){
                     /** Send user when logged in */
-                    location.href= RELATIVE_PATH + "/protected/course/";
+                    location.href= RELATIVE_PATH + "/protected/course/?logged_in";
                 }else if(response === 'No Email Found'){
 
                     /* Email Not Found */
