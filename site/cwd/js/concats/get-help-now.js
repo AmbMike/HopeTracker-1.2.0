@@ -34,7 +34,10 @@ function get_help_now_form() {
      * for the main sign up form.
      */
     $(closeBtn).add(overlay).add('.close').on('click', function () {
-        $(overlay).stop().fadeOut(300);
+        if(!$(this).hasClass('close')){
+            $(overlay).stop().fadeOut(300);
+        }
+
         $(formUl).slideUp(400,function () {
             $(dropdownBtn).removeClass('on');
         });
@@ -46,7 +49,6 @@ function get_help_now_form() {
                     $(formUl + ' .success-msg-sm').remove();
                 });
             }, 500);
-
         }
     });
 

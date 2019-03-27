@@ -74,6 +74,7 @@ $(document).ready(function () {
 
 
         $(obj.form).on('submit',function (event) {
+
             event.preventDefault();
             /* Clear old errors */
             $(obj.form).mg_tooltip({

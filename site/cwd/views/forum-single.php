@@ -82,6 +82,7 @@ error_reporting(3);
                         <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category) . '/' . $General->url_safe_string($Question->subcategory); ?>"><?php echo  $Question->subcategory; ?></a>
                     </div>
                 </div>
+
                 <section class="box-one no-p">
                     <div id="post-single" class="table question-container">
                         <div class="row author-post-container"  itemscope itemtype="http://schema.org/Question" <?php echo ($ForumAnswers->userAnswered($user_id, $questionId) == true) ? 'data-user-answered="true"' : ''; ?>  data-question-body="true" data-question-id="<?php echo $questionId; ?>" data-question-user-id="<?php echo $Question->questionUsersId; ?>" data-post-type-id="<?php echo $Question->postType; ?>">
@@ -133,7 +134,7 @@ error_reporting(3);
                         </div>
                         <?php if($Session->get('logged_in') == 1) : ?>
                         <div class="visitor-response">
-                            <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img($user_id,true); ?>" class="img-circle profile-img sm"></a>
+                            <a class="wrap" <?php echo PageLinks::userProfile($user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
                                 <div class="success-box" style="display: none">
                                     <div class="modal-header">
@@ -380,7 +381,8 @@ error_reporting(3);
                     <div class="col-sm-9 no-p">
                         <div id="user-title" class="user-title-box">
                             <div class="img-box">
-                                <img <?php echo PageLinks::userProfile($Question->questionUsersId); ?> src="/<?php echo $User->get_user_profile_img( false, $Question->questionUsersId); ?>"  class="img-circle profile-img">
+<!--                                <img <?php /*echo PageLinks::userProfile($Question->questionUsersId); */?> src="/<?php /*echo $User->get_user_profile_img( false, $Question->questionUsersId); */?>"  class="img-circle profile-img">
+-->                                <img src="<?php echo IMAGES ?>main/icon.jpg"  class="img-circle profile-img">
                             </div>
                             <div class="find-answer-title">
                                 Did you find your answer?

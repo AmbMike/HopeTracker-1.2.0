@@ -7,8 +7,8 @@
 		<div data-after-submission-text="Successfully Sent!" data-element="heading" class="insurance-check">
 			Insurance Checker
 		</div>
-        <div data-form-insurance="close" class="close" style="display:none;">
-            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        <div data-form-insurance="close" class="close">
+            <i class="fa fa-close" aria-hidden="true"></i>
         </div>
         <div class="success-msg-box">
            <p>A specialist will call your insurance company directly, skipping the generic customer service. You'll get a simplified outline of options based on your loved one's specific:</p>

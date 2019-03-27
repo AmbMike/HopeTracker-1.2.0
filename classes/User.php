@@ -99,7 +99,9 @@ class User extends Sessions {
 	public function sign_out(){
 		$session = new parent();
 		$this->log_user_offline($session->get('user-id'));
+
 		session_destroy();
+
 	}
 	public static function user_info($name, $id = false){
 		$session = new parent();

@@ -13,7 +13,7 @@
     include_once(CLASSES.'Comments.php');
     include_once(CLASSES.'Forum.php');
     include_once(CLASSES.'Chat.php');
-    include_once(CLASSES.'Emails.php');
+
     include_once(CLASSES.'Inspiration.php');
 
     error_reporting(E_ALL); ini_set('display_errors',1);
@@ -23,7 +23,7 @@
     $Comments = new Comments();
     $Forum = new Forum();
     $Chat = new Chat();
-    $Emails = new Emails();
+
     $Inspiration = new Inspiration();
 
 
@@ -39,9 +39,13 @@
 		    $User->sign_in($_POST);
 		    break;
 	    case 'Forgot Password' :
+            include_once(CLASSES.'Emails.php');
+            $Emails = new Emails();
 		    User::forgot_password($_POST['email']);
 		    break;
 	    case 'Emailed Password Reset' :
+            include_once(CLASSES.'Emails.php');
+            $Emails = new Emails();
 		    $User->email_reset_password($_POST['data']);
 		    break;
 	    case 'Reset Password' :
@@ -180,6 +184,8 @@
 
 	/* Emails */
 	case 'Chat Email Upload' :
+        include_once(CLASSES.'Emails.php');
+        $Emails = new Emails();
 		$Emails->upload_chat_emails($_POST['data']);
 		break;
 

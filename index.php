@@ -31,20 +31,41 @@ if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
     $p_url = '404';
 }
 
+/** If user id is not set, remove logged in session */
+
+if(empty($_SESSION['user-id'])){
+    unset($_SESSION['logged_in']);
+    Debug::data($_SESSION['logged_in']);
+}
+
 /** Unset "back to ambrosia" session  */
 if(isset($_COOKIE['fromHopeTracker'])){
 	unset( $_COOKIE['fromHopeTracker'] );
 }
+// Sign out user
+if(isset($_GET['sign_out'])){
+    if (isset($_SERVER['HTTP_COOKIE'])) {
+        $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+        foreach($cookies as $cookie) {
+            $parts = explode('=', $cookie);
+            $name = trim($parts[0]);
+            setcookie($name, '', time()-1000);
+            setcookie($name, '', time()-1000, '/');
+        }
+    }
+    unset($_SESSION['logged_in']);
+    $p_url = 'home';
+}
 
+// Sign in user
 if(isset($_COOKIE['logged_in'])){
-
     $Sessions->set('logged_in',$_COOKIE['logged_in']);
     $Sessions->set('user-id',$_COOKIE['user-id']);
 }
 /** Set Log cookies when user logs in */
 if(isset($_GET['logged_in'])){
-    setcookie('logged_in', 1,  time()+2678400);
-    setcookie('user-id', $Sessions->get('user-id'),  time()+2678400);;
+    setcookie('logged_in', 1,  time()+2678400,'/');
+    setcookie('user-id', $Sessions->get('user-id'),  time()+2678400,'/');
 }
 /** Check if page specific parameters exists */
 $p_url = URL::isPage();
