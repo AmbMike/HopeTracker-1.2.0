@@ -154,7 +154,7 @@ if(isset($_GET['user_id'])){
                             <div data-toggle-box="member-posts" id="community-user-title">
                                 <div class="table">
                                     <div class="cell user-img-container">
-                                        <a class="wrap" <?php echo $UserProfile->profile($post_user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
+                                        <a class="wrap" <?php echo $UserProfile->profile($post_user_id); ?>><img alt="<?php echo ucwords(User::user_info('username',$post_user_id)); ?>'s Profile Image" src="/<?php echo $User->get_user_profile_img(false,$post_user_id); ?>" class="img-circle profile-img sm"></a>
                                     </div>
                                     <div class="cell">
                                         <div class="textarea-box">

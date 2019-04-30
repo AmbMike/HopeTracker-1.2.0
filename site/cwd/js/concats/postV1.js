@@ -47,11 +47,11 @@ function processPostV1Comments() {
         var html = '<ul class="post-reply">\n' +
             '<hr>\n' +
             '<li class="reply-user-img">\n' +
-            ' <a class="wrap" href="' + RELATIVE_PATH + '/families-of-drug-addicts/user-' + postUserId + '/' + urlUsername + '"><img src="' + RELATIVE_PATH + '/users/user-' + postUserId + '/profile.jpg" class="img-circle profile-img sm"></a>\n' +
+            ' <a class="wrap"><img src="' + RELATIVE_PATH + '/users/user-' + postUserId + '/profile.jpg" class="img-circle profile-img sm"></a>\n' +
             '</li>\n' +
             '<li>\n' +
             '    <div class="reply-user-name">\n' +
-            '         <a class="wrap simple-heading " href="' + RELATIVE_PATH + '/families-of-drug-addicts/user-' + postUserId + '/' + urlUsername + '">' + postUsername + '</a> ' + inputText  + '<div class="reply-user-info-box">\n' +
+            '         <a class="wrap simple-heading ">' + postUsername + '</a> ' + inputText  + '<div class="reply-user-info-box">\n' +
             '         <time itemprop="dateCreated" class="human-time date" datetime="'+ entryTime +'" title="'+ entryTime +'">'+ entryTime +'</time> <i class="fa fa-circle" aria-hidden="true"></i> <span class="author-local"> '+ state + ' ' + zip  +' </span>\n' +
             '         <span class="like-btn"><span role="button" data-post-btn="like comment" data-bound-post-like="btn" data-post-user-id="' + postUserId + '" data-post-id="' + postId + '" data-post-type="5">Like </span> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> </span>\n' +
             '     </div>\n' +
@@ -84,6 +84,7 @@ function processPostV1Comments() {
         if($('[data-no-lazy-load-posts]').length !== 1){
             /** Get more post when the user scrolls to the bottom of the posts */
             $(window).scroll(function(){
+
                 /** Check if the posts have filters */
                 if ($(container).attr('data-post-user-ids')) {
                     hasFilters = true;
@@ -99,8 +100,7 @@ function processPostV1Comments() {
                             data  : {
                                 type : 'filter scroll',
                                 postUserIds : postUserIds,
-                                startPost : $(container).attr('data-post-start'),
-                                filterType : $(' #filter-value').text()
+                                startPost : $(container).attr('data-post-start')
 
                             },
                             cache: false

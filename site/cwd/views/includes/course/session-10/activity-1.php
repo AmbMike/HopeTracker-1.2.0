@@ -1,7 +1,6 @@
-<div data-session-item="1">
-    <p class="heading <?php echo ($Courses->session_status(10,1) == true) ? 'pre-complete' : '' ; ?> " data-toggle="modal" data-target="#stats-modal">
-        Review your progress
+<div data-session-item="2" onClick="window.open('https://www.ambrosiatc.com/addiction/information-addiction/?fromHopeTracker&nav=no')">
+    <p class="heading <?php echo ($Courses->session_status(10,1) == true) ? 'pre-complete' : '' ; ?>  ">
+        Test Your Knowledge
     </p>
-    <p class="line-2">You've made a real effort to understand addiction and the role you play. Congratulations! See your charts and numbers.</p>
+    <p class="line-2">See how much you've learned. Take the quiz.</p>
 </div>
-

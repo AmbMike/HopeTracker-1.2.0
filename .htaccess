@@ -29,7 +29,6 @@ RewriteRule ^admin/([^/]+)/?$ HopeAdmin/index.php?page_url=$1 [L,QSA]
 RewriteRule ^admin/([^/]+)/([^/]+)/?$  HopeAdmin/index.php?page_url=$1&widget_page=$2 [L,QSA]
 
 RewriteRule ^chat-mods/([^/]+)/?$  index.php?page_url=$1&chat_mod=true [L,QSA]
-
 RewriteRule ^profile/$ index.php?page_url=journal-v1&profileActive=1 [L,QSA]
 RewriteRule ^profile/user-([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&userId=$1 [L,QSA]
 
@@ -73,3 +72,4 @@ Redirect 301 /inspiration-v1/ /addiction-quotes/
 <FilesMatch "\.(jpg|jpeg)$">
 FileETag MTime Size
 </FilesMatch>
+

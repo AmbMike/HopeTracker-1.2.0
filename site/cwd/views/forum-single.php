@@ -22,11 +22,12 @@ $questionId = $_GET['forum_id'];
 $Question = new SingleQuestion($questionId);
 
 $User = new User();
+$General = new General();
 
 $Page = new \Page_Attr\Page(); 
 $Page->header(array(
-	'Title' => substr($Question->question, 0, 46) . ' | HopeTracker',
-	'Description' => substr($Question->question, 0, 160),
+	'Title' => ucwords(substr($Question->question, 0, 46)) . ' | HopeTracker (Forum)',
+	'Description' => $General->trim_text($Question->description, 160, true),
 	'Show Nav' => false,
 	'Active Link' => 'Forums',
 	'OG Image'  => OG_IMAGES  . 'ht-forum.jpg',
@@ -34,7 +35,7 @@ $Page->header(array(
 ));
 
 $Session = new Sessions();
-$General = new General();
+
 $ForumAnswers = new ForumAnswers();
 $ForumQuestions = new ForumQuestions();
 $FlagPost = new FlagPost();
@@ -75,7 +76,7 @@ error_reporting(3);
         <div class="col-md-8" id="forum-single">
             <main>
                 <div class="header-box">
-                    <h1 class="green-heading-lg">Forum Questions</h1>
+                    <h1 class="green-heading-lg">Addiction Forum Question</h1>
                     <div class="insurance-treatment-box">
                         <a href="/<?php echo RELATIVE_PATH . 'family-of-drug-abuser/'. $General->url_safe_string($Question->category); ?>"><?php echo  $Question->category; ?></a>
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -87,7 +88,7 @@ error_reporting(3);
                     <div id="post-single" class="table question-container">
                         <div class="row author-post-container"  itemscope itemtype="http://schema.org/Question" <?php echo ($ForumAnswers->userAnswered($user_id, $questionId) == true) ? 'data-user-answered="true"' : ''; ?>  data-question-body="true" data-question-id="<?php echo $questionId; ?>" data-question-user-id="<?php echo $Question->questionUsersId; ?>" data-post-type-id="<?php echo $Question->postType; ?>">
                             <div class="author-img-box cell">
-                                <img <?php echo PageLinks::userProfile($Question->questionUsersId); ?> src="/<?php echo $User->get_user_profile_img( false, $Question->questionUsersId); ?>"  class="img-circle profile-img">
+                                <img <?php echo PageLinks::userProfile($Question->questionUsersId); ?> src="/<?php echo $User->get_user_profile_img( false, $Question->questionUsersId); ?>" alt="<?php echo ucwords(User::user_info('username',$Question->questionUsersId)); ?>'s Profile Image" class="img-circle profile-img">
                             </div>
                             <div class="post-text-box cell">
                                 <div class="quote-box" data-question="question" data-question="text">
@@ -134,7 +135,7 @@ error_reporting(3);
                         </div>
                         <?php if($Session->get('logged_in') == 1) : ?>
                         <div class="visitor-response">
-                            <a class="wrap" <?php echo PageLinks::userProfile($user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" class="img-circle profile-img sm"></a>
+                            <a class="wrap" <?php echo PageLinks::userProfile($user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" alt="<?php echo ucwords(User::user_info('username',$user_id)); ?>'s Profile Image" class="img-circle profile-img sm"></a>
                             <div class="textarea-box">
                                 <div class="success-box" style="display: none">
                                     <div class="modal-header">
@@ -187,7 +188,7 @@ error_reporting(3);
                                                             <div class="answer-container" data-answers="container" data-answer-id="<?php echo $forum_answer['id']; ?>" data-answer-post-type="<?php echo $forum_answer['post_type']; ?>">
                                                                 <div class="answer-data-container">
                                                                     <div class="author-img-box cell">
-                                                                        <img <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $forum_answer['user_id']); ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>" class="img-circle profile-img">
+                                                                        <img <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $forum_answer['user_id']); ?>" alt="<?php echo ucwords(User::user_info('username',$forum_answer['user_id'])); ?>'s Profile Image" class="img-circle profile-img">
                                                                     </div>
                                                                     <div class="post-text-box cell">
                                                                         <div class="quote-box" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,7 +251,7 @@ error_reporting(3);
                                                                                     <div class="clearfix">
                                                                                         <div class="table">
                                                                                             <div class="author-img-box cell">
-                                                                                                <img <?php echo PageLinks::userProfile($comment['post_user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $comment['post_user_id']); ?>" alt="<?php echo User::Username($comment['post_user_id']); ?>" class="img-circle profile-img">
+                                                                                                <img <?php echo PageLinks::userProfile($comment['post_user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $comment['post_user_id']); ?>" alt="<?php echo ucwords(User::user_info('username',$comment['post_user_id'])); ?>'s Profile Image" class="img-circle profile-img">
                                                                                             </div>
                                                                                             <div class="post-text-box cell">
                                                                                                 <div class="quote-box" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -290,7 +291,7 @@ error_reporting(3);
                                                                     </div>
                                                                 </div>
                                                                 <div data-toggle-box="answer-comment" id="answer-comment-<?php echo $index; ?>" class="visitor-response collapse answer-comment-<?php echo $index; ?>">
-                                                                    <a class="wrap" <?php echo PageLinks::userProfile($forum_answer['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" class="img-circle profile-img sm"></a>
+                                                                    <a class="wrap" <?php echo PageLinks::userProfile($user_id); ?>><img src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" alt="<?php echo ucwords(User::user_info('username',$user_id)); ?>'s Profile Image" class="img-circle profile-img sm"></a>
                                                                     <div class="textarea-box">
                                                                         <textarea data-comment-journal-id=""  rows="1" data-autoresize  class="text-features active" name="entry_content" placeholder="Share your advice and experience"></textarea>
                                                                         <div class="comment-btn-box">
@@ -349,7 +350,7 @@ error_reporting(3);
                                                         <div class="related-question-item">
                                                             <div class="table">
                                                                 <div class="cell">
-                                                                    <img <?php echo PageLinks::userProfile($relatedQuestion['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $relatedQuestion['user_id']); ?>"  class="img-circle profile-img xxs">
+                                                                    <img <?php echo PageLinks::userProfile($relatedQuestion['user_id']); ?> src="/<?php echo $User->get_user_profile_img( false, $relatedQuestion['user_id']); ?>" alt="<?php echo ucwords(User::user_info('username',$relatedQuestion['user_id'])); ?>'s Profile Image" class="img-circle profile-img xxs">
                                                                 </div>
                                                                 <div class="cell">
                                                                     <?php $forum_title_url = $General->url_safe_string($relatedQuestion['question']) ; ?>
@@ -382,7 +383,7 @@ error_reporting(3);
                         <div id="user-title" class="user-title-box">
                             <div class="img-box">
 <!--                                <img <?php /*echo PageLinks::userProfile($Question->questionUsersId); */?> src="/<?php /*echo $User->get_user_profile_img( false, $Question->questionUsersId); */?>"  class="img-circle profile-img">
--->                                <img src="<?php echo IMAGES ?>main/icon.jpg"  class="img-circle profile-img">
+-->                                <img src="<?php echo IMAGES ?>main/icon.jpg" alt="Hopetracker Icon" class="img-circle profile-img">
                             </div>
                             <div class="find-answer-title">
                                 Did you find your answer?

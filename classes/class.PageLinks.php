@@ -81,7 +81,10 @@ class PageLinks
 		// section -64--88-0-2-189b15d9:1604cc00e9e:-8000:0000000000000EF4 begin
 		$User = new User();
 		$General = new General();
-		$returnValue = 'onclick="window.location=\'/'.RELATIVE_PATH.'families-of-drug-addicts/user-'. $userId .'/'. $General->url_safe_string($User->Username($userId)).'\'" role="button"';
+
+		/** Action to take user to profile page */
+		//$returnValue = 'onclick="window.location=\'/'.RELATIVE_PATH.'families-of-drug-addicts/user-'. $userId .'/'. $General->url_safe_string($User->Username($userId)).'\'" role="button"';
+		$returnValue = '';
 		// section -64--88-0-2-189b15d9:1604cc00e9e:-8000:0000000000000EF4 end
 
 		return $returnValue;

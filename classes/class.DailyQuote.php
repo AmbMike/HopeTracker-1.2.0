@@ -16,6 +16,7 @@ if (0 > version_compare(PHP_VERSION, '5')) {
 // section -64--88-0-2--5acc9b5c:15fdac0d930:-8000:0000000000000CC7-includes begin
 error_reporting( 0 );
 require_once(CLASSES . 'Database.php');
+require_once(CLASSES . 'class.DailySelfHelp.php');
 // section -64--88-0-2--5acc9b5c:15fdac0d930:-8000:0000000000000CC7-includes end
 
 /* user defined constants */
@@ -84,18 +85,38 @@ class DailyQuote
 	 * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
 	 * @return mixed
 	 */
+
+	/** Var to hold the Daily Self Help class */
+	public $DailySelfHelp = '';
+
+    public $imageDirectory = 'quotes';
+
 	public function __construct()
 	{
 		// section -64--88-0-2--5acc9b5c:15fdac0d930:-8000:0000000000000CD1 begin
+
+        $this->DailySelfHelp = new DailySelfHelp();
 		$this->quoteQty = $this->setCount( '/site/public/images/quotes/');
 		$this->currentTimeStampDb = $this->setCurrentTimeStampDb()['last_update_time'];
 		$this->currentQuoteCount = $this->setCurrentTimeStampDb()['current_count'];
-		$this->currentImgPath = $this->getCurrentImagePath('/site/public/images/quotes/');
+        $this->setImageDirectory();
+		$this->currentImgPath = $this->getCurrentImagePath('/site/public/images/' . $this->imageDirectory . '/');
 		$this->setCurrentCount();
 
 		// section -64--88-0-2--5acc9b5c:15fdac0d930:-8000:0000000000000CD1 end
 	}
 
+	/** Set the value for the image directory according to wither the count is over total image in the quote directory */
+	public function setImageDirectory(){
+	    if($this->quoteQty > $this->currentQuoteCount){
+            $this->imageDirectory = 'quotes';
+
+        }elseif($this->DailySelfHelp->SelfHelpQty > $this->currentQuoteCount - $this->quoteQty){
+            $this->imageDirectory = 'self-help';
+            $this->currentQuoteCount = $this->currentQuoteCount - $this->quoteQty;
+        }
+
+    }
 	/**
 	 * Gets the last updated timestamp from the database.
 	 *
@@ -164,7 +185,6 @@ class DailyQuote
 
 		$now = $this->currentTimeStampDb;
 		$fullDay = 86400;
-		//$fullDay = 5;
 		$timeDif = time() - $now;
 
 
@@ -175,7 +195,8 @@ class DailyQuote
 		}
 
 		/** Update the current count in the database if the days lap over the total qty of quote images */
-		if( $this->setCurrentTimeStampDb()['current_count'] >= $this->quoteQty){
+		/** If the count is more than the total images in the daily-quote folder, start showing images from the daily-self-help folder */
+		if( $this->setCurrentTimeStampDb()['current_count'] >= $this->quoteQty + $this->DailySelfHelp->SelfHelpQty){
 			$sql = $this->Database->prepare('UPDATE daily_quote SET current_count = 0  WHERE id = 1');
 			$sql->execute();
 		}
@@ -201,14 +222,12 @@ class DailyQuote
 
 		// section -64--88-0-2--5acc9b5c:15fdac0d930:-8000:0000000000000CEE begin
 		$quote_path = ABSPATH . $imgDirPath;
-		$quote_files = scandir($quote_path);
 		$quote_files = array_diff(scandir($quote_path), array('.', '..'));
 
 		$quote_files = array_values(array_filter($quote_files));
 		$returnValue = $quote_files[$this->currentQuoteCount];
 
 		// section -64--88-0-2--5acc9b5c:15fdac0d930:-8000:0000000000000CEE end
-
 		return (string) $returnValue;
 	}
 

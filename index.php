@@ -31,13 +31,6 @@ if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
     $p_url = '404';
 }
 
-/** If user id is not set, remove logged in session */
-
-if(empty($_SESSION['user-id'])){
-    unset($_SESSION['logged_in']);
-    Debug::data($_SESSION['logged_in']);
-}
-
 /** Unset "back to ambrosia" session  */
 if(isset($_COOKIE['fromHopeTracker'])){
 	unset( $_COOKIE['fromHopeTracker'] );
@@ -53,8 +46,8 @@ if(isset($_GET['sign_out'])){
             setcookie($name, '', time()-1000, '/');
         }
     }
-    unset($_SESSION['logged_in']);
-    $p_url = 'home';
+    session_destroy();
+    header(DYNAMIC_URL);
 }
 
 // Sign in user
@@ -78,6 +71,18 @@ $p_url = URL::restricted_url($p_url);
 
 if(isset($_GET['chat_mod'])){
     $p_url = 'chat-mods/' . $p_url;
+}
+
+if($p_url == 'hopetracker'){
+    $p_url = 'home';
+}
+/** Redirects */
+switch ($p_url){
+    case 'forum' :
+        header("HTTP/1.1 301 Moved Permanently");
+        header("Location: ".BASE_URL."/family-of-drug-abuser/");
+        exit();
+    break;
 }
 
 if(!file_exists(VIEWS . $p_url . '.php') || $p_url == '404'){

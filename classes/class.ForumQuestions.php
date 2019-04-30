@@ -405,15 +405,16 @@ class ForumQuestions
      * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
      * @return array
      */
-    public function getLatestPost()
+    public function getLatestPost($qty = 1)
     {
         $returnValue = array();
 
         // section -64--88-0-2-6e345230:1609e7c7132:-8000:0000000000000EDB begin
 	    $this->Database = new Database();
 
-	    $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC  LIMIT 1");
+	    $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC LIMIT 0, :rows");
 	    $sql->setFetchMode( PDO::FETCH_ASSOC);
+        $sql->bindParam(':rows', $qty, PDO::PARAM_INT);
 	    $sql->execute();
 
 	    $returnValue = $sql->fetchAll();

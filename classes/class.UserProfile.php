@@ -94,7 +94,9 @@ class UserProfile
 
 		}else{
 			/** Not logged in user */
-			$returnValue = 'onclick="window.location=\'/'.RELATIVE_PATH.'families-of-drug-addicts/user-'. $userId .'/'. $this->General->url_safe_string($this->User->Username($userId)).'\'" role="button"';
+            /** Action to take user to profile page */
+			//$returnValue = 'onclick="window.location=\'/'.RELATIVE_PATH.'families-of-drug-addicts/user-'. $userId .'/'. $this->General->url_safe_string($this->User->Username($userId)).'\'" role="button"';
+			$returnValue = '';
 
 		}
 		// $returnValue = 'onclick="window.location='.RELATIVE_PATH.'\'/profile/user-'. $userId .'/'. $this->General->url_safe_string($this->User->Username($userId)).'\'" role="button"';

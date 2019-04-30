@@ -121,7 +121,7 @@ if($Session->get('logged_in') == 1){
                             <div class="col-sm-8 no-p">
                                 <div id="user-title" class="user-title-box">
                                     <div class="img-box">
-                                        <img <?php echo $UserProfile->profile($user_id); ?>  src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" class="img-circle profile-img">
+                                        <img <?php echo $UserProfile->profile($user_id); ?>  src="/<?php echo $User->get_user_profile_img(false,$user_id); ?>" alt="<?php echo ucwords(User::user_info('username',$user_id)); ?>'s Profile Image" class="img-circle profile-img">
                                     </div>
                                     <div class="user-text-box">
                                     <span <?php echo $UserProfile->profile($user_id); ?> class="simple-heading user-name">
@@ -202,7 +202,7 @@ if($Session->get('logged_in') == 1){
                                                 </span>
                                                     </div>
                                                     <div class="moderator-img">
-                                                        <img <?php echo $UserProfile->profile($category['moderator_id']); ?> src="/<?php echo $User->get_user_profile_img(false, $category['moderator_id']); ?>" alt="<?php echo User::Username($category['moderator_id']); ?>" class="img-circle profile-img">
+                                                        <img <?php echo $UserProfile->profile($category['moderator_id']); ?> src="/<?php echo $User->get_user_profile_img(false, $category['moderator_id']); ?>" alt="<?php echo User::Username($category['moderator_id']); ?>'s Profile Image" class="img-circle profile-img">
                                                     </div>
                                                 </div>
                                             </div>
@@ -356,7 +356,7 @@ if($Session->get('logged_in') == 1){
                                                                                 <div class="cell img-cell">
                                                                                     <div class="author-box">
                                                                                         <span itemprop="author" itemscope itemtype="http://schema.org/Person" class="hidden"> <span  itemprop="name"></span><?php echo User::Username($forum_question['created_user_id']); ?></span> </span>
-                                                                                        <img <?php echo $UserProfile->profile($forum_question['user_id']); ?> src="/<?php echo $User->get_user_profile_img(false, $forum_question['user_id']); ?>" alt="<?php echo User::Username($category['moderator_id']); ?>"  class="img-circle profile-img">
+                                                                                        <img <?php echo $UserProfile->profile($forum_question['user_id']); ?> src="/<?php echo $User->get_user_profile_img(false, $forum_question['user_id']); ?>" alt="<?php echo User::Username($forum_question['user_id']); ?>'s Profile Image" class="img-circle profile-img">
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -368,7 +368,7 @@ if($Session->get('logged_in') == 1){
 																						<?php foreach ( $forum_answers as $forum_answer) :  ?>
                                                                                             <div class="table">
                                                                                                 <div class="cell">
-                                                                                                    <img <?php echo $UserProfile->profile($forum_answer['user_id']); ?> <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo $User->get_user_profile_img(false,$forum_answer['user_id']); ?>" alt="<?php echo User::Username($forum_answer['user_id']); ?>"  class="img-circle profile-img ">
+                                                                                                    <img <?php echo $UserProfile->profile($forum_answer['user_id']); ?> <?php echo PageLinks::userProfile($forum_answer['user_id']); ?> src="/<?php echo $User->get_user_profile_img(false,$forum_answer['user_id']); ?>" alt="<?php echo ucwords(User::user_info('username',$forum_answer['user_id'])); ?>'s Profile Image"  class="img-circle profile-img ">
                                                                                                 </div>
                                                                                                 <div class="cell">
                                                                                                     <div class="user-info">

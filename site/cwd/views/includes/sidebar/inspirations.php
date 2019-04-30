@@ -28,12 +28,13 @@ $DailySelfHelp = new DailySelfHelp();
             <div class="col-sm-12">
                 <p class="simple-heading inspiration-title">Daily Inspiration</p>
                 <div class="img-quote">
-                    <a class="wrap" href="/<?php echo RELATIVE_PATH; ?>addiction-quotes/quotes/<?php echo $DailyQuote->currentImgPath; ?>"> <img src="<?php echo IMAGES . 'quotes/'. $DailyQuote->currentImgPath; ?>" class="img-responsive"></a>
+                    <a class="wrap" href="/<?php echo RELATIVE_PATH; ?>addiction-quotes/<?php echo $DailyQuote->imageDirectory; ?>/<?php echo $DailyQuote->currentImgPath; ?>"> <img src="<?php echo IMAGES . $DailyQuote->imageDirectory . '/'. $DailyQuote->currentImgPath; ?>" alt="Inspirational Quote" class="img-responsive"></a>
                 </div>
+                <?php /*
                 <div class="img-self-help">
                     <a class="wrap" href="/<?php echo RELATIVE_PATH; ?>addiction-quotes/self-help/<?php echo $DailySelfHelp->currentImgPath; ?>"><img src="<?php echo IMAGES . 'self-help/'. $DailySelfHelp->currentImgPath; ?>" class="img-responsive"></a>
                 </div>
-
+                    */ ?>
                 <div class="clearfix"></div>
             </div>
         </div>
