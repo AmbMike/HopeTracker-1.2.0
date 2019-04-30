@@ -72,7 +72,7 @@ class Admin extends Database {
     }
 	public function is_admin($user_id){
 		$db = new Database();
-		$sql = $db->prepare("SELECT id FROM user_list WHERE id = ? AND role = 1");
+		$sql = $db->prepare("SELECT id FROM user_list WHERE id = ? AND role = 1 OR role = 2");
 		$sql->execute(array($user_id));
 		if($sql->rowCount() > 0){
 			return true;

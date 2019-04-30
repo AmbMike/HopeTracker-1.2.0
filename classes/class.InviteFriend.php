@@ -19,6 +19,7 @@ include_once(CLASSES . 'Database.php');
 include_once(CLASSES . 'Sessions.php');
 include_once(CLASSES . 'User.php');
 include_once(CLASSES . 'General.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/DebugMg.php');
 // section -64--88-0-2-3801fad4:15f2a911f28:-8000:0000000000000BBF-includes end
 
 /* user defined constants */
@@ -78,6 +79,8 @@ class InviteFriend
      */
     private $User = array();
 
+
+    public $DebugMg;
     // --- OPERATIONS ---
 
     /**
@@ -94,6 +97,7 @@ class InviteFriend
         $this->userId = $this->Sessions->get('user-id');
         $this->General = new General();
         $this->User = new User();
+        $this->DebugMg = new DebugMg();
         // section -64--88-0-2-3801fad4:15f2a911f28:-8000:0000000000000BD0 end
     }
 
@@ -178,17 +182,25 @@ class InviteFriend
                 $data['recipients_email'],
                 $this->General->getUserIP()
             ));
+            $array = array();
 
             if($sql->rowCount() > 0){
+                $array['status'] = 'Successful';
+                $array['userId'] = $this->userId;
 
-	           echo "Successful";
             }else{
-                echo "Failed";
+
+                $array['status'] = 'Failed';
+                $this->DebugMg->setError(array(
+                    'Type' => 'Invite Friend',
+                    'Sub Type' => 'Sidebar Form',
+                    'Error' => "Failed insert form data to the database for recipients name: " . $data['recipients_name'] . '  Email: '  . $data['recipients_email'] . ' senders id: ' . $this->userId
+                ));
             }
         }else{
-            echo "Already Invited User";
+            $array['status'] = 'Already Invited User';
         }
-
+        echo json_encode($array);
         // section -64--88-0-2-3801fad4:15f2a911f28:-8000:0000000000000BC3 end
     }
 

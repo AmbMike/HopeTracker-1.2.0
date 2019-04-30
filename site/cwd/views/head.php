@@ -8,8 +8,9 @@
 ?>
 <?php User::set_session(); ?>
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
 <head>
+	<?php if( ENV != 'dev'): ?>
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -17,6 +18,7 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-WJDDD8');</script>
     <!-- End Google Tag Manager -->
+	<?php endif; ?>
     <link rel="apple-touch-icon" sizes="57x57" href="/<?php echo RELATIVE_PATH; ?>site/public/images/favicon/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/<?php echo RELATIVE_PATH; ?>site/public/images/favicon/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/<?php echo RELATIVE_PATH; ?>site/public/images/favicon/apple-icon-72x72.png">
@@ -41,13 +43,16 @@
     <link rel="stylesheet" href="<?php echo CSS; ?>main-full.css" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
-    <link rel="canonical" href="<?php echo ($canonical_url) ? : BASE_URL . $_SERVER['REQUEST_URI'] ?>" />
+    <?php
+    $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    ?>
+    <link rel="canonical" href="<?php echo ($canonical_url) ? : $actual_link; ?>" />
     <?php echo ($no_index) == true ? '<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">' : ''; ?>
 
     <?php echo ($custom_stylesheet) ? ' <link rel="stylesheet" href="'.CSS.'/'.$custom_stylesheet.'.css" type="text/css">' : ''; ?>
 
     <meta property="og:title" content="<?php echo ($og_title)  ? : 'HomeTracker | There is Hope'; ?>" />
-    <meta property="og:url" content="<?php echo BASE_URL; echo ($og_url)  ? : $_SERVER['REQUEST_URI']; ?>" />
+    <meta property="og:url" content="<?php echo (BASE_URL . $og_url)  ? : $actual_link; ?>" />
     <meta property="og:image" content="<?php echo BASE_URL; echo ($og_img) ? :IMAGES .'quotes/quote.cant_shine.jpg'; ?>" />
     <meta property="og:description" content="<?php echo ($page_title) ? : 'Hope Tracker | Ambrosia'; ?>"/>
     <meta property="fb:app_id" content="169128966857060"/>
@@ -60,12 +65,17 @@
     <![endif]-->
 </head>
 <body>
+<?php if( ENV != 'dev'): ?>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJDDD8"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<div id="loader-wrapper">
-    <div id="loader"></div>
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
-</div>
+<?php endif; ?>
+<?php if(SHOW_PAGE_LOADER == "Yes"): ?>
+    <div id="loader-wrapper" data-show-page-loader="<?php echo SHOW_PAGE_LOADER; ?>">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+<?php endif; ?>
+

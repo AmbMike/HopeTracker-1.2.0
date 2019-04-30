@@ -569,3 +569,20 @@ function build_new_chat_div(primaryData, subData,postId,commentId, commentUserId
     '</div>'+
     '<div class="clearfix></div>"';
 }
+
+
+function showMoreOnlineUsers() {
+
+    var ajaxData = {
+        form : 'Show More Online Users',
+        start: parseInt(4),
+        qty: parseInt(4000)
+    };
+    $.post(RELATIVE_PATH  + '/config/processing.php', ajaxData, function (res) {
+        console.table(res);
+
+        $.each(res, function(index, value){
+           //$('h1').append('<h3>'+value.user_id+'</h3>') 
+        });
+    },'json');
+}

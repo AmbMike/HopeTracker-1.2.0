@@ -30,6 +30,11 @@ if($Sessions->get('logged_in') == 1){
 					echo 'Failed to Reset.';
 				endif;
 				break;
+            case 'shadowAccount' :
+                require_once(CLASSES . 'Admin/AccountDebug.php');
+                 $AccountDebug = new AccountDebug($_GET);
+                 echo $AccountDebug->accessUserId;
+                break;
 			default : die('No Go!');
 		endswitch;
 	}else{

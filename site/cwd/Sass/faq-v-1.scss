@@ -140,6 +140,9 @@ $head-font-color: darken($faq-bg-color, 60%);
           order: 2;
           background: #ffffff;
           margin-left: 0px;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          border-top: none;
         }
         dl.active .faq-toggle {
           .circle {
@@ -150,6 +153,11 @@ $head-font-color: darken($faq-bg-color, 60%);
             width: 0px;
             transition: width transform 0.5s;
           }
+        }
+        dl.active dt {
+          border-bottom-left-radius: 0;
+          border-bottom-right-radius: 0;
+          transition: transform 0.5s;
         }
       }
     }

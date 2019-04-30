@@ -37,6 +37,7 @@ $forumPosts = $ForumQuestions->getQuestions();
 /** @object  $wrap : core object for campaign monitor */
 
 $wrap = new CS_REST_Subscribers('b4ac39220d37331cb61459e658896cc6', '29a644cdec042cb0fb39f389f20afc9a');
+
 foreach ($forumPosts as $forumPost):
 
 	/** @var  $value : loops through each record that has not been sent to CM. */
@@ -83,7 +84,7 @@ foreach ($forumPosts as $forumPost):
 		echo 'Failed with code '.$result->http_status_code."\n<br /><pre>";
 		var_dump($result->response);
 		echo '</pre>';
-		error_log("Campaign Monitor : invite friend failed!" .$result->http_status_code. "errors: ".$result->response , 0);
+		error_log("Campaign Monitor : Forum data failed!" .$result->http_status_code. "errors: ".$result->response , 0);
 	}
 endforeach;
 

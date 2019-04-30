@@ -24,3 +24,13 @@ function resetCourseIntro(){
         });
     }
 }
+function shadowAccount(){
+    'use strict';
+    /** accessAccountUserId - the user's ID for the account to access */
+    var accessAccountUserId  = $('#admin-access-account').find('#access-account-user-id').val();
+
+    $.get(RELATIVE_PATH +'/ajax-loads/debugs.php',{accessAccountUserId : accessAccountUserId, debug : 'shadowAccount',cache : false}, function (response) {
+        $('#toggleWidthErrorWindow .error-output').text(response);
+    });
+
+}

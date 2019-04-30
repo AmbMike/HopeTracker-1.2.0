@@ -35,6 +35,31 @@ if(isset($_GET['user_id']) && $page_checks->is_a_user() === false){
 if(isset($_COOKIE['fromHopeTracker'])){
 	unset( $_COOKIE['fromHopeTracker'] );
 }
+// Sign out user
+if(isset($_GET['sign_out'])){
+    if (isset($_SERVER['HTTP_COOKIE'])) {
+        $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
+        foreach($cookies as $cookie) {
+            $parts = explode('=', $cookie);
+            $name = trim($parts[0]);
+            setcookie($name, '', time()-1000);
+            setcookie($name, '', time()-1000, '/');
+        }
+    }
+    session_destroy();
+    header(DYNAMIC_URL);
+}
+
+// Sign in user
+if(isset($_COOKIE['logged_in'])){
+    $Sessions->set('logged_in',$_COOKIE['logged_in']);
+    $Sessions->set('user-id',$_COOKIE['user-id']);
+}
+/** Set Log cookies when user logs in */
+if(isset($_GET['logged_in'])){
+    setcookie('logged_in', 1,  time()+2678400,'/');
+    setcookie('user-id', $Sessions->get('user-id'),  time()+2678400,'/');
+}
 /** Check if page specific parameters exists */
 $p_url = URL::isPage();
 
@@ -46,6 +71,18 @@ $p_url = URL::restricted_url($p_url);
 
 if(isset($_GET['chat_mod'])){
     $p_url = 'chat-mods/' . $p_url;
+}
+
+if($p_url == 'hopetracker'){
+    $p_url = 'home';
+}
+/** Redirects */
+switch ($p_url){
+    case 'forum' :
+        header("HTTP/1.1 301 Moved Permanently");
+        header("Location: ".BASE_URL."/family-of-drug-abuser/");
+        exit();
+    break;
 }
 
 if(!file_exists(VIEWS . $p_url . '.php') || $p_url == '404'){
@@ -62,13 +99,16 @@ if(!file_exists(VIEWS . $p_url . '.php') || $p_url == '404'){
 }
 /** Debug Panel */
 if(ENV == 'live' || ENV == 'dev'){
+
 	if($_SESSION['logged_in'] == 1  ){
-		if(User::user_info('role',$Sessions->get('user-id')) == 1){
+		if(User::user_info('role',$Sessions->get('user-id')) == 2 || $Sessions->get('debugPanels') == 1){
+
 			include_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/mg-error-panel/index.php');
 		}
 	}
 }
 if(isset($_GET['show_sessions'])){
     Debug::data($_SESSION);
+    Debug::data($_COOKIE);
 }
 

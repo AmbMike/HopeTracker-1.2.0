@@ -13,6 +13,12 @@ $select-height: 40px;
     background: $body-gray;
     top:8px !important;
   }
+  
+  .close-btn{
+    @media (max-width: 767px) {
+      display: none;
+    }
+  }
   input[type=submit]{
     margin:0px auto 30px;
     padding: 10px 0;

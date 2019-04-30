@@ -92,7 +92,6 @@ class ForumPosts
         $sql->setFetchMode(PDO::FETCH_ASSOC);
         $sql->bindParam(':rows', $qty, PDO::PARAM_INT);
         $sql->execute();
-
         $returnValue = $sql->fetchAll();
 
         // section -64--88-0-2-3801fad4:15f2a911f28:-8000:0000000000000BA8 end

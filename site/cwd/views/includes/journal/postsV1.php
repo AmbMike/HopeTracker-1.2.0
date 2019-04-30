@@ -141,7 +141,7 @@
                     </div>
                 </li>-->
                 <li>
-                    <a class="wrap" <?php echo  $UserProfile->profile($latest_post['user_id']); ?>><img src="/<?php echo $User->get_user_profile_img(false, $latest_post['user_id']); ?>" class="img-circle profile-img sm"></a>
+                    <a class="wrap" <?php echo  $UserProfile->profile($latest_post['user_id']); ?>><img alt="<?php echo ucwords(User::user_info('username',$latest_post['user_id'])); ?>'s Profile Image" src="/<?php echo $User->get_user_profile_img(false, $latest_post['user_id']); ?>" class="img-circle profile-img sm"></a>
                 </li>
                 <li>
                     <div class="simple-heading user-name">
@@ -263,7 +263,7 @@
                         <ul class="post-reply">
                             <hr>
                             <li class="reply-user-img">
-                                <a class="wrap" href="/families-of-drug-addicts/user-<?php echo $comment['user_id'];  ?>/<?php echo User::Username($comment['user_id']); ?>"><img src="/<?php echo $User->get_user_profile_img(false, $comment['user_id']); ?>" class="img-circle profile-img sm"></a>
+                                <a class="wrap"><img alt="<?php echo ucwords(User::user_info('username',$comment['user_id'])); ?>'s Profile Image" src="/<?php echo $User->get_user_profile_img(false, $comment['user_id']); ?>" class="img-circle profile-img sm"></a>
                             </li>
                             <li>
                                 <div class="reply-user-name">
@@ -289,7 +289,7 @@
                     <div class="table">
                         <div class="cell image-cell">
                             <div class="user-img">
-                                <a class="wrap" <?php echo  $UserProfile->profile($user_id); ?>> <img src="/<?php echo $User->get_user_profile_img( false, $user_id); ?>" class="img-circle profile-img sm"></a>
+                                <a class="wrap" <?php echo  $UserProfile->profile($user_id); ?>> <img alt="<?php echo ucwords(User::user_info('username',$user_id)); ?>'s Profile Image" src="/<?php echo $User->get_user_profile_img( false, $user_id); ?>" class="img-circle profile-img sm"></a>
                             </div>
                         </div>
                         <div class="cell">

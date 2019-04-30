@@ -12,7 +12,8 @@ require_once ABSPATH.'/campaign-monitor-api/csrest_subscribers.php';
 
 require_once (CLASSES .'class.InviteFriend.php');
 require_once (CLASSES .'User.php');
-
+require_once($_SERVER['DOCUMENT_ROOT'] . '/hopetracker/classes/DebugMg.php');
+$DebugMg = new DebugMg();
 
 /** @array $sent_record_id : the list of record ids that have been successfully
  * sent to campaign monitor.
@@ -24,8 +25,6 @@ $InviteFriend = new InviteFriend();
 
 /** @array  $inviteDataToSend : the array of data for the invite users */
 $inviteDataToSend = $InviteFriend->getDataForCampaignMonitor($_GET['userId']);
-
-
 
 /** @object  $wrap : core object for campaign monitor */
 $wrap = new CS_REST_Subscribers('e911df9c8c94d1ab50d64c42bac90677', '29a644cdec042cb0fb39f389f20afc9a');
@@ -59,6 +58,12 @@ if($result->was_successful()) {
 	echo 'Failed with code '.$result->http_status_code."\n<br /><pre>";
 	var_dump($result->response);
 	echo '</pre>';
+
+    $DebugMg->setError(array(
+        'Type' => 'Invite Friend',
+        'Sub Type' => 'Sidebar Form',
+        'Error' => "Failed to get sent to Campaign Monitor: " . $result->response
+    ));
 	error_log("Campaign Monitor : invite friend failed!" .$result->http_status_code. "errors: ".$result->response , 0);
 }
 

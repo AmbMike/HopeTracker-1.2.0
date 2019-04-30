@@ -8,7 +8,7 @@
 
 var paths = {
     cwd : 'site/cwd/',
-    scss : 'site/cwd/sass/',
+    scss : 'site/cwd/Sass/',
     public : 'site/public/',
     c_views : 'site/cwd/views/',
     p_views : 'site/public/views/',
@@ -21,7 +21,6 @@ var paths = {
     c_crop_asset_j : 'mod/croppic/assets/js/',
     c_js_widgets : 'site/cwd/js/concats/widgets/'
 };
-
 module.exports = function(grunt){
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -32,7 +31,7 @@ module.exports = function(grunt){
                 },
                 files: [{
                     expand: true,
-                    cwd: 'site/cwd/sass',
+                    cwd: 'site/cwd/Sass',
                     src: [
                         'main.scss'
                         //'admin.scss'
@@ -115,21 +114,23 @@ module.exports = function(grunt){
         },
         watch: {
             options: {
-                livereload: true
+                livereload: 1337,
+
             },
             css: {
                 files: [
-                    paths.scss + '**',
-                    paths.scss + '*.scss',
+
+                    //paths.scss + '*.scss',
                     paths.c_js_form + '*.js',
                     paths.c_js_widgets + '*.js',
                     paths.c_js_c + '*.js',
                     paths.c_views + '**',
+                    paths.scss + '**',
                     paths.c_js_form + 'sign-in.js',
                     paths.c_js_form + 'journal-entry-form.js',
                     paths.c_js_plugs + 'mg-validator.js',
                     paths.c_js_c + 'nav.js',
-                    paths.c_js + 'shared.js'
+                    paths.c_js + 'shared.js',
                 ],
                 tasks: ['htmlclean','sass','cssmin','uglify'/*,'ftpush'*/]
             },

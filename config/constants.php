@@ -14,6 +14,9 @@ $Application_Mode = 'dev';
 
 define('ENV',$Application_Mode);
 
+/** Toggle the page loader feature : Yes || No */
+define('SHOW_PAGE_LOADER','No');
+
 if(ENV == 'dev'){
     define('SRC_PATH','cwd');
 
@@ -35,7 +38,7 @@ if(ENV == 'dev'){
     define('DB_NAME','hopetrac_main');
     define('DB_HOST','localhost');
     define('DB_USER','hopetrac_main');
-    define('DB_PASS','%gw)(rA5qL(r'); 
+    define('DB_PASS','%gw)(rA5qL(r');
 }
 
 /* if file does not include index.php */
@@ -53,6 +56,14 @@ define('DOMAIN', 'hopetracker.com/hopetracker');
 
 /* URLs */
 define('BASE_URL', 'http://hopetracker.com/hopetracker');
+function siteURL()
+{
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+    $domainName = $_SERVER['HTTP_HOST'].'/';
+    return $protocol.$domainName;
+}
+
+define('DYNAMIC_URL', siteURL() . 'hopetracker/');
 
 /* Information */
 define('MAIN_PHONE','8884924199');
@@ -88,8 +99,7 @@ define('TINYMCE',  root_slash . RELATIVE_PATH . 'mod/tinymce/tinymce.min.js');
 define('CROPPIC',  root_slash . RELATIVE_PATH . 'mod/croppic/croppic.js');
 define('ADMIN',  root_slash . 'HopeAdmin/');
 define('QUOTE_SLIDES', root_slash .  IMAGES . 'quotes/');
-define('OG_IMAGES', root_slash . IMAGES . 'og-images/');
-
+define('OG_IMAGES', root_slash . 'site/public/images/og-images/');
 
 /* Default Profile Image */
 define('DEFAULT_PROFILE_IMG', 'site/public/images/main/icon.jpg');

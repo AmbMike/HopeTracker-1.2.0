@@ -141,9 +141,8 @@ function communitySearchPosts() {
             var ajaxData = {
                 form : 'Journal Entry Lite',
                 content : $inputValue
-            }
+            };
             $.post(RELATIVE_PATH + '/config/processing.php',ajaxData,function (response) {
-                console.log(response);
                 if(response.status === 'Successful'){
                     $thisInput.val('');
 
@@ -155,17 +154,86 @@ function communitySearchPosts() {
         }
     });
 
+    if($('[data-toggle-box="answer-comment"]').length > 0){
+        answer_comment();
+    }
+    function answer_comment() {
+        /** Parent container for post input */
+        var postInputParent = '[data-toggle-box="answer-comment"] button ';
+
+        $('body').on('click',postInputParent,function () {
+            var $this = $(this);
+            var answerId = $this.data("answer-id");
+            var inputValue = $this.closest('.textarea-box').find('textarea').val();
+
+            var ajaxData = {
+                form : 'Answer Comment',
+                cache: false,
+                data : {
+                    post_type: 7,
+                    parent_post_type: 4,
+                    parent_post_id: answerId,
+                    content: inputValue
+                }
+            };
+            $.post(RELATIVE_PATH + '/config/processing.php',ajaxData,function (response) {
+                if(response.status === 'Success'){
+                    $this.closest('.answer-container').find('.answer-data-container .comment-fill').append(buildComment(response.userId, response.usernameUrl, response.usernameFormatted, response.entryDate, response.state, response.zip, inputValue, response.postId,response.userProfile));
+                    $('time.human-time').timeago();
+                    $('textarea').val(' ');
+
+                }
+            },'json');
+
+        });
+    }
+
+    function buildComment(userId,usernameUrl,usernameFormatted,entryDate,state,zip,content,postId,userProfile) {
+        var html = "<hr>" +
+            "<div class='clearfix'> " +
+            "   <div class='table'>" +
+            "       <div class=\"author-img-box cell\">\n" +
+            "           <img onclick=\"window.location='"+RELATIVE_PATH + "/" + userProfile+"'\" role=\"button\" src='/"+userProfile+"' alt='"+usernameFormatted+"' class=\"img-circle profile-img\">\n" +
+            "       </div>\n" +
+            "       <div class=\"post-text-box cell\">\n" +
+            "           <div class=\"quote-box\" itemprop=\"author\" itemscope=\"\" itemtype=\"http://schema.org/Person\">\n" +
+            "                <span onclick=\"window.location='"+RELATIVE_PATH + "/" + userProfile+"'\" role=\"button\" itemprop=\"name\">"+usernameFormatted+"</span>\n" +
+            "            </div>\n" +
+            "           <div class=\"user-count-container\">\n" +
+            /*"               <span><data value=\"2\" class=\"user-questions\">2</data> Questions <data value=\"24\" class=\"user-answers\">24</data> Answers</span>\n" +*/
+            "               <div class=\"asked-about-box\">\n" +
+            "                   <span><!--<i class=\"fa fa-circle\" aria-hidden=\"true\"></i>--></span> Asked <time itemprop=\"dateCreated\" class=\"human-time\" datetime='"+entryDate+"' title='"+entryDate+"'>"+entryDate+"</time>\n" +
+            "               </div>\n" +
+            "          </div>\n" +
+            "          <div class=\"author-text-box\">\n" +
+            "               <span itemprop=\"text\" class=\"author-text\">"+content+"</span>\n" +
+            "          </div>\n" +
+            "          <div class=\"tracker-box\">\n" +
+            "               <div class=\"question-liked-box\">" +
+            "                   <i class=\"fa fa-thumbs-o-up like-count-icon updated-txt-false\" style='margin-right: 5px;' role=\"button\" data-bound-post-like=\"btn\" data-post-id='"+postId+"' data-post-type='7' data-post-user-id=\"1\"></i><data data-like-post-count-updater=\"\" value=\"0\" class=\"question-liked-text\">0</data>\n" +
+            "               </div> " +
+            "               <span class=\"flag-box is-comment\" data-question=\"flag-btn\" data-comment-id=\" "+postId+"\" data-post-type=\"7\"  data-question=\"flag-btn\" role=\"button\">" +
+            "                   <span class=\"flag-tooltip-text\">Click here to report this post as inappropriate.<a class=\"alt-flag\">flag</a></span>\n" +
+            "                   <i class=\"fa fa-flag\" aria-hidden=\"true\"></i>" +
+            "               \n" +
+            "         </div>\n" +
+            "      </div>" +
+            "   </div>" +
+            "</div>" ;
+        return html;
+    }
+
     function buildPost(userId,usernameUrl,usernameFormatted,entryDate,state,zip,content,postId,userProfile){
         var idNum = Math.floor(1000 + Math.random() * 9000);
 
         var html = '<section data-post-parent="post" class="box-one no-p">\n' +
             '            <ul class="post">\n' +
             '                <li>\n' +
-            '                    <a class="wrap" href="/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'"><img src="/'+userProfile+'" class="img-circle profile-img sm"></a>\n' +
+            '                    <a class="wrap" href="' + RELATIVE_PATH + '/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'"><img src="/'+userProfile+'" class="img-circle profile-img sm"></a>\n' +
             '                </li>\n' +
             '                <li>\n' +
             '                    <div class="simple-heading user-name">\n' +
-            '                        <a class="wrap" href="/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'">'+usernameFormatted+'</a>\n' +
+            '                        <a class="wrap" href="' + RELATIVE_PATH + '/families-of-drug-addicts/user-'+userId+'/'+usernameUrl+'">'+usernameFormatted+'</a>\n' +
             '                        <div class="author-info-box">\n' +
             '                            <time itemprop="dateCreated" class="human-time date" datetime="'+entryDate+'" title="'+entryDate+'"></time> <i class="fa fa-circle" aria-hidden="true"></i><span class="author-local"> '+state+', '+zip+' </span>\n' +
             '                        </div>\n' +

@@ -48,7 +48,10 @@ function flag_single_forum_question() {
         $.post(RELATIVE_PATH + '/config/processing.php',ajaxObject,function (response) {
             console.log(response);
             if( response.status === 'flagged'){
-                $thisFlagBtn.addClass('error-text').html('Flagged');
+                var flaggedMsg = '<span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">\n' +
+                    '               <i class="fa fa-flag" aria-hidden="true"></i>\n' +
+                    '              </span>';
+                $thisFlagBtn.addClass('error-text').html(flaggedMsg);
             }
         },'json');
     });
@@ -64,11 +67,21 @@ function flag_single_forum_answer() {
 
         var $thisFlagBtn = $(this);
 
-        /** The question id associated with the like btn */
-        var answerId = $thisFlagBtn.closest('[data-answers="container"]').data('answer-id');
+        var answerId,postTypeId;
+        if($thisFlagBtn.hasClass("is-comment")){
+            /** The question id associated with the like btn */
+            answerId = $thisFlagBtn.data('comment-id');
 
-        /** Id for the question */
-        var postTypeId = $thisFlagBtn.closest('[data-answers="container"]').data('answer-post-type');
+            /** Id for the question */
+            postTypeId = $thisFlagBtn.data('post-type');
+        }else{
+            /** The question id associated with the like btn */
+             answerId = $thisFlagBtn.closest('[data-answers="container"]').data('answer-id');
+
+            /** Id for the question */
+             postTypeId = $thisFlagBtn.closest('[data-answers="container"]').data('answer-post-type');
+        }
+
 
         var ajaxObject = {
             form : 'Flag Post',
@@ -80,7 +93,10 @@ function flag_single_forum_answer() {
         $.post(RELATIVE_PATH + '/config/processing.php',ajaxObject,function (response) {
             console.log(response);
             if( response.status === 'flagged'){
-                $thisFlagBtn.addClass('error-text').html('Flagged');
+                var flaggedMsg = '<span class="flag-box error-text tooltip-mg" data-question="flag-btn" data-pt-title="Flag being processed" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small">\n' +
+                    '               <i class="fa fa-flag" aria-hidden="true"></i>\n' +
+                    '              </span>';
+                $thisFlagBtn.addClass('error-text').html(flaggedMsg);
             }
         },'json');
     });
@@ -112,7 +128,7 @@ function like_post_bound() {
         /** Process the like btn */
 
         $.post(RELATIVE_PATH + '/config/processing.php',ajaxObject,function (response) {
-            console.log(response);
+
             /** Bind a constant count value for output */
             var countBinderEl = $thisLikeBtn.parent().find('[data-like-post-count-updater]');
             var countBinder = countBinderEl.val();
@@ -121,8 +137,12 @@ function like_post_bound() {
 
             if( response.status === 'unliked'){
 
+
                 $thisLikeBtn.removeClass('liked');
-                $thisLikeBtn.text('Like');
+                if(!$thisLikeBtn.hasClass('updated-txt-false')){
+                    $thisLikeBtn.text('Like');
+                }
+
 
                 /** Update constant count value for output */
                 if(countBinder){
@@ -134,7 +154,9 @@ function like_post_bound() {
             }else if(response.status === 'liked'){
 
                 $thisLikeBtn.addClass('liked');
-                $thisLikeBtn.text('Liked');
+                if(!$thisLikeBtn.hasClass('updated-txt-false')) {
+                    $thisLikeBtn.text('Liked');
+                }
 
                 /** Update constant count value for output */
                 if( countBinder){

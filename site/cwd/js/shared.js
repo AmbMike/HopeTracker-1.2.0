@@ -143,29 +143,30 @@ $(document).ready(function () {
             }
         }
 
-        setTimeout(function () {
-            //obj.el.css({'height' : '0px'});
-        },300);
-
+        /** Clicked Sign Up Btn Action */
         obj.btn.on('click',function () {
-            /** Position of page when clicked */
+
+            /** Set the page's position on click. */
             window.pagedClickedPosition = $(document).scrollTop();
 
+            /** Add active class to menu button */
+            $('.menu-btn').addClass('sign-up-form');
+
+            /** Scroll the page to the top */
             $('html, body').animate({
                 scrollTop: 0
             }, 1000);
 
+            /** Processed action if click button does not have an an ".on" class */
             if(!$(this).hasClass('on')){
                 obj.btn.addClass('on');
 
-                /** if Mobile add mobile class */
-                if($(window).width()< 768){
+                /** Action for mobile */
+                if($(window).width() < 768){
 
                     $('.mobile-nav-box').addClass('on');
                     $('.nav-box nav > ul').slideDown(500);
                     $('nav').addClass('on');
-                }else{
-
                 }
 
                 obj.cover.fadeIn(300);
@@ -224,7 +225,9 @@ $.fn.isOnScreen = function(){
 
 /* Screen Load */
 $(document).ready(function() {
-    screen_loader();
+    if($('[data-show-page-loader]').data('show-page-loader') === 'Yes'){
+        screen_loader();
+    }
 });
 function screen_loader() {
     'use strict';
@@ -370,7 +373,7 @@ $(document).ready(function () {
     /** Format time globally */
     $('time.human-time').timeago();
 
-    if($('#user-logger').length > 0) {
+   /* if($('#user-logger').length > 0) {
         $.ajax({
             url: RELATIVE_PATH + '/config/processing.php',
             cache : false,
@@ -390,7 +393,7 @@ $(document).ready(function () {
             }
 
         });
-    }
+    }*/
 });
 
 /*$( function() {

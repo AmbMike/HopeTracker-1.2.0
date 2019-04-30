@@ -61,32 +61,28 @@ module.exports = function(grunt){
             my_target: {
                 files: {
                     'site/public/js/main.js': [
-                        paths.c_js_c + 'jquery-3-1-1.js',
+                        paths.c_js + 'global-variables.js',
+                        paths.c_js + 'jquery-3-1-1.js',
+                        paths.c_js_c + '*.js',
                         'bower_components/bootstrapvalidator/dist/js/bootstrapValidator.js',
-                        paths.c_js_c + 'flex-text.js',
-                        paths.c_js_c + 'z_tooltip.js',
-                        paths.c_js_c + 'sign_out.js',
+                        //'mod/tinymce/tinymce.min.js',
                         'bower_components/jquery_lazyload/jquery.lazyload.js',
-                        paths.c_js_c + 'clipboard.js',
                         paths.c_js_crop + 'croppic.js',
                         paths.c_crop_asset_j + 'main.js',
                         paths.c_crop_asset_j + 'jquery.mousewheel.min.js',
-                        paths.c_js_c + 'bootstrap.js',
-                        paths.c_js_c + 'modernizer.js',
-                        paths.c_js_c + 'faq-v-1.js',
-                        paths.c_js_c + 'sticky-kit.js',
-                        paths.c_js_c + 'forum.js',
-                        paths.c_js_c + 'slick.js',
-                        paths.c_js_c + 'sidebar.js',
-                        paths.c_js_c + 'validation.js',
                         'bower_components/jquery-ui/jquery-ui.min.js',
                         paths.c_js_plugs + 'mg-validator.js',
                         paths.c_js_form + 'form-one.js',
                         paths.c_js_form + 'sign-in.js',
                         paths.c_js_form + 'journal-entry-form.js',
-                        paths.c_js_c + 'nav.js',
                         paths.c_js_widgets + 'display-box.js',
                         paths.c_js + 'shared.js'
+                    ],
+                    'site/public/js/includes/home-slider.js' : [
+                        'site/cwd/js/includes/home-slider.js'
+                    ],
+                    'site/public/js/includes/text-left.js' : [
+                        'site/cwd/js/includes/text-left.js'
                     ]
                 }
             }
@@ -125,18 +121,17 @@ module.exports = function(grunt){
                 files: [
                     paths.scss + '**',
                     paths.scss + '*.scss',
+                    paths.c_js_form + '*.js',
+                    paths.c_js_widgets + '*.js',
+                    paths.c_js_c + '*.js',
                     paths.c_views + '**',
-                    /* paths.c_js_form + '*.js',
-                     paths.c_js_widgets + '*.js',
-                     paths.c_js_c + '*.js',
-                     paths.c_views + '**',
-                     paths.c_js_form + 'sign-in.js',
-                     paths.c_js_form + 'journal-entry-form.js',
-                     paths.c_js_plugs + 'mg-validator.js',
-                     paths.c_js_c + 'nav.js',
-                     paths.c_js + 'shared.js'*/
+                    paths.c_js_form + 'sign-in.js',
+                    paths.c_js_form + 'journal-entry-form.js',
+                    paths.c_js_plugs + 'mg-validator.js',
+                    paths.c_js_c + 'nav.js',
+                    paths.c_js + 'shared.js'
                 ],
-                tasks: [/*'htmlclean',*/'sass','cssmin'/*,'uglify'*/]
+                tasks: ['htmlclean','sass','cssmin','uglify'/*,'ftpush'*/]
             },
         },
     });
@@ -150,5 +145,5 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     // Do the Task
-    grunt.registerInitTask('default', ['htmlclean','sass','cssmin',/*'uglify',*/'watch']);
+    grunt.registerInitTask('default', ['htmlclean','sass','cssmin','uglify'/*,'ftpush'*/,'watch']);
 }

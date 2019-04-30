@@ -104,7 +104,7 @@ endswitch;
                     </div>
                 </div>
                 <div id="post-feeder"></div>
-                <?php if($Session->get('logged_in') == 1 ) :
+                <?php if($Session->get('logged_in') == 1 ) : User::isAnonymousUser(1);
                     include_once (VIEWS . 'includes/journal/activity-log-v2.php');
                     endif;
                 ?>

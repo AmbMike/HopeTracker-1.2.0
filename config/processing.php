@@ -13,7 +13,7 @@
     include_once(CLASSES.'Comments.php');
     include_once(CLASSES.'Forum.php');
     include_once(CLASSES.'Chat.php');
-    include_once(CLASSES.'Emails.php');
+
     include_once(CLASSES.'Inspiration.php');
 
     error_reporting(E_ALL); ini_set('display_errors',1);
@@ -23,7 +23,7 @@
     $Comments = new Comments();
     $Forum = new Forum();
     $Chat = new Chat();
-    $Emails = new Emails();
+
     $Inspiration = new Inspiration();
 
 
@@ -39,9 +39,13 @@
 		    $User->sign_in($_POST);
 		    break;
 	    case 'Forgot Password' :
+            include_once(CLASSES.'Emails.php');
+            $Emails = new Emails();
 		    User::forgot_password($_POST['email']);
 		    break;
 	    case 'Emailed Password Reset' :
+            include_once(CLASSES.'Emails.php');
+            $Emails = new Emails();
 		    $User->email_reset_password($_POST['data']);
 		    break;
 	    case 'Reset Password' :
@@ -76,6 +80,13 @@
 	    case 'Journal Entry Comment' :
 		    $Journal->entry_comment($_POST);
 		    break;
+		case 'Show More Online Users' :
+			error_reporting( 3 );
+			include_once(CLASSES . 'User.php');
+		   	$chat_users = $User->users_online_plus_moderators(true, (int)$_POST['start'],  (int)$_POST['qty']);
+		   	echo json_encode($chat_users);
+		    break;
+
 	    case 'Journal Entry Comment Sidebar' :
 		    $Journal->entry_comment_sidebar($_POST);
 		    break;
@@ -173,6 +184,8 @@
 
 	/* Emails */
 	case 'Chat Email Upload' :
+        include_once(CLASSES.'Emails.php');
+        $Emails = new Emails();
 		$Emails->upload_chat_emails($_POST['data']);
 		break;
 
@@ -215,6 +228,12 @@
 		include_once(CLASSES.'A_Form.php'); // Admin Class
 		$A_Form = new A_Form(); // Admin Form Class
 		$A_Form->admin_sign_in($_POST);
+		break;
+    case 'Delete Flagged Post' :
+		include_once(CLASSES.'class.Post.php'); // Admin Class
+
+		$Post= new Post();
+        $Post->delete($_POST);
 		break;
 
 	/* Forum Category */
@@ -282,7 +301,12 @@
 		$ForumAnswers = new ForumAnswers();
 		$ForumAnswers->storeAnswer($_POST['data']);
 		break;
+    case 'Answer Comment' :
 
+        include_once(CLASSES . 'class.ForumAnswerComment.php');
+        $ForumAnswerComment = new ForumAnswerComment();
+        $ForumAnswerComment->storeComment($_POST['data']);
+        break;
 	/** Like Post */
 	case 'Like Post' :
 		include_once( CLASSES . 'class.LikePost.php' );
@@ -304,6 +328,13 @@
 		include_once( CLASSES . 'class.FlagPost.php' );
 		$FlagPost = new FlagPost;
 		echo json_encode($FlagPost->flagPost($_POST['post_id'],$_POST['post_type'] ));
+		//include_once(CLASSES . 'Emails.php');
+
+		include_once(CLASSES . 'class.Post.php');
+		$Post = new Post();
+		//$Emails = new Emails();
+        //$Sessions = new Sessions();
+		//$Emails->sendFlaggedEmail($Sessions->get('user-id'),$Post->get($_POST['post_type'],$_POST['post_id']),time());
 		break;
 	default : echo 'No Good';
 }

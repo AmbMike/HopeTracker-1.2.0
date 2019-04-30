@@ -99,7 +99,9 @@ class User extends Sessions {
 	public function sign_out(){
 		$session = new parent();
 		$this->log_user_offline($session->get('user-id'));
+
 		session_destroy();
+
 	}
 	public static function user_info($name, $id = false){
 		$session = new parent();
@@ -148,7 +150,7 @@ class User extends Sessions {
 			$cur_url
 		));
 	}
-	public function sign_in($data){
+	public function sign_in($data, $userId = false){
 		$db = new Database();
 		$session = new parent();
 		$Forms = new Forms();
@@ -179,7 +181,7 @@ class User extends Sessions {
 				$this->log_user_online($data_out['id']);
 
 				/* Set Admin Session if is Admin */
-				if($data_out['role'] == 1){
+				if($data_out['role'] == 1 || $data_out['role'] == 2){
 					$session->set('Admin Logged',1);
 
 				}
@@ -219,7 +221,7 @@ class User extends Sessions {
 				$data = $sql->fetch();
 
 				$subject = 'Reset your HopeTracker password';
-				$emailer->send_email($data["email"],$subject,$data['fname'],BASE_URL .'/rpd/reset-password.'.FILE_EXTENSION.'?verify=' . $data['password'] .'&verifyE=' . $encrypt->mask_get_var($data['email']));
+				$emailer->send_email($data["email"],$subject,$data['fname'],BASE_URL .'/rpd/?verify=' . $data['password'] .'&verifyE=' . $encrypt->mask_get_var($data['email']));
 			}
 			echo 'Sent';
 
@@ -276,6 +278,20 @@ class User extends Sessions {
 		}
 
 	}
+	public static  function isAnonymousUser($userId){
+        $db = new Database();
+
+        $sql = $db->prepare("SELECT id FROM user_list WHERE anonymous = 1  AND id =?");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute(array($userId));
+
+        if($sql->rowCount() > 0){
+            return true;
+        }else{
+            return false;
+        }
+
+    }
 	public function get_user_profile_img($user_id,$id = false){
 		$db = new Database(); 
 
@@ -292,7 +308,15 @@ class User extends Sessions {
 
 		$data = $sql->fetch();
 		if(!empty($data['profile_img'])){
-			return RELATIVE_PATH .  $data['profile_img'] . '?cache='. rand(4,1000);
+
+			/** Check if the profile image exists */
+			if(file_exists( $_SERVER['DOCUMENT_ROOT'] . '/'. RELATIVE_PATH  . $data['profile_img'])){
+				return RELATIVE_PATH .  $data['profile_img'] . '?cache='. rand(4,1000);
+
+			}else{
+				return RELATIVE_PATH . 'site/public/images/main/icon.jpg';
+			}
+
 		}else{
 			return RELATIVE_PATH . 'site/public/images/main/icon.jpg';
 		}
@@ -375,19 +399,35 @@ class User extends Sessions {
 			return true;
 		}
 	}
-	public function users_online_plus_moderators(){
+	public function users_online_plus_moderators($hideLoggedUser = true, $start = 0, $qty = 4000){
 		$db = new Database();
 		$unique_array = array();
-		$sql = $db->prepare("SELECT * FROM moderators
+
+		if($hideLoggedUser == false){
+			/*$sql = $db->prepare("SELECT * FROM moderators
                             UNION ALL
-                            SELECT * FROM users_online");
+                            SELECT * FROM users_online ");*/
+			$userId = 0;
+			$sql = $db->prepare(" SELECT user_id FROM users_online  WHERE user_id <> :userId ORDER BY id DESC LIMIT :start, :qty ");
+		}else{
+			/*$sql = $db->prepare("SELECT user_id FROM moderators WHERE user_id <> " .$this->Session->get('user-id') . "
+                            UNION ALL
+                            SELECT * FROM users_online WHERE user_id <> " . $this->Session->get('user-id'));*/
+			$userId =  $this->Session->get('user-id');
+			$sql = $db->prepare(" SELECT user_id FROM users_online WHERE  user_id <> :userId ORDER BY id DESC LIMIT :start, :qty ");
+		}
+
 		$sql->setFetchMode(PDO::FETCH_ASSOC);
+		$sql->bindParam(':userId', $userId, PDO::PARAM_INT);
+		$sql->bindParam(':start', $start, PDO::PARAM_INT);
+		$sql->bindParam(':qty', $qty, PDO::PARAM_INT);
 		$sql->execute();
 
 		foreach($sql->fetchAll() as $element) {
 			$hash = $element['user_id'];
 			$unique_array[$hash] = $element;
 		}
+		$unique_array = array_values($unique_array);
 		return $unique_array;
 	}
 	public function him_or_her($user_id, $type = 'first person'){

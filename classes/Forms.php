@@ -125,8 +125,14 @@ EOD;
             $first_l = $first . ' ' . $last_name[0];
 	        $build_username = '';
 
-            $sql = $db->prepare("INSERT INTO user_list (fname, lname, email,password,created_on,state,zip,profile_img,i_am_a,concerned_about,in_type,username,ip) 
-    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	        if($data['username'] ==  'anonymous'){
+	            $anonymous = 1;
+            }else{
+	            $anonymous = 0;
+            }
+
+            $sql = $db->prepare("INSERT INTO user_list (fname, lname, email,password,created_on,state,zip,profile_img,i_am_a,concerned_about,in_type,username,ip,anonymous) 
+    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             $sql->execute(array(
 	            trim($first),
 	            trim($last_name),
@@ -140,7 +146,8 @@ EOD;
                 $data['concerned_for'],
                 $data['in_status'],
                 $data['username'],
-                $general->getUserIP()
+                $general->getUserIP(),
+                $anonymous
             ));
             $last_id = $db->lastInsertId();
 

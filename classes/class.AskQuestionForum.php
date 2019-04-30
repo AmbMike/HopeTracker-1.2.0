@@ -99,6 +99,12 @@ class AskQuestionForum
         // section -64--88-0-17--66a83ae2:1602c49e480:-8000:0000000000000D45 end
     }
 
+    public function addErrorMsgCampaignMonitor($questionId, $errorMsg){
+        $this->Database = new Database();
+
+        $sql = $this->Database->prepare("UPDATE ask_question_forum SET CampaignMonitorError = ?, CampaignMonitor = 2 WHERE id = ?");
+        $sql->execute(array($errorMsg,(int)$questionId));
+    }
     /**
      * Store the form data to the database.
      *
@@ -121,7 +127,7 @@ class AskQuestionForum
 		$approval = 1;
 
 	    if($this->Session->get('logged_in') == 1){
-		    $sql =  $this->Database->prepare("INSERT INTO ask_question_forum (user_id, category, subcategory, question, description, ip, date_created,post_type,approved) VALUES (?,?,?,?,?,?,?,?,?)");
+		    $sql =  $this->Database->prepare("INSERT INTO ask_question_forum (user_id, category, subcategory, question, description, ip, date_created,post_type,approved, CampaignMonitorError) VALUES (?,?,?,?,?,?,?,?,?, '')");
 		    $sql->execute(array(
 			    $this->userId,
 			    $data['category'],
@@ -137,7 +143,7 @@ class AskQuestionForum
 		    if($sql->rowCount() > 0){
 			     $returnValue['status'] = 'Success';
 		    }else{
-			     $returnValue['status'] = 'Failed';
+			     $returnValue['status'] = $sql->errorInfo();
 		    }
 	    }else{
 		     $returnValue['status'] = 'Not Logged In';

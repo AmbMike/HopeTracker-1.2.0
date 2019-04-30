@@ -13,7 +13,7 @@ $User = new User();
 /** Disabled Chat - */
 $Chat = new Chat();
 $users_online = $User->users_online();
-$chat_users = $User->users_online_plus_moderators();
+$chat_users = $User->users_online_plus_moderators(true, 0,  4);
 
 include_once(CLASSES . 'class.UserProfile.php');
 $UserProfile = new UserProfile();
@@ -33,12 +33,13 @@ $UserProfile = new UserProfile();
 				<?php endif; ?>
                 <div class="clearfix"></div>
 				<?php
-				$live_users= array();
-				foreach ( $chat_users as $chat_user ) {
+				$live_users = $chat_users;
+
+				/*foreach ( $chat_users as $chat_user ) {
 					if($chat_user['user_id'] != $Sessions->get('user-id')){
 						$live_users [] = $chat_user;
 					}
-				}
+				}*/
 				?>
 				<?php foreach ( $live_users as $index33 => $user_online) :  ?>
 					<?php /** Hide chat users after first 3  */ ?>
@@ -100,7 +101,7 @@ $UserProfile = new UserProfile();
 
 					<?php /** show See more link */  ?>
 					<?php if($index33 >= 3 && $index33 == count($live_users) - 1) : ?>
-                        <div class="simple-heading see-more collapsed" data-toggle="collapse"  data-target="#show-more-live-users">
+                        <div onClick="showMoreOnlineUsers();" class="simple-heading see-more collapsed" data-toggle="collapse"  data-target="#show-more-live-users">
                             <span class="text1">See More</span>
                             <span class="text2">See Less</span>
                         </div>

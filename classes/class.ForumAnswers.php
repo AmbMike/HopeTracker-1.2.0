@@ -181,8 +181,17 @@ class ForumAnswers
 		    }
 		    /** Get count for answers */
 		    if($userId != false && $questionId == false){
+
+		        /** Test
+                $sql = $this->Database->prepare("SELECT * FROM answers_forum WHERE user_id = ? AND approved = 1");
+                $sql->execute(array($userId));
+
+                Debug::out($sql->fetchAll());
+                unset($sql);*/
 			    $sql = $this->Database->prepare("SELECT count(*) FROM answers_forum WHERE user_id = ? AND approved = 1");
 			    $sql->execute(array($userId));
+
+
 		    }
 
 		    $returnValue = $sql->fetchColumn();
@@ -222,6 +231,7 @@ class ForumAnswers
 			    $sql->bindParam('startLimit',$startLimit, PDO::PARAM_INT);
 			    $sql->bindParam('maxlimit',$maxLimit, PDO::PARAM_INT);
 			    $sql->execute();
+
 		    }
 
 		    /** Get answers for user id. */
@@ -394,6 +404,30 @@ class ForumAnswers
 		    (int) $questionId
 	    ));
 	    $returnValue = $returnValue = $sql->fetchColumn();
+        // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001104 end
+
+        return $returnValue;
+    }
+    public function popularQuestionIds($qty = 5)
+    {
+        $returnValue = null;
+
+        // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001104 begin
+	    $this->Database = new Database();
+
+	    $sql = $this->Database->prepare("SELECT COUNT(id) as qty, question_id FROM answers_forum WHERE question_id != '' GROUP BY question_id ORDER BY qty DESC LIMIT 0, :qty");
+	    $sql->bindParam('qty', $qty, PDO::PARAM_INT);
+	    $sql->setFetchMode(PDO::FETCH_ASSOC);
+	    $sql->execute();
+	    $questionData= $returnValue = $sql->fetchAll();
+
+	    $questionIds = array();
+
+	    foreach ($questionData as $question){
+	        $questionIds[] = $question['question_id'];
+        }
+        $returnValue = $questionIds;
+
         // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001104 end
 
         return $returnValue;

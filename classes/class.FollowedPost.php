@@ -166,7 +166,7 @@ class FollowedPost
 	    $this->Database = new Database();
 
 	    /** Set the user id if not provided */
-	    if($userId != false):
+	    if($userId == false):
 		    $userId = $this->Session->get('user-id');
 	    endif;
 

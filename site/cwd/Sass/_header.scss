@@ -26,7 +26,7 @@ header{
       right: 0;
       width:300px;
       margin: 12px auto 10px auto;
-      z-index:150;
+      z-index:80;
     }
     @media (max-width: 450px){
         width: 216px;
@@ -143,8 +143,8 @@ header{
       a{
         line-height: 100%;
         position: relative;
-        right: 3px;
-        top: -9px;
+        right: 5px;
+        bottom: 11px;
         color: $button-text;
       }
       @media (max-width: 450px) {
@@ -152,7 +152,7 @@ header{
         width: 40px;
         font-size: 23px;
         a{
-          right: 5px;
+          right: 8px;
         }
       }
     }
@@ -231,6 +231,7 @@ header{
     border-top: 3px solid $theme-green;
     position: relative;
     z-index: 95;
+
     -webkit-box-shadow:  0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     -moz-box-shadow:  0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
     box-shadow:  0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
@@ -405,7 +406,7 @@ header{
           @media (max-width: 767px ) {
             padding:0;
             border-bottom: 2px dotted $for-borders;
-            margin-bottom: 20px;
+            margin: 15px 15px 20px 15px;
           }
 
           input{
@@ -448,7 +449,19 @@ header{
       /* Logged in area */
       &.logged-in{
         .profile-nav{
-          margin-right: 27px;
+          @media (min-width: 767px) {
+            margin-right: 27px;
+          }
+          @media (max-width: 767px) {
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 13px;
+
+            .profile-img{
+              margin-top: 0;
+              margin-right: 5px;
+            }
+          }
         }
         @media (max-width: 767px) {
           width: 100%;
@@ -631,6 +644,23 @@ header{
             a{
               &:hover{
                 background-color: transparent;
+              }
+            }
+          }
+        }
+        li{
+          &:nth-child(2){
+            @media (max-width: 767px) {
+              display: inline-block;
+              padding: 0;
+              vertical-align: middle;
+              border: none;
+              margin-top: 4px;
+
+              a{
+                border: none;
+                padding: 0;
+                margin: 0;
               }
             }
           }

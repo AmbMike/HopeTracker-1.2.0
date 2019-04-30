@@ -46,7 +46,7 @@
         @media (max-width: 767px) {
           margin: 10px 0 0;
           position: relative;
-          bottom: 0px;
+          bottom: 0;
         }
         .user-name {
           text-align: left;
@@ -159,6 +159,7 @@
             }
             .category-text {
               margin-left: 5px;
+              vertical-align: middle;
             }
           }
           .panel-title {
@@ -173,6 +174,22 @@
                 font-family: FontAwesome;
                 content:"\f068";
                 padding-right: 5px;
+              }
+              .category-count-box {
+                display: inline-block;
+                padding: 5px 10px;
+                margin-left: 15px;
+                @media (max-width: 768px) {
+                  padding: 5px;
+                  font-size: 14px;
+                  margin-left: 5px;
+                  position: relative;
+                  top: -1px;
+
+                }
+                border-radius: $border-radius-small;
+                color: $brand-primary;
+                background-color: $text-white;
               }
               #moderator-container {
                 & {
@@ -315,6 +332,9 @@
               .asked-about {
                 white-space: nowrap;
               }
+            }
+            .question-title-text {
+              width: 100%;
             }
             .img-cell {
               text-align: center;

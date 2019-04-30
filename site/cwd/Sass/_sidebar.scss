@@ -127,7 +127,7 @@
     }
 
     .inspiration-title {
-      color: $header-gray;
+      color: black;
       margin: 0 0 15px 0;
     }
 
@@ -363,23 +363,26 @@
       padding: 0 15px;
       #latest-entries{
         .latest-title {
-          color: $header-gray;
+          color: black;
           margin: 7px 0 15px 0;
         }
 
         .more {
           width: 100%;
-          text-align: right;
-          margin: 0 0 15px 0;
+          text-align: center;
+          margin: 0;
           color: $theme-blue;
-          font-size: 17px;
-          font-weight: 500;
+          font-size: 18px;
+          font-weight: 100;
         }
         hr {
-          background: $body-gray;
-          width: 100%;
+          background: #e9ebee;
+          width: 118%;
+          margin-left: -15px;
+          height: 1px;
         }
-        #user-post {
+        .user-post {
+          margin-bottom: 20px;
           .cell{
             &:nth-child(1){
               width: 63px;
@@ -398,6 +401,7 @@
             }
             .post-title{
               color: $header-gray;
+              margin:0;
             }
           }
         }

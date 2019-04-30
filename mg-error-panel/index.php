@@ -114,6 +114,7 @@
 		text-align: center;
 		bottom: 0;
 		right: 0;
+        z-index: 10000000000;
 		background: black;
 		color: rgba(255,255,255,.6);
 		padding: 10px;
@@ -140,15 +141,33 @@
 		<h1>Error Panel</h1>
 		<button class="btn btn-primary" onclick="toggleWidthErrorWindow()">Toggle Width</button>
 		<ul class="nav error-sidebar-nav box-1">
-			<li class="area-label">Action Functions - Pages</li>
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Course Page <span class="caret"></span></a>
-				<ul class="dropdown-menu" role="menu">
-					<li><a role="button" onclick="resetActivitySession();">Reset Session</a></li>
-					<li><a role="button" onclick="resetCourseIntro();">Reset Intro</a></li>
-				</ul>
-			</li>
-		</ul>
+            <li class="area-label">Action Functions - Pages</li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Course Page <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a role="button" onclick="resetActivitySession();">Reset Session</a></li>
+                    <li><a role="button" onclick="resetCourseIntro();">Reset Intro</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav error-sidebar-nav box-1">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account Access <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <form id="admin-access-account">
+                            <label class="text-muted">User Account Id</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">Id: </span>
+                                <input style="padding: 19px;" type="text" id="access-account-user-id" class="form-control" placeholder="UserId">
+                                <span onclick="shadowAccount();" id="submit-account-id" class="input-group-addon" role="button">Submit</span>
+                            </div>
+                        </form>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
 		<h2 class="area-label">Error Output</h2>
 		<div class="error-output box-1">
 			<?php
@@ -158,5 +177,9 @@ global $DEBUGOUT;
 			    }
 			?>
 		</div>
+        <h2 class="area-label">Session Variables</h2>
+        <div class="box-1">
+            <?php Debug::data($_SESSION); ?>
+        </div>
 	</nav>
 </div>

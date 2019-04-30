@@ -38,19 +38,29 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header"><a href="/admin">Dashboard</a></li>
+            <li class="treeview"><a href="/admin"><i class="fa fa-cogs"></i> Dashboard</a></li>
+            <li class="treeview"><a href="/<?php echo  RELATIVE_PATH; ?>admin/user-list"><i class="ion ion-person-stalker"></i>Users</a></li>
             <!-- Optionally, you can add icons to the links
             <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>-->
             <li class="treeview">
-                <a href="/<?php echo  RELATIVE_PATH; ?>/admin/user-list"><i class="ion ion-person-stalker"></i>Users</a>
                 <a href="#"><i class="fa fa-link"></i> <span>Forum</span>
                     <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="/<?php echo  RELATIVE_PATH; ?>/admin/forum/categories">Categories</a></li>
-                    <li><a href="/<?php echo  RELATIVE_PATH; ?>/admin/forum/subcategories">Subcategories</a></li>
+                    <li><a href="/<?php echo  RELATIVE_PATH; ?>admin/forum/categories">Categories</a></li>
+                    <li><a href="/<?php echo  RELATIVE_PATH; ?>admin/forum/subcategories">Subcategories</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class="fa fa-link"></i> <span>Security</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="/<?php echo  RELATIVE_PATH; ?>admin/flagged">Flagged Posts</a></li>
                 </ul>
             </li>
         </ul>

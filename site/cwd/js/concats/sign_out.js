@@ -15,7 +15,7 @@ function sign_out() {
                 form : 'Sign Out'
             }
         }).done(function (response) {
-            location.href=RELATIVE_PATH + "/home";
+            location.href=RELATIVE_PATH + "/home?sign_out=1";
             //location.reload();
         });
     });

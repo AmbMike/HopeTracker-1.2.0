@@ -35,7 +35,7 @@ $SignUpBtn = new SignUpBtn('/protected/course','Get Started','Join Now <small>(I
 						<h1 class="primary-header"><span class="heading-first">Find</span>  <span class="text-left"> </span> </h1>
 						<hr>
 						<p class="sub-heading">
-							For anyone who loves someone struggling with alcohol or other drugs, there is hope.
+							For anyone who loves someone struggling with addiction, there is hope.
 						</p>
 						<button <?php echo $SignUpBtn->btnActionHTML; ?>><?php echo $SignUpBtn->btnOutText; ?></button>
 					</div>
@@ -67,7 +67,7 @@ $SignUpBtn = new SignUpBtn('/protected/course','Get Started','Join Now <small>(I
                             <button <?php echo $SignUpBtn->btnActionHTML; ?>>
                                <?php  echo $SignUpBtn->optionBtnText(' Sign Up Now'); ?>
                             </button>
-                            <p><i class="fa fa-star"></i> Join <?php echo count($Users->all_users()); ?> Families</p>
+                            <?php /* <p><i class="fa fa-star"></i> Join <?php echo count($Users->all_users()); ?> Families</p> */ ?>
                         </div>
                     </div>
 					<div class="col-md-6">

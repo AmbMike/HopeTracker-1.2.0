@@ -405,15 +405,16 @@ class ForumQuestions
      * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
      * @return array
      */
-    public function getLatestPost()
+    public function getLatestPost($qty = 1)
     {
         $returnValue = array();
 
         // section -64--88-0-2-6e345230:1609e7c7132:-8000:0000000000000EDB begin
 	    $this->Database = new Database();
 
-	    $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC  LIMIT 1");
+	    $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC LIMIT 0, :rows");
 	    $sql->setFetchMode( PDO::FETCH_ASSOC);
+        $sql->bindParam(':rows', $qty, PDO::PARAM_INT);
 	    $sql->execute();
 
 	    $returnValue = $sql->fetchAll();
@@ -443,6 +444,7 @@ class ForumQuestions
 
 	    $returnValue = $sql->fetchAll();
 	    $returnValue = $returnValue[0];
+        //Debug::data($returnValue);
         // section -64--88-0-19-359969c0:161e3016d5d:-8000:00000000000010EF end
 
         return (array) $returnValue;
@@ -455,7 +457,7 @@ class ForumQuestions
      * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
      * @return array
      */
-    public function getQuestions()
+    public function getQuestions($notEmailed = false)
     {
         $returnValue = array();
 
@@ -463,15 +465,59 @@ class ForumQuestions
 
 	    $this->Database = new Database();
 
-	    $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC ");
-	    $sql->setFetchMode( PDO::FETCH_ASSOC);
-	    $sql->execute();
+	    if($notEmailed == false):
+            $sql = $this->Database->prepare("SELECT * FROM ask_question_forum ORDER BY id DESC ");
+            $sql->setFetchMode( PDO::FETCH_ASSOC);
+            $sql->execute();
+        else:
+            $sql = $this->Database->prepare("SELECT * FROM ask_question_forum WHERE emailed = 0");
+            $sql->setFetchMode( PDO::FETCH_ASSOC);
+            $sql->execute();
+        endif;
 
 	    $returnValue = $sql->fetchAll();
         // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001100 end
 
         return (array) $returnValue;
     }
+    function markAsEmailed($id){
+        $this->Database = new Database();
+
+        $sql = $this->Database->prepare("UPDATE ask_question_forum SET emailed = 1  WHERE  id=?");
+        $sql->execute(array($id));
+
+        if($sql->rowCount() > 0){
+            return  "Updated: " . $id;
+        }else{
+            return  "Failed to update: " . $id;
+        }
+    }
+    function mostPopular($qty = 5)
+    {
+        include_once(CLASSES . 'class.ForumAnswers.php');
+
+        $ForumAnswer = new ForumAnswers();
+        $this->Database = new Database();
+
+        $ids = $ForumAnswer->popularQuestionIds($qty);
+        $questionCSV = implode(',',$ids);
+
+        $sql = $this->Database->prepare("SELECT * FROM ask_question_forum WHERE id IN(" . $questionCSV .")");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute();
+
+        return $sql->fetchAll();
+    }
+    public function totalPostPerCategory($category){
+        $this->Database = new Database();
+
+        $sql = $this->Database->prepare("SELECT count(*) FROM ask_question_forum WHERE category = ?");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute(array($category));
+
+        return $sql->fetchColumn();
+    }
+
 
 } /* end of class ForumQuestions */
 

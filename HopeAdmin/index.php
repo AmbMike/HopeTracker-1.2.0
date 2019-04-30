@@ -31,7 +31,7 @@ $Parts = new Parts();
 error_reporting(0);
 
 /* Check if user has admin privileges */
-if($Sessions->get('logged_in') == 1 && $Admin->user_role($Sessions->get('user-id')) == 1){
+if($Sessions->get('logged_in') == 1 && $Admin->user_role($Sessions->get('user-id')) == 1 || $Admin->user_role($Sessions->get('user-id')) == 2){
     $p_url = ($_GET['page_url']) ? : 'index';
 }else{
     $p_url = ($_GET['page_url']) ? : 'login';
@@ -57,5 +57,3 @@ if(!file_exists(VIEWS . $p_url . '.php')){
     include(VIEWS . $p_url.'.php');
     include_once(VIEWS . 'footer.php');
 }
-
-Debug::data($_SESSION);
