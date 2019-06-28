@@ -185,7 +185,12 @@ function follow_post_bound() {
         /** The user's Id who owns the question. */
         var postUserId = $thisFollowBtn.data('post-user-id');
 
-
+        var followType;
+        if($thisFollowBtn.data('follow-type').length > 0){
+            followType = $thisFollowBtn.data('follow-type');
+        }else{
+            followType = 'general';
+        }
         var ajaxObject = {
             form : 'Follow Post',
             post_id : postId,
@@ -195,16 +200,29 @@ function follow_post_bound() {
         };
         /** Process the like btn */
         $.post(RELATIVE_PATH + '/config/processing.php',ajaxObject,function (response) {
-            console.log(response);
-            if( response.status === 'unfollowed'){
 
-                $thisFollowBtn.removeClass('liked');
-                $thisFollowBtn.find('span').text('Follow');
+            if(followType === 'relate'){
+                var $totalRelates = $thisFollowBtn.find('.-i-total-questions-relates').text();
+                if( response.status === 'unfollowed'){
+                    $thisFollowBtn.removeClass('liked');
+                    $thisFollowBtn.find('.relate-text').text('Relate');
 
-            }else if(response.status === 'following'){
+                    $thisFollowBtn.find('.-i-total-questions-relates').text(parseInt($totalRelates) - 1);
 
-                $thisFollowBtn.addClass('liked');
-                $thisFollowBtn.find('span').text('Following');
+                }else if(response.status === 'following'){
+                    $thisFollowBtn.addClass('liked');
+                    $thisFollowBtn.find('.relate-text').text('Related');
+                    $thisFollowBtn.find('.-i-total-questions-relates').text(parseInt($totalRelates) + 1);
+                }
+            }else{
+                if( response.status === 'unfollowed'){
+                    $thisFollowBtn.removeClass('liked');
+                    $thisFollowBtn.find('span').text('Follow');
+
+                }else if(response.status === 'following'){
+                    $thisFollowBtn.addClass('liked');
+                    $thisFollowBtn.find('span').text('Following');
+                }
             }
         },'json');
     });
@@ -222,7 +240,6 @@ function single_forum_pagination() {
 
      $('body').on('click', answerPaginationBtn,function () {
        var $this = $(this);
-
        /** Process the clicked pagination */
        if(!$this.hasClass('active')){
 
@@ -241,6 +258,7 @@ function single_forum_pagination() {
 
            var ajaxData = {
                form : 'Forum Answer Pagination',
+               cache: false,
                data : {
                    questionId : questionId,
                    paginationNumber : paginationNumber,
@@ -254,9 +272,10 @@ function single_forum_pagination() {
 
            /** get the pagination data */
            $.get(RELATIVE_PATH +'/ajax-loads/forum/forum-single/recent-answers.php',ajaxData,function (response) {
-
-               console.log(response);
                answerTables.html(response);
+               setTimeout(function () {
+                   $("time.human-time").timeago();
+               },400);
            });
 
        }

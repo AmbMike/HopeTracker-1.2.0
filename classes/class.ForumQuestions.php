@@ -118,16 +118,23 @@ class ForumQuestions
      * @param  subcategory
      * @return array
      */
-    public function getQuestionsBySubcategory($subcategory)
+    public function getQuestionsBySubcategory($subcategory, $questionID = false)
     {
         $returnValue = array();
 
         // section -64--88-0-17--e38ad68:1602d4487e4:-8000:0000000000000D61 begin
 		$this->Database = new Database();
 
-		$sql = $this->Database->prepare("SELECT * FROM ask_question_forum WHERE subcategory = ? ORDER BY id DESC");
-		$sql->setFetchMode( PDO::FETCH_ASSOC );
-		$sql->execute(array($subcategory));
+		if(!$questionID){
+            $sql = $this->Database->prepare("SELECT * FROM ask_question_forum WHERE subcategory = ? ORDER BY id DESC");
+            $sql->setFetchMode( PDO::FETCH_ASSOC );
+            $sql->execute(array($subcategory));
+        }else{
+            $sql = $this->Database->prepare("SELECT * FROM ask_question_forum WHERE subcategory = ? && id <> ? ORDER BY id DESC  ");
+            $sql->setFetchMode( PDO::FETCH_ASSOC );
+            $sql->execute(array($subcategory,$questionID));
+        }
+
 
 		$returnValue = $sql->fetchAll();
 
@@ -517,7 +524,16 @@ class ForumQuestions
 
         return $sql->fetchColumn();
     }
+    public function getPostIdByPageIdentifier($pageIdentifier){
+        $this->Database = new Database();
 
+        $sql = $this->Database->prepare("SELECT id FROM ask_question_forum WHERE pageIdentifier = ?");
+        $sql->setFetchMode( PDO::FETCH_ASSOC);
+        $sql->execute(array($pageIdentifier));
+
+        $returnValue = $sql->fetchAll(PDO::FETCH_COLUMN, 0);
+        return $returnValue[0];
+    }
 
 } /* end of class ForumQuestions */
 

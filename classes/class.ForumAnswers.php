@@ -204,6 +204,41 @@ class ForumAnswers
     }
 
     /**
+     * Gets all answers for the provided question Id.
+     *
+     * @access public
+     * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
+     * @param  questionId
+     * @return array
+     */
+    public function getAnswersByQuestionId($questionId, $getIds = false)
+    {
+        $returnValue = array();
+
+        // section -64--88-0-19-6a079614:161dcc70c7f:-8000:00000000000010F3 begin
+        $this->Database = new Database();
+
+        if($getIds){
+            $sql = $this->Database->prepare("SELECT id FROM answers_forum WHERE question_id = ?");
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+            $sql->execute(array(
+                (int) $questionId
+            ));
+            $returnValue =  $returnValue = $sql->fetchAll(PDO::FETCH_COLUMN);
+        }else{
+            $sql = $this->Database->prepare("SELECT * FROM answers_forum WHERE question_id = ?");
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+            $sql->execute(array(
+                (int) $questionId
+            ));
+            $returnValue = $sql->fetchAll();
+        }
+        // section -64--88-0-19-6a079614:161dcc70c7f:-8000:00000000000010F3 end
+
+        return (array) $returnValue;
+    }
+
+    /**
      * Get answers by either all, by user, by subcategory, by approved
      *
      * @access public
@@ -252,6 +287,7 @@ class ForumAnswers
 			    $sql->bindParam('maxlimit',$maxLimit, PDO::PARAM_INT);
 			    $sql->bindParam('questionId',$questionId, PDO::PARAM_STR);
 			    $sql->execute();
+
 		    }
 
 		    /** Get  answers for question id. */
@@ -260,14 +296,78 @@ class ForumAnswers
 			    $sql->setFetchMode( PDO::FETCH_ASSOC );
 			    $sql->bindParam('questionId',$questionId, PDO::PARAM_STR);
 			    $sql->execute();
+
 		    }
 
 		    $returnValue = $sql->fetchAll();
 
 	    }
         // section -64--88-0-17--e38ad68:1602d4487e4:-8000:0000000000000DC2 end
-
         return (array) $returnValue;
+    }
+
+    public function totalLikesForAnswer($questionID){
+        $this->Database = new Database();
+
+        $returnTopAnswer = '';
+        $questionIDArr = $this->getAnswersByQuestionId($questionID, true);
+        $questionAnswerIds = implode(',',$questionIDArr);
+        $sql = $this->Database->prepare("SELECT post_id, count(*) as NUM FROM liked_posts WHERE post_type = 4 AND post_id IN($questionAnswerIds)  GROUP BY post_id ORDER BY NUM DESC ");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute();
+        if($sql->rowCount() > 0){
+            $data = $sql->fetchAll();
+            $returnTopAnswer = $data[0]['post_id'];
+        }else{
+            $returnTopAnswer = $questionIDArr[0];
+        }
+     
+        return $returnTopAnswer;
+    }
+    public function getAnswersByMostLiked($questionID,$qty = 3, $start = 0 ){
+
+        /** Array of answers for the question */
+        $answersArr = $this->getAnswersByQuestionId($questionID);
+
+        /** The answer ID that is most liked */
+        $mostLikedAnswer = $this->totalLikesForAnswer($questionID);
+
+        /** Array of answers all answers */
+        $returnAnswersArrSortByMostLiked = array();
+
+        /** Remove most liked answer from array to put it as first question */
+        foreach ($answersArr as $index => $answer){
+
+            if($answer['id'] == $mostLikedAnswer){
+                $returnAnswersArrSortByMostLiked[0] = $answer;
+            }else{
+                $returnAnswersArrSortByMostLiked[($index+1)] = $answer;
+            }
+
+        }
+        ksort ($returnAnswersArrSortByMostLiked);
+
+        /** Array of question to be returned and displayed */
+        $returnAnswersArr = array();
+
+        /** Limiter on array */
+        $count = 0;
+        foreach ($returnAnswersArrSortByMostLiked as $index => $item){
+            if($index >= $start){
+                if($count < $qty){
+                    $item['total'] = count($returnAnswersArrSortByMostLiked);
+
+                    $returnAnswersArr[] = $item;
+
+                    $count++;
+                }
+
+            }
+        }
+
+        $returnAnswersArr = array_reverse($returnAnswersArr);
+        return $returnAnswersArr;
+
     }
 
     /**
@@ -299,32 +399,6 @@ class ForumAnswers
         // section -64--88-0-17-1ae5945a:16037f3f6d2:-8000:0000000000000DA3 end
 
         return $returnValue;
-    }
-
-    /**
-     * Gets all answers for the provided question Id.
-     *
-     * @access public
-     * @author Michael Giammattei, <mgiamattei@ambrosiatc.com>
-     * @param  questionId
-     * @return array
-     */
-    public function getAnswersByQuestionId($questionId)
-    {
-        $returnValue = array();
-
-        // section -64--88-0-19-6a079614:161dcc70c7f:-8000:00000000000010F3 begin
-	    $this->Database = new Database();
-
-	    $sql = $this->Database->prepare("SELECT * FROM answers_forum WHERE question_id = ?");
-	    $sql->setFetchMode(PDO::FETCH_ASSOC);
-	    $sql->execute(array(
-		    (int) $questionId
-	    ));
-	    $returnValue = $sql->fetchAll();
-        // section -64--88-0-19-6a079614:161dcc70c7f:-8000:00000000000010F3 end
-
-        return (array) $returnValue;
     }
 
     /**
@@ -431,6 +505,16 @@ class ForumAnswers
         // section -64--88-0-2--76d41c60:162689e6b70:-8000:0000000000001104 end
 
         return $returnValue;
+    }
+
+    public function totalVotesPerQuestionID($questionID){
+        $questionAnswerIDs = implode(',',$this->getAnswersByQuestionId($questionID, true));
+        $this->Database = new Database();
+        $sql = $this->Database->prepare("SELECT id FROM liked_posts WHERE post_type = 4 AND post_id IN($questionAnswerIDs)");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute();
+        return $sql->rowCount();
+
     }
 
 } /* end of class ForumAnswers */

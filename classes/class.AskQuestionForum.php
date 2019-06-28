@@ -139,16 +139,57 @@ class AskQuestionForum
 			    $post_type_id,
 			    $approval
 		    ));
+            $lastId = $this->Database->lastInsertId();
 
 		    if($sql->rowCount() > 0){
 			     $returnValue['status'] = 'Success';
+
+			     /** Update post pageIdentifier  */
+
+			     /** @var  $UrlIdentifierValue
+                  * The question formatted for to use in URL
+                  */
+                $UrlIdentifierValue = strtolower($data['question']);
+                $UrlIdentifierValue = $this->General->word_limiter($UrlIdentifierValue,10);
+                $UrlIdentifierValue = $this->General->url_safe_string($UrlIdentifierValue);
+
+
+                /** Check if url value exists */
+                $breakout = false;
+                $loop_count = 0;
+                $initialValue = $UrlIdentifierValue;
+                while($breakout == false):
+                    $sql = $this->Database->prepare("SELECT `pageIdentifier` FROM ask_question_forum WHERE pageIdentifier  = ?");
+                    $sql->setFetchMode(PDO::FETCH_ASSOC);
+                    $sql->execute(array($UrlIdentifierValue));
+
+                    if($loop_count == 0){
+                        $initialValue = $UrlIdentifierValue;
+                    }
+                    $loop_count++;
+
+                    /** increment post url value if value is duplicated */
+                    if($sql->rowCount() > 0){
+                        $UrlIdentifierValue = $initialValue . '-' . $loop_count;
+
+                    }else{
+                        $breakout = true;
+                    }
+
+                endwhile;
+
+
+                $sql = $this->Database->prepare("UPDATE `ask_question_forum` SET `pageIdentifier`  = :urlValue WHERE id = :id ");
+                $sql->bindParam('urlValue', $UrlIdentifierValue, PDO::PARAM_STR);
+                $sql->bindParam('id', $lastId, PDO::PARAM_INT);
+                $sql->execute();
+
 		    }else{
 			     $returnValue['status'] = $sql->errorInfo();
 		    }
 	    }else{
 		     $returnValue['status'] = 'Not Logged In';
 	    }
-
 	    /** Return status via ajax. */
 	    echo json_encode( $returnValue );
 

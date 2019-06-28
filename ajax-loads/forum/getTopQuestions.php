@@ -71,7 +71,7 @@ $UserProfile = new UserProfile();
                 <div class="cell">
                     <div  class="quote-box">
                         <?php $forum_title_url = $General->url_safe_string($forum_question['question']) ; ?>
-                        <a class="link-title" href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string($getSubcategory); ?>/<?php echo $forum_question['id']; ?>/<?php echo $forum_title_url; ?>">"<span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span>"</a>
+                        <a class="link-title" href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $forum_question['pageIdentifier']; ?>/">"<span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span>"</a>
                     </div >
                     <div class="insurance-treatment-box">
                     <span class="insurance">

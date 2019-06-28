@@ -68,6 +68,18 @@ h1{
     }
   }
 }
+.dont-break-out {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+}
 a{
   &:hover{
     color: $theme-blue;
@@ -354,6 +366,10 @@ hr {
 .simple-heading{
   color: #000000;
   font-weight: bold;
+  line-height: 32.5px;
+  font-weight: 300;
+  font-size: 26px;
+  margin: 0;
 }
 .simple-heading-sub{
   margin: 0px 15px 0px 17px;

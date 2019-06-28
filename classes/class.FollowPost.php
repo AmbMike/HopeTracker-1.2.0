@@ -95,6 +95,8 @@ class FollowPost
      */
     private $General = null;
 
+    public $totalPostFollows;
+
     // --- OPERATIONS ---
 
     /**
@@ -119,6 +121,8 @@ class FollowPost
 	    $this->General = new General();
 
 	    $this->userId = $this->Session->get( 'user-id' );
+        $this->totalPostFollows = $this->setTotalPostFollows();
+
         // section -64--88-0-2-d87318e:1607ab5cd5f:-8000:0000000000000E76 end
     }
 
@@ -227,6 +231,17 @@ class FollowPost
         // section -64--88-0-2-d87318e:1607ab5cd5f:-8000:0000000000000E7F end
 
         return (array) $returnValue;
+    }
+
+    private function setTotalPostFollows(){
+        $sql =  $this->Database->prepare("SELECT count(*) as qty FROM followed_posts WHERE post_id = ?");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute(array(
+            $this->postId
+        ));
+        $returnValue = $sql->fetchAll(PDO::FETCH_COLUMN,0);
+
+        return $returnValue[0];
     }
 
 } /* end of class FollowPost */

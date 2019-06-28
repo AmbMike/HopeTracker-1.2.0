@@ -133,7 +133,7 @@ class User extends Sessions {
 			$session->set('logged_in',1);
 			$session->set('user-id',$data_out['id']);
 			$session->set('user-fname',$data_out['fname']);
-			return 'Redirect';
+			return 'PageRedirect';
 		}else{
 			return 'Failed';
 		}

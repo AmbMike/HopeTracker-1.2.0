@@ -35,9 +35,10 @@ if(!isset($SignUpBtn)){
                     </div>
                     <div class="col-xs-12">
                         <div class="legal-box">
-                            <span class="legal-text">&COPY; 2017 Ambrosia Treatment Center  </span>
+                            <span class="legal-text">&COPY; 2019 Ambrosia Treatment Center  </span>
                             <?php /** Post Launch Update */ ?>
                             <a class="copyright-footer" href="http://www.ambrosiatc.com/terms-privacy/"> <i class="fa fa-circle" aria-hidden="true"></i> Terms & Privacy</a>
+                            <a class="copyright-footer" href="https://www.ambrosiatc.com/hopetracker/family-of-drug-abuser/"> <i class="fa fa-circle" aria-hidden="true"></i> Forum</a>
                         </div>
                     </div>
                 </div>

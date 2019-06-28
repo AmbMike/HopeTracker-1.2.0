@@ -76,15 +76,29 @@ if(isset($_GET['chat_mod'])){
 if($p_url == 'hopetracker'){
     $p_url = 'home';
 }
-/** Redirects */
+if(isset($_GET['forum_id'])){
+    require(CLASSES . 'PageRedirect.php');
+    $PageRedirect = new PageRedirect();
+
+    $PageRedirect->forumIdV1();
+}
 switch ($p_url){
     case 'forum' :
         header("HTTP/1.1 301 Moved Permanently");
         header("Location: ".BASE_URL."/family-of-drug-abuser/");
         exit();
     break;
-}
+    case 'forum-single' :
+        require_once( CLASSES . 'class.SingleQuestion.php' );
 
+        $pageIdentifier = $_GET['pageIdentifier'];
+        $Question = new SingleQuestion(false, $pageIdentifier);
+
+        if(!$Question->isPost){
+            $p_url = '404';
+        }
+    break;
+}
 if(!file_exists(VIEWS . $p_url . '.php') || $p_url == '404'){
     header("HTTP/1.0 404 Not Found");
     include_once(CLASSES .'Page.php');

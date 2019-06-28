@@ -48,7 +48,13 @@ RewriteRule ^families-of-drug-addicts/journal-([^/]+)/([^/]+)/?$ index.php?page_
 ## Forum Page ##
 RewriteRule ^family-of-drug-abuser/([^/]+)/?$ index.php?page_url=family-of-drug-abuser&category=$1 [L,QSA]
 RewriteRule ^family-of-drug-abuser/([^/]+)/([^/]+)/?$ index.php?page_url=family-of-drug-abuser&category=$1&subcategory=$2 [L,QSA]
+
+## Old single forum post rule ##
 RewriteRule ^forum/([^/]+)/([^/]+)/([^/]+)/?$ index.php?page_url=forum-single&forum_id=$2 [L,QSA]
+
+## Old single forum post rule ##
+RewriteRule ^forum/([^/]+)/?$ index.php?page_url=forum-single&pageIdentifier=$1 [L,QSA]
+
 RewriteRule ^forum-reply/([^/]+)/([^/]+)/([^/]+)/?$ index.php?page_url=forum-single&reply_id=$1&forum_id=$2 [L,QSA]
 
 ## Conditions with trailing backslashes ##

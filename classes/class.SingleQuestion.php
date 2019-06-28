@@ -88,6 +88,14 @@ class SingleQuestion
      * @access public
      * @var string
      */
+    public $pageIdentifier = '';
+
+    /**
+     * The pageIdentifier text.
+     *
+     * @access public
+     * @var string
+     */
     public $question = '';
 
     /**
@@ -156,10 +164,18 @@ class SingleQuestion
      * @param  questionId
      * @return mixed
      */
-    public function __construct($questionId)
+
+    public $isPost = false;
+
+
+    public function __construct($questionId,$pageIdentifier = false)
     {
         // section -64--88-0-2-189b15d9:1604cc00e9e:-8000:0000000000000ED2 begin
 	    parent::__construct();
+
+	    if($pageIdentifier){
+	        $questionId = $this->get_question_by_pageIdentifier($pageIdentifier);
+        }
 
 	    /** Initialize the class variables.  */
 	    $this->questionId = $questionId;
@@ -168,6 +184,8 @@ class SingleQuestion
 
 	    /** run the function that gets the question data */
 	    $this->getQuestionData();
+
+	    $this->isPost = ($this->question) ? true : false;
 
         // section -64--88-0-2-189b15d9:1604cc00e9e:-8000:0000000000000ED2 end
     }
@@ -198,6 +216,7 @@ class SingleQuestion
 
 	    /** Set Class Variables */
 	    $this->questionUsersId = $questionData[0]['user_id'];
+	    $this->pageIdentifier = $questionData[0]['pageIdentifier'];
 	    $this->category = $questionData[0]['category'];
 	    $this->subcategory = $questionData[0]['subcategory'];
 	    $this->question = $questionData[0]['question'];
@@ -230,6 +249,17 @@ class SingleQuestion
 	    $returnValue = $sql->fetchColumn();
 
         // section -64--88-0-2-189b15d9:1604cc00e9e:-8000:0000000000000F0B end
+
+        return $returnValue;
+    }
+
+    public function get_question_by_pageIdentifier($pageIdentifier){
+        $Database = new Database();
+
+        $sql = $Database->prepare("SELECT id FROM ask_question_forum WHERE `pageIdentifier` = ?");
+        $sql->execute(array($pageIdentifier ));
+
+        $returnValue = $sql->fetchColumn();
 
         return $returnValue;
     }

@@ -233,4 +233,13 @@ class General extends Sessions{
 		}
 		return $result;
 	}
+
+    function word_limiter($s, $limit=3,$appendValue = false) {
+        $returnValue = preg_replace('/((\w+\W*){'.($limit-1).'}(\w+))(.*)/', '${1}', $s);
+
+        if($appendValue){
+            $returnValue .= $returnValue . $appendValue;
+        }
+        return $returnValue;
+    }
 }

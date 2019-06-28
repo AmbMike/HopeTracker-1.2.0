@@ -598,19 +598,63 @@ function answerQuestionMain(formIdVar) {
     /** The form success message box */
     var successBox = ' .success-box';
 
-
-
     /** Form object */
     var form = {
         id : formId,
         question : formId + ' #question',
         answer : formId + ' [name="answer"]'
     };
+    if($('answer-trigger').length > 0){
+        document.getElementById('answer-trigger').onkeydown = function(event) {
+            if (event.keyCode === 13) {
+                var $thisTextarea = $(this);
+                var $thisForm = $thisTextarea.parent();
+                var $loggedInUsername = $thisForm.data('logged-in-username');
+                var $questionId = $thisForm.data('question-id');
+                var $loggedInUserProfileImg = $('#logged-in-user-id').css('background-image');
+                var $commentNotification = $('#i-main-question-panel .-i-new-comments data');
+                $loggedInUserProfileImg = $loggedInUserProfileImg.replace('url(','').replace(')','').replace(/\"/gi, "");
+
+                var ajaxData = {
+                    form : 'Answer Question Forum',
+                    data : {
+                        question_id : $questionId,
+                        answer : $thisTextarea.val()
+                    },
+                    cache :  false
+                };
+
+                $.post(RELATIVE_PATH + '/config/processing.php',ajaxData,function (response) {
+
+                    if(response.status === 'Success'){
+                        var $commentCount = $commentNotification.text();
+                        $commentCount = parseInt($commentCount) + 1;
+                        $commentNotification.text($commentCount);
+                        var html = '<div class="s-table i-replies">\n' +
+                            '<div class="s-cell i-replier-level-2 s-v-top">\n' +
+                            '<div class="s-user-profile" style="background-image: url('+$loggedInUserProfileImg+');">\n' +
+                            '</div>\n' +
+                            '</div>\n' +
+                            '<div class="s-cell i-msg">\n' +
+                            '<div class="s-content">\n' +
+                            '<span class="s-username">'+$loggedInUsername+'</span> ' + $thisTextarea.val()+
+                            '</div>\n' +
+                            '</div>\n' +
+                            '</div>';
+                        $thisTextarea.val('');
+                        $('.i-replies-container').prepend(html);
+                    }
+                },'json');
+
+            }
+        };
+    }
 
 
     /** Process the "Answer a question" form. */
     $(form.id).on('submit',function (e) {
         e.preventDefault();
+
 
         /** The question id that the form is submitting the answer for */
         var forumQuestionId = $(this).attr('date-question-id');
