@@ -51,4 +51,12 @@ form{
       margin-top: 15px;
     }
   }
+  &#admin-post-editor{
+    textarea{
+      resize: none;
+    }
+    .input-group{
+      width: 100%;
+    }
+  }
 }

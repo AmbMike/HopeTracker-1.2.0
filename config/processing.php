@@ -138,7 +138,6 @@
 		$InviteFriend = new InviteFriend();
 		$InviteFriend->AlreadyInvitedCheck($_POST);
 		break;
-
 	/* Inspiration */
 	case 'Save Inspiration' :
 		$Inspiration->save_img($_POST);
@@ -228,6 +227,11 @@
 		include_once(CLASSES.'A_Form.php'); // Admin Class
 		$A_Form = new A_Form(); // Admin Form Class
 		$A_Form->admin_sign_in($_POST);
+		break;
+    case 'Edit Question Post' :
+        require_once(CLASSES . 'Admin/Editor.php');
+		$Editor = new Admin\Editor();
+        $Editor->saveChange($_POST['data']);
 		break;
     case 'Delete Flagged Post' :
 		include_once(CLASSES.'class.Post.php'); // Admin Class

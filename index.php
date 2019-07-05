@@ -56,7 +56,8 @@ if(isset($_COOKIE['logged_in'])){
     $Sessions->set('user-id',$_COOKIE['user-id']);
 }
 /** Set Log cookies when user logs in */
-if(isset($_GET['logged_in'])){
+$userLogId = $Sessions->get('user-id');
+if(isset($_GET['logged_in']) && !empty($userLogId)){
     setcookie('logged_in', 1,  time()+2678400,'/');
     setcookie('user-id', $Sessions->get('user-id'),  time()+2678400,'/');
 }

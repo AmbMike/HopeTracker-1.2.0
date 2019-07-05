@@ -13,6 +13,8 @@ require_once(CLASSES . 'class.FlagPost.php');
 require_once(CLASSES . 'class.ViewedPost.php');
 require_once(CLASSES . 'class.LikePost.php');
 require_once(CLASSES . 'class.FollowPost.php');
+require_once(CLASSES . 'Admin/Editor.php');
+
 
 $Question = new SingleQuestion($questionId, $_GET['pageIdentifier']);
 $Session = new Sessions();
@@ -22,6 +24,7 @@ $FlagPost = new FlagPost();
 $User = new User();
 $General = new General();
 $Page = new \Page_Attr\Page();
+$AdminEditor = new \Admin\Editor();
 
 /** @var $questionId : the id of the question for the page.  */
 $pageIdentifier = $_GET['pageIdentifier'];
@@ -68,6 +71,10 @@ if($Session->get('logged_in') == 1) {
 	$user_id = $Session->get( 'user-id' );
 }
 
+$showEditorTools = true;
+if(isset($_GET['hide_tools'])){
+    $showEditorTools = false;
+}
 ?>
 
 <div class="con main" data-questions-parent="true">
@@ -108,10 +115,11 @@ if($Session->get('logged_in') == 1) {
                                     </div>
                                     <div class="s-cell">
                                         <span class="s-username"><?php echo ucwords(User::user_info('username',$Question->questionUsersId)); ?></span>
-                                        <span class="s-who">A <?php echo ucwords($User->user_i_am($User->user_info('i_am_a',$user_id))); ?> From <?php echo strtoupper(User::user_info('state',$user_id)); ?></span>
+                                        <span class="s-who">A <?php echo ucwords($User->user_i_am($User->user_info('i_am_a',$Question->questionUsersId))); ?> From <?php echo strtoupper(User::user_info('state',$Question->questionUsersId)); ?></span>
                                     </div>
                                 </div>
                                 <div class="i-question">
+                                    <?php echo $AdminEditor->postEditor($Question->postId,$Question->postType,$showEditorTools); ?>
                                     <h1 class="i-header"><?php echo $Question->question; ?></h1>
                                     <div class="s-description">
                                         <?php echo $Question->description; ?>
@@ -119,26 +127,34 @@ if($Session->get('logged_in') == 1) {
                                 </div>
                             </div>
                             <div id="single-forum-answers">
-                                <?php if($Session->get('logged_in')): ?>
+
                                 <div class="s-table i-replier">
                                     <div class="s-cell i-input-container">
+                                        <?php if($Session->get('logged_in')): ?>
                                         <div class="s-table i-input-section">
                                             <div class="s-cell i-user">
                                                 <div class="s-profile-img" id="logged-in-user-id" style="background-image: url('/<?php echo $User->get_user_profile_img(false,$user_id); ?>');">
                                                 </div>
                                             </div>
                                             <div class='s-cell i-input'>
+
                                                 <form data-logged-in-username="<?php echo User::Username($user_id); ?>" id="forum-answer-question-form-1" data-question-id="<?php echo $Question->postId; ?>">
                                                     <textarea id="answer-trigger" rows="1"  name="answer-msg" placeholder="Share your advice, experience or support."></textarea>
                                                 </form>
+
                                             </div>
                                         </div>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="s-cell i-action text-right">
-                                        <button data-bound-follow-post="btn" data-follow-type="relate" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box liked"><div class="s-cir-i"><i class="fa fa-heart"></i></div> <span class="divider">|</span> <span class="relate-text">Relate</span> <span class="-i-total-questions-relates"><?php echo $FollowPost->totalPostFollows; ?></span></button>
+                                        <?php if($Session->get('logged_in')): ?>
+                                            <button data-bound-follow-post="btn" data-follow-type="relate" data-post-user-id="<?php echo $Question->questionUsersId; ?>" data-post-id="<?php echo $Question->postId; ?>" data-post-type="<?php echo $Question->postType; ?>" class="like-box liked"><div class="s-cir-i"><i class="fa fa-heart"></i></div> <span class="divider">|</span> <span class="relate-text">Relate</span> <span class="-i-total-questions-relates"><?php echo $FollowPost->totalPostFollows; ?></span></button>
+                                        <?php else: ?>
+                                            <button data-btn="home-sign-in" data-show-notification="1" class="like-box liked"><div class="s-cir-i"><i class="fa fa-heart"></i></div> <span class="divider">|</span> <span class="relate-text">Relate</span> <span class="-i-total-questions-relates"><?php echo $FollowPost->totalPostFollows; ?></span></button>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <?php endif; ?>
+
                                 <div class="s-table i-replies-container">
                                     <?php /** Answer output area */ ?>
                                     <?php $forum_answers = $ForumAnswers->getAnswersByMostLiked($Question->postId,200);  ?>
@@ -169,7 +185,7 @@ if($Session->get('logged_in') == 1) {
                                     <span class="s-title">Related Questions</span>
                                 </div>
                                 <div class="s-cell text-right">
-                                    <button class="t-ask-question <?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#ask-question-modal"';?><?php echo ($Session->get('logged_in') == 0) ? 'data-pt-title="You must be logged in to to ask a question" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" disabled' : ''; ?>><i class="fa fa-pencil-square-o"></i> Ask Your Own Question </button>
+                                    <button class="t-ask-question <?php echo ($Session->get('logged_in') == 0) ? 'tooltip-mg' : '';?>" <?php echo ($Session->get('logged_in') == 0) ? '' : 'data-toggle="modal" data-target="#ask-question-modal"';?><?php echo ($Session->get('logged_in') == 0) ? 'data-btn="home-sign-in" data-show-notification="1" data-pt-title="You must be logged in to to ask a question" data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small" ' : ''; ?>><i class="fa fa-pencil-square-o"></i> Ask Your Own Question </button>
                                 </div>
                             </div>
                         </div>
@@ -180,14 +196,14 @@ if($Session->get('logged_in') == 1) {
                             <div class="i-related-question-container">
                                 <div class="row">
                             <?php endif ?>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 i-related-question-item">
                                         <div class="s-table">
-                                            <div class="s-cell i-profile-img">
+                                            <div class="s-cell i-profile-img" role="button" onclick="location.href='/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string( $relatedQuestion['pageIdentifier']); ?>/'">
                                                 <div class="s-user-profile" style="background-image: url('/<?php echo $User->get_user_profile_img( false, $relatedQuestion['user_id']); ?>');">
                                                 </div>
                                             </div>
                                             <div class="s-cell i-question-section">
-                                                <span class="s-username"><?php echo User::Username($relatedQuestion['user_id']); ?></span>
+                                                <span role="button" onclick="location.href='/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string( $relatedQuestion['pageIdentifier']); ?>/'" class="s-username"><?php echo User::Username($relatedQuestion['user_id']); ?></span>
                                                 <?php $forum_title_url = $General->url_safe_string($relatedQuestion['question']) ; ?>
                                                 <a href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string( $relatedQuestion['pageIdentifier']); ?>/" class="s-question"><?php echo $relatedQuestion['question']; ?></a>
                                             </div>

@@ -394,3 +394,73 @@ function edit_subcategories() {
 }
 //Initialize Select2 Elements
 $('.select2').select2();
+
+/* Edit forum answer post */
+function edit_forum_post(event){
+    var form_id = '#admin-post-editor';
+
+    event.preventDefault();
+    var formBtn = $( form_id ).find('#save-post-change');
+
+    formBtn.text('Saving...');
+    $.ajax({
+        url : RELATIVE_PATH + '/config/processing.php',
+        type : 'POST',
+        cache : false,
+        data : {
+            form : 'Edit Question Post',
+            data : {
+                question: $( form_id ).find('#question').val(),
+                description: $( form_id ).find('#description').val(),
+                postID: $( form_id ).data('post-id'),
+                postType: $( form_id ).data('post-type'),
+            }
+        },
+        dataType : 'json',
+        success : function (response) {
+            //console.log(response);
+
+            if(response.status === 'success'){
+                setTimeout(function () {
+                    formBtn.text('Saved!');
+                    $(form_id).find('.alert-success').slideDown(400);
+                },1000)
+            }else{
+                setTimeout(function () {
+                    formBtn.text('No Changes');
+                },1000)
+            }
+            setTimeout(function () {
+                formBtn.text('Save');
+                $(form_id).find('.alert-success').slideUp(400);
+            },3000);
+            var $form = $(event.target);
+            /*var bv = $form.data('bootstrapValidator');
+
+            $('#subcategory-list').load(location.href + " #subcategory-list>*","");
+
+            $('#info-box-container').slideDown(400);
+
+            $('.close-subcat-report').on('click',function () {
+                $('#info-box-container').slideUp(400,function () {
+                    $(form_id).data('bootstrapValidator').resetForm();
+                    $(form_id)[0].reset();
+                });
+
+            });
+
+            if (response.added){
+                $('#add-success').find('#count-success').text(response.added.length);
+            }else{
+                $('#add-success').find('#count-success').text(0);
+            }
+
+            if (response.exists){
+                $('#add-failed').find('#count-failed').text(response.exists.length);
+            }else{
+                $('#add-failed').find('#count-failed').text(0);
+            }*/
+
+        }
+    });
+}

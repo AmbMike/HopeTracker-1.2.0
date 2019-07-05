@@ -86,6 +86,10 @@
         font-weight: bold;
         padding: 10px 0;
       }
+      .s-description{
+        -ms-word-wrap: break-word;
+        word-wrap: break-word;
+      }
       .i-header{
         margin: 15px 0;
         font-size: 24px;
@@ -183,6 +187,7 @@
                 resize: none;
                 overflow: hidden;
 
+
                 &:focus, &:focus{
                   outline: none;
                 }
@@ -279,6 +284,12 @@
           border-top: 1px solid #e2e2e2;
           margin-top:10px;
           padding-top:10px;
+
+          @media (max-width:1202px) {
+            display: block;
+            word-break: break-word;
+            width:100%;
+          }
           .i-replies{
             margin-bottom:10px;
             .i-replier-level-2{
@@ -302,13 +313,18 @@
             .i-msg{
               .s-content{
                 background: #f2f2f2;
-                display: inline-block;
+                display: block;
                 padding:10px;
                 border-radius: 10px;
+                -ms-word-wrap: break-word;
+                word-wrap: break-word;
+                width: 100%;
 
                 .s-username{
                   font-weight: bold;
                   color: $theme-blue;
+                  -ms-word-wrap: break-word;
+                  word-wrap: break-word;
                 }
               }
             }
@@ -358,9 +374,20 @@
         }
       }
       .i-related-question-container{
-        border-bottom: 1px solid #e2e2e2;
-        padding-bottom: 10px;
-        margin-bottom: 10px;
+        @media (min-width: 767px) {
+          border-bottom: 1px solid #e2e2e2;
+          padding-bottom: 10px;
+          margin-bottom: 10px;
+        }
+
+
+        @media (max-width: 767px) {
+          .i-related-question-item{
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e2e2e2;
+          }
+        }
 
         .i-question-section{
           .s-username{
@@ -380,6 +407,15 @@
           border-bottom: none;
           padding-bottom: 0;
           margin-bottom: 0;
+
+          .i-related-question-item{
+            &:last-of-type{
+              border-bottom: none;
+              padding-bottom: 0;
+              margin-bottom: 0;
+            }
+          }
+
         }
       }
     }

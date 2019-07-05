@@ -138,9 +138,21 @@ function sign_up_process() {
                 cache : false,
                 data: formData
             }).done(function(response) {
-                console.log(response);
                 if(response === '0'){
-                    location.href=RELATIVE_PATH+"/protected/course/";
+                    if($('body').data('page-url') === 'home' ){
+                        location.href=RELATIVE_PATH+"/protected/course/";
+                    }else{
+                        var pattern = /logged_in/;
+
+                        var exists = pattern.test(window.location.href);
+
+                        if(exists){
+                            location.href = window.location.href + '?logged_in';
+                        }else{
+                            location.reload();
+                        }
+                    }
+
                 }else if(response === '1'){
                     $(obj.id + ' input[name="email"]').parent().removeClass('valid');
                     $(obj.id + ' input[name="email"]').parent().prepend('<p class="error-text">Email already in use</p>');

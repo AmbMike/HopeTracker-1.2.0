@@ -146,6 +146,9 @@ $(document).ready(function () {
         /** Clicked Sign Up Btn Action */
         obj.btn.on('click',function () {
 
+            if($(this).data('show-notification')){
+                $('[data-signup-notifcation="1"]').slideDown(400);
+            }
             /** Set the page's position on click. */
             window.pagedClickedPosition = $(document).scrollTop();
 
@@ -181,6 +184,7 @@ $(document).ready(function () {
         obj.close_btn.add(obj.cover).on('click',function () {
             $('nav').removeClass('on');
             $('.menu-btn').removeClass('on');
+            $('[data-signup-notifcation="1"]').slideUp(400);
             obj.img.fadeOut(200);
             obj.el.stop().slideUp(300,function () {
                 obj.cover.fadeOut(300);

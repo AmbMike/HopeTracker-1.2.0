@@ -191,6 +191,37 @@ function edit_subcategories() {
     });
 }
 
+function edit_forum_post(a) {
+    var b = "#admin-post-editor";
+    a.preventDefault();
+    var c = $(b).find("#save-post-change");
+    c.text("Saving..."), $.ajax({
+        url: RELATIVE_PATH + "/config/processing.php",
+        type: "POST",
+        cache: !1,
+        data: {
+            form: "Edit Question Post",
+            data: {
+                question: $(b).find("#question").val(),
+                description: $(b).find("#description").val(),
+                postID: $(b).data("post-id"),
+                postType: $(b).data("post-type")
+            }
+        },
+        dataType: "json",
+        success: function(d) {
+            "success" === d.status ? setTimeout(function() {
+                c.text("Saved!"), $(b).find(".alert-success").slideDown(400);
+            }, 1e3) : setTimeout(function() {
+                c.text("No Changes");
+            }, 1e3), setTimeout(function() {
+                c.text("Save"), $(b).find(".alert-success").slideUp(400);
+            }, 3e3);
+            $(a.target);
+        }
+    });
+}
+
 !function(a) {
     var b = function(b, c) {
         this.$form = a(b), this.options = a.extend({}, a.fn.bootstrapValidator.DEFAULT_OPTIONS, c), 

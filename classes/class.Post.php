@@ -4,7 +4,7 @@ include_once(CLASSES . 'Database.php');
 class Post{
     private $database;
 
-    public function get($postTypeId,$postId){
+    public function get($postTypeId,$postId,$arr = false){
         $this->database = new Database();
         $sql = null;
         $returnValue = null;
@@ -22,12 +22,22 @@ class Post{
                 $returnValue = $sql->fetchColumn();
                 break;
             case 3 :
-                $sql = $this->database->prepare("SELECT question,description FROM ask_question_forum WHERE id = ?");
-                $sql->setFetchMode(PDO::FETCH_ASSOC);
-                $sql->execute(array($postId));
-                $data = $sql->fetchAll();
-                $returnValue = 'Question: ' . $data[0]['question'] . '<br>';
-                $returnValue .= 'Description: ' . $data[0]['description'];
+                if($arr){
+                    $sql = $this->database->prepare("SELECT * FROM ask_question_forum WHERE id = ?");
+                    $sql->setFetchMode(PDO::FETCH_ASSOC);
+                    $sql->execute(array($postId));
+                    $data = $sql->fetchAll();
+                    $returnValue = $data[0];
+                }else{
+                    $sql = $this->database->prepare("SELECT question,description FROM ask_question_forum WHERE id = ?");
+                    $sql->setFetchMode(PDO::FETCH_ASSOC);
+                    $sql->execute(array($postId));
+                    $data = $sql->fetchAll();
+
+                    $returnValue = 'Question: ' . $data[0]['question'] . '<br>';
+                    $returnValue .= 'Description: ' . $data[0]['description'];
+                }
+
                 break;
         }
 

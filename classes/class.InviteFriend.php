@@ -170,33 +170,67 @@ class InviteFriend
      */
     public function setInvitation($data)
     {
+        $params = array();
+        parse_str($data['all'],$params);
+
+        unset($data);
+        $data = $params;
+
         // section -64--88-0-2-3801fad4:15f2a911f28:-8000:0000000000000BC3 begin
         if($this->AlreadyInvited($this->userId, $data['recipients_email']) == false) {
-	        Debug::to_file( $data, 'test11.php' );
-            $this->database = new Database();
-            $sql = $this->database->prepare("INSERT INTO invite_friend (senders_id, senders_name, recipients_name, recipients_email, senders_ip) VALUES (?,?,?,?,?)");
-            $sql->execute(array(
-                $this->userId,
-                User::full_name($this->userId),
-                $data['recipients_name'],
-                $data['recipients_email'],
-                $this->General->getUserIP()
-            ));
-            $array = array();
 
-            if($sql->rowCount() > 0){
-                $array['status'] = 'Successful';
-                $array['userId'] = $this->userId;
+            /** Captcha Check */
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
+            $privateKey = '6LewyasUAAAAAOeEyektDmpfnMlFgy-Czpi5vJ_N';
+            $response = file_get_contents($url . "?secret=" . $privateKey . "&response=" . $data['g-recaptcha-response']. "&remoteip=" . $_SERVER['REMOTE_ADDR']);
 
+            $decodeResponse = json_decode($response, true);
+
+            if($decodeResponse['success'] || $this->Sessions->get('logged_in')){
+                $this->database = new Database();
+
+                if($this->Sessions->get('logged_in')):
+                    $sql = $this->database->prepare("INSERT INTO invite_friend (senders_id, senders_name,senders_email, recipients_name, recipients_email, senders_ip) VALUES (?,?,?,?,?,?)");
+                    $sql->execute(array(
+                        $this->userId,
+                        User::full_name($this->userId),
+                        User::users_email($this->userId),
+                        $data['recipients_name'],
+                        $data['recipients_email'],
+                        $this->General->getUserIP()
+                    ));
+                else:
+                    $sql = $this->database->prepare("INSERT INTO invite_friend (senders_id, senders_name,senders_email, recipients_name, recipients_email, senders_ip) VALUES (?,?,?,?,?,?)");
+                    $sql->execute(array(
+                        0,
+                        $data['senders_name'],
+                        $data['senders_email'],
+                        $data['recipients_name'],
+                        $data['recipients_email'],
+                        $this->General->getUserIP()
+                    ));
+                endif;
+
+                $array = array();
+
+                if($sql->rowCount() > 0){
+                    $array['status'] = 'Successful';
+                    $array['userId'] = $this->userId;
+
+                }else{
+
+                    $array['status'] = 'Failed';
+                    $this->DebugMg->setError(array(
+                        'Type' => 'Invite Friend',
+                        'Sub Type' => 'Sidebar Form',
+                        'Error' => "Failed insert form data to the database for recipients name: " . $data['recipients_name'] . '  Email: '  . $data['recipients_email'] . ' senders id: ' . $this->userId
+                    ));
+                }
             }else{
-
-                $array['status'] = 'Failed';
-                $this->DebugMg->setError(array(
-                    'Type' => 'Invite Friend',
-                    'Sub Type' => 'Sidebar Form',
-                    'Error' => "Failed insert form data to the database for recipients name: " . $data['recipients_name'] . '  Email: '  . $data['recipients_email'] . ' senders id: ' . $this->userId
-                ));
+                $array['status'] = 'captcha failed';
             }
+
+
         }else{
             $array['status'] = 'Already Invited User';
         }
@@ -251,6 +285,15 @@ class InviteFriend
 	    $this->database = new Database();
 	    $sql = $this->database->prepare("UPDATE invite_friend SET processed = 1 WHERE id = ?");
 	    $sql->execute(array($sentRecordId));
+        // section -64--88-0-13--63342b69:15f83a8c430:-8000:0000000000000C8E end
+    }
+
+    public function setFailedInvite($sentRecordId)
+    {
+        // section -64--88-0-13--63342b69:15f83a8c430:-8000:0000000000000C8E begin
+        $this->database = new Database();
+        $sql = $this->database->prepare("UPDATE invite_friend SET processed = 2 WHERE id = ?");
+        $sql->execute(array($sentRecordId));
         // section -64--88-0-13--63342b69:15f83a8c430:-8000:0000000000000C8E end
     }
 

@@ -91,8 +91,20 @@ $(document).ready(function () {
                 data: form_data
             }).done(function(response) {
                 if(response === 'Email and Password Match'){
-                    /** Send user when logged in */
-                    location.href= RELATIVE_PATH + "/protected/course/?logged_in";
+                    if($('body').data('page-url') === 'home' ){
+                        location.href=RELATIVE_PATH+"/protected/course/";
+                    }else{
+                        var pattern = /logged_in/;
+
+                        var exists = pattern.test(window.location.href);
+
+                        if(exists){
+                            location.href = window.location.href + '?logged_in';
+                        }else{
+                            location.reload();
+                        }
+                    }
+
                 }else if(response === 'No Email Found'){
 
                     /* Email Not Found */

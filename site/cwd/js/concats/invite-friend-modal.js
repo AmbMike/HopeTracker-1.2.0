@@ -21,11 +21,31 @@ function inviteFriendModal() {
     var form = modal_id + " form";
     var thisFormId = '#sidebar-share-form';
 
+
+    if($('.invite-box').length > 0){
+        $('.invite-box a').animate({opacity : '1'},400);
+    }
+
+    /** Captcha Callback */
+    window.recaptchaCallback=function(){
+        $('.captcha-fail-msg').slideUp(400,function () {
+            $('.captcha-fail-msg').removeClass('on');
+        });
+        $('#sidebar-share-form .btn').removeAttr('disabled');
+    };
+    $('[data-target="#sidebar-share-modal"]').on('click',function () {
+        setTimeout(function () {
+            $('#sidebar-share-modal .modal-dialog').animate({'width' : ($('.g-recaptcha').width() + 83) + 'px', 'opacity' : '1'},400);
+        },600);
+    });
+
+
     /** If user is logged in run form */
-    if($('.logged-in').length >  0) {
+
         $(thisFormId).bootstrapValidator({
             message: 'This value is not valid',
             fields: {
+
                 senders_name: {
                     message: 'Your first name is invalid',
                     validators: {
@@ -38,7 +58,7 @@ function inviteFriendModal() {
                             message: 'Your first name must be more than 2 and less than 30 characters long'
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_]+$/,
+                            regexp: /^[a-zA-Z0-9_ ]+$/,
                             message: 'Your first name can only consist of alphabetical, number and underscore'
                         }
                     }
@@ -46,28 +66,23 @@ function inviteFriendModal() {
                 recipients_name: {
                     validators: {
                         notEmpty: {
-                            message: 'Your recipients\'s name is required'
+                            message: 'Recipients\'s name is required'
                         },
                         stringLength: {
                             min: 2,
                             max: 30,
-                            message: 'Your recipients\'s name must be more than 2 and less than 30 characters long'
+                            message: 'The recipients\'s name must be more than 2 and less than 30 characters long'
                         },
                         regexp: {
                             regexp: /^[a-zA-Z0-9_\s]+$/,
-                            message: 'Your recipients\'s name can only consist of alphabetical, number and underscore'
+                            message: 'The recipients\'s name can only consist of alphabetical, number and underscore'
                         }
                     }
                 },
                 recipients_email: {
                     validators: {
                         notEmpty: {
-                            message: 'The last name is required'
-                        },
-                        stringLength: {
-                            min: 2,
-                            max: 30,
-                            message: 'The last name must be more than 2 and less than 30 characters long'
+                            message: 'Recipients\'s email is required'
                         },
                         regexp: {
                             regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
@@ -83,7 +98,17 @@ function inviteFriendModal() {
                         }
                     }
                 },
-
+                senders_email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Your Email is required'
+                        },
+                        regexp: {
+                            regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$',
+                            message: 'The value is not a valid email address'
+                        }
+                    }
+                },
             }
         }).on('success.form.bv',function(e){
             e.preventDefault();
@@ -95,12 +120,16 @@ function inviteFriendModal() {
                     form : 'Sidebar Invite Friend',
                     data : {
                         recipients_name: $('#sidebar-share-form #recipients_name').val() ,
+                        all: $('#sidebar-share-form').serialize() ,
                         recipients_email: $('#sidebar-share-form #recipients_email').val()
                     }
                 },
                 dataType : 'json'
             }).done(function(response){
 
+                if(response.status === 'captcha failed'){
+                    $('.captcha-fail-msg').slideDown(400).addClass('on');
+                }
                 if(response.status === "Successful"){
 
                     $(thisFormId).data('bootstrapValidator').resetForm();
@@ -117,6 +146,6 @@ function inviteFriendModal() {
                 }
             });
         });
-    }
+
 
 }

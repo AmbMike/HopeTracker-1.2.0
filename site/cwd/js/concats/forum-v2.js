@@ -604,7 +604,7 @@ function answerQuestionMain(formIdVar) {
         question : formId + ' #question',
         answer : formId + ' [name="answer"]'
     };
-    if($('answer-trigger').length > 0){
+    if($('#answer-trigger').length > 0){
         document.getElementById('answer-trigger').onkeydown = function(event) {
             if (event.keyCode === 13) {
                 var $thisTextarea = $(this);

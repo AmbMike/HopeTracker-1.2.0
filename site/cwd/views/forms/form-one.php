@@ -12,6 +12,10 @@
     <div class="heading">
         <p class="white-heading-one-md">Start Feeling  Better</p>
     </div>
+    <div class="alert alert-warning" data-signup-notifcation="1" style="margin-bottom: 20px; display: none">
+        <strong>Access Restricted to Members Only</strong><br>
+        Create or login into your free account to gain access to the interactive features of the site.
+    </div>
     <div class="input-box name">
         <label for="fname">Name</label>
     </div>

@@ -4,11 +4,17 @@
   overflow: auto;
   overflow-x: hidden;
 
+ .invite-box{
+   margin: 0 auto;
+   width: 100%;
+   text-align: center;
+ }
   .live-now-title {
     display: inline-block;
-    color: $header-gray;
-    float: left;
-    margin: 7px 5px 15px 0;
+    color: $theme-blue;
+    margin: 7px 5px 15px 5px;
+    text-align: center;
+    width:100%;
   }
 
   #live-update-box {

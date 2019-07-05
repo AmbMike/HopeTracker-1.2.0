@@ -112,8 +112,8 @@ if($Session->get('logged_in') == 1){
             <main>
                 <div class="header-box main-title-box">
                     <span class="h1-addon"><?php echo $total_questions; ?> Questions Asked</span>
-                    <h1 class="green-heading-lg">Addiction Forums</h1>
-                    <p class="header-content">Find and give direct answers to any addiction-related question — from "<i>What does heroin look like?</i>" to "<i>How do I know when they hit rock bottom?</i>" Browse the questions below or add your own to get real advice from experts and other families.</p>
+                    <h1 class="green-heading-lg">Addiction Forum</h1>
+                    <p class="header-content">Get advice from experts and other families — from "<i>What does heroin look like?</i>" to "<i>How do I know when they hit rock bottom?</i>."</p>
                 </div>
 				<?php if($Session->get('logged_in') == 1): ?>
                     <section class="box-one main-box">
@@ -129,8 +129,8 @@ if($Session->get('logged_in') == 1){
                                     </span>
                                         <div class="user-count-container">
                                             <span <?php echo ($total_user_forums == 0 ) ? ' data-pt-title="You haven\'t asked any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="questions  <?php echo ($total_user_forums == 0 ) ? 'tooltip-mg' : ''; ?>"> <span data-profile="question"><data data-users-count="question" value="<?php echo $total_user_forums; ?>" class="user-questions"><?php echo $total_user_forums; ?></data> <span data-filter-text="Question">Questions </span></span> </span> <i class="fa fa-circle"></i>
-                                            <span <?php echo ($total_user_answers == 0 ) ? ' data-pt-title="You haven\'t answered any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="answers <?php echo ($total_user_answers == 0 ) ? 'tooltip-mg' : ''; ?>"> <span  data-profile="answers"><data data-users-count="answer" value="<?php echo $total_user_answers; ?>" class="user-answers"><?php echo $total_user_answers; ?></data> <span data-filter-text="Answers">Answers </span></span> </span> <i class="fa fa-circle"></i>
-                                            <span <?php echo ($FollowedPosts->getTotalPostUserIsFollowing() == 0 ) ? ' data-pt-title="You haven\'t followed any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> role="button" class="following <?php echo ($FollowedPosts->getTotalPostUserIsFollowing() == 0 ) ? 'tooltip-mg' : ''; ?>"><span data-profile="following"><data value="<?php echo $FollowedPosts->getTotalPostUserIsFollowing(); ?>" class="user-answers"><?php echo $FollowedPosts->getTotalPostUserIsFollowing(); ?></data> <span data-filter-text="Following">Following</span></span></span>
+                                            <span <?php echo ($total_user_answers == 0 ) ? ' data-pt-title="You haven\'t answered any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> class="answers <?php echo ($total_user_answers == 0 ) ? 'tooltip-mg' : ''; ?>"> <span  data-profile="answers"><data data-users-count="answer" value="<?php echo $total_user_answers; ?>" class="user-answers"><?php echo $total_user_answers; ?></data> <span data-filter-text="Answers"> Answers </span></span> </span> <i class="fa fa-circle"></i>
+                                            <span <?php echo ($FollowedPosts->getTotalPostUserIsFollowing() == 0 ) ? ' data-pt-title="You haven\'t followed any questions yet." data-pt-gravity="top" data-pt-animate="jello" data-pt-scheme="black" data-pt-size="small"' : ''; ?> role="button" class="following <?php echo ($FollowedPosts->getTotalPostUserIsFollowing() == 0 ) ? 'tooltip-mg' : ''; ?>"><span data-profile="following"><data value="<?php echo $FollowedPosts->getTotalPostUserIsFollowing(); ?>" class="user-answers"><?php echo $FollowedPosts->getTotalPostUserIsFollowing(); ?></data> <span data-filter-text="Following"> I Relate</span></span></span>
                                         </div>
                                     </div>
                                 </div>
@@ -188,22 +188,12 @@ if($Session->get('logged_in') == 1){
                                                     <span class="category-text"><?php echo $category['category'];?></span>
                                                 </h3>
 
-                                                <?php /* Updated js Category Count below before going live */ ?>
-                                                <span class="category-count-box h4"><?php echo $ForumQuestions->totalPostPerCategory( $category['category']); ?></span>
+
 
                                                 <div id="moderator-container">
-                                                    <div class="moderator-text-box">
-<!--                                                        <span class="questions"><?php /*echo count($ForumQuestions->getQuestionsBySubcategory($subcategory['sub_category'])); */?> Question</span>
--->                                                <span class="title">
-                                                    Moderated by:
-                                                </span>
-                                                        <span <?php echo PageLinks::userProfile($category['moderator_id']); ?> class="moderator">
-                                                   <?php echo User::Username($category['moderator_id']); ?>
-                                                </span>
-                                                    </div>
-                                                    <div class="moderator-img">
-                                                        <img <?php echo $UserProfile->profile($category['moderator_id']); ?> src="/<?php echo $User->get_user_profile_img(false, $category['moderator_id']); ?>" alt="<?php echo User::Username($category['moderator_id']); ?>'s Profile Image" class="img-circle profile-img">
-                                                    </div>
+                                                    <?php /* Updated js Category Count below before going live */ ?>
+                                                    <span class="category-count-box h4"><?php echo $ForumQuestions->totalPostPerCategory( $category['category']); ?></span>
+
                                                 </div>
                                             </div>
                                         </h4>
@@ -299,7 +289,6 @@ if($Session->get('logged_in') == 1){
                                                                 <ul data-top-filter="container" class="body-nav-box">
                                                                     <li data-filter="most recent" class="most-recent-box active">Most Recent</li>
                                                                     <li data-filter="top question" class="top-questions-box">Top Questions</li>
-                                                                    <li data-filter="unanswered" class="unanswered-box">Unanswered</li>
                                                                 </ul>
                                                                 <div data-questions="container">
 																	<?php /** Replies/Answers to the category post/question.  */ ?>
@@ -317,7 +306,7 @@ if($Session->get('logged_in') == 1){
                                                                                 <div class="cell question-title-text">
                                                                                     <div  class="quote-box">
 																						<?php $forum_title_url = $General->url_safe_string($forum_question['question']) ; ?>
-                                                                                        <a class="link-title" href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string( $forum_question['pageIdentifier']); ?>/">"<span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span>"</a>
+                                                                                        <a class="link-title" href="/<?php echo RELATIVE_PATH; ?>forum/<?php echo $General->url_safe_string( $forum_question['pageIdentifier']); ?>/"><span data-question="text" itemprop="name"><?php echo $forum_question['question']; ?></span></a>
                                                                                     </div >
                                                                                     <div class="insurance-treatment-box">
                                                                                 <span class="insurance">
