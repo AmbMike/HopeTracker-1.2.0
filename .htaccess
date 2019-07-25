@@ -1,3 +1,4 @@
+## "Add to live" site is the search term to add for the update
 Options +FollowSymLinks
 RewriteEngine on
 
@@ -29,7 +30,13 @@ RewriteRule ^admin/([^/]+)/?$ HopeAdmin/index.php?page_url=$1 [L,QSA]
 RewriteRule ^admin/([^/]+)/([^/]+)/?$  HopeAdmin/index.php?page_url=$1&widget_page=$2 [L,QSA]
 
 RewriteRule ^chat-mods/([^/]+)/?$  index.php?page_url=$1&chat_mod=true [L,QSA]
-RewriteRule ^profile/$ index.php?page_url=journal-v1&profileActive=1 [L,QSA]
+
+## Add to live site
+##RewriteRule ^profile/$ index.php?page_url=journal-v1&profileActive=1 [L,QSA]
+RewriteRule ^profile/$ index.php?page_url=profile&profileActive=1&protected=1 [L,QSA]
+
+## End live site Update
+
 RewriteRule ^profile/user-([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&userId=$1 [L,QSA]
 
 ## Conditions with page variables ##
@@ -39,7 +46,14 @@ RewriteRule ^protected/([^/]+)/([^/]+)/?$  index.php?page_url=$1&protected=true&
 
 ## Journal Page ##
 RewriteRule ^families-of-drug-addicts/user-([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&userId=$1 [L,QSA]
-RewriteRule ^families-of-drug-addicts/user-([^/]+)/([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&userId=$1&entry_type=$3 [L,QSA]
+
+## Add to live site ((((( REMOVE
+#RewriteRule ^families-of-drug-addicts/user-([^/]+)/([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&userId=$1&entry_type=$3 [L,QSA]
+RewriteRule ^families-of-drug-addicts/user-([^/]+)/([^/]+)/([^/]+)/?$ index.php?page_url=protected/profile&userId=$1&entry_type=$3 [L,QSA]
+
+
+## End live site Update
+
 RewriteRule ^profile/user-([^/]+)/course/([^/]+)/?$ index.php?page_url=journal-v1&userId=$1&entry_type=$2 [L,QSA]
 ##RewriteRule ^families-of-drug-addicts/([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&journal_id=$1 [L,QSA]
 RewriteRule ^families-of-drug-addicts/journal-([^/]+)/([^/]+)/?$ index.php?page_url=journal-v1&journal_id=$1 [L,QSA]

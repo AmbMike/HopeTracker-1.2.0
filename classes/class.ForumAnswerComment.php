@@ -45,6 +45,24 @@ class ForumAnswerComment{
                 $data['content'],
                 time()
             ));
+
+            $lastInsertedID = $this->Database->lastInsertId();
+
+            include_once(CLASSES . 'class.JournalPosts.php');
+            $JournalPost = new JournalPosts();
+
+            $thePostArr = $JournalPost->getSinglePost($data['parent_post_id']);
+
+            $sql = $this->Database->prepare("INSERT INTO unviewed_posts (post_Type, post_id, user_id, ip, notify_user_id ) VALUES(?,?,?,?,?)");
+            $sql->execute(array(
+                $data['post_type'],
+                $lastInsertedID,
+                $this->userId,
+                $this->General->getUserIP(),
+                $thePostArr['user_id'],
+
+            ));
+
             if($sql->rowCount() > 0){
                 $returnValue['status'] = 'Success';
                 $returnValue['userId'] = $this->userId;

@@ -160,7 +160,6 @@ function communitySearchPosts() {
     function answer_comment() {
         /** Parent container for post input */
         var postInputParent = '[data-toggle-box="answer-comment"] button ';
-
         $('body').on('click',postInputParent,function () {
             var $this = $(this);
             var answerId = $this.data("answer-id");
@@ -225,7 +224,6 @@ function communitySearchPosts() {
 
     function buildPost(userId,usernameUrl,usernameFormatted,entryDate,state,zip,content,postId,userProfile){
         var idNum = Math.floor(1000 + Math.random() * 9000);
-
         var html = '<section data-post-parent="post" class="box-one no-p">\n' +
             '            <ul class="post">\n' +
             '                <li>\n' +
@@ -264,7 +262,7 @@ function communitySearchPosts() {
             '                    <div class="table">\n' +
             '                        <div class="cell image-cell">\n' +
             '                            <div class="user-img">\n' +
-            '                                <a class="wrap" href=""> <img src="'+userProfile+'" class="img-circle profile-img sm"></a>\n' +
+            '                                <a class="wrap" href=""> <img src="/'+userProfile+'" class="img-circle profile-img sm"></a>\n' +
             '                            </div>\n' +
             '                        </div>\n' +
             '                        <div class="cell">\n' +

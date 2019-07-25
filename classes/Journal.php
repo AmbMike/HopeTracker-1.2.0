@@ -143,6 +143,22 @@ class Journal extends Sessions {
 
             if($sql->rowCount() > 0) :
                 echo 'Success';
+
+                $lastInsertedID = $db->lastInsertId();
+
+                include_once(CLASSES . 'class.JournalPosts.php');
+                $JournalPost = new JournalPosts();
+
+                $thePostArr = $JournalPost->getSinglePost($data['parent_post_id']);
+
+                $sql = $db->prepare("INSERT INTO unviewed_posts (post_Type, post_id, user_id, user_ip, notify_user_id ) VALUES(?,?,?,?,?)");
+                $sql->execute(array(
+                    5,
+                    $lastInsertedID,
+                    $user_id,
+                    $General->getUserIP(),
+                    $journal_id,
+                ));
             else:
                 $ip;
                 print_r($sql->errorInfo());
@@ -154,6 +170,7 @@ class Journal extends Sessions {
         	if($comment != ''):
 		        $sql = $db->prepare('INSERT INTO `journal_comments` (`user_id`, `journal_id`, `created_on`,`comment`,`ip`) VALUES(?,?,?,?,?)');
 		        $sql->execute(array($user_id,$journal_id,time(),$comment,$ip));
+                $lastInsertedID = $db->lastInsertId();
 
 		        $jsonOut = array();
 		        $jsonOut['status'] = 'Success';
@@ -170,9 +187,25 @@ class Journal extends Sessions {
 		        $journalUserId = $JournalPosts->getSinglePost($journal_id);
 
 		        $journalUserId =  $journalUserId['user_id'];
-		        Debug::to_file( $journalUserId,'tewt3.php' );
+
 
 		        $Notifications->setNotification($journalUserId,$jsonOut['post_id'],5,0,0,$journal_id);
+
+
+
+                include_once(CLASSES . 'class.JournalPosts.php');
+                $JournalPost = new JournalPosts();
+
+                $thePostArr = $JournalPost->getSinglePost($journal_id);
+
+                $sql = $db->prepare("INSERT INTO unviewed_posts (post_Type, post_id, user_id, user_ip, notify_user_id ) VALUES(?,?,?,?,?)");
+                $sql->execute(array(
+                    5,
+                    $lastInsertedID,
+                    $user_id,
+                    $General->getUserIP(),
+                    $thePostArr['user_id'],
+                ));
 
 		        else:
 			        $jsonOut['status'] = 'Empty Input';

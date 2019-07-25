@@ -19,7 +19,6 @@ include_once(CLASSES .'Admin.php');
 include_once(CLASSES . 'class.Redirects.php');
 date_default_timezone_set('America/New_York');
 
-
 $page_checks = new \Page_Attr\Checks();
 $Sessions = new Sessions();
 $general = new General();

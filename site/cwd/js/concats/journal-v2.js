@@ -37,7 +37,7 @@ function inputResize() {
         });
     }
 }
-/*var inputContainer, textareaSize, input;
+var inputContainer, textareaSize, input;
 var autoSize = function () {
     "use strict";
     if($('[data-resize-textarea="true"].active').length > 0) {
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
     input.addEventListener('input', autoSize);
 
     }
-});*/
+});
 moreText();
 function moreText(){
     'use strict';

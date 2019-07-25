@@ -74,6 +74,15 @@
 		    $JournalPost = new JournalPosts();
 		    $JournalPost->storePostLite($_POST['content']);
 		    break;
+        case 'Journal Session 1' :
+            include_once(CLASSES . 'Profile/Processor.php');
+            $Processor = new \Profile\Processor();
+            break;
+        case 'Unviewed Posts Updater' :
+            include_once(CLASSES . 'Profile/NewComments.php');
+            $NewComments = new \Profile\NewComments();
+            echo $NewComments->removeFromNewList($_POST['post_id']);
+            break;
 	    case 'Like Journal Entry' :
 		    $Journal->set_like_status($_POST);
 		    break;

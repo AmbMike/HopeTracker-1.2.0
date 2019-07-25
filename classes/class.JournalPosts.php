@@ -107,13 +107,16 @@ class JournalPosts
 
         // section -64--88-0-2--2405a564:15f260ff61f:-8000:0000000000000BA4 begin
         $this->Database = new Database();
+
+        $excludeSessionPosts = '3,4,5,7,8,9';
+
         if($userId == false){
-	        $sql = $this->Database->prepare("SELECT * FROM hopetrac_main.journal_entries WHERE status = 1 ORDER BY id DESC LIMIT 0, :rows");
+	        $sql = $this->Database->prepare("SELECT * FROM hopetrac_main.journal_entries WHERE status = 1 AND visibility != 1 AND course_session NOT IN($excludeSessionPosts) ORDER BY id DESC LIMIT 0, :rows");
 	        $sql->setFetchMode(PDO::FETCH_ASSOC);
 	        $sql->bindParam(':rows', $qty, PDO::PARAM_INT);
 	        $sql->execute();
         }else{
-	        $sql = $this->Database->prepare("SELECT * FROM hopetrac_main.journal_entries WHERE user_id = :userId AND status = 1 ORDER BY id DESC LIMIT 0, :rows");
+	        $sql = $this->Database->prepare("SELECT * FROM hopetrac_main.journal_entries WHERE user_id = :userId AND status = 1 AND visibility != 1 AND course_session NOT IN($excludeSessionPosts) ORDER BY id DESC LIMIT 0, :rows");
 	        $sql->setFetchMode(PDO::FETCH_ASSOC);
 	        $sql->bindParam(':rows', $qty, PDO::PARAM_INT);
 	        $sql->bindParam(':userId', $userId, PDO::PARAM_INT);
@@ -121,6 +124,7 @@ class JournalPosts
         }
 
         $returnValue = $sql->fetchAll();
+        
         // section -64--88-0-2--2405a564:15f260ff61f:-8000:0000000000000BA4 end
 
         return (array) $returnValue;
@@ -142,8 +146,8 @@ class JournalPosts
 
 	    $this->Database = new Database();
 
-	    
-	    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE id = ? ORDER BY id DESC LIMIT 1");
+        $excludeSessionPosts = '3,4,5';
+	    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE id = ? AND visibility != 1 AND course_session NOT IN($excludeSessionPosts) ORDER BY id DESC LIMIT 1");
 	    $sql->setFetchMode(PDO::FETCH_ASSOC);
 	    $sql->execute(array($postId));
 
@@ -170,15 +174,15 @@ class JournalPosts
 
 
 	    $time =  time();
-	    $sql = $this->Database->prepare("INSERT INTO journal_entries (user_id, created_entry, content, ip) VALUES (?,?,?,?)");
+	    $sql = $this->Database->prepare("INSERT INTO journal_entries (user_id, created_entry,course_session, content, ip) VALUES (?,?,?,?,?)");
 	    $sql->execute(array(
 	    	$this->userId,
 		    $time,
+		    0,
 		    $content,
 		    $this->General->getUserIP()
 
 	    ));
-
 	    $ajaxOut = array();
 
 	    if($sql->rowCount() > 0){

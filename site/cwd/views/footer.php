@@ -147,27 +147,27 @@ $users_chatroom = $Chat->user_in_chatroom();
         foreach ($files as $index => $file) {
             if ($file != ".") {
                 if(is_file($path.'/'.$file)) {
-                    echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/'.$directory.'/' . $file . '"></script>' . PHP_EOL;
+                    echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/'.$directory.'/' . $file . '?version='. VERSION .'"></script>' . PHP_EOL;
                 }
             }
         }
     }
     /* Main Jquery Lib */
-	echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/global-variables.js"></script>' . PHP_EOL;
-    echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/jquery-3-1-1.js"></script>' . PHP_EOL;
-    echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/bootstrap/bootstrap.min.js"></script>' . PHP_EOL;
+	echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/global-variables.js?version='. VERSION .'"></script>' . PHP_EOL;
+    echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/jquery-3-1-1.js?version='. VERSION .'"></script>' . PHP_EOL;
+    echo '<script type="text/javascript" src="/'. RELATIVE_PATH .'site/cwd/js/bootstrap/bootstrap.min.js?version='. VERSION .'"></script>' . PHP_EOL;
 
     ?>
     <script src="<?php echo TINYMCE; ?>" type="text/javascript"></script>
-    <script src="/<?php echo RELATIVE_PATH; ?>mod/croppic/croppic.js" type="text/javascript"></script>
-    <script src="/<?php echo RELATIVE_PATH; ?>site/cwd/js/concats/a.validation.js" type="text/javascript"></script>
+    <script src="/<?php echo RELATIVE_PATH; ?>mod/croppic/croppic.js?version=<?php echo VERSION; ?>" type="text/javascript"></script>
+    <script src="/<?php echo RELATIVE_PATH; ?>site/cwd/js/concats/a.validation.js?version=<?php echo VERSION; ?>" type="text/javascript"></script>
     <?php
     script_dev_version('concats');
     script_dev_version('concats/plugs');
     script_dev_version('concats/forms');
     script_dev_version('concats/widgets');
     ?>
-    <script src="/<?php echo RELATIVE_PATH; ?>site/cwd/js/shared.js" type="text/javascript"></script>
+    <script src="/<?php echo RELATIVE_PATH; ?>site/cwd/js/shared.js?version=<?php echo VERSION; ?>" type="text/javascript"></script>
 <?php else: ?>
     <script src="<?php echo TINYMCE; ?>" type="text/javascript"></script>
 

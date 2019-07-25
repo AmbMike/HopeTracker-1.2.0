@@ -108,7 +108,7 @@ if($Session->get('logged_in') == 1){
 ?>
 <div <?php echo $jumpData; ?> class="con main" data-questions-parent="true" id="new-forum" data-user-id="<?php echo $user_id; ?>">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <main>
                 <div class="header-box main-title-box">
                     <span class="h1-addon"><?php echo $total_questions; ?> Questions Asked</span>
@@ -403,6 +403,11 @@ if($Session->get('logged_in') == 1){
 				<?php include_once(MODALS . 'forum-ask-question-form.php'); ?>
 				<?php include_once(MODALS . 'forum-answer-form.php'); ?>
             </main>
+        </div>
+        <div class="col-md-4 sidebar-box">
+            <aside>
+                <?php include(SIDEBAR_TOP_QUESTIONS);?>
+            </aside>
         </div>
     </div>
 </div>

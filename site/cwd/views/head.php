@@ -40,7 +40,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><?php echo ($page_title) ? : 'Hope Tracker | Ambrosia'; ?></title>
     <meta name="description" content="<?php echo ($page_description) ? : 'The focus of HopeTrack is to build a community that will support you for ever.'; ?>">
-    <link rel="stylesheet" href="<?php echo CSS; ?>main-full.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo CSS; ?>main-full.css?ver=<?php echo VERSION; ?>" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
     <?php

@@ -31,10 +31,11 @@ class URL extends Sessions {
         }
     }
     public static function restricted_url($p_url){
+
         $Sessions = new parent();
         if(isset($_GET['protected']) && $_GET['protected'] == true){
             if($Sessions->get('logged_in') == 0){
-	            header( 'Location: /'.RELATIVE_PATH_NO_END_SLASH.'/home/' );
+	            header( 'Location: /'.RELATIVE_PATH.'' );
                return 'home';
             }else{
                 return 'protected/' . $p_url;

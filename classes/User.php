@@ -120,6 +120,23 @@ class User extends Sessions {
 		$return = $sql->fetch();
 		return $return[$name];
 	}
+    public function user_information($name, $id = false){
+        $session = new parent();
+        $db = new Database();
+
+        if($id == false){
+            $user_id = $session->get('user-id');
+        }else{
+            $user_id = $id;
+        }
+
+        $sql = $db->prepare("SELECT * FROM `user_list` WHERE id = ? LIMIT 1");
+        $sql->setFetchMode(PDO::FETCH_ASSOC);
+        $sql->execute(array($user_id));
+
+        $return = $sql->fetch();
+        return $return[$name];
+    }
 	public function login_user($data){
 		$db = new Database();
 		$session = new parent();

@@ -570,7 +570,44 @@ function build_new_chat_div(primaryData, subData,postId,commentId, commentUserId
     '<div class="clearfix></div>"';
 }
 
+topQuestionsAction();
+function topQuestionsAction() {
 
+    if($('#sidebar-top-questions').length > 0){
+        var $thisBtn = $('#top-questions .link');
+        var topQuestionsEl = $('#sidebar-top-questions');
+        var recentQuestionsEl = $('#sidebar-recent-questions');
+        var titleEl = $('#sidebar-feature-title');
+
+
+        titleEl.text(titleEl.data('initial-text'));
+        $thisBtn.text($thisBtn.data('initial-text'));
+        $($thisBtn).on('click',function(){
+
+            if(!topQuestionsEl.hasClass('off')){
+                $thisBtn.text($thisBtn.data('after-click-text'));
+                titleEl.text(titleEl.data('after-click-text'));
+
+                topQuestionsEl.addClass('off').animate({opacity: 0},300,function(){
+                    $(this).css({'display': 'none'});
+                    recentQuestionsEl.css({'display': 'block','opacity': '0'}).animate({opacity: 1}, 300);
+
+                });
+            }else{
+                $thisBtn.text($thisBtn.data('initial-text'));
+                titleEl.text(titleEl.data('initial-text'));
+                recentQuestionsEl.removeClass('on').animate({opacity: 0},300,function(){
+                    $(this).css({'display': 'none'});
+                    topQuestionsEl.css({'display':'block'}).removeClass('off').animate({opacity: 1}, 300);
+
+                });
+            }
+
+        });
+    }
+}
+
+/**
 function showMoreOnlineUsers() {
 
     var ajaxData = {
@@ -586,3 +623,4 @@ function showMoreOnlineUsers() {
         });
     },'json');
 }
+*/

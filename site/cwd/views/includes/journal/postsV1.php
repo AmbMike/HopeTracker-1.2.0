@@ -171,11 +171,11 @@
                     <div class="text-content">
                         <?php if($latest_post['anxiety'] != null): ?>
                         <div class="more-box">
-                                <?php $content = strip_tags($latest_post['content']) ?>
+                                <?php $content = nl2br($latest_post['content']); ?>
                                 <?php if(strlen($content) < 150) : ?>
                                     <?php echo $content; ?> <button data-moreText="more" role="button" class="btn btn-primary sm">View more</button>
                                 <?php else: ?>
-                                    <?php echo rtrim(substr($content, 0, 150)); ?><span class="remover"></span> <span class="dots">...</span> <button role="button" class="btn btn-primary sm" data-moreText="more">View more</button>
+                                    <?php echo rtrim(substr($content, 0, 150)); ?><span class="remover"></span> <span class="dots">...</span><button role="button" class="btn btn-primary sm" data-moreText="more">View more</button>
                                 <?php endif; ?>
                             <span class="more-text">
                                 <?php echo rtrim(substr($content, 150, 1000000)); ?>
@@ -204,7 +204,7 @@
                             </span>
                         </div>
                         <?php else: ?>
-	                        <?php echo $latest_post['content'];  ?>
+	                        <?php echo nl2br($latest_post['content']);  ?>
                         <?php endif; ?>
                     </div>
                 </li>

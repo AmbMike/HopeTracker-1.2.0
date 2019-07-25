@@ -1,0 +1,38 @@
+#top-questions{
+  .fontStyles{
+    font-size: 18px;
+    font-weight: bold;
+  }
+  #sidebar-recent-questions{
+    display: none;
+  }
+  .latest-title{
+    @extend .fontStyles;
+    margin: 0 0 10px 0;
+  }
+ .link{
+   background:none;
+   color: $brand-primary;
+   border:none;
+   outline: none;
+ }
+  .user-post-item{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ececec;
+
+    &:last-of-type{
+      border:none !important;
+    }
+
+    a{
+      display: block;
+    }
+    .user-name{
+      @extend .fontStyles;
+    }
+    .post-title{
+      font-size: 18px;
+    }
+  }
+}

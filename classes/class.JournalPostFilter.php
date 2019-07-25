@@ -156,6 +156,7 @@ class JournalPostFilter
 
 	    $this->Database = new Database();
 	    $User = new User();
+        $excludeSessionPosts = '3,4,5';
 
 	    /** Default Post Per Call */
 	    if(!isset($data['startPost']) ){
@@ -177,7 +178,7 @@ class JournalPostFilter
 
 		    $userIdList = implode( ',', $userIds );
 
-		    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1 AND user_id IN (" . $userIdList.") ORDER BY timestamp ".$order . " LIMIT :startLimit, :maxlimit");
+		    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1 AND visibility != 1 AND course_session NOT IN($excludeSessionPosts) AND user_id IN (" . $userIdList.") ORDER BY timestamp ".$order . " LIMIT :startLimit, :maxlimit");
 		    $sql->setFetchMode( PDO::FETCH_ASSOC );
 		    $sql->bindParam('startLimit',$startPost, PDO::PARAM_INT);
 		    $sql->bindParam('maxlimit',$endPost, PDO::PARAM_INT);
@@ -360,7 +361,7 @@ class JournalPostFilter
 	    if($data['type'] == 'no filter scroll'){
 
 	    	/** Get full row count */
-		    $sql = $this->Database->prepare("SELECT count(*) FROM journal_entries  WHERE  status = 1");
+		    $sql = $this->Database->prepare("SELECT count(*) FROM journal_entries  WHERE  status = 1 ");
 		    $sql->execute();
 		    $totalRows = $sql->fetchColumn();
 
@@ -373,7 +374,7 @@ class JournalPostFilter
 
 		    /** Check if there are more posts to serve to the user on scroll. */
 		    if($totalRows > $endPost){
-			    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1 ORDER BY id DESC LIMIT :startLimit, :maxlimit ");
+			    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1 AND visibility != 1 AND course_session NOT IN($excludeSessionPosts) ORDER BY id DESC LIMIT :startLimit, :maxlimit ");
 			    $sql->setFetchMode(PDO::FETCH_ASSOC);
 			    $sql->bindParam('startLimit',$startPost, PDO::PARAM_INT);
 			    $sql->bindParam('maxlimit',$endPost, PDO::PARAM_INT);
@@ -399,7 +400,7 @@ class JournalPostFilter
 
 		    /** Check if there are more posts to serve to the user on scroll. */
 		    if($totalPosts > $startPost && $totalPosts > 2){
-			    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1 AND user_id IN (".$user_ids.") ORDER BY id DESC LIMIT :startLimit, :maxlimit ");
+			    $sql = $this->Database->prepare("SELECT * FROM journal_entries WHERE  status = 1  AND visibility != 1 AND course_session NOT IN($excludeSessionPosts) AND user_id IN (".$user_ids.") ORDER BY id DESC LIMIT :startLimit, :maxlimit ");
 			    $sql->setFetchMode(PDO::FETCH_ASSOC);
 			    $sql->bindParam('startLimit',$startPost, PDO::PARAM_INT);
 			    $sql->bindParam('maxlimit',$endPost, PDO::PARAM_INT);

@@ -91,6 +91,7 @@ define('MAIN_JS',  root_slash . 'site/public/js/main.js');
 define('JS',  root_slash . RELATIVE_PATH .  'site/'.SRC_PATH.'/js/');
 define('ARRAYS', ABSPATH .  root_slash . 'arrays/');
 define('SIDEBAR', ABSPATH .  root_slash . 'site/'.SRC_PATH.'/views/includes/sidebar/index.php');
+define('SIDEBAR_TOP_QUESTIONS', ABSPATH .  root_slash . 'site/'.SRC_PATH.'/views/includes/sidebar/top-questions.php');
 define('MODALS', ABSPATH .  root_slash . 'site/'.SRC_PATH.'/views/includes/modals/');
 define('SIDEBAR_PATH', ABSPATH .  root_slash . 'site/'.SRC_PATH.'/views/includes/sidebar/');
 define('USERS', ABSPATH .  root_slash . 'users');
