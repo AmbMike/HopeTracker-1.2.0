@@ -79,7 +79,7 @@ if(isset($_GET['hide_tools'])){
 
 <div class="con main" data-questions-parent="true">
     <div class="row">
-        <div class="col-md-8" id="forum-single">
+        <div class="col-md-8 i-post-single-v2" id="forum-single">
             <main>
                 <div class="header-box">
                     <h2 class="green-heading-lg">Addiction Forum Question</h2>

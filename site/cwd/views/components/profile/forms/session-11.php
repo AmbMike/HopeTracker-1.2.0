@@ -30,7 +30,8 @@ $courseSession = 7;
                 <div class="s-cell i-profile-img s-v-top">
                     <div class="s-profile-img" style="background-image: url('https://www.ambrosiatc.com/hopetracker/users/user-1/profile.jpg');">
                     </div>
-                    <span class="s-date"><?php echo strtoupper(date("M d",$currentPost['date_created'])); ?></span>
+                    <?php $postDateSes = (!empty($currentPost)) ? $currentPost['date_created'] : time(); ?>
+                    <span class="s-date"><?php echo strtoupper(date("M d",$postDateSes)); ?></span>
                 </div>
                 <div class="s-cell">
                     <div class="alert alert-success success-notification" style="display: none; margin-bottom: 15px">

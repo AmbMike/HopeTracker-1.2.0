@@ -30,7 +30,8 @@ $courseSession = 1;
                 <div class="s-cell i-profile-img s-v-top">
                     <div class="s-profile-img" style="background-image: url('/<?php echo $User->get_user_profile_img(false,$Sessions->get('user-id')); ?>');">
                     </div>
-                    <span class="s-date"><?php echo strtoupper(date("M d",$currentPost['date_created'])); ?></span>
+                    <?php $postDateSes = (!empty($currentPost)) ? $currentPost['date_created'] : time(); ?>
+                    <span class="s-date"><?php echo strtoupper(date("M d",$postDateSes)); ?></span>
                 </div>
                 <div class="s-cell">
                     <div class="alert alert-success success-notification" style="display: none; margin-bottom: 15px">

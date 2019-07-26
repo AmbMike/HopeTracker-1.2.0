@@ -168,7 +168,7 @@ class ActivitySessionItems
 	    if($complete == true):
 		    $Database = new Database();
 
-		    $sql = $Database->prepare("SELECT count(*) FROM course_sessions WHERE user_id = ?");
+		    $sql = $Database->prepare("SELECT count(DISTINCT session_pos, course_id) FROM course_sessions WHERE user_id = ?");
 		    $sql->execute(array($this->userId));
 
 		    $returnValue = $sql->fetchColumn();
@@ -178,14 +178,14 @@ class ActivitySessionItems
 		     * Get all the folders for each session.
 		     * Path to the provided session directory.
 		     */
-		    $directory = ABSOLUTE_PATH_NO_END_SLASH . "/site/cwd/views/includes/course/";
+		    $directory = ABSOLUTE_PATH_NO_END_SLASH . "/site/public/views/includes/course/";
 		    $scanned_directory = array_diff(scandir($directory), array('..', '.','index.php','notes.txt'));
 
 		    /**
 		     * Put all the sessions activities into an array.
 		     */
 		    foreach ($scanned_directory as $index => $session_directory):
-			    $directory = ABSOLUTE_PATH_NO_END_SLASH . "/site/cwd/views/includes/course/" . $session_directory;
+			    $directory = ABSOLUTE_PATH_NO_END_SLASH . "/site/public/views/includes/course/" . $session_directory;
 			    $scanned_activity_directory = array_diff(scandir($directory), array('..', '.','index.php','variables.php'));
 
 			    $returnValue[$index] = $scanned_activity_directory;
@@ -194,6 +194,8 @@ class ActivitySessionItems
 		    $returnValue = array_values( $returnValue );
 
 		    $returnValue = count($this->General->array_flatten($returnValue));
+
+
 	    endif;
 
         // section -64--88-0-19-6f78336d:1617611e1c5:-8000:0000000000001004 end

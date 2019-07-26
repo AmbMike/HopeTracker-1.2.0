@@ -62,7 +62,8 @@ $courseSession = 0;
                             <div class="s-cell i-profile-img s-v-top">
                                 <div class="s-profile-img" style="background-image: url('/<?php echo $User->get_user_profile_img(false,$thePost['user_id']); ?>');">
                                 </div>
-                                <span class="s-date"><?php echo strtoupper(date("M d",$thePost['created_entry'])); ?></span>
+                                <?php $postDateSes = (!empty($thePost['date_created'])) ? $thePost['date_created'] : time(); ?>
+                                <span class="s-date"><?php echo strtoupper(date("M d",$postDateSes)); ?></span>
                             </div>
                             <div class="s-cell">
                                 <form onkeydown="journal_active_edit(this.id);" id="i-f-default-edit-<?php echo $index; ?>" data-post-id="<?php echo $thePost['id']; ?>" class="s-default-form" data-session-type="2" onsubmit="return processFormSession1(event,this.id);">
